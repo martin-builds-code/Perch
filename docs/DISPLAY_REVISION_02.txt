@@ -1,0 +1,23 @@
+Aero Pane - display revision 02, 30 October 2026
+
+Rebuilt the presentation to match the approved adult-oriented rounded mockup:
+large rounded Nunito type, slate identity/route card, amber barometric-altitude
+and teal horizontal-distance tiles, three substantial nearby aircraft cards.
+A 24 CSS pixel gap separates the primary display from the Also nearby heading.
+The font is self-hosted, Latin variable WOFF2 (39.13 kB), with its OFL license.
+No remote font service or new network dependency at runtime.
+
+Simulation records, schedule, transitions, selection, error/recovery states,
+formatting, timers, event handlers and existing tests are unchanged.
+App.tsx changes only the identity element's class for unusually long models.
+No live APIs or collector/infrastructure changes.
+
+Verification: types/build/lint and all eight tests passed. Chromium layout
+checks passed all nine scenarios at 1024x624, 1024x680, 1024x768, 1112x746,
+1112x834; five additional long-name/unknown-value fixture checks passed.
+No tested text overflow, section/card overlap or clipped footer. Safari 15
+build targets remain configured. Physical iPad Safari fit/readability still
+requires user review; no material Air 2-specific compromise introduced.
+
+Earlier compatibility notes describe revision 01 where typography/layout
+measurements differ; this note supersedes those design measurements only.

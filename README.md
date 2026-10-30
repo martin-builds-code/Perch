@@ -38,3 +38,10 @@ still require testing. Emulated dimensions are not device certification.
 `qa.html` is a development-only iframe size harness, not a production entry.
 No map, relevance algorithm, live integration or research collector is included.
 M24 and the separate Stage 1B collector are not used or modified by this project.
+
+## Display revision 02
+
+The current UI follows the approved rounded, colourful adult display mockup.
+Nunito Variable is self-hosted (Latin subset); its license ships in
+`public/OFL-Nunito.txt`. See `docs/DISPLAY_REVISION_02.txt` for current layout
+and verification findings. Simulation data and behaviour are unchanged.
