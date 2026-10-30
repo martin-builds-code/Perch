@@ -1,0 +1,27 @@
+
+> aero-pane-prototype@0.1.0 test
+> node --expose-gc --import tsx --test tests/*.test.tsx
+
+✔ Every scenario persists the demo label and never claims live tracking (68.240204ms)
+✔ Complete identity prioritises model and labels barometric/horizontal units (2.234295ms)
+✔ Three secondaries, no duplicate featured aircraft (0.201714ms)
+✔ Unknown values remain explicit and are not made up (2.784647ms)
+✔ Unavailable state hides last aircraft and recovers automatically in schedule (1.371291ms)
+✔ Deterministic transitions at exact boundaries and repeated 18-hour simulation (9.424277ms)
+✔ Long manufacturer/operator and missing altitude render without truncating source strings (1.95879ms)
+Soak transition 0 heap MiB 41
+Soak transition 45 heap MiB 43
+Soak transition 90 heap MiB 43
+Soak transition 135 heap MiB 43
+Soak transition 180 heap MiB 44
+Soak transition 225 heap MiB 44
+Soak heap samples bytes [42467896,44770416,45123728,45517112,45920728,46315456]
+✔ Mounted React soak: 30 full cycles, one timer, stable nodes, listener cleanup (1128.693883ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2063.023138

@@ -1,0 +1,52 @@
+[
+  {
+    "viewport": [
+      1024,
+      624
+    ],
+    "horizontalOverflow": [],
+    "nearbyOverlap": false,
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false
+  },
+  {
+    "viewport": [
+      1024,
+      680
+    ],
+    "horizontalOverflow": [],
+    "nearbyOverlap": false,
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false
+  },
+  {
+    "viewport": [
+      1024,
+      768
+    ],
+    "horizontalOverflow": [],
+    "nearbyOverlap": false,
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false
+  },
+  {
+    "viewport": [
+      1112,
+      746
+    ],
+    "horizontalOverflow": [],
+    "nearbyOverlap": false,
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false
+  },
+  {
+    "viewport": [
+      1112,
+      834
+    ],
+    "horizontalOverflow": [],
+    "nearbyOverlap": false,
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false
+  }
+]

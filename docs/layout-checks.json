@@ -1,0 +1,677 @@
+[
+  {
+    "scene": "single",
+    "expected": [
+      1024,
+      624
+    ],
+    "footerBottom": 614,
+    "height": 624,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 624,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "multiple",
+    "expected": [
+      1024,
+      624
+    ],
+    "footerBottom": 614,
+    "height": 624,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 624,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "changing",
+    "expected": [
+      1024,
+      624
+    ],
+    "footerBottom": 614,
+    "height": 624,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 624,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "regional",
+    "expected": [
+      1024,
+      624
+    ],
+    "footerBottom": 614,
+    "height": 624,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 624,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "incomplete",
+    "expected": [
+      1024,
+      624
+    ],
+    "footerBottom": 614,
+    "height": 624,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 624,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "standby",
+    "expected": [
+      1024,
+      624
+    ],
+    "footerBottom": 614,
+    "height": 624,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 624,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "delayed",
+    "expected": [
+      1024,
+      624
+    ],
+    "footerBottom": 614,
+    "height": 624,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 624,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "unavailable",
+    "expected": [
+      1024,
+      624
+    ],
+    "footerBottom": 614,
+    "height": 624,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 624,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "recovery",
+    "expected": [
+      1024,
+      624
+    ],
+    "footerBottom": 614,
+    "height": 624,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 624,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "single",
+    "expected": [
+      1024,
+      680
+    ],
+    "footerBottom": 670,
+    "height": 680,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 680,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "multiple",
+    "expected": [
+      1024,
+      680
+    ],
+    "footerBottom": 670,
+    "height": 680,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 680,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "changing",
+    "expected": [
+      1024,
+      680
+    ],
+    "footerBottom": 670,
+    "height": 680,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 680,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "regional",
+    "expected": [
+      1024,
+      680
+    ],
+    "footerBottom": 670,
+    "height": 680,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 680,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "incomplete",
+    "expected": [
+      1024,
+      680
+    ],
+    "footerBottom": 670,
+    "height": 680,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 680,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "standby",
+    "expected": [
+      1024,
+      680
+    ],
+    "footerBottom": 670,
+    "height": 680,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 680,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "delayed",
+    "expected": [
+      1024,
+      680
+    ],
+    "footerBottom": 670,
+    "height": 680,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 680,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "unavailable",
+    "expected": [
+      1024,
+      680
+    ],
+    "footerBottom": 670,
+    "height": 680,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 680,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "recovery",
+    "expected": [
+      1024,
+      680
+    ],
+    "footerBottom": 670,
+    "height": 680,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 680,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "single",
+    "expected": [
+      1024,
+      768
+    ],
+    "footerBottom": 754,
+    "height": 768,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 768,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "multiple",
+    "expected": [
+      1024,
+      768
+    ],
+    "footerBottom": 754,
+    "height": 768,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 768,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "changing",
+    "expected": [
+      1024,
+      768
+    ],
+    "footerBottom": 754,
+    "height": 768,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 768,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "regional",
+    "expected": [
+      1024,
+      768
+    ],
+    "footerBottom": 754,
+    "height": 768,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 768,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "incomplete",
+    "expected": [
+      1024,
+      768
+    ],
+    "footerBottom": 754,
+    "height": 768,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 768,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "standby",
+    "expected": [
+      1024,
+      768
+    ],
+    "footerBottom": 754,
+    "height": 768,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 768,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "delayed",
+    "expected": [
+      1024,
+      768
+    ],
+    "footerBottom": 754,
+    "height": 768,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 768,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "unavailable",
+    "expected": [
+      1024,
+      768
+    ],
+    "footerBottom": 754,
+    "height": 768,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 768,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "recovery",
+    "expected": [
+      1024,
+      768
+    ],
+    "footerBottom": 754,
+    "height": 768,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 768,
+    "scrollWidth": 1024,
+    "width": 1024
+  },
+  {
+    "scene": "single",
+    "expected": [
+      1112,
+      746
+    ],
+    "footerBottom": 732,
+    "height": 746,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 746,
+    "scrollWidth": 1112,
+    "width": 1112
+  },
+  {
+    "scene": "multiple",
+    "expected": [
+      1112,
+      746
+    ],
+    "footerBottom": 732,
+    "height": 746,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 746,
+    "scrollWidth": 1112,
+    "width": 1112
+  },
+  {
+    "scene": "changing",
+    "expected": [
+      1112,
+      746
+    ],
+    "footerBottom": 732,
+    "height": 746,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 746,
+    "scrollWidth": 1112,
+    "width": 1112
+  },
+  {
+    "scene": "regional",
+    "expected": [
+      1112,
+      746
+    ],
+    "footerBottom": 732,
+    "height": 746,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 746,
+    "scrollWidth": 1112,
+    "width": 1112
+  },
+  {
+    "scene": "incomplete",
+    "expected": [
+      1112,
+      746
+    ],
+    "footerBottom": 732,
+    "height": 746,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 746,
+    "scrollWidth": 1112,
+    "width": 1112
+  },
+  {
+    "scene": "standby",
+    "expected": [
+      1112,
+      746
+    ],
+    "footerBottom": 732,
+    "height": 746,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 746,
+    "scrollWidth": 1112,
+    "width": 1112
+  },
+  {
+    "scene": "delayed",
+    "expected": [
+      1112,
+      746
+    ],
+    "footerBottom": 732,
+    "height": 746,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 746,
+    "scrollWidth": 1112,
+    "width": 1112
+  },
+  {
+    "scene": "unavailable",
+    "expected": [
+      1112,
+      746
+    ],
+    "footerBottom": 732,
+    "height": 746,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 746,
+    "scrollWidth": 1112,
+    "width": 1112
+  },
+  {
+    "scene": "recovery",
+    "expected": [
+      1112,
+      746
+    ],
+    "footerBottom": 732,
+    "height": 746,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 746,
+    "scrollWidth": 1112,
+    "width": 1112
+  },
+  {
+    "scene": "single",
+    "expected": [
+      1112,
+      834
+    ],
+    "footerBottom": 820,
+    "height": 834,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 834,
+    "scrollWidth": 1112,
+    "width": 1112
+  },
+  {
+    "scene": "multiple",
+    "expected": [
+      1112,
+      834
+    ],
+    "footerBottom": 820,
+    "height": 834,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 834,
+    "scrollWidth": 1112,
+    "width": 1112
+  },
+  {
+    "scene": "changing",
+    "expected": [
+      1112,
+      834
+    ],
+    "footerBottom": 820,
+    "height": 834,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 834,
+    "scrollWidth": 1112,
+    "width": 1112
+  },
+  {
+    "scene": "regional",
+    "expected": [
+      1112,
+      834
+    ],
+    "footerBottom": 820,
+    "height": 834,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 834,
+    "scrollWidth": 1112,
+    "width": 1112
+  },
+  {
+    "scene": "incomplete",
+    "expected": [
+      1112,
+      834
+    ],
+    "footerBottom": 820,
+    "height": 834,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 834,
+    "scrollWidth": 1112,
+    "width": 1112
+  },
+  {
+    "scene": "standby",
+    "expected": [
+      1112,
+      834
+    ],
+    "footerBottom": 820,
+    "height": 834,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 834,
+    "scrollWidth": 1112,
+    "width": 1112
+  },
+  {
+    "scene": "delayed",
+    "expected": [
+      1112,
+      834
+    ],
+    "footerBottom": 820,
+    "height": 834,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 834,
+    "scrollWidth": 1112,
+    "width": 1112
+  },
+  {
+    "scene": "unavailable",
+    "expected": [
+      1112,
+      834
+    ],
+    "footerBottom": 820,
+    "height": 834,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 834,
+    "scrollWidth": 1112,
+    "width": 1112
+  },
+  {
+    "scene": "recovery",
+    "expected": [
+      1112,
+      834
+    ],
+    "footerBottom": 820,
+    "height": 834,
+    "horizontalOverflow": [],
+    "primaryBottomOverflow": false,
+    "primaryOverlap": false,
+    "scrollHeight": 834,
+    "scrollWidth": 1112,
+    "width": 1112
+  }
+]

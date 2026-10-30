@@ -1,0 +1,66 @@
+AERO PANE - IPAD AIR 2 COMPATIBILITY REPORT
+Display prototype 0.1.0 - 30 October 2026
+
+Status: Safari 15 targeted; Chromium viewport and automation checks only.
+No physical iPad or iPadOS Safari execution is claimed.
+
+Confirmed in Work
+- Types, production build, lint, component and deterministic schedule tests.
+- All nine scenes fit Chromium iframe viewports 1024x624, 1024x680, 1024x768,
+  1112x746 and 1112x834 CSS pixels. Physical Retina pixels are NOT CSS pixels.
+- No body scrolling, offscreen footer, primary section overlap or horizontal
+  text overflow in the tested scenes. 45 scene/viewport combinations.
+- Five additional unusually-long-name/missing-value cases fit the same sizes.
+  The initial extreme-name stress test exposed overflow at 1024x624. A shared
+  length-based typography rule corrected it without removing text; rerun passed.
+- System fonts, static CSS, no external assets or ongoing animation; 220ms
+  opacity transition on scenario changes, disabled by reduced-motion setting.
+- Production JavaScript/CSS target Safari 15; bundled modulepreload polyfill.
+  Source avoids features newer than the supported environment.
+
+Routine compatibility engineering
+- Explicit safari15 build/css target (Vite's default is newer).
+- Visual Viewport resize listener plus innerHeight fallback tracks browser chrome.
+- 100vh/custom pixel height, env safe-area padding, no dvh/container queries.
+- CSS colors avoid color-mix and other newer features.
+- One timer and cleanup of all application resize/visibility listeners.
+
+Product/layout choices, applied across hardware
+- Very long models wrap with 36px type; normal models use 74-78px in typical
+  landscape viewports, and 60px in narrower landscape. Intermediate long names
+  use 47-52px. These are responsive/length-based rules, not Air 2 detection.
+- Text for absent numeric measurements uses a smaller readable phrase rather
+  than overflowing a number-sized field. Values are never invented.
+- System fonts and restrained opacity are the intended design, not fallback
+  removals of a more elaborate design to accommodate older hardware.
+- Portrait/under-480px-height displays show a landscape instruction; normal use
+  is intentionally landscape. No touch controls or navigation are needed.
+
+Material compromises specifically for older Safari
+None introduced. No features, fields or visual treatments were removed solely
+for Air 2. Any new device limitation that would require a material compromise
+must be disclosed for approval before acceptance.
+
+Still required on the physical Air 2
+1. Open the public URL in Safari, rotate to landscape and leave at default zoom.
+2. Check browser bars do not obscure content. Inspect all three nearby rows.
+3. From the intended room position, read model, altitude, distance and route.
+4. Watch at least two complete 166-second cycles (about six minutes). Confirm
+   changes, unknown values, standby, delayed/unavailable states and recovery.
+5. Leave open for 30-60 minutes. Note stalls, reloads, warmth and brightness.
+6. Optionally Share > Add to Home Screen; launch in landscape and repeat fit
+   and status checks. Guided Access is optional. No wake lock is implemented;
+   normal iPad auto-lock may need a user setting for an always-on review.
+
+Known limitations / newer hardware
+Chromium CSS viewport tests do not prove WebKit/Safari behavior, physical
+glanceability, thermal performance or long-term endurance. Memory checks are
+bounded research evidence, not proof of indefinite leak-free operation.
+Air 3 offers a larger display and more performance headroom, but no Air 2
+failure has been established. No visual upgrade is currently reserved for Air 3.
+No installed service worker/offline cache: loading/reloading needs internet;
+a loaded demo cycles locally without external data requests.
+
+Sources
+https://v7.vite.dev/config/build-options
+https://react.dev/reference/react-dom/client

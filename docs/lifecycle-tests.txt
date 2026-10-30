@@ -1,0 +1,16 @@
+Soak transition 0 heap MiB 40
+Soak transition 45 heap MiB 43
+Soak transition 90 heap MiB 43
+Soak transition 135 heap MiB 43
+Soak transition 180 heap MiB 44
+Soak transition 225 heap MiB 44
+Soak heap samples bytes [42446976,44741424,45101688,45499640,45901360,46295704]
+✔ Mounted React soak: 30 full cycles, one timer, stable nodes, listener cleanup (1058.141221ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1825.219658

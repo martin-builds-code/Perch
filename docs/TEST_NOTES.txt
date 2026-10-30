@@ -1,0 +1,27 @@
+Prototype verification - 30 October 2026
+
+Types/build/lint passed. Component/schedule/lifecycle results are recorded in
+component-tests.txt. Layout and stress JSON files record Chromium iframe tests.
+
+Fixture corrections during development (not concealed failures)
+- First build lacked @types/node for node:test. Added the development-only types.
+- The tsx CLI attempted to create an IPC pipe blocked by the environment. Use
+  Node --import tsx --test; no network permission change or alternate browser.
+- An initial microtask-accelerated 500-cycle lifecycle fixture exhausted Node's
+  2 GiB heap. A 30-cycle diagnostic still grew from ~41 to ~167 MiB. Replacing
+  the recording spy on performance.now with a non-recording fake clock reduced
+  the same run to ~40-44 MiB. The spy was retaining test call stacks. A real task
+  yield alone did not correct the retention. No product change was needed for
+  this fixture issue. Kept the diagnostic log for audit.
+- Final mounted soak: 30 complete cycles, 270 transitions, 83 simulated minutes,
+  one pending application timer, fixed application listener counts, stable node
+  count per scene, and zero remaining application timers/listeners on unmount.
+  This is accelerated jsdom evidence, not 83 minutes of actual Safari operation.
+  A post-warmup heap-growth budget of 8 MiB is checked with explicit test GC.
+  It does not establish zero growth indefinitely or physical device endurance.
+- Extreme-name browser test originally overlapped the lower section at the
+  shortest height. Length-based typography and missing-value text sizing fixed
+  it across all tested dimensions. No text is removed.
+- Preview console contained browser-extension metadata errors from a
+  chrome-extension:// source, not Aero Pane. Application errors are assessed
+  separately on the public deployment.
