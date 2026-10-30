@@ -23,12 +23,10 @@ function Empty({unavailable}:{unavailable:boolean}){
 }
 export function Display({scene,index=0}:{scene:Scene;index?:number}){
  return <><div className="portrait-note">Aero Pane<span>Please turn your iPad to landscape.</span><small>DEMO — SIMULATED DATA</small></div><main className="display" data-scene={scene.id}>
-  <header><div className="wordmark">Aero Pane<span>Aircraft, at a glance.</span></div><div className="demo-badge"><span/>DEMO — SIMULATED DATA</div></header>
-  <div className={'status-line status-'+scene.state}><span className="status-dot"/><span>{stateLabels[scene.state]}</span><span className="status-explainer">{scene.state==='delayed'?'Positions may be out of date':scene.state==='available'?'Fictional flights · display prototype':'Automatic updates'}</span></div>
   <div className="content" key={scene.id}>{scene.primary?<Primary aircraft={scene.primary} delayed={scene.state==='delayed'}/>:<Empty unavailable={scene.state==='unavailable'}/>}
    <section className="nearby" aria-label="Other nearby aircraft"><div className="section-heading"><h2>Also nearby</h2><span>{scene.secondary.length?`${scene.secondary.length} other aircraft`:'No other aircraft reported'}</span></div><div className="nearby-list">{scene.secondary.length?scene.secondary.map(aircraft=><Secondary key={aircraft.id} aircraft={aircraft}/>):<p className="nearby-empty">{scene.state==='unavailable'?'Nearby aircraft will appear when data returns.':'Clear skies in this demo snapshot.'}</p>}</div></section>
   </div>
-  <footer><span>PERCH <i/> Display study 01</span><div className="scene-track" aria-label={'Demo scenario: '+scene.label}>{scenes.map((s,i)=><span key={s.id} className={i===index?'selected':''}/>)}<span className="scene-label">{scene.label}</span></div></footer>
+  <footer><div className={'status-line status-'+scene.state}><span className="status-dot"/><span>{scene.state==='available'?stateLabels[scene.state]:`Demo · ${stateLabels[scene.state]}`}</span></div><div className="scene-track" aria-label={'Demo scenario: '+scene.label}>{scenes.map((s,i)=><span key={s.id} className={i===index?'selected':''}/>)}<span className="scene-label">{scene.label}</span></div></footer>
  </main></>;
 }
 export default function App(){

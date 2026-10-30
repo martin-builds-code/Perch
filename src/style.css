@@ -7,3 +7,9 @@
 .nearby{height:212px;min-height:212px}.nearby-aircraft{min-height:0}
 @media(min-height:780px){.nearby{height:248px;min-height:248px}}
 @media(max-height:650px){.nearby{height:190px;min-height:190px}}
+
+/* Compact status footer leaves more room for the primary card. */
+.content{gap:30px}
+footer{height:24px;align-items:center}
+footer .status-line{height:auto;font-size:11px}
+@media(max-height:650px){.content{gap:30px}}
