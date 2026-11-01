@@ -103,3 +103,26 @@ Do not roll back or modify the existing production project for this branch.
 Stage 2B relevance/switching stability, Stage 2C enrichment/routes and Stage 2D
 private authentication/endurance are deferred. Stage 2A nearest ordering is a
 rendering demonstration, with no audibility or detection-coverage claim.
+
+## Server ESM regression check
+
+`npm run check:server` validates Node ESM import rules separately from Vite's
+bundler resolution. Server relative imports use emitted `.js` extensions even
+though their source files are `.ts`. Keep the frontend's Safari build target.
+
+`npm run test:server-runtime` compiles only the server dependency graph to a
+fresh temporary directory, loads its `.js` handler with plain Node (no tsx/Vite),
+and exercises five HTTP scenarios on an ephemeral loopback port with synthetic
+provider responses. It clears inherited live/private location configuration from
+its child environments. It makes no external API calls and needs no private env
+file. It also runs automatically after the original suite in `npm test`.
+
+To exercise a separately generated, materialised Vercel function artifact, run
+`node scripts/test-server-runtime.mjs /absolute/path/to/function-artifact`.
+That directory must contain `api/aircraft.js`, its traced server modules and the
+project's ESM `package.json`. This mode reads the artifact without deleting it.
+The smoke test does not deploy anything or reproduce Vercel's authentication,
+request wrapper, regional caching, or actual private-location/provider traffic.
+See the validation follow-up for the failed original Preview and local builder
+version checked. Hosted validation must restart on a separately approved corrected
+Preview; the original deployed revision is not ready for iPad testing.

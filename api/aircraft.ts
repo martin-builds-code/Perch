@@ -1,6 +1,6 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
-import { liveSnapshot } from '../server/service';
-import { ProviderError } from '../server/provider';
+import { liveSnapshot } from '../server/service.js';
+import { ProviderError } from '../server/provider.js';
 export default async function handler(
   req: IncomingMessage,
   res: ServerResponse,

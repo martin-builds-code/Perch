@@ -1,6 +1,6 @@
-import { normalise, publicAircraft, validPosition } from './aircraft';
-import type { Position } from './aircraft';
-import type { Snapshot } from '../src/liveTypes';
+import { normalise, publicAircraft, validPosition } from './aircraft.js';
+import type { Position } from './aircraft.js';
+import type { Snapshot } from '../src/liveTypes.js';
 export const MAX_BYTES = 256 * 1024;
 export class ProviderError extends Error {
   constructor(

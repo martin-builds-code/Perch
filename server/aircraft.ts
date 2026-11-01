@@ -1,4 +1,4 @@
-import type { LiveAircraft } from '../src/liveTypes';
+import type { LiveAircraft } from '../src/liveTypes.js';
 export interface Position {
   latitude: number;
   longitude: number;

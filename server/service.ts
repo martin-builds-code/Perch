@@ -1,6 +1,6 @@
-import { fetchAircraft, ProviderError } from './provider';
-import { validPosition } from './aircraft';
-import type { Snapshot } from '../src/liveTypes';
+import { fetchAircraft, ProviderError } from './provider.js';
+import { validPosition } from './aircraft.js';
+import type { Snapshot } from '../src/liveTypes.js';
 export function configuration(env: NodeJS.ProcessEnv) {
   if (env.AERO_LIVE_ENABLED !== 'true' || env.VERCEL_ENV === 'production')
     throw new ProviderError('live-disabled');
