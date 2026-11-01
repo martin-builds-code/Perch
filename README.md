@@ -45,3 +45,11 @@ The current UI follows the approved rounded, colourful adult display mockup.
 Nunito Variable is self-hosted (Latin subset); its license ships in
 `public/OFL-Nunito.txt`. See `docs/DISPLAY_REVISION_02.txt` for current layout
 and verification findings. Simulation data and behaviour are unchanged.
+
+## Stage 2A (review branch)
+
+Live integration is opt-in, disabled by default and prohibited in Vercel
+production. The existing public demonstration is unchanged. See
+[review and local setup](docs/STAGE_2A_REVIEW.md),
+[architecture and request budget](docs/STAGE_2A_ARCHITECTURE.md) and
+[compatibility and validation](docs/STAGE_2A_VALIDATION.md).

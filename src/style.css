@@ -13,3 +13,5 @@
 footer{height:24px;align-items:center}
 footer .status-line{height:auto;font-size:11px}
 @media(max-height:650px){.content{gap:30px}}
+
+.provider-credit{color:inherit;text-decoration:none;font-size:11px}
