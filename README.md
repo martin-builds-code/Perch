@@ -53,3 +53,12 @@ production. The existing public demonstration is unchanged. See
 [review and local setup](docs/STAGE_2A_REVIEW.md),
 [architecture and request budget](docs/STAGE_2A_ARCHITECTURE.md) and
 [compatibility and validation](docs/STAGE_2A_VALIDATION.md).
+
+## Stage 2B (dependent review branch)
+
+The live display now ranks aircraft using proximity, altitude, radial motion and
+freshness, with a stable primary hold/handover policy. No display redesign or extra
+provider requests. See [selection policy and evidence](docs/STAGE_2B_SELECTION.md).
+This branch depends on unmerged Stage 2A PR #1; its separate PR targets
+`stage-2a-live-data`. `npm run replay:selection` runs the synthetic offline comparison.
+No Stage 2B deployment or merge is authorised.

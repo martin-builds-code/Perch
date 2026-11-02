@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "test": "node --expose-gc --import tsx --test --test-reporter=spec tests/*.test.tsx && npm run test:server-runtime",
     "check:server": "tsc -p tsconfig.server.json",
-    "test:server-runtime": "node scripts/test-server-runtime.mjs"
+    "test:server-runtime": "node scripts/test-server-runtime.mjs",
+    "replay:selection": "node --import tsx scripts/replay-selection.mjs"
   },
   "dependencies": {
     "@fontsource-variable/nunito": "^5.3.0",

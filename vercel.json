@@ -23,7 +23,8 @@
   ],
   "git": {
     "deploymentEnabled": {
-      "stage-2a-live-data": false
+      "stage-2a-live-data": false,
+      "stage-2b-aircraft-selection": false
     }
   },
   "functions": {

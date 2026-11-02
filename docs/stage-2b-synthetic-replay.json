@@ -1,0 +1,588 @@
+{
+  "evidence": "Synthetic scenarios informed by reported Stage 1B findings; no ground-truth audibility labels.",
+  "archiveReplayPerformed": false,
+  "scenarios": [
+    {
+      "name": "Farther approaching versus nearer departing",
+      "nearestSwitches": 0,
+      "relevanceSwitches": 1,
+      "frames": [
+        {
+          "offsetMs": 0,
+          "nearestFirst": "aa0001",
+          "relevancePrimary": "aa0001",
+          "reason": "acquired",
+          "ranked": [
+            {
+              "id": "aa0001",
+              "score": 51.81,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 23.809523809523814,
+                "altitude": 8,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            },
+            {
+              "id": "bb0002",
+              "score": 48,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 20,
+                "altitude": 8,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            }
+          ]
+        },
+        {
+          "offsetMs": 15000,
+          "nearestFirst": "aa0001",
+          "relevancePrimary": "aa0001",
+          "reason": "retained-best",
+          "ranked": [
+            {
+              "id": "aa0001",
+              "score": 51.077,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 23.076923076923073,
+                "altitude": 8,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            },
+            {
+              "id": "bb0002",
+              "score": 48.548,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 20.54794520547945,
+                "altitude": 8,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            }
+          ]
+        },
+        {
+          "offsetMs": 30000,
+          "nearestFirst": "aa0001",
+          "relevancePrimary": "bb0002",
+          "reason": "departing-handover",
+          "ranked": [
+            {
+              "id": "bb0002",
+              "score": 59.127,
+              "movement": "approaching",
+              "factors": {
+                "proximity": 21.126760563380284,
+                "altitude": 8,
+                "movement": 20,
+                "quality": 10,
+                "freshness": 1
+              }
+            },
+            {
+              "id": "aa0001",
+              "score": 40.388,
+              "movement": "departing",
+              "factors": {
+                "proximity": 22.388059701492537,
+                "altitude": 8,
+                "movement": 0,
+                "quality": 10,
+                "freshness": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Small alternating proximity differences",
+      "nearestSwitches": 7,
+      "relevanceSwitches": 0,
+      "frames": [
+        {
+          "offsetMs": 0,
+          "nearestFirst": "aa0001",
+          "relevancePrimary": "aa0001",
+          "reason": "acquired",
+          "ranked": [
+            {
+              "id": "aa0001",
+              "score": 56.429,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 25,
+                "altitude": 11.428571428571429,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            },
+            {
+              "id": "bb0002",
+              "score": 56.387,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 24.958402662229624,
+                "altitude": 11.428571428571429,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            }
+          ]
+        },
+        {
+          "offsetMs": 15000,
+          "nearestFirst": "bb0002",
+          "relevancePrimary": "aa0001",
+          "reason": "minimum-hold",
+          "ranked": [
+            {
+              "id": "bb0002",
+              "score": 56.429,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 25,
+                "altitude": 11.428571428571429,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            },
+            {
+              "id": "aa0001",
+              "score": 56.387,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 24.958402662229624,
+                "altitude": 11.428571428571429,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            }
+          ]
+        },
+        {
+          "offsetMs": 30000,
+          "nearestFirst": "aa0001",
+          "relevancePrimary": "aa0001",
+          "reason": "retained-best",
+          "ranked": [
+            {
+              "id": "aa0001",
+              "score": 56.429,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 25,
+                "altitude": 11.428571428571429,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            },
+            {
+              "id": "bb0002",
+              "score": 56.387,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 24.958402662229624,
+                "altitude": 11.428571428571429,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            }
+          ]
+        },
+        {
+          "offsetMs": 45000,
+          "nearestFirst": "bb0002",
+          "relevancePrimary": "aa0001",
+          "reason": "hysteresis",
+          "ranked": [
+            {
+              "id": "bb0002",
+              "score": 56.429,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 25,
+                "altitude": 11.428571428571429,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            },
+            {
+              "id": "aa0001",
+              "score": 56.387,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 24.958402662229624,
+                "altitude": 11.428571428571429,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            }
+          ]
+        },
+        {
+          "offsetMs": 60000,
+          "nearestFirst": "aa0001",
+          "relevancePrimary": "aa0001",
+          "reason": "retained-best",
+          "ranked": [
+            {
+              "id": "aa0001",
+              "score": 56.429,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 25,
+                "altitude": 11.428571428571429,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            },
+            {
+              "id": "bb0002",
+              "score": 56.387,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 24.958402662229624,
+                "altitude": 11.428571428571429,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            }
+          ]
+        },
+        {
+          "offsetMs": 75000,
+          "nearestFirst": "bb0002",
+          "relevancePrimary": "aa0001",
+          "reason": "hysteresis",
+          "ranked": [
+            {
+              "id": "bb0002",
+              "score": 56.429,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 25,
+                "altitude": 11.428571428571429,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            },
+            {
+              "id": "aa0001",
+              "score": 56.387,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 24.958402662229624,
+                "altitude": 11.428571428571429,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            }
+          ]
+        },
+        {
+          "offsetMs": 90000,
+          "nearestFirst": "aa0001",
+          "relevancePrimary": "aa0001",
+          "reason": "retained-best",
+          "ranked": [
+            {
+              "id": "aa0001",
+              "score": 56.429,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 25,
+                "altitude": 11.428571428571429,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            },
+            {
+              "id": "bb0002",
+              "score": 56.387,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 24.958402662229624,
+                "altitude": 11.428571428571429,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            }
+          ]
+        },
+        {
+          "offsetMs": 105000,
+          "nearestFirst": "bb0002",
+          "relevancePrimary": "aa0001",
+          "reason": "hysteresis",
+          "ranked": [
+            {
+              "id": "bb0002",
+              "score": 56.429,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 25,
+                "altitude": 11.428571428571429,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            },
+            {
+              "id": "aa0001",
+              "score": 56.387,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 24.958402662229624,
+                "altitude": 11.428571428571429,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Lower aircraft defeats closer high aircraft",
+      "nearestSwitches": 0,
+      "relevanceSwitches": 0,
+      "frames": [
+        {
+          "offsetMs": 0,
+          "nearestFirst": "aa0001",
+          "relevancePrimary": "bb0002",
+          "reason": "acquired",
+          "ranked": [
+            {
+              "id": "bb0002",
+              "score": 54.75,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 18.749999999999996,
+                "altitude": 16,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            },
+            {
+              "id": "aa0001",
+              "score": 53,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 25,
+                "altitude": 8,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ground traffic does not dominate overhead display",
+      "nearestSwitches": 0,
+      "relevanceSwitches": 0,
+      "frames": [
+        {
+          "offsetMs": 0,
+          "nearestFirst": "aa0001",
+          "relevancePrimary": "bb0002",
+          "reason": "acquired",
+          "ranked": [
+            {
+              "id": "bb0002",
+              "score": 49.429,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 21.42857142857143,
+                "altitude": 8,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Higher-altitude aircraft remains eligible",
+      "nearestSwitches": 0,
+      "relevanceSwitches": 0,
+      "frames": [
+        {
+          "offsetMs": 0,
+          "nearestFirst": "aa0001",
+          "relevancePrimary": "aa0001",
+          "reason": "acquired",
+          "ranked": [
+            {
+              "id": "aa0001",
+              "score": 47.582,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 21.42857142857143,
+                "altitude": 6.153846153846154,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Meaningful challenger waits for hold and confirmation",
+      "nearestSwitches": 1,
+      "relevanceSwitches": 1,
+      "frames": [
+        {
+          "offsetMs": 0,
+          "nearestFirst": "aa0001",
+          "relevancePrimary": "aa0001",
+          "reason": "acquired",
+          "ranked": [
+            {
+              "id": "aa0001",
+              "score": 50.179,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 18.749999999999996,
+                "altitude": 11.428571428571429,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            }
+          ]
+        },
+        {
+          "offsetMs": 15000,
+          "nearestFirst": "bb0002",
+          "relevancePrimary": "aa0001",
+          "reason": "minimum-hold",
+          "ranked": [
+            {
+              "id": "bb0002",
+              "score": 61.429,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 30.000000000000004,
+                "altitude": 11.428571428571429,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            },
+            {
+              "id": "aa0001",
+              "score": 50.179,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 18.749999999999996,
+                "altitude": 11.428571428571429,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            }
+          ]
+        },
+        {
+          "offsetMs": 30000,
+          "nearestFirst": "bb0002",
+          "relevancePrimary": "aa0001",
+          "reason": "minimum-hold",
+          "ranked": [
+            {
+              "id": "bb0002",
+              "score": 61.429,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 30.000000000000004,
+                "altitude": 11.428571428571429,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            },
+            {
+              "id": "aa0001",
+              "score": 50.179,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 18.749999999999996,
+                "altitude": 11.428571428571429,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            }
+          ]
+        },
+        {
+          "offsetMs": 45000,
+          "nearestFirst": "bb0002",
+          "relevancePrimary": "bb0002",
+          "reason": "confirmed-challenger",
+          "ranked": [
+            {
+              "id": "bb0002",
+              "score": 61.429,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 30.000000000000004,
+                "altitude": 11.428571428571429,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            },
+            {
+              "id": "aa0001",
+              "score": 50.179,
+              "movement": "unknown",
+              "factors": {
+                "proximity": 18.749999999999996,
+                "altitude": 11.428571428571429,
+                "movement": 10,
+                "quality": 10,
+                "freshness": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
