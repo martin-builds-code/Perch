@@ -259,23 +259,24 @@ test('diagnostic rings/counters saturate, summaries are copies, stop prevents mo
   });
   assert.equal(d.summary(T + 2000).successfulRequests, before);
 });
-test('server gate can produce one-cycle cooldown for a request arriving just before its 15-second gate', async () => {
+test('server gate bridges a near-boundary arrival using the original successful snapshot', async () => {
   let now = T,
     calls = 0;
   const service = createService(
     async () => {
       calls++;
-      return snap();
+      return snap([aircraft()], now);
     },
     () => now,
   );
-  await service();
+  const first = await service();
   now = T + 14999;
-  await assert.rejects(service(), /cooldown/);
+  assert.strictEqual(await service(), first);
+  assert.equal(calls, 1);
   now = T + 30000;
   await service();
   assert.equal(calls, 2);
-  // Reproduces a possible timing mechanism; does not establish the user's actual incident rate.
+  // The same arrival rejected with cooldown before the cache/gate correction.
 });
 
 test('poller diagnostics record successes, failures, lifecycle, cache, recovery and stop without changing selection', async () => {

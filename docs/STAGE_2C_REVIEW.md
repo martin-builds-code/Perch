@@ -91,15 +91,19 @@ also requires `AERO_LIVE_ENABLED=true` and `AERO_ENRICHMENT_ENABLED=true`.
 Diagnostic trials additionally require the diagnostic build flag and explicit
 30–60-minute query. See [delay findings and trial procedure](STAGE_2C_DELAYS.md).
 No hosted trial or unattended observation was initiated here.
+The user's supplied completed live export has since confirmed repeated server
+cooldown failures; [the authorised remediation](STAGE_2C_COOLDOWN_REMEDIATION.md)
+documents the exact cache/gate correction, original evidence and unchanged budgets.
 
 ## Validation and compatibility
 
-- All 90 named tests pass: 54 inherited, 15 enrichment/cache/client tests, 11
-  diagnostic/investigation tests and ten on-screen export tests. Coverage includes
+- All 111 named tests pass: the previous 90 plus 21 positional cache/gate regression
+  tests. Coverage includes
   malformed data, size/time bounds,
   HTTP/access/rate failures, cache expiry/negative/coalescing/bounds/cooldowns, late
   replies, native precedence, finite delay episodes, clocks, lifecycle and cleanup.
-- All 11 compiled-server HTTP scenarios pass (five positional, six enrichment).
+- All 13 compiled-server HTTP scenarios pass (seven positional, six enrichment),
+  including plain-Node near-gate timing and failed-refresh/recovery scenarios.
 - Local `@vercel/node@29.0.1` packaging generated two separate `nodejs24.x` artifacts.
   Position and enrichment graphs each passed their corresponding plain-Node HTTP
   checks. The enrichment artifact includes `server/hexdb.js`,
@@ -150,9 +154,10 @@ paid service or Stage 2D authentication work was introduced.
 Before a live trial: review the stacked PR, the 180-day route age policy, conservative
 brand pairs and request budget; separately authorise a protected Stage 2C Preview;
 validate authenticated API guards and live rendering before any sharing step;
-then run/export a bounded diagnostic trial. The user's real delayed-episode rate
-and cause are still unknown. Any server cache/gate change or freshness/selection
-policy change needs evidence and review; no automatic threshold changes are made.
+then run/export a bounded diagnostic trial. The original 45-minute trial's rate
+and cooldown cause are now documented; effectiveness of the correction still needs
+a separately authorised follow-up. Further cache/gate changes or freshness/selection
+policy changes need evidence and review; no automatic threshold changes are made.
 
 Reversion before merge is simply closing this PR and retaining Stage 2B. Locally
 stop the dev server/close the live tab and disable the opt-in flags; private local

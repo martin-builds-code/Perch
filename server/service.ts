@@ -1,6 +1,8 @@
 import { fetchAircraft, ProviderError } from './provider.js';
 import { validPosition } from './aircraft.js';
 import type { Snapshot } from '../src/liveTypes.js';
+const CACHE_TTL_MS = 10_000,
+  MIN_PROVIDER_INTERVAL_MS = 15_000;
 export function configuration(env: NodeJS.ProcessEnv) {
   if (env.AERO_LIVE_ENABLED !== 'true' || env.VERCEL_ENV === 'production')
     throw new ProviderError('live-disabled');
@@ -28,18 +30,26 @@ export function createService(load: () => Promise<Snapshot>, now = Date.now) {
     nextAllowed = 0,
     lastError: ProviderError | undefined;
   return function get(): Promise<Snapshot> {
-    if (
-      cached &&
-      now() - cached.fetchedAtMs >= 0 &&
-      now() - cached.fetchedAtMs < 10_000
-    )
+    const time = now();
+    const cacheAge = cached ? time - cached.fetchedAtMs : NaN;
+    if (cached && !lastError && cacheAge >= 0 && cacheAge < CACHE_TTL_MS)
       return Promise.resolve(cached);
     if (inFlight) return inFlight;
-    if (now() < nextAllowed)
+    if (time < nextAllowed) {
+      // Bridge the success-cache/gate gap without advancing any timestamps or
+      // allowing an earlier provider request. Never mask a failed refresh.
+      if (
+        cached &&
+        !lastError &&
+        cacheAge >= 0 &&
+        cacheAge < MIN_PROVIDER_INTERVAL_MS
+      )
+        return Promise.resolve(cached);
       return Promise.reject(
-        lastError ?? new ProviderError('cooldown', nextAllowed - now()),
+        lastError ?? new ProviderError('cooldown', nextAllowed - time),
       );
-    nextAllowed = now() + 15_000;
+    }
+    nextAllowed = time + MIN_PROVIDER_INTERVAL_MS;
     inFlight = load()
       .then(
         (value) => {

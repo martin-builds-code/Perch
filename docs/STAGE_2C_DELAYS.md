@@ -2,13 +2,17 @@
 
 ## Current conclusion
 
-The user's live episodes have **not yet been attributed or measured**. No hosted
-monitoring was performed during development. Deterministic code/fixture tests
-identify several plausible mechanisms, not the actual frequency or dominant cause.
+The supplied original 45-minute diagnostic export now confirms 63 HTTP 503
+`cooldown` failures among 180 polls and 33 delayed episodes (18.54% of observed
+time), all associated with failed requests. Inspection and a failing-before,
+passing-after regression establish the server success-cache/request-gate conflict.
+The authorised narrow correction reuses a recent successful snapshot during the
+closed gate. See [evidence, correction, budgets and validation](STAGE_2C_COOLDOWN_REMEDIATION.md).
+Development did not initiate hosted monitoring or deploy the correction.
 No change was made to the 30-second delayed threshold, 120-second expiry, Stage 2B
 weights, 36-second hold, switching margins, provider cadence or server request gate.
-The investigation currently returns outcome D: evidence gathering is still needed,
-with tested mechanisms and an instrumented trial ready for separate authorisation.
+This is a demonstrated application defect (outcome C), with hosted follow-up still
+required. Other ageing/selection/clock mechanisms remain possible and unchanged.
 
 ## Verified state logic and interactions
 
@@ -45,14 +49,13 @@ empty result is a separate standby condition. Those behaviours remain unchanged.
 The client schedules starts at least 15 seconds apart, prevents overlap and times
 out after 8 seconds. The provider request is bounded at 5 seconds. The server has
 a 10-second process success cache and a 15-second start gate; the CDN success TTL
-is 10 seconds. A deterministic test proves that a request arriving at 14,999 ms
-after the server's previous start is outside its cache but inside its gate, and
-receives `cooldown`. A request at 30 seconds succeeds. Variable browser-to-server
-latency could therefore produce an approximately one-cycle delay. The synthetic
-test establishes a possible timing mechanism; **it does not establish that this
-occurs in the user's deployment**. Changing this gate/cache relationship could
-alter provider load or snapshot age and is not bundled into this investigation.
-The diagnostics now record the safe `cooldown` code separately from network errors.
+is 10 seconds. Previously a request at 14,999 ms could miss the cache while the
+gate remained closed, returning `cooldown`. The original live export supports this
+failure path despite browser starts never being less than 15 seconds apart.
+The correction bridges that gap only with an unchanged successful snapshot aged
+less than 15 seconds and no intervening failure. New provider starts remain at
+least 15 seconds apart per process; open-gate refresh and error cooldowns remain.
+Diagnostics still record safe `cooldown` categories separately from network errors.
 
 A browser pause can also leave records aged at resume. Existing visibility/online/
 pageshow recovery republishes age status, then fetches within the normal cadence.

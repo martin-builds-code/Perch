@@ -70,5 +70,7 @@ in [Stage 2C review](docs/STAGE_2C_REVIEW.md), [request policy](docs/STAGE_2C_PO
 and [delay investigation](docs/STAGE_2C_DELAYS.md). Both features default off.
 The authorised diagnostic trial includes a temporary footer export control:
 [iPad export instructions, schema and compatibility](docs/DIAGNOSTIC_EXPORT.md).
+The [positional cooldown correction](docs/STAGE_2C_COOLDOWN_REMEDIATION.md) documents
+the confirmed live-trial defect, bounded cache reuse, request budgets and regression checks.
 This separate branch/PR depends on unmerged Stage 2B PR #2. No deployment or
 threshold/selection-policy change is authorised by this source update.

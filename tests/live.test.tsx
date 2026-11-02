@@ -329,7 +329,9 @@ test('service coalesces clients, expires cache, gates cadence and honours cooldo
   await get();
   assert.equal(calls, 1);
   time += 2000;
-  await assert.rejects(get(), /cooldown/);
+  const bridged = await get();
+  assert.equal(bridged.fetchedAtMs, now);
+  assert.equal(calls, 1);
   time = now + 15000;
   const c = get();
   assert.equal(calls, 2);
