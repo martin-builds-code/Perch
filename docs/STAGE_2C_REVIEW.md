@@ -94,8 +94,9 @@ No hosted trial or unattended observation was initiated here.
 
 ## Validation and compatibility
 
-- All 80 named tests pass: 54 inherited, 15 enrichment/cache/client tests and 11
-  diagnostic/investigation tests. Coverage includes malformed data, size/time bounds,
+- All 90 named tests pass: 54 inherited, 15 enrichment/cache/client tests, 11
+  diagnostic/investigation tests and ten on-screen export tests. Coverage includes
+  malformed data, size/time bounds,
   HTTP/access/rate failures, cache expiry/negative/coalescing/bounds/cooldowns, late
   replies, native precedence, finite delay episodes, clocks, lifecycle and cleanup.
 - All 11 compiled-server HTTP scenarios pass (five positional, six enrichment).
@@ -118,16 +119,23 @@ No hosted trial or unattended observation was initiated here.
   `PERCH_PLAYWRIGHT_MODULE`, local :5173 server with public flags enabled, server
   provider flags disabled, all API responses intercepted as synthetic fixtures).
 
-No essential typography, card size, spacing, colours, model hierarchy, orientation
-or controls changed. The compact footer adds a HexDB attribution link only when
+No essential typography, card size, spacing, colours, model hierarchy or orientation
+changed. The compact footer adds a HexDB attribution link only when
 its fields are actually used. Optional airport names ellipsize in the existing
 live route slot to avoid wrapping into adjacent content; the bounded supplied name
 remains in its title. This preserves essential font sizes instead of shrinking them.
 No loading spinner, map, settings panel or enrichment-error banner is added.
+The explicitly authorised diagnostic-only exception adds a footer **Export diagnostics**
+control with a 44px touch target and memory-lifetime note. It uses the same collector,
+never resets it and downloads private JSON locally. Nine ordinary-live pixel comparisons
+and diagnostic card comparisons against `133682ee` pass at the three established
+landscape sizes. No diagnostic control or reserved space appears in normal live or
+simulation. [Export instructions, fallback and compatibility](DIAGNOSTIC_EXPORT.md)
+include screenshots and browser evidence.
 
 New browser APIs (fetch/AbortController, URLSearchParams, Map, JSON and ordinary
 array/numeric operations) are supported by Safari 15. Explicit Safari 15 JS/CSS
-targets remain. Physical Air 2/Safari, Web Inspector export workflow, readability
+targets remain. Physical Air 2/Safari download/Files/share workflow, readability
 and endurance were not tested. Desktop checks are not device certification; no
 material Air 2 compromise was identified. Actual cache hit rates, provider behaviour,
 Hobby headroom and authentication on a replacement Preview remain unverified.

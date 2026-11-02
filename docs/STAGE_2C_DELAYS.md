@@ -64,8 +64,8 @@ available; absence of a header is not inferred as a miss.
 
 `src/dataDiagnostics.ts` is a browser-local collector. Normally it is absent:
 `VITE_AERO_DIAGNOSTICS_ENABLED` defaults false, and even a diagnostic-enabled build
-requires `?mode=live&diagnostics=45` (30–60 minutes). It adds no UI control, polling
-timer, provider request, analytics service, server log stream or database.
+requires `?mode=live&diagnostics=45` (30–60 minutes). Its temporary export control
+adds no polling timer, provider request, analytics service, server log stream or database.
 
 Recorded information:
 - Attempt start/completion times, HTTP status, success/failure, safe error category,
@@ -114,11 +114,12 @@ requires examining the exported evidence, not merely the association counters.
 2. In that authorised environment only, enable the public diagnostic build flag.
    Open `/?mode=live&diagnostics=45` for a bounded 45-minute visible/online session.
    Enrichment can be disabled for a comparison trial; diagnostics do not require it.
-3. The user need not watch each aircraft. After the period, explicitly export using
-   `window.aeroPaneDiagnostics.export()` in authorised browser developer tools, or
-   inspect `window.aeroPaneDiagnostics.summary()`. These return local data; they do
-   not upload or save it. Any sharing/storage of that export is a separate deliberate
-   action. Export before closing/reloading; temporary results are otherwise lost.
+3. The user need not watch each aircraft. Tap **Export diagnostics** in the footer
+   to download the bounded JSON directly on the iPad. The control remains after the
+   period ends; early exports are marked incomplete. See [iPad export instructions](DIAGNOSTIC_EXPORT.md)
+   for Files/sharing, failure fallback and privacy. Developer `.export()`/`.summary()`
+   access remains available without tools being required for the user. Export before
+   closing/reloading; temporary results are otherwise lost. No automatic upload occurs.
 4. Review aged-secondary vs aged-primary evidence, newly acquired/retained cases,
    successful responses with older records, cache ages and errors (especially
    cooldown vs timeout/network/invalid-response). Check attempt gaps/visibility and

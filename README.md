@@ -68,5 +68,7 @@ No Stage 2B deployment or merge is authorised.
 Optional HexDB enrichment and bounded opt-in local delay diagnostics are described
 in [Stage 2C review](docs/STAGE_2C_REVIEW.md), [request policy](docs/STAGE_2C_POLICY.md)
 and [delay investigation](docs/STAGE_2C_DELAYS.md). Both features default off.
+The authorised diagnostic trial includes a temporary footer export control:
+[iPad export instructions, schema and compatibility](docs/DIAGNOSTIC_EXPORT.md).
 This separate branch/PR depends on unmerged Stage 2B PR #2. No deployment or
 threshold/selection-policy change is authorised by this source update.

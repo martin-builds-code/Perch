@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Display } from './App';
 import { createPoller, liveScene } from './live';
 import { createEnricher } from './enrichment';
 import { createDataDiagnostics } from './dataDiagnostics';
 import type { DataDiagnostics } from './dataDiagnostics';
+import { DiagnosticExport } from './DiagnosticExport';
+import { diagnosticDuration } from './diagnosticExport';
 declare global {
   interface Window {
     aeroPaneDiagnostics?: {
@@ -13,6 +15,13 @@ declare global {
   }
 }
 export default function LiveApp() {
+  const [duration] = useState(() =>
+    diagnosticDuration(
+      window.location.search,
+      import.meta.env.VITE_AERO_DIAGNOSTICS_ENABLED === 'true',
+    ),
+  );
+  const observerRef = useRef<DataDiagnostics | undefined>(undefined);
   const [display, setDisplay] = useState(() => ({
     scene: liveScene(null, Date.now(), false),
     credited: false,
@@ -20,15 +29,11 @@ export default function LiveApp() {
   useEffect(() => {
     const active = () =>
       document.visibilityState !== 'hidden' && navigator.onLine !== false;
-    const minutes = Number(
-      new URLSearchParams(window.location.search).get('diagnostics'),
-    );
     const observer =
-      import.meta.env.VITE_AERO_DIAGNOSTICS_ENABLED === 'true' &&
-      minutes >= 30 &&
-      minutes <= 60
-        ? createDataDiagnostics(Date.now(), minutes * 60000)
-        : undefined;
+      duration === undefined
+        ? undefined
+        : createDataDiagnostics(Date.now(), duration);
+    observerRef.current = observer;
     const diagnosticHandle = observer
       ? {
           summary: () => observer.summary(Date.now()),
@@ -81,6 +86,7 @@ export default function LiveApp() {
     return () => {
       enricher?.stop();
       poller.stop();
+      if (observerRef.current === observer) observerRef.current = undefined;
       if (window.aeroPaneDiagnostics === diagnosticHandle)
         delete window.aeroPaneDiagnostics;
       document.removeEventListener('visibilitychange', poller.resume);
@@ -90,8 +96,17 @@ export default function LiveApp() {
       window.removeEventListener('resize', resize);
       window.visualViewport?.removeEventListener('resize', resize);
     };
-  }, []);
+  }, [duration]);
   return (
-    <Display scene={display.scene} live enrichmentCredit={display.credited} />
+    <Display
+      scene={display.scene}
+      live
+      enrichmentCredit={display.credited}
+      diagnosticControl={
+        duration === undefined ? undefined : (
+          <DiagnosticExport source={() => observerRef.current} />
+        )
+      }
+    />
   );
 }

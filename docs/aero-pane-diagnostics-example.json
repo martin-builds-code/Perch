@@ -1,0 +1,83 @@
+{
+  "enabled": true,
+  "startedAtMs": 1793647800000,
+  "endsAtMs": 1793649600000,
+  "observedMs": 0,
+  "inactiveMs": 0,
+  "unavailableMs": 0,
+  "lifecycle": [
+    {
+      "atMs": 1793647800000,
+      "active": true,
+      "visible": true,
+      "online": true
+    }
+  ],
+  "delayedMs": 0,
+  "proportionDelayed": null,
+  "pollingAttempts": 1,
+  "pendingAttemptAtMs": null,
+  "successfulRequests": 1,
+  "failedRequests": 0,
+  "delayedEpisodes": 0,
+  "episodeWindowTruncated": false,
+  "medianDelayedDurationMs": null,
+  "longestDelayedDurationMs": null,
+  "episodesWithFailedRequests": 0,
+  "associations": {},
+  "primaryChanges": 1,
+  "clockAnomalies": 0,
+  "latest": {
+    "active": true,
+    "visible": true,
+    "online": true,
+    "state": "available",
+    "requestFailed": false,
+    "primaryAgeMs": 1000,
+    "secondaryAgeMs": 1000,
+    "snapshotAgeMs": 0,
+    "providerAgeMs": 0,
+    "lastObservedAgeMs": 0,
+    "primaryChanged": true,
+    "retainedMissing": false,
+    "clockAnomaly": false
+  },
+  "polls": [
+    {
+      "atMs": 1793647800000,
+      "startedAtMs": 1793647800000,
+      "context": {
+        "active": true,
+        "visible": true,
+        "online": true,
+        "state": "available",
+        "requestFailed": false,
+        "primaryAgeMs": 1000,
+        "secondaryAgeMs": 1000,
+        "snapshotAgeMs": 0,
+        "providerAgeMs": 0,
+        "lastObservedAgeMs": 0,
+        "primaryChanged": true,
+        "retainedMissing": false,
+        "clockAnomaly": false
+      },
+      "durationMs": 0,
+      "ok": true,
+      "status": 200,
+      "error": null,
+      "cache": "HIT",
+      "cacheAgeSeconds": 1
+    }
+  ],
+  "episodes": [],
+  "limits": {
+    "polls": 256,
+    "episodes": 256,
+    "counters": 10000,
+    "expiryMs": 120000
+  },
+  "exportMetadata": {
+    "exportedAtMs": 1793647800000,
+    "sessionStatus": "incomplete"
+  }
+}
