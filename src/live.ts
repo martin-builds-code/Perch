@@ -3,6 +3,11 @@ import { CURRENT_AGE_MS, EXPIRE_AGE_MS } from './liveTypes';
 import type { Aircraft, Scene } from './simulation';
 import { createAircraftSelector, scoreAircraft } from './selection';
 import type { SelectionResult } from './selection';
+import type {
+  DataDiagnostics,
+  DiagnosticContext,
+  DiagnosticState,
+} from './dataDiagnostics';
 
 function presentation(a: LiveAircraft): Aircraft {
   const match = a.description?.match(
@@ -132,6 +137,8 @@ function validSnapshot(value: unknown): value is Snapshot {
   );
 }
 export interface PollEnvironment {
+  observer?: DataDiagnostics;
+  context?: () => DiagnosticContext;
   fetch: typeof fetch;
   now: () => number;
   active: () => boolean;
@@ -144,6 +151,9 @@ export function createPoller(
 ) {
   const selector = createAircraftSelector();
   let selection: SelectionResult | null = null;
+  let lastDiagnosticState: DiagnosticState | undefined;
+  let observedPrimaryId: string | null = null,
+    lastObservedAt: number | null = null;
   let stopped = false,
     snapshot: Snapshot | null = null,
     failed = false,
@@ -162,7 +172,51 @@ export function createPoller(
     if (stopped) return;
     const now = env.now();
     selection = selector.select(snapshot, now, failed);
-    onChange(liveScene(snapshot, now, failed, selection));
+    const scene = liveScene(snapshot, now, failed, selection);
+    if (env.observer) {
+      const primary = selection.primary;
+      const changed = (primary?.id ?? null) !== observedPrimaryId;
+      if (changed) lastObservedAt = null;
+      if (primary && snapshot?.aircraft.some((a) => a.id === primary.id))
+        lastObservedAt = Math.max(
+          lastObservedAt ?? -Infinity,
+          snapshot.fetchedAtMs,
+        );
+      const age =
+        primary?.positionTimeMs === null || !primary
+          ? null
+          : now - primary.positionTimeMs;
+      const secondaryAges = selection.secondary
+        .map((a) => (a.positionTimeMs === null ? null : now - a.positionTimeMs))
+        .filter((v): v is number => v !== null);
+      const snapshotAge = snapshot ? now - snapshot.fetchedAtMs : null,
+        providerAge = snapshot ? now - snapshot.providerTimeMs : null;
+      lastDiagnosticState = {
+        ...(env.context?.() ?? {
+          active: env.active(),
+          visible: null,
+          online: null,
+        }),
+        state: scene.state,
+        requestFailed: failed,
+        primaryAgeMs: age,
+        secondaryAgeMs: secondaryAges.length
+          ? Math.max(...secondaryAges)
+          : null,
+        snapshotAgeMs: snapshotAge,
+        providerAgeMs: providerAge,
+        lastObservedAgeMs:
+          lastObservedAt === null ? null : now - lastObservedAt,
+        primaryChanged: changed,
+        retainedMissing: selection.decision.retainedMissing,
+        clockAnomaly:
+          [age, snapshotAge, providerAge].some((v) => v !== null && v < 0) ||
+          !!snapshot?.anomalies.includes('provider-clock'),
+      };
+      env.observer.observe(lastDiagnosticState, now);
+      observedPrimaryId = primary?.id ?? null;
+    }
+    onChange(scene);
     if (expiryTimer !== undefined) env.clearTimer(expiryTimer);
     const deadlines = snapshot
       ? [
@@ -207,13 +261,56 @@ export function createPoller(
     inFlight = true;
     lastStart = env.now();
     request = new AbortController();
+    env.observer?.pollStart(lastStart);
+    let status: number | null = null,
+      cache: string | null = null,
+      cacheAgeSeconds: number | null = null,
+      failureCode: string | null = null,
+      timedOut = false;
     const thisRequest = request;
-    const timeout = env.setTimer(() => thisRequest.abort(), 8000);
+    const timeout = env.setTimer(() => {
+      timedOut = true;
+      thisRequest.abort();
+    }, 8000);
     try {
       const response = await env.fetch('/api/aircraft', {
         signal: thisRequest.signal,
       });
+      status = response.status;
+      const cacheHeader = response.headers.get('x-vercel-cache');
+      cache =
+        cacheHeader && ['HIT', 'MISS', 'STALE', 'BYPASS'].includes(cacheHeader)
+          ? cacheHeader
+          : null;
+      const rawAge = response.headers.get('age');
+      const age = rawAge === null || !rawAge.trim() ? NaN : Number(rawAge);
+      cacheAgeSeconds = Number.isFinite(age) && age >= 0 ? age : null;
       if (!response.ok) {
+        failureCode = 'http-error';
+        if (env.observer) {
+          try {
+            const body = await response.clone().json();
+            if (
+              [
+                'cooldown',
+                'rate-limited',
+                'access-denied',
+                'http-error',
+                'timeout',
+                'configuration',
+                'live-disabled',
+                'network-error',
+                'invalid-json',
+                'invalid-structure',
+                'response-too-large',
+                'unavailable',
+              ].includes(body?.error)
+            )
+              failureCode = body.error;
+          } catch {
+            /* No raw error bodies in diagnostics. */
+          }
+        }
         const retry = response.headers.get('retry-after'),
           seconds = retry === null ? NaN : Number(retry);
         const delay = Number.isFinite(seconds)
@@ -225,21 +322,41 @@ export function createPoller(
           notBefore = Math.max(notBefore, env.now() + Math.max(0, delay));
         throw Error('unavailable');
       }
+      failureCode = 'invalid-response';
       const value: unknown = await response.json();
       if (!validSnapshot(value)) throw Error('invalid-response');
       if (!stopped && !thisRequest.signal.aborted) {
         snapshot = value;
         interval = value.pollIntervalMs;
         failed = false;
+        failureCode = null;
       }
     } catch {
+      failureCode = timedOut
+        ? 'timeout'
+        : thisRequest.signal.aborted
+          ? 'aborted'
+          : (failureCode ?? 'network-error');
       if (!stopped) failed = true;
     } finally {
       env.clearTimer(timeout);
       inFlight = false;
       request = null;
       if (!stopped) {
+        const completeAt = env.now(),
+          duration = completeAt - lastStart;
         publish();
+        env.observer?.pollComplete({
+          atMs: completeAt,
+          startedAtMs: lastStart,
+          context: lastDiagnosticState,
+          durationMs: duration >= 0 ? duration : null,
+          ok: failureCode === null,
+          status,
+          error: failureCode,
+          cache,
+          cacheAgeSeconds,
+        });
         schedule();
       }
     }
@@ -260,9 +377,13 @@ export function createPoller(
     diagnostics: () => ({ history: selector.inspect(), selection }),
     stop: () => {
       stopped = true;
+      env.observer?.stop(env.now());
       selector.clear();
       selection = null;
       snapshot = null;
+      observedPrimaryId = null;
+      lastObservedAt = null;
+      lastDiagnosticState = undefined;
       clear();
       request?.abort();
     },

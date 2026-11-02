@@ -24,12 +24,16 @@
   "git": {
     "deploymentEnabled": {
       "stage-2a-live-data": false,
-      "stage-2b-aircraft-selection": false
+      "stage-2b-aircraft-selection": false,
+      "stage-2c-aircraft-enrichment": false
     }
   },
   "functions": {
     "api/aircraft.ts": {
       "maxDuration": 10
+    },
+    "api/enrichment.ts": {
+      "maxDuration": 8
     }
   }
 }

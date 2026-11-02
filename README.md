@@ -62,3 +62,11 @@ provider requests. See [selection policy and evidence](docs/STAGE_2B_SELECTION.m
 This branch depends on unmerged Stage 2A PR #1; its separate PR targets
 `stage-2a-live-data`. `npm run replay:selection` runs the synthetic offline comparison.
 No Stage 2B deployment or merge is authorised.
+
+## Stage 2C (dependent review branch)
+
+Optional HexDB enrichment and bounded opt-in local delay diagnostics are described
+in [Stage 2C review](docs/STAGE_2C_REVIEW.md), [request policy](docs/STAGE_2C_POLICY.md)
+and [delay investigation](docs/STAGE_2C_DELAYS.md). Both features default off.
+This separate branch/PR depends on unmerged Stage 2B PR #2. No deployment or
+threshold/selection-policy change is authorised by this source update.

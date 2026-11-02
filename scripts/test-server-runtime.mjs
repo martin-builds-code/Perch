@@ -1,7 +1,7 @@
 // Compile and exercise the server as ordinary Node ESM, without Vite or tsx.
 // Only synthetic data/configuration; this script never requests an external API.
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -11,6 +11,13 @@ const artifact = process.argv[2];
 const output = artifact
   ? resolve(artifact)
   : mkdtempSync(join(tmpdir(), 'perch-server-runtime-'));
+const scope = artifact
+  ? existsSync(join(output, 'api/enrichment.js'))
+    ? existsSync(join(output, 'api/aircraft.js'))
+      ? 'both'
+      : 'enrichment'
+    : 'position'
+  : 'both';
 const env = { ...process.env, NODE_OPTIONS: '' };
 // Do not inherit any private observation point or active live configuration.
 for (const key of Object.keys(env)) {
@@ -89,13 +96,9 @@ try {
     }
     console.log('PASS emitted Node ESM HTTP handler: '+scenario);
   `;
-  for (const scenario of [
-    'disabled',
-    'production',
-    'populated',
-    'empty',
-    'failure',
-  ]) {
+  for (const scenario of scope === 'enrichment'
+    ? []
+    : ['disabled', 'production', 'populated', 'empty', 'failure']) {
     execFileSync(process.execPath, ['--input-type=module', '--eval', probe], {
       cwd: output,
       env: {
@@ -111,6 +114,53 @@ try {
       stdio: 'inherit',
       timeout: 10_000,
     });
+  }
+  const enrichmentProbe = String.raw`
+    import assert from 'node:assert/strict';
+    import {createServer} from 'node:http';
+    import {once} from 'node:events';
+    const scenario=process.env.PERCH_RUNTIME_SCENARIO;
+    const kind=scenario==='route'?'route':'aircraft';
+    const realFetch=globalThis.fetch;let calls=0;
+    globalThis.fetch=async url=>{
+      calls++;assert.ok(String(url).startsWith('https://hexdb.io/api/v2/'));
+      if(scenario==='failure')return new Response('{}',{status:503});
+      if(scenario==='empty')return new Response('{}',{status:404});
+      return new Response(JSON.stringify(kind==='route'?{callsign:'EIN17A',origin:{icao:'EIDW',iata:'DUB',name:'Dublin Airport'},destination:{icao:'EGLL',iata:'LHR',name:'Heathrow Airport'},updated_at:new Date(Date.now()-1000).toISOString()}:{hex:'ABCDEF',manufacturer:'Airbus',type:'A319 111',registration:'TEST-REG',registered_owner:'easyJet UK',operator_flag_code:'EZY'}));
+    };
+    const {default:handler}=await import(process.env.PERCH_RUNTIME_ENTRY);
+    const server=createServer((req,res)=>{void handler(req,res);});server.listen(0,'127.0.0.1');await once(server,'listening');
+    try{
+      const response=await realFetch('http://127.0.0.1:'+server.address().port+'/api/enrichment?kind='+kind+'&hex=abcdef'+(kind==='route'?'&callsign=EIN17A':''));const body=await response.json();
+      assert.equal(response.headers.get('cache-control'),'no-store');
+      if(scenario==='disabled'||scenario==='production'){assert.equal(response.status,404);assert.equal(calls,0);}
+      else if(scenario==='failure'){assert.equal(response.status,503);assert.equal(body.error,'http-error');assert.equal(calls,1);}
+      else{assert.equal(response.status,200);assert.equal(calls,1);assert.equal(body.status,scenario==='empty'?'not-found':'found');if(scenario==='populated')assert.equal(body.data.operator,'easyJet');if(scenario==='route')assert.equal(body.data.origin.code,'DUB');}
+      assert.doesNotMatch(JSON.stringify(body),/latitude|longitude|registered_owner|images|credentials/);
+    }finally{server.closeAllConnections();await new Promise((resolve,reject)=>server.close(e=>e?reject(e):resolve()));}
+    console.log('PASS emitted Node ESM enrichment HTTP handler: '+scenario);
+  `;
+  for (const scenario of scope === 'position'
+    ? []
+    : ['disabled', 'production', 'populated', 'route', 'empty', 'failure']) {
+    execFileSync(
+      process.execPath,
+      ['--input-type=module', '--eval', enrichmentProbe],
+      {
+        cwd: output,
+        env: {
+          ...env,
+          PERCH_RUNTIME_ENTRY: pathToFileURL(join(output, 'api/enrichment.js'))
+            .href,
+          PERCH_RUNTIME_SCENARIO: scenario,
+          AERO_LIVE_ENABLED: 'true',
+          AERO_ENRICHMENT_ENABLED: scenario === 'disabled' ? 'false' : 'true',
+          VERCEL_ENV: scenario === 'production' ? 'production' : 'preview',
+        },
+        stdio: 'inherit',
+        timeout: 10000,
+      },
+    );
   }
 } finally {
   if (!artifact) rmSync(output, { recursive: true, force: true });
