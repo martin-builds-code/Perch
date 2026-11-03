@@ -1,165 +1,97 @@
-# Stage 2C — review, compatibility and operation
+# Perch / Aero Pane - Stage 2C Acceptance and Closure Report
 
-Baseline: `e102eb2e1f1480c40a2fe50f9254642397aacd2f`. PRs #1 and #2 were
-verified open/unmerged and source heads unchanged. The Stage 2A ESM correction
-and Stage 2B selection are inherited. This branch `stage-2c-aircraft-enrichment`
-prepares a separate draft PR targeting `stage-2b-aircraft-selection`; it does not
-modify either earlier PR/branch. Review the stacked diff, not a diff against main.
-Specification v2.0 and its Stage 1C findings were reviewed. The underlying Stage 1C
-archive is not available here; four current bounded HexDB checks were made instead.
+Date: 3 November 2026 (GMT)
+Specification: Approved Product and Technical Specification v2.0
 
-## Optional enrichment
+## 1. Decision, baseline and positional reliability
 
-Endpoints verified from [HexDB's current API documentation](https://hexdb.io/):
-- `GET https://hexdb.io/api/v2/aircraft/{hex}`
-- `GET https://hexdb.io/api/v2/routes/{ICAO-callsign}`
+**Classification B - Accepted with limitations. Stage 2C is recommended for closure.**
+The corrected hosted trial satisfies Stage 2C's positional reliability requirement. Optional enrichment works without obstructing tracking. Noncritical coverage, device and hosting limitations below do not prevent the intended protected, single-display personal use. No further extended observation is required for closure.
 
-Only these two resources are used. No image/airport/bulk lookup or website scraping.
-A separate `/api/enrichment` function runs one lookup, with its own cache, concurrency
-and timeout. The positional endpoint never awaits/imports this service. Neither
-route data nor operator/model enrichment is fed back into selection or freshness.
-The frontend decorates the latest presentation scene after selection. A late reply
-can decorate only matching aircraft/flight keys, including a cached former primary
-in a secondary slot; it cannot select or resurrect an aircraft.
+Application baseline: `b56d4b28a681c8e707f7d463550348d38ae61909`, branch `stage-2c-aircraft-enrichment`, draft PR #3, repository `martin-builds-code/Perch`.
+Corrected Preview: `dpl_EmzBpYB58vxhKgTdoLubQNsDGmcv`, READY, Preview target, project `mml3/perch-aero-pane` (`prj_Esh3e64v7aYtnf0vP7i5gzcipDnO`).
+Deployment: https://perch-aero-pane-1wo4exvix-mml3.vercel.app
+The raw URL requires authorised access. Share tokens are deliberately omitted from this document.
 
-Native adsb.fi descriptions, registrations and callsigns take precedence. HexDB
-fills unavailable description/registration, route endpoints and a conservative
-operator brand. Registered owner alone is not treated as operator. Supported brand
-pairs are HexDB's easyJet owner/`EZY` evidence and user-endorsed Ryanair/Malta Air
-owner plus `RYR`/`MAY` evidence. Other owners/flags remain unknown; no callsign-prefix
-operator matching or exhaustive airline directory is added.
+Both original JSON exports were inspected and their counters checked against retained poll records. Both exports report a completed session with no pending attempt and no truncated episode window.
 
-Routes match the exact normalised callsign and are cached by hex AND callsign.
-Different flights on the same airframe do not inherit a previous callsign's route.
-IATA and ICAO codes are retained; supplied names occupy existing route slots. Codes
-without names use the existing unavailable-name treatment, never invented names.
-Partial routes are usable. Invalid/mismatched routes, contradictory airport endpoints,
-invalid/future dates and known updates older than 180 days are suppressed. A route
-without update age is an unverified best-effort association. No flight-plan claim
-or intrusive warning is added. Later manual spot checks can guide review; no
-Flightradar24 scraping was performed.
+| Measurement | Original | Corrected |
+| --- | --- | --- |
+| Planned observation | 45 minutes | 30 minutes |
+| Polling attempts | 180 | 120 |
+| Successful requests | 117/180 (65.00%) | 119/120 (99.17%) |
+| Failed requests | 63/180 | 1/120 |
+| HTTP 503 cooldown failures | 63/180 | 0/120 |
+| Delayed episodes | 33 | 39 |
+| Median delayed duration | 15.234 s | 2.244 s |
+| Delayed observed time | 18.54% | 5.15% |
 
-[Request/cache policy and cost estimates](STAGE_2C_POLICY.md) explains ceilings,
-TTLs and cross-instance limitations. Positive current-primary entries may refresh
-30 seconds before TTL using an existing positional publication, preserving valid
-fields while a bounded refresh runs. Missing results are not prefetched. Expiry
-is pruned on access/publication; no cache-cleaning background timer is introduced.
-Expired fields are not reapplied, and at worst a currently rendered value remains
-until the next ordinary publication (normally at most 15 seconds). Cache memory is
-bounded even while idle and is reclaimed on process termination/client stop.
+The corrected failure was a browser timeout after 8.033 seconds, with no HTTP status, not a cooldown rejection. Observed time was 1,799.998 seconds; delayed time was 92.765 seconds. The minimum interval between poll starts was 15,000 ms in both trials. Delay proportion fell by about 72% relative to baseline, despite more, much shorter episodes. Episode counts alone are therefore a poor reliability measure.
 
-## Bounded live-provider evidence
+The defect was a 10-second success cache expiring before a 15-second provider gate reopened. The correction reuses the exact successful snapshot while the gate is closed, only with nonnegative receipt age below 15 seconds and no failed refresh. Original snapshot/provider/position timestamps are preserved. The 10-second ordinary cache, 15-second provider gate, 30-second delayed threshold, 120-second expiry and Stage 2B policy remain unchanged.
 
-Exactly four ordinary documented example lookups were performed, without the private
-observation location. Recorded results are in `stage-2c-provider-smoke.json`:
+The prior hosted smoke recorded 10/10 successes, zero cooldowns and four timestamp-preserving cached replies. The completed user trial now provides stronger follow-up evidence. Legitimately aged primary/secondary snapshots, one timeout and five clock-anomaly flags remain visible; these do not justify suppressing warnings or retuning selection. Associations are correlations, not proof of each episode's cause. This is bounded acceptance evidence, not a guarantee of future provider uptime.
 
-| Lookup | HTTP | Latency | Result |
-| --- | --- | --- | --- |
-| Aircraft 4010ee | 200 | 226 ms | Identity parsed; easyJet UK/EZY brand evidence |
-| Route EIN17A | 200 | 546 ms | Association dated 2023-03-30; deliberately suppressed as old |
-| Missing aircraft 000000 | 404 | 314 ms | Negative result |
-| Missing route ABC123 | 404 | 838 ms | Negative result |
+## 2. Identification, enrichment and functional acceptance
 
-No access denial/rate restriction was encountered. Public documentation advertises
-free/no-key hobby access, but gives no numeric rate limit in the reviewed page.
-This is not permission for unlimited requests, a permanent database or redistribution.
-The native-description-first strategy follows v2.0's reported Stage 1C coverage;
-it does not rely on those old findings as proof of today's API schema or route accuracy.
-Fresh route mechanics and partial results are tested with fixtures. The smoke sample
-contains no verified current real route and is not an accuracy benchmark.
+**Verdict: accepted for the intended optional enrichment role.** Manufacturer/model remains the essential identification priority. Native adsb.fi description, registration and callsign take precedence; HexDB fills missing identification fields rather than overwriting useful native information. Missing provider coverage remains honestly unknown. This review does not establish an accuracy percentage across all future airframes.
 
-## Local review
+A separate guarded Node endpoint uses only HexDB v2 aircraft-by-hex and route-by-exact-ICAO-callsign lookups. Aircraft identity includes manufacturer/model and registration where returned. Owner alone is not labelled as operator. The implemented brand associations require specific owner plus provider-flag evidence for easyJet and Ryanair/Malta Air; these are conservative brand associations, not proof of the operating legal entity on every flight. Other unsupported associations stay unknown.
 
-Node 24 and locked dependencies; no package/runtime dependency was added.
-Run `npm ci`, `npm run lint`, `npm test`, `npm run build` and a live-enabled build:
-`VITE_AERO_LIVE_ENABLED=true VITE_AERO_ENRICHMENT_ENABLED=true VITE_AERO_DIAGNOSTICS_ENABLED=true npm run build`.
-Automated tests use fixtures, never live providers. The compiled runtime check binds
-an ephemeral loopback port; the cloud execution sandbox needs network permission
-for that local bind. Plain Node, not Vite/tsx, executes emitted server JavaScript.
-For a materialised single-function artifact, `node scripts/test-server-runtime.mjs /path`
-automatically exercises the handler graph present there (position or enrichment).
+Origin and destination are independently optional. Route cache keys include airframe hex and exact normalised callsign. Mismatched callsigns, contradictory endpoints, invalid/future update dates and known updates older than 180 days are rejected/suppressed. Unknown-age or accepted-age records remain best-effort associations, not independently verified current flight plans. No flight number or airport name is invented.
 
-For an authorised local live test, use ignored `.env.local` from `.env.example`:
-set both live flags and both enrichment flags true, and configure the original
-observation point privately as documented for Stage 2A. Restart the loopback-only
-server and open `/?mode=live`. Do not put private coordinates in `VITE_` variables,
-shell arguments, source, screenshots or PRs. Simulation remains usable without any
-configuration/API and uses the normal root URL. Enrichment/diagnostics flags default
-false. Both server endpoints retain production live guards; the enrichment endpoint
-also requires `AERO_LIVE_ENABLED=true` and `AERO_ENRICHMENT_ENABLED=true`.
+The positional service never waits for enrichment. Selection runs on positional records before the scene is decorated. Late enrichment cannot select, resurrect or transfer a flight's route to another callsign. Primary rendering occurs before optional lookups finish; secondaries may reuse former-primary cache entries. Selection weights and holding rules are untouched.
 
-Diagnostic trials additionally require the diagnostic build flag and explicit
-30–60-minute query. See [delay findings and trial procedure](STAGE_2C_DELAYS.md).
-No hosted trial or unattended observation was initiated here.
-The user's supplied completed live export has since confirmed repeated server
-cooldown failures; [the authorised remediation](STAGE_2C_COOLDOWN_REMEDIATION.md)
-documents the exact cache/gate correction, original evidence and unchanged budgets.
+Evidence distinctions:
+- Hosted operation previously received genuine nearby aircraft; Stage 2B primary/secondary presentation operated normally. HexDB naturally populated Ryanair and Wroclaw (WRO) to Manchester (MAN). That is a real returned route association, not independent route verification.
+- Four earlier bounded HexDB example requests demonstrated aircraft parsing, two valid 404 negatives and deliberate suppression of a 2023 route. No extra live lookups were made for this closure review.
+- Automated evidence covers native precedence, partial/unknown fields, owner distinctions, exact-callsign clearing, route contradictions/age, timeouts, denied/rate-limited responses, invalid/oversized bodies, caches, failure isolation and selection independence.
+- Existing final-baseline results: 111 named tests passed, zero failures; 13 emitted plain-Node HTTP checks passed; lint, server NodeNext checks and default/all-feature Safari-15-targeted builds passed. Packaged Node 24 handlers also passed their corresponding checks. These results were reviewed, not rerun unnecessarily.
+- GitHub currently lists no commit workflow runs or status entries. Acceptance relies on the recorded local/packaged checks, deployed READY state and hosted/user evidence; there is no claimed green GitHub CI run.
 
-## Validation and compatibility
+## 3. iPad Air 2 and diagnostic acceptance
 
-- All 111 named tests pass: the previous 90 plus 21 positional cache/gate regression
-  tests. Coverage includes
-  malformed data, size/time bounds,
-  HTTP/access/rate failures, cache expiry/negative/coalescing/bounds/cooldowns, late
-  replies, native precedence, finite delay episodes, clocks, lifecycle and cleanup.
-- All 13 compiled-server HTTP scenarios pass (seven positional, six enrichment),
-  including plain-Node near-gate timing and failed-refresh/recovery scenarios.
-- Local `@vercel/node@29.0.1` packaging generated two separate `nodejs24.x` artifacts.
-  Position and enrichment graphs each passed their corresponding plain-Node HTTP
-  checks. The enrichment artifact includes `server/hexdb.js`,
-  `server/enrichmentService.js` and `src/enrichmentTypes.js`. This builder was used
-  only under `/tmp`; no hosted deployment or project dependency was introduced.
-- Lint, default TypeScript/Vite build, NodeNext server checks and live/enrichment/
-  diagnostic-enabled Safari 15 builds pass. Private configuration canaries are
-  checked against emitted browser assets.
-- Existing local browser regressions pass: 18 pixel-identical simulation comparisons,
-  12 Stage 2A state/layout checks and Stage 2B acquisition/handover at three sizes.
-- New Chromium fixtures verify immediate native rendering before enrichment, later
-  operator/routes, preservation of the native MAX variant, callsign-specific clearing,
-  timeout isolation from positional requests/diagnostics, long route-name fit and
-  simulation cleanup at 1024×624, 1024×768 and 1112×834. See
-  `stage-2c-browser-checks.json`, `stage-2c-enrichment-fixture.png` and
-  `scripts/enrichment-browser-check.mjs` (optional Playwright Core via
-  `PERCH_PLAYWRIGHT_MODULE`, local :5173 server with public flags enabled, server
-  provider flags disabled, all API responses intercepted as synthetic fixtures).
+**Verdict: suitable with limited remaining physical checks.** The user previously confirmed the approved prototype on iPad Air 2, iPadOS 15.8.5. The completed device diagnostic export demonstrates successful acquisition, bounded recording and export/upload of the trial. It does not by itself prove room-distance readability, every Safari UI state or long-term responsiveness.
 
-No essential typography, card size, spacing, colours, model hierarchy or orientation
-changed. The compact footer adds a HexDB attribution link only when
-its fields are actually used. Optional airport names ellipsize in the existing
-live route slot to avoid wrapping into adjacent content; the bounded supplied name
-remains in its title. This preserves essential font sizes instead of shrinking them.
-No loading spinner, map, settings panel or enrichment-error banner is added.
-The explicitly authorised diagnostic-only exception adds a footer **Export diagnostics**
-control with a 44px touch target and memory-lifetime note. It uses the same collector,
-never resets it and downloads private JSON locally. Nine ordinary-live pixel comparisons
-and diagnostic card comparisons against `133682ee` pass at the three established
-landscape sizes. No diagnostic control or reserved space appears in normal live or
-simulation. [Export instructions, fallback and compatibility](DIAGNOSTIC_EXPORT.md)
-include screenshots and browser evidence.
+Established automated browser evidence covers landscape CSS viewports 1024x624, 1024x768 and 1112x834, native-first rendering, later enrichment, long airport names, missing fields and live transitions. Nine ordinary-live comparisons and diagnostic aircraft-card comparisons were pixel-identical to the approved Stage 2C design. The export control has a visible 44-pixel touch target; no space is reserved for it during ordinary live viewing or simulation. The corrected commit changed server positional handling only; its frontend assets were unchanged.
 
-New browser APIs (fetch/AbortController, URLSearchParams, Map, JSON and ordinary
-array/numeric operations) are supported by Safari 15. Explicit Safari 15 JS/CSS
-targets remain. Physical Air 2/Safari download/Files/share workflow, readability
-and endurance were not tested. Desktop checks are not device certification; no
-material Air 2 compromise was identified. Actual cache hit rates, provider behaviour,
-Hobby headroom and authentication on a replacement Preview remain unverified.
+Safari 15 JavaScript and CSS targets are explicit. The export uses Blob/object-URL download and selectable text fallback, avoiding dependence on Web Share, asynchronous clipboard permission or File System Access APIs. No material appearance, information-density or responsiveness compromise was introduced specifically for Air 2. Long optional airport names ellipsize within existing slots; this is a general layout choice, not smaller essential typography.
 
-## Deployment boundary and remaining work
+Precisely outstanding: subjective readability of primary/secondary panels and long enrichment labels from the normal viewing position; smoothness during real updates on this device; fit with the user's chosen Safari/Home Screen chrome; and the exact Downloads/Files/share or fallback workflow if not already exercised. Guided Access and multi-hour physical endurance are not certified. None currently has evidence of a blocking defect. No redesign or repeat diagnostic trial is required to settle closure.
 
-No merge, deployment, live variable, protection setting, sharing link, production
-alias or protected Stage 2B Preview was changed. Git deployment is disabled for this
-branch in source. No Supabase, background collector, enrichment provider substitution,
-paid service or Stage 2D authentication work was introduced.
+Diagnostics remain opt-in: with the diagnostic build flag, open the authorised protected link with `?mode=live&diagnostics=30` (preserve sharing parameters). Keep Safari visible and online, tap **Export diagnostics**, save in Downloads/Files and export before closing/reloading. Repeated exports preserve observations; closing the panel is safe. A selectable-JSON fallback is available. Ordinary live viewing has no diagnostic collection/control; simulation never enables it. Recording adds no provider calls or telemetry and stops at the requested bound; the display can continue afterwards.
 
-Before a live trial: review the stacked PR, the 180-day route age policy, conservative
-brand pairs and request budget; separately authorise a protected Stage 2C Preview;
-validate authenticated API guards and live rendering before any sharing step;
-then run/export a bounded diagnostic trial. The original 45-minute trial's rate
-and cooldown cause are now documented; effectiveness of the correction still needs
-a separately authorised follow-up. Further cache/gate changes or freshness/selection
-policy changes need evidence and review; no automatic threshold changes are made.
+## 4. Privacy, request limits, costs and remaining limitations
 
-Reversion before merge is simply closing this PR and retaining Stage 2B. Locally
-stop the dev server/close the live tab and disable the opt-in flags; private local
-config remains ignored. Do not roll back or alter the existing protected Preview
-or production as part of reviewing this branch.
+Private observation coordinates remain sensitive, server-only Vercel variables; no coordinate uses a VITE_ name. The existing verified observation point and 15 km region were used for hosted validation. Closure inspection confirmed all eight established variables remain Preview-only, both coordinate variables sensitive, with no Production variables shown. No values were decrypted or changed for this review.
+
+Current Vercel Authentication remains enabled (`all_except_custom_domains`). Earlier unauthorised page/aircraft/enrichment requests redirected to Vercel authentication; authorised sharing and same-origin APIs worked. Current protection configuration was rechecked. Expiring Shareable Links are access credentials, not permanent public access. This review created no new link and changed no access settings.
+
+Positional browser polling is 15 seconds: at most about 240 starts/hour or 5,760/day per continuous client. The warm-process provider gate is 15 seconds, one in flight with coalescing, no automatic retries, 10-second ordinary cache/CDN TTL and bounded transport/error cooldowns. Timestamp-preserving gate-gap reuse adds no early provider start.
+
+HexDB is primary-driven, at most one new browser lookup per 30 seconds and one in flight; server concurrency/gate are separate and process-local. Ceiling is 120 lookups/hour or 2,880/day per continuous client/process, usually lower. Identity TTL is 30 minutes; route and negative TTL are five minutes; positive current-primary entries may refresh 30 seconds early under the same budget. Caches are bounded at 64 client/128 server entries. Provider fetch/body timeout is 2.5 seconds, cap 64 KiB, no internal retries; errors cool down five minutes, access denial ten minutes, with longer Retry-After respected.
+
+Separate Vercel instances do not share a global gate/cache. This is acceptable for the present protected single-display personal project, with bounded selective lookups; it is not an aggregate request guarantee or a basis for public/multi-display scaling. No distributed cache is required for this stage.
+
+Diagnostics contain timing/state/error categories, not observation coordinates, aircraft identifiers, positions, registrations, callsigns, routes or credentials. Source inspection and both actual exports support this boundary. Data stays in browser memory until deliberate export; there is no persistent tracking database or automatic upload. Reviewed application handlers do not log raw exceptions, coordinates or aircraft identifiers.
+
+Logging qualification: HexDB GET query URLs necessarily carry hex/callsign identifiers and may be present in platform/provider-managed access logs. Their retention/redaction was not independently established. The server's upstream adsb.fi geographical URL necessarily reaches that provider. Accordingly, an absolute claim that no infrastructure ever logs identifiers or location is not made. No evidence of an unintended application logging defect was found.
+
+Hobby plan was rechecked. No paid provider, new service, database or billing change was introduced. Detailed usage headroom and global provider request totals are not certified; the previous runtime-log query returned no entries, not proof of universal absence of errors. HexDB's reviewed free/no-key documentation is not unrestricted caching/redistribution permission. Temporary personal selective use and attribution remain the approved scope; public redistribution or broader use needs separate rights review.
+
+## 5. PR readiness, preservation and closure
+
+PR #3 is draft, open, unmerged and mergeable at review, based on `stage-2b-aircraft-selection` at `e102eb2e1f1480c40a2fe50f9254642397aacd2f`. Its application head matches the authorised baseline, includes diagnostic export and the narrow cooldown correction, and retains the Stage 2A .js ESM correction. The 37-file Stage 2C diff covers enrichment, diagnostics, regression tests, scoped build/Git-deployment configuration and documentation; no unrelated application change was identified. There are no inline review threads. No unresolved material acceptance defect was found. This closure update changes this documentation file only; the deployed application SHA remains b56d4b28.
+
+Stacked dependency order is PR #1 (2A) -> PR #2 (2B) -> PR #3 (2C). When separately authorised, prefer ancestry-preserving merges in that order. After #1, retarget #2 to main and inspect that only Stage 2B remains; after #2, retarget #3 to main and inspect only Stage 2C plus closure documentation remains. Recheck required validations after each base change. Squash/rebase merges can rewrite the ancestor SHAs and make later stacked diffs duplicate earlier work; avoid them unless deliberately reconciled. No merges, retargets or rebases were performed here.
+
+Production remains READY at `dpl_2qDBRGtTANq4JFWUJZwhTYVSyRYn`, commit `ce708901750975c89400314a091db0b59a3a9919`, with the same three aliases: perch-aero-pane.vercel.app, perch-aero-pane-mml3.vercel.app and perch-aero-pane-git-main-mml3.vercel.app. Previous Stage 2C `dpl_ALQmLyxii6em8A6D2wg5NufZDua1` and Stage 2B `dpl_JBt7bKJ9KnjRkbkPqSKHVCPi571A` remain READY. PRs #1/#2 remain draft/open/unmerged. Perch remains absent from Vercel's linked Git projects. No source, deployment, environment, sharing, Production or M24 changes were made by this review.
+
+**Final recommendation:** close Stage 2C as accepted with the documented limitations. The cooldown defect is resolved for acceptance; optional provider coverage is not an unfinished core feature. Outstanding device impressions can be recorded during normal use. Proposed next step is planning review of this closure and separate authorisation for stacked integration and/or the Stage 2D access/operating plan. No Stage 2D implementation or production release is authorised by this report.
+
+Evidence register:
+- Original export: aero-pane-diagnostics-2026-11-02-211027.json; SHA-256 302993382dc7b84ca4e0a93126258828fc65d0c2f14473445f8d4251a0552bbc.
+- Corrected export: aero-pane-diagnostics-2026-11-02-230839.json; SHA-256 f3047a382ad7e99b6c519f4293ede7590c076daac71e46292e2216c09cb83495.
+- Existing repository details: docs/STAGE_2C_POLICY.md, docs/STAGE_2C_COOLDOWN_REMEDIATION.md, docs/STAGE_2C_DELAYS.md, docs/DIAGNOSTIC_EXPORT.md and the browser/provider fixture evidence beside them. Development-stage statements in those historical records predate this final acceptance.
+- Final local test/build logs and preceding hosted deployment report were reviewed. No raw user diagnostic JSON, private configuration or Shareable Link token is committed.
+- GitHub review: https://github.com/martin-builds-code/Perch/pull/3 ; provider documentation previously reviewed: https://hexdb.io/ .
