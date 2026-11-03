@@ -1,0 +1,347 @@
+{
+  "evidence": "Synthetic scenarios informed by reported Stage 1B findings; no ground-truth audibility labels.",
+  "scenarios": [
+    {
+      "name": "Farther approaching versus nearer departing",
+      "frames": [
+        {
+          "offsetMs": 0,
+          "aircraft": [
+            {
+              "id": "aa0001",
+              "distanceKm": 3.3,
+              "barometricAltitudeFt": 12000,
+              "onGround": false
+            },
+            {
+              "id": "bb0002",
+              "distanceKm": 4.5,
+              "barometricAltitudeFt": 12000,
+              "onGround": false
+            }
+          ],
+          "expectedPrimary": "aa0001"
+        },
+        {
+          "offsetMs": 15000,
+          "aircraft": [
+            {
+              "id": "aa0001",
+              "distanceKm": 3.5,
+              "barometricAltitudeFt": 12000,
+              "onGround": false
+            },
+            {
+              "id": "bb0002",
+              "distanceKm": 4.3,
+              "barometricAltitudeFt": 12000,
+              "onGround": false
+            }
+          ],
+          "expectedPrimary": "aa0001"
+        },
+        {
+          "offsetMs": 30000,
+          "aircraft": [
+            {
+              "id": "aa0001",
+              "distanceKm": 3.6999999999999997,
+              "barometricAltitudeFt": 12000,
+              "onGround": false
+            },
+            {
+              "id": "bb0002",
+              "distanceKm": 4.1,
+              "barometricAltitudeFt": 12000,
+              "onGround": false
+            }
+          ],
+          "expectedPrimary": "bb0002"
+        }
+      ]
+    },
+    {
+      "name": "Small alternating proximity differences",
+      "frames": [
+        {
+          "offsetMs": 0,
+          "aircraft": [
+            {
+              "id": "aa0001",
+              "distanceKm": 3,
+              "barometricAltitudeFt": 6000,
+              "onGround": false
+            },
+            {
+              "id": "bb0002",
+              "distanceKm": 3.01,
+              "barometricAltitudeFt": 6000,
+              "onGround": false
+            }
+          ],
+          "expectedPrimary": "aa0001"
+        },
+        {
+          "offsetMs": 15000,
+          "aircraft": [
+            {
+              "id": "aa0001",
+              "distanceKm": 3.01,
+              "barometricAltitudeFt": 6000,
+              "onGround": false
+            },
+            {
+              "id": "bb0002",
+              "distanceKm": 3,
+              "barometricAltitudeFt": 6000,
+              "onGround": false
+            }
+          ],
+          "expectedPrimary": "aa0001"
+        },
+        {
+          "offsetMs": 30000,
+          "aircraft": [
+            {
+              "id": "aa0001",
+              "distanceKm": 3,
+              "barometricAltitudeFt": 6000,
+              "onGround": false
+            },
+            {
+              "id": "bb0002",
+              "distanceKm": 3.01,
+              "barometricAltitudeFt": 6000,
+              "onGround": false
+            }
+          ],
+          "expectedPrimary": "aa0001"
+        },
+        {
+          "offsetMs": 45000,
+          "aircraft": [
+            {
+              "id": "aa0001",
+              "distanceKm": 3.01,
+              "barometricAltitudeFt": 6000,
+              "onGround": false
+            },
+            {
+              "id": "bb0002",
+              "distanceKm": 3,
+              "barometricAltitudeFt": 6000,
+              "onGround": false
+            }
+          ],
+          "expectedPrimary": "aa0001"
+        },
+        {
+          "offsetMs": 60000,
+          "aircraft": [
+            {
+              "id": "aa0001",
+              "distanceKm": 3,
+              "barometricAltitudeFt": 6000,
+              "onGround": false
+            },
+            {
+              "id": "bb0002",
+              "distanceKm": 3.01,
+              "barometricAltitudeFt": 6000,
+              "onGround": false
+            }
+          ],
+          "expectedPrimary": "aa0001"
+        },
+        {
+          "offsetMs": 75000,
+          "aircraft": [
+            {
+              "id": "aa0001",
+              "distanceKm": 3.01,
+              "barometricAltitudeFt": 6000,
+              "onGround": false
+            },
+            {
+              "id": "bb0002",
+              "distanceKm": 3,
+              "barometricAltitudeFt": 6000,
+              "onGround": false
+            }
+          ],
+          "expectedPrimary": "aa0001"
+        },
+        {
+          "offsetMs": 90000,
+          "aircraft": [
+            {
+              "id": "aa0001",
+              "distanceKm": 3,
+              "barometricAltitudeFt": 6000,
+              "onGround": false
+            },
+            {
+              "id": "bb0002",
+              "distanceKm": 3.01,
+              "barometricAltitudeFt": 6000,
+              "onGround": false
+            }
+          ],
+          "expectedPrimary": "aa0001"
+        },
+        {
+          "offsetMs": 105000,
+          "aircraft": [
+            {
+              "id": "aa0001",
+              "distanceKm": 3.01,
+              "barometricAltitudeFt": 6000,
+              "onGround": false
+            },
+            {
+              "id": "bb0002",
+              "distanceKm": 3,
+              "barometricAltitudeFt": 6000,
+              "onGround": false
+            }
+          ],
+          "expectedPrimary": "aa0001"
+        }
+      ]
+    },
+    {
+      "name": "Lower aircraft defeats closer high aircraft",
+      "frames": [
+        {
+          "offsetMs": 0,
+          "aircraft": [
+            {
+              "id": "aa0001",
+              "distanceKm": 3,
+              "barometricAltitudeFt": 12000,
+              "onGround": false
+            },
+            {
+              "id": "bb0002",
+              "distanceKm": 5,
+              "barometricAltitudeFt": 2000,
+              "onGround": false
+            }
+          ],
+          "expectedPrimary": "bb0002"
+        }
+      ]
+    },
+    {
+      "name": "Ground traffic does not dominate overhead display",
+      "frames": [
+        {
+          "offsetMs": 0,
+          "aircraft": [
+            {
+              "id": "aa0001",
+              "distanceKm": 0.1,
+              "barometricAltitudeFt": null,
+              "onGround": true
+            },
+            {
+              "id": "bb0002",
+              "distanceKm": 4,
+              "barometricAltitudeFt": 12000,
+              "onGround": false
+            }
+          ],
+          "expectedPrimary": "bb0002"
+        }
+      ]
+    },
+    {
+      "name": "Higher-altitude aircraft remains eligible",
+      "frames": [
+        {
+          "offsetMs": 0,
+          "aircraft": [
+            {
+              "id": "aa0001",
+              "distanceKm": 4,
+              "barometricAltitudeFt": 18000,
+              "onGround": false
+            }
+          ],
+          "expectedPrimary": "aa0001"
+        }
+      ]
+    },
+    {
+      "name": "Meaningful challenger waits for hold and confirmation",
+      "frames": [
+        {
+          "offsetMs": 0,
+          "aircraft": [
+            {
+              "id": "aa0001",
+              "distanceKm": 5,
+              "barometricAltitudeFt": 6000,
+              "onGround": false
+            }
+          ],
+          "expectedPrimary": "aa0001"
+        },
+        {
+          "offsetMs": 15000,
+          "aircraft": [
+            {
+              "id": "aa0001",
+              "distanceKm": 5,
+              "barometricAltitudeFt": 6000,
+              "onGround": false
+            },
+            {
+              "id": "bb0002",
+              "distanceKm": 2,
+              "barometricAltitudeFt": 6000,
+              "onGround": false
+            }
+          ],
+          "expectedPrimary": "aa0001"
+        },
+        {
+          "offsetMs": 30000,
+          "aircraft": [
+            {
+              "id": "aa0001",
+              "distanceKm": 5,
+              "barometricAltitudeFt": 6000,
+              "onGround": false
+            },
+            {
+              "id": "bb0002",
+              "distanceKm": 2,
+              "barometricAltitudeFt": 6000,
+              "onGround": false
+            }
+          ],
+          "expectedPrimary": "aa0001"
+        },
+        {
+          "offsetMs": 45000,
+          "aircraft": [
+            {
+              "id": "aa0001",
+              "distanceKm": 5,
+              "barometricAltitudeFt": 6000,
+              "onGround": false
+            },
+            {
+              "id": "bb0002",
+              "distanceKm": 2,
+              "barometricAltitudeFt": 6000,
+              "onGround": false
+            }
+          ],
+          "expectedPrimary": "bb0002"
+        }
+      ]
+    }
+  ]
+}

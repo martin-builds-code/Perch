@@ -1,0 +1,95 @@
+[
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 624
+    },
+    "syntheticRequests": 3,
+    "primaryAtSeconds": [
+      {
+        "at": 0,
+        "id": "aa0001"
+      },
+      {
+        "at": 15,
+        "id": "aa0001"
+      },
+      {
+        "at": 30,
+        "id": "bb0002"
+      }
+    ],
+    "simulationRequests": 0,
+    "layout": {
+      "footerBottom": 616,
+      "viewportHeight": 624,
+      "nearbyBottom": 592,
+      "footerTop": 592,
+      "identityBottom": 158.375,
+      "routeTop": 243
+    },
+    "browserErrors": []
+  },
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 768
+    },
+    "syntheticRequests": 3,
+    "primaryAtSeconds": [
+      {
+        "at": 0,
+        "id": "aa0001"
+      },
+      {
+        "at": 15,
+        "id": "aa0001"
+      },
+      {
+        "at": 30,
+        "id": "bb0002"
+      }
+    ],
+    "simulationRequests": 0,
+    "layout": {
+      "footerBottom": 758,
+      "viewportHeight": 768,
+      "nearbyBottom": 734,
+      "footerTop": 734,
+      "identityBottom": 190.15625,
+      "routeTop": 340
+    },
+    "browserErrors": []
+  },
+  {
+    "viewport": {
+      "width": 1112,
+      "height": 834
+    },
+    "syntheticRequests": 3,
+    "primaryAtSeconds": [
+      {
+        "at": 0,
+        "id": "aa0001"
+      },
+      {
+        "at": 15,
+        "id": "aa0001"
+      },
+      {
+        "at": 30,
+        "id": "bb0002"
+      }
+    ],
+    "simulationRequests": 0,
+    "layout": {
+      "footerBottom": 820,
+      "viewportHeight": 834,
+      "nearbyBottom": 796,
+      "footerTop": 796,
+      "identityBottom": 231.109375,
+      "routeTop": 328
+    },
+    "browserErrors": []
+  }
+]

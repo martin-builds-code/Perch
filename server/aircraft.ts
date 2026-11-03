@@ -86,7 +86,12 @@ export function normalise(
       : null,
     barometricAltitudeFt: number(r.alt_baro),
     geometricAltitudeFt: number(r.alt_geom),
-    onGround: r.alt_baro === 'ground',
+    onGround:
+      r.alt_baro === 'ground'
+        ? true
+        : number(r.alt_baro) !== null
+          ? false
+          : null,
     groundSpeedKnots:
       typeof r.gs === 'number' && r.gs >= 0 ? number(r.gs) : null,
     trackDegrees: track !== null && track >= 0 && track < 360 ? track : null,

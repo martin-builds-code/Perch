@@ -8,7 +8,7 @@ export interface LiveAircraft {
   distanceKm: number | null;
   barometricAltitudeFt: number | null;
   geometricAltitudeFt: number | null;
-  onGround: boolean;
+  onGround: boolean | null;
   groundSpeedKnots: number | null;
   trackDegrees: number | null;
   positionTimeMs: number | null;

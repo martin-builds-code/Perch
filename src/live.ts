@@ -1,6 +1,8 @@
 import type { Snapshot, LiveAircraft } from './liveTypes';
 import { CURRENT_AGE_MS, EXPIRE_AGE_MS } from './liveTypes';
 import type { Aircraft, Scene } from './simulation';
+import { createAircraftSelector, scoreAircraft } from './selection';
+import type { SelectionResult } from './selection';
 
 function presentation(a: LiveAircraft): Aircraft {
   const match = a.description?.match(
@@ -36,27 +38,21 @@ function presentation(a: LiveAircraft): Aircraft {
         : directions[Math.round(a.trackDegrees / 45) % 8],
   };
 }
-// Stage 2A provisional only: nearest valid, unexpired position; tie by ICAO.
-// This is not an audibility/relevance score. Stage 2B replaces this function.
+// Stateless relevance order for diagnostics/tests; the poller owns the stable selector.
 export function selectAircraft(aircraft: LiveAircraft[], now: number) {
   return aircraft
-    .filter(
-      (a) =>
-        a.validity.position &&
-        a.validity.timestamp &&
-        a.positionTimeMs !== null &&
-        now - a.positionTimeMs >= 0 &&
-        now - a.positionTimeMs < EXPIRE_AGE_MS &&
-        a.distanceKm !== null &&
-        a.distanceKm >= 0 &&
-        a.distanceKm <= 15,
+    .map((a) => scoreAircraft(a, now))
+    .filter((a) => a !== null)
+    .sort(
+      (a, b) => b.score - a.score || a.aircraft.id.localeCompare(b.aircraft.id),
     )
-    .sort((a, b) => a.distanceKm! - b.distanceKm! || a.id.localeCompare(b.id));
+    .map((a) => a.aircraft);
 }
 export function liveScene(
   snapshot: Snapshot | null,
   now: number,
   failed: boolean,
+  selection = createAircraftSelector().select(snapshot, now, failed),
 ): Scene {
   const base = {
     id: 'live',
@@ -70,13 +66,15 @@ export function liveScene(
     now - snapshot.fetchedAtMs >= EXPIRE_AGE_MS
   )
     return { ...base, state: 'unavailable', primary: null };
-  const eligible = selectAircraft(snapshot.aircraft, now);
+  const eligible = selection.primary
+    ? [selection.primary, ...selection.secondary]
+    : [];
   if (!eligible.length) {
     const uncertain =
       failed ||
       snapshot.anomalies.length > 0 ||
       snapshot.rejectedRecords > 0 ||
-      snapshot.aircraft.length > 0 ||
+      snapshot.aircraft.some((a) => a.onGround !== true) ||
       now - snapshot.fetchedAtMs >= CURRENT_AGE_MS;
     return {
       ...base,
@@ -128,7 +126,7 @@ function validSnapshot(value: unknown): value is Snapshot {
           a.trackDegrees,
         ].every((v) => v === null || Number.isFinite(v)) &&
         a.source === 'adsb.fi' &&
-        typeof a.onGround === 'boolean' &&
+        (a.onGround === null || typeof a.onGround === 'boolean') &&
         Array.isArray(a.validity.anomalies),
     )
   );
@@ -144,6 +142,8 @@ export function createPoller(
   onChange: (scene: Scene) => void,
   env: PollEnvironment,
 ) {
+  const selector = createAircraftSelector();
+  let selection: SelectionResult | null = null;
   let stopped = false,
     snapshot: Snapshot | null = null,
     failed = false,
@@ -160,22 +160,28 @@ export function createPoller(
   }
   function publish() {
     if (stopped) return;
-    onChange(liveScene(snapshot, env.now(), failed));
+    const now = env.now();
+    selection = selector.select(snapshot, now, failed);
+    onChange(liveScene(snapshot, now, failed, selection));
     if (expiryTimer !== undefined) env.clearTimer(expiryTimer);
     const deadlines = snapshot
       ? [
+          ...(selection.reevaluateAtMs !== null
+            ? [selection.reevaluateAtMs]
+            : []),
           snapshot.fetchedAtMs + CURRENT_AGE_MS,
           snapshot.fetchedAtMs + EXPIRE_AGE_MS,
-          ...selectAircraft(snapshot.aircraft, env.now())
-            .slice(0, 4)
-            .flatMap((a) =>
-              a.positionTimeMs === null
-                ? []
-                : [
-                    a.positionTimeMs + CURRENT_AGE_MS,
-                    a.positionTimeMs + EXPIRE_AGE_MS,
-                  ],
-            ),
+          ...(selection.primary
+            ? [selection.primary, ...selection.secondary]
+            : []
+          ).flatMap((a) =>
+            a.positionTimeMs === null
+              ? []
+              : [
+                  a.positionTimeMs + CURRENT_AGE_MS,
+                  a.positionTimeMs + EXPIRE_AGE_MS,
+                ],
+          ),
         ]
       : [];
     const next = Math.min(...deadlines.filter((t) => t > env.now()));
@@ -251,8 +257,12 @@ export function createPoller(
   return {
     start: resume,
     resume,
+    diagnostics: () => ({ history: selector.inspect(), selection }),
     stop: () => {
       stopped = true;
+      selector.clear();
+      selection = null;
+      snapshot = null;
       clear();
       request?.abort();
     },
