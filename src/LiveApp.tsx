@@ -42,7 +42,7 @@ export default function LiveApp() {
       : undefined;
     if (diagnosticHandle) window.aeroPaneDiagnostics = diagnosticHandle;
     const env = {
-      fetch: (...args: Parameters<typeof fetch>) => fetch(...args),
+      fetch: async (...args: Parameters<typeof fetch>) => {const r=await fetch(...args);if(r.status===401)window.dispatchEvent(new Event('aero-auth-required'));return r;},
       now: Date.now,
       active,
       setTimer: (fn: () => void, ms: number) => setTimeout(fn, ms),

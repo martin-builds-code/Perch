@@ -2,6 +2,7 @@ import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import handler from './api/aircraft';
 import enrichment from './api/enrichment';
+import session from './api/session';
 export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
@@ -12,6 +13,7 @@ export default defineConfig(({ mode }) => ({
         for (const [key, value] of Object.entries(env))
           process.env[key] ??= value;
         server.middlewares.use((req, res, next) => {
+          if (req.url?.split('?')[0] === '/api/session') {void session(req,res);return;}
           if (req.url?.split('?')[0] === '/api/enrichment') {
             void enrichment(req, res);
             return;

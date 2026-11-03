@@ -1,3 +1,4 @@
+import {authorised} from '../server/auth.js';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { enrichmentService } from '../server/enrichmentService.js';
 import { EnrichmentError, validateLookup } from '../server/hexdb.js';
@@ -10,12 +11,13 @@ export default async function handler(
   if (
     process.env.AERO_ENRICHMENT_ENABLED !== 'true' ||
     process.env.AERO_LIVE_ENABLED !== 'true' ||
-    process.env.VERCEL_ENV === 'production'
+    (process.env.VERCEL_ENV === 'production' && process.env.AERO_PRODUCTION_LIVE_ENABLED !== 'true')
   ) {
     res.statusCode = 404;
     res.end('{"error":"enrichment-disabled"}');
     return;
   }
+  if (!authorised(req,res)) return;
   try {
     if (req.method !== 'GET') throw new EnrichmentError('invalid-request');
     const url = new URL(req.url ?? '', 'https://local.invalid');

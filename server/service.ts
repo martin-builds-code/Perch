@@ -4,7 +4,7 @@ import type { Snapshot } from '../src/liveTypes.js';
 const CACHE_TTL_MS = 10_000,
   MIN_PROVIDER_INTERVAL_MS = 15_000;
 export function configuration(env: NodeJS.ProcessEnv) {
-  if (env.AERO_LIVE_ENABLED !== 'true' || env.VERCEL_ENV === 'production')
+  if (env.AERO_LIVE_ENABLED !== 'true' || (env.VERCEL_ENV === 'production' && env.AERO_PRODUCTION_LIVE_ENABLED !== 'true'))
     throw new ProviderError('live-disabled');
   const coordinate = (v: string | undefined) => (v?.trim() ? Number(v) : NaN);
   const point = {
