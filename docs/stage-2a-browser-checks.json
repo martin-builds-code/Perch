@@ -1,0 +1,428 @@
+[
+  {
+    "size": {
+      "width": 1024,
+      "height": 624
+    },
+    "scene": "single",
+    "pixelIdentical": true
+  },
+  {
+    "size": {
+      "width": 1024,
+      "height": 624
+    },
+    "scene": "multiple",
+    "pixelIdentical": true
+  },
+  {
+    "size": {
+      "width": 1024,
+      "height": 624
+    },
+    "scene": "incomplete",
+    "pixelIdentical": true
+  },
+  {
+    "size": {
+      "width": 1024,
+      "height": 624
+    },
+    "scene": "standby",
+    "pixelIdentical": true
+  },
+  {
+    "size": {
+      "width": 1024,
+      "height": 624
+    },
+    "scene": "delayed",
+    "pixelIdentical": true
+  },
+  {
+    "size": {
+      "width": 1024,
+      "height": 624
+    },
+    "scene": "unavailable",
+    "pixelIdentical": true
+  },
+  {
+    "size": {
+      "width": 1024,
+      "height": 624
+    },
+    "state": "available",
+    "footer": "Live · Current aircraft information\nAircraft data: adsb.fi",
+    "layout": {
+      "footerBottom": 616,
+      "height": 624,
+      "nearBottom": 592,
+      "footerTop": 592,
+      "identityBottom": 158.375,
+      "routeTop": 243,
+      "nearbyCards": [
+        {
+          "identityBottom": 536,
+          "valueTop": 536
+        },
+        {
+          "identityBottom": 536,
+          "valueTop": 536
+        },
+        {
+          "identityBottom": 536,
+          "valueTop": 536
+        }
+      ]
+    }
+  },
+  {
+    "size": {
+      "width": 1024,
+      "height": 624
+    },
+    "state": "delayed",
+    "footer": "Live · Data delayed · last sample\nAircraft data: adsb.fi",
+    "layout": {
+      "footerBottom": 616,
+      "height": 624,
+      "nearBottom": 592,
+      "footerTop": 592,
+      "identityBottom": 174.375,
+      "routeTop": 243,
+      "nearbyCards": [
+        {
+          "identityBottom": 536,
+          "valueTop": 536
+        },
+        {
+          "identityBottom": 536,
+          "valueTop": 536
+        },
+        {
+          "identityBottom": 536,
+          "valueTop": 536
+        }
+      ]
+    }
+  },
+  {
+    "size": {
+      "width": 1024,
+      "height": 624
+    },
+    "state": "empty",
+    "footer": "Live · No aircraft reported\nAircraft data: adsb.fi",
+    "layout": {
+      "footerBottom": 616,
+      "height": 624,
+      "nearBottom": 592,
+      "footerTop": 592,
+      "identityBottom": 0,
+      "routeTop": 0,
+      "nearbyCards": []
+    }
+  },
+  {
+    "size": {
+      "width": 1024,
+      "height": 624
+    },
+    "state": "unavailable",
+    "footer": "Live · Data unavailable\nAircraft data: adsb.fi",
+    "layout": {
+      "footerBottom": 616,
+      "height": 624,
+      "nearBottom": 592,
+      "footerTop": 592,
+      "identityBottom": 0,
+      "routeTop": 0,
+      "nearbyCards": []
+    }
+  },
+  {
+    "size": {
+      "width": 1024,
+      "height": 768
+    },
+    "scene": "single",
+    "pixelIdentical": true
+  },
+  {
+    "size": {
+      "width": 1024,
+      "height": 768
+    },
+    "scene": "multiple",
+    "pixelIdentical": true
+  },
+  {
+    "size": {
+      "width": 1024,
+      "height": 768
+    },
+    "scene": "incomplete",
+    "pixelIdentical": true
+  },
+  {
+    "size": {
+      "width": 1024,
+      "height": 768
+    },
+    "scene": "standby",
+    "pixelIdentical": true
+  },
+  {
+    "size": {
+      "width": 1024,
+      "height": 768
+    },
+    "scene": "delayed",
+    "pixelIdentical": true
+  },
+  {
+    "size": {
+      "width": 1024,
+      "height": 768
+    },
+    "scene": "unavailable",
+    "pixelIdentical": true
+  },
+  {
+    "size": {
+      "width": 1024,
+      "height": 768
+    },
+    "state": "available",
+    "footer": "Live · Current aircraft information\nAircraft data: adsb.fi",
+    "layout": {
+      "footerBottom": 758,
+      "height": 768,
+      "nearBottom": 734,
+      "footerTop": 734,
+      "identityBottom": 190.15625,
+      "routeTop": 340,
+      "nearbyCards": [
+        {
+          "identityBottom": 668,
+          "valueTop": 668
+        },
+        {
+          "identityBottom": 668,
+          "valueTop": 668
+        },
+        {
+          "identityBottom": 668,
+          "valueTop": 668
+        }
+      ]
+    }
+  },
+  {
+    "size": {
+      "width": 1024,
+      "height": 768
+    },
+    "state": "delayed",
+    "footer": "Live · Data delayed · last sample\nAircraft data: adsb.fi",
+    "layout": {
+      "footerBottom": 758,
+      "height": 768,
+      "nearBottom": 734,
+      "footerTop": 734,
+      "identityBottom": 206.15625,
+      "routeTop": 340,
+      "nearbyCards": [
+        {
+          "identityBottom": 668,
+          "valueTop": 668
+        },
+        {
+          "identityBottom": 668,
+          "valueTop": 668
+        },
+        {
+          "identityBottom": 668,
+          "valueTop": 668
+        }
+      ]
+    }
+  },
+  {
+    "size": {
+      "width": 1024,
+      "height": 768
+    },
+    "state": "empty",
+    "footer": "Live · No aircraft reported\nAircraft data: adsb.fi",
+    "layout": {
+      "footerBottom": 758,
+      "height": 768,
+      "nearBottom": 734,
+      "footerTop": 734,
+      "identityBottom": 0,
+      "routeTop": 0,
+      "nearbyCards": []
+    }
+  },
+  {
+    "size": {
+      "width": 1024,
+      "height": 768
+    },
+    "state": "unavailable",
+    "footer": "Live · Data unavailable\nAircraft data: adsb.fi",
+    "layout": {
+      "footerBottom": 758,
+      "height": 768,
+      "nearBottom": 734,
+      "footerTop": 734,
+      "identityBottom": 0,
+      "routeTop": 0,
+      "nearbyCards": []
+    }
+  },
+  {
+    "size": {
+      "width": 1112,
+      "height": 834
+    },
+    "scene": "single",
+    "pixelIdentical": true
+  },
+  {
+    "size": {
+      "width": 1112,
+      "height": 834
+    },
+    "scene": "multiple",
+    "pixelIdentical": true
+  },
+  {
+    "size": {
+      "width": 1112,
+      "height": 834
+    },
+    "scene": "incomplete",
+    "pixelIdentical": true
+  },
+  {
+    "size": {
+      "width": 1112,
+      "height": 834
+    },
+    "scene": "standby",
+    "pixelIdentical": true
+  },
+  {
+    "size": {
+      "width": 1112,
+      "height": 834
+    },
+    "scene": "delayed",
+    "pixelIdentical": true
+  },
+  {
+    "size": {
+      "width": 1112,
+      "height": 834
+    },
+    "scene": "unavailable",
+    "pixelIdentical": true
+  },
+  {
+    "size": {
+      "width": 1112,
+      "height": 834
+    },
+    "state": "available",
+    "footer": "Live · Current aircraft information\nAircraft data: adsb.fi",
+    "layout": {
+      "footerBottom": 820,
+      "height": 834,
+      "nearBottom": 796,
+      "footerTop": 796,
+      "identityBottom": 231.109375,
+      "routeTop": 328,
+      "nearbyCards": [
+        {
+          "identityBottom": 724,
+          "valueTop": 724
+        },
+        {
+          "identityBottom": 724,
+          "valueTop": 724
+        },
+        {
+          "identityBottom": 724,
+          "valueTop": 724
+        }
+      ]
+    }
+  },
+  {
+    "size": {
+      "width": 1112,
+      "height": 834
+    },
+    "state": "delayed",
+    "footer": "Live · Data delayed · last sample\nAircraft data: adsb.fi",
+    "layout": {
+      "footerBottom": 820,
+      "height": 834,
+      "nearBottom": 796,
+      "footerTop": 796,
+      "identityBottom": 247.109375,
+      "routeTop": 328,
+      "nearbyCards": [
+        {
+          "identityBottom": 724,
+          "valueTop": 724
+        },
+        {
+          "identityBottom": 724,
+          "valueTop": 724
+        },
+        {
+          "identityBottom": 724,
+          "valueTop": 724
+        }
+      ]
+    }
+  },
+  {
+    "size": {
+      "width": 1112,
+      "height": 834
+    },
+    "state": "empty",
+    "footer": "Live · No aircraft reported\nAircraft data: adsb.fi",
+    "layout": {
+      "footerBottom": 820,
+      "height": 834,
+      "nearBottom": 796,
+      "footerTop": 796,
+      "identityBottom": 0,
+      "routeTop": 0,
+      "nearbyCards": []
+    }
+  },
+  {
+    "size": {
+      "width": 1112,
+      "height": 834
+    },
+    "state": "unavailable",
+    "footer": "Live · Data unavailable\nAircraft data: adsb.fi",
+    "layout": {
+      "footerBottom": 820,
+      "height": 834,
+      "nearBottom": 796,
+      "footerTop": 796,
+      "identityBottom": 0,
+      "routeTop": 0,
+      "nearbyCards": []
+    }
+  }
+]
