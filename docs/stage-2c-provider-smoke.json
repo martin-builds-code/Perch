@@ -1,0 +1,67 @@
+{
+  "requests": 4,
+  "privateLocationUsed": false,
+  "liveProviderRequestsRepeated": false,
+  "results": [
+    {
+      "url": "https://hexdb.io/api/v2/aircraft/4010ee",
+      "status": 200,
+      "latencyMs": 226,
+      "responseKeys": [
+        "hex",
+        "registration",
+        "manufacturer",
+        "type",
+        "icao_type_code",
+        "registered_owner",
+        "operator_flag_code",
+        "images",
+        "links"
+      ],
+      "acceptedSupplement": true,
+      "operator": "easyJet",
+      "routeUpdatedAt": null,
+      "note": "identity parsed from recorded live response"
+    },
+    {
+      "url": "https://hexdb.io/api/v2/routes/EIN17A",
+      "status": 200,
+      "latencyMs": 546,
+      "responseKeys": [
+        "callsign",
+        "origin",
+        "destination",
+        "airports",
+        "updated_at"
+      ],
+      "acceptedSupplement": false,
+      "operator": null,
+      "routeUpdatedAt": "2023-03-30T12:36:58Z",
+      "note": "known old association suppressed"
+    },
+    {
+      "url": "https://hexdb.io/api/v2/aircraft/000000",
+      "status": 404,
+      "latencyMs": 314,
+      "responseKeys": [
+        "error"
+      ],
+      "acceptedSupplement": false,
+      "operator": null,
+      "routeUpdatedAt": null,
+      "note": "documented missing result"
+    },
+    {
+      "url": "https://hexdb.io/api/v2/routes/ABC123",
+      "status": 404,
+      "latencyMs": 838,
+      "responseKeys": [
+        "error"
+      ],
+      "acceptedSupplement": false,
+      "operator": null,
+      "routeUpdatedAt": null,
+      "note": "documented missing result"
+    }
+  ]
+}

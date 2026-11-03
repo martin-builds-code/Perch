@@ -1,0 +1,610 @@
+[
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 624
+    },
+    "state": "available",
+    "ordinaryLivePixelIdentical": true,
+    "diagnosticCardsPixelIdentical": true,
+    "layout": {
+      "button": {
+        "x": 415.09375,
+        "y": 580,
+        "width": 119.875,
+        "height": 44,
+        "right": 534.96875,
+        "bottom": 624
+      },
+      "label": {
+        "y": 594,
+        "bottom": 610
+      },
+      "status": {
+        "x": 16,
+        "y": 596.5,
+        "width": 182.953125,
+        "height": 15,
+        "right": 198.953125,
+        "bottom": 611.5
+      },
+      "credit": {
+        "x": 904.234375,
+        "y": 596.5,
+        "width": 103.765625,
+        "height": 15,
+        "right": 1008,
+        "bottom": 611.5
+      },
+      "control": {
+        "x": 415.09375,
+        "y": 582,
+        "width": 273,
+        "height": 44,
+        "right": 688.09375,
+        "bottom": 626
+      },
+      "cards": {
+        "x": 16,
+        "y": 10,
+        "width": 992,
+        "height": 582,
+        "right": 1008,
+        "bottom": 592
+      },
+      "footer": {
+        "x": 16,
+        "y": 592,
+        "width": 992,
+        "height": 24,
+        "right": 1008,
+        "bottom": 616
+      }
+    },
+    "activeDownload": true,
+    "doubleTapGuard": true,
+    "additionalApiRequests": 0,
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 624
+    },
+    "state": "delayed",
+    "ordinaryLivePixelIdentical": true,
+    "diagnosticCardsPixelIdentical": true,
+    "layout": {
+      "button": {
+        "x": 412.625,
+        "y": 580,
+        "width": 119.875,
+        "height": 44,
+        "right": 532.5,
+        "bottom": 624
+      },
+      "label": {
+        "y": 594,
+        "bottom": 610
+      },
+      "status": {
+        "x": 16,
+        "y": 596.5,
+        "width": 178,
+        "height": 15,
+        "right": 194,
+        "bottom": 611.5
+      },
+      "credit": {
+        "x": 904.234375,
+        "y": 596.5,
+        "width": 103.765625,
+        "height": 15,
+        "right": 1008,
+        "bottom": 611.5
+      },
+      "control": {
+        "x": 412.625,
+        "y": 582,
+        "width": 273,
+        "height": 44,
+        "right": 685.625,
+        "bottom": 626
+      },
+      "cards": {
+        "x": 16,
+        "y": 10,
+        "width": 992,
+        "height": 582,
+        "right": 1008,
+        "bottom": 592
+      },
+      "footer": {
+        "x": 16,
+        "y": 592,
+        "width": 992,
+        "height": 24,
+        "right": 1008,
+        "bottom": 616
+      }
+    },
+    "activeDownload": true,
+    "doubleTapGuard": true,
+    "additionalApiRequests": 0,
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 624
+    },
+    "state": "unavailable",
+    "ordinaryLivePixelIdentical": true,
+    "diagnosticCardsPixelIdentical": true,
+    "layout": {
+      "button": {
+        "x": 388,
+        "y": 580,
+        "width": 119.875,
+        "height": 44,
+        "right": 507.875,
+        "bottom": 624
+      },
+      "label": {
+        "y": 594,
+        "bottom": 610
+      },
+      "status": {
+        "x": 16,
+        "y": 596.5,
+        "width": 128.765625,
+        "height": 15,
+        "right": 144.765625,
+        "bottom": 611.5
+      },
+      "credit": {
+        "x": 904.234375,
+        "y": 596.5,
+        "width": 103.765625,
+        "height": 15,
+        "right": 1008,
+        "bottom": 611.5
+      },
+      "control": {
+        "x": 388,
+        "y": 582,
+        "width": 273,
+        "height": 44,
+        "right": 661,
+        "bottom": 626
+      },
+      "cards": {
+        "x": 16,
+        "y": 10,
+        "width": 992,
+        "height": 582,
+        "right": 1008,
+        "bottom": 592
+      },
+      "footer": {
+        "x": 16,
+        "y": 592,
+        "width": 992,
+        "height": 24,
+        "right": 1008,
+        "bottom": 616
+      }
+    },
+    "activeDownload": true,
+    "doubleTapGuard": true,
+    "additionalApiRequests": 0,
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 768
+    },
+    "state": "available",
+    "ordinaryLivePixelIdentical": true,
+    "diagnosticCardsPixelIdentical": true,
+    "layout": {
+      "button": {
+        "x": 415.09375,
+        "y": 724,
+        "width": 119.875,
+        "height": 44,
+        "right": 534.96875,
+        "bottom": 768
+      },
+      "label": {
+        "y": 738,
+        "bottom": 754
+      },
+      "status": {
+        "x": 20,
+        "y": 738.5,
+        "width": 182.953125,
+        "height": 15,
+        "right": 202.953125,
+        "bottom": 753.5
+      },
+      "credit": {
+        "x": 900.234375,
+        "y": 738.5,
+        "width": 103.765625,
+        "height": 15,
+        "right": 1004,
+        "bottom": 753.5
+      },
+      "control": {
+        "x": 415.09375,
+        "y": 724,
+        "width": 273,
+        "height": 44,
+        "right": 688.09375,
+        "bottom": 768
+      },
+      "cards": {
+        "x": 20,
+        "y": 12,
+        "width": 984,
+        "height": 722,
+        "right": 1004,
+        "bottom": 734
+      },
+      "footer": {
+        "x": 20,
+        "y": 734,
+        "width": 984,
+        "height": 24,
+        "right": 1004,
+        "bottom": 758
+      }
+    },
+    "activeDownload": true,
+    "doubleTapGuard": true,
+    "additionalApiRequests": 0,
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 768
+    },
+    "state": "delayed",
+    "ordinaryLivePixelIdentical": true,
+    "diagnosticCardsPixelIdentical": true,
+    "layout": {
+      "button": {
+        "x": 412.625,
+        "y": 724,
+        "width": 119.875,
+        "height": 44,
+        "right": 532.5,
+        "bottom": 768
+      },
+      "label": {
+        "y": 738,
+        "bottom": 754
+      },
+      "status": {
+        "x": 20,
+        "y": 738.5,
+        "width": 178,
+        "height": 15,
+        "right": 198,
+        "bottom": 753.5
+      },
+      "credit": {
+        "x": 900.234375,
+        "y": 738.5,
+        "width": 103.765625,
+        "height": 15,
+        "right": 1004,
+        "bottom": 753.5
+      },
+      "control": {
+        "x": 412.625,
+        "y": 724,
+        "width": 273,
+        "height": 44,
+        "right": 685.625,
+        "bottom": 768
+      },
+      "cards": {
+        "x": 20,
+        "y": 12,
+        "width": 984,
+        "height": 722,
+        "right": 1004,
+        "bottom": 734
+      },
+      "footer": {
+        "x": 20,
+        "y": 734,
+        "width": 984,
+        "height": 24,
+        "right": 1004,
+        "bottom": 758
+      }
+    },
+    "activeDownload": true,
+    "doubleTapGuard": true,
+    "additionalApiRequests": 0,
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 768
+    },
+    "state": "unavailable",
+    "ordinaryLivePixelIdentical": true,
+    "diagnosticCardsPixelIdentical": true,
+    "layout": {
+      "button": {
+        "x": 388,
+        "y": 724,
+        "width": 119.875,
+        "height": 44,
+        "right": 507.875,
+        "bottom": 768
+      },
+      "label": {
+        "y": 738,
+        "bottom": 754
+      },
+      "status": {
+        "x": 20,
+        "y": 738.5,
+        "width": 128.765625,
+        "height": 15,
+        "right": 148.765625,
+        "bottom": 753.5
+      },
+      "credit": {
+        "x": 900.234375,
+        "y": 738.5,
+        "width": 103.765625,
+        "height": 15,
+        "right": 1004,
+        "bottom": 753.5
+      },
+      "control": {
+        "x": 388,
+        "y": 724,
+        "width": 273,
+        "height": 44,
+        "right": 661,
+        "bottom": 768
+      },
+      "cards": {
+        "x": 20,
+        "y": 12,
+        "width": 984,
+        "height": 722,
+        "right": 1004,
+        "bottom": 734
+      },
+      "footer": {
+        "x": 20,
+        "y": 734,
+        "width": 984,
+        "height": 24,
+        "right": 1004,
+        "bottom": 758
+      }
+    },
+    "activeDownload": true,
+    "doubleTapGuard": true,
+    "additionalApiRequests": 0,
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 1112,
+      "height": 834
+    },
+    "state": "available",
+    "ordinaryLivePixelIdentical": true,
+    "diagnosticCardsPixelIdentical": true,
+    "layout": {
+      "button": {
+        "x": 459.09375,
+        "y": 786,
+        "width": 119.875,
+        "height": 44,
+        "right": 578.96875,
+        "bottom": 830
+      },
+      "label": {
+        "y": 800,
+        "bottom": 816
+      },
+      "status": {
+        "x": 24,
+        "y": 800.5,
+        "width": 182.953125,
+        "height": 15,
+        "right": 206.953125,
+        "bottom": 815.5
+      },
+      "credit": {
+        "x": 984.234375,
+        "y": 800.5,
+        "width": 103.765625,
+        "height": 15,
+        "right": 1088,
+        "bottom": 815.5
+      },
+      "control": {
+        "x": 459.09375,
+        "y": 786,
+        "width": 273,
+        "height": 44,
+        "right": 732.09375,
+        "bottom": 830
+      },
+      "cards": {
+        "x": 24,
+        "y": 20,
+        "width": 1064,
+        "height": 776,
+        "right": 1088,
+        "bottom": 796
+      },
+      "footer": {
+        "x": 24,
+        "y": 796,
+        "width": 1064,
+        "height": 24,
+        "right": 1088,
+        "bottom": 820
+      }
+    },
+    "activeDownload": true,
+    "doubleTapGuard": true,
+    "additionalApiRequests": 0,
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 1112,
+      "height": 834
+    },
+    "state": "delayed",
+    "ordinaryLivePixelIdentical": true,
+    "diagnosticCardsPixelIdentical": true,
+    "layout": {
+      "button": {
+        "x": 456.625,
+        "y": 786,
+        "width": 119.875,
+        "height": 44,
+        "right": 576.5,
+        "bottom": 830
+      },
+      "label": {
+        "y": 800,
+        "bottom": 816
+      },
+      "status": {
+        "x": 24,
+        "y": 800.5,
+        "width": 178,
+        "height": 15,
+        "right": 202,
+        "bottom": 815.5
+      },
+      "credit": {
+        "x": 984.234375,
+        "y": 800.5,
+        "width": 103.765625,
+        "height": 15,
+        "right": 1088,
+        "bottom": 815.5
+      },
+      "control": {
+        "x": 456.625,
+        "y": 786,
+        "width": 273,
+        "height": 44,
+        "right": 729.625,
+        "bottom": 830
+      },
+      "cards": {
+        "x": 24,
+        "y": 20,
+        "width": 1064,
+        "height": 776,
+        "right": 1088,
+        "bottom": 796
+      },
+      "footer": {
+        "x": 24,
+        "y": 796,
+        "width": 1064,
+        "height": 24,
+        "right": 1088,
+        "bottom": 820
+      }
+    },
+    "activeDownload": true,
+    "doubleTapGuard": true,
+    "additionalApiRequests": 0,
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 1112,
+      "height": 834
+    },
+    "state": "unavailable",
+    "ordinaryLivePixelIdentical": true,
+    "diagnosticCardsPixelIdentical": true,
+    "layout": {
+      "button": {
+        "x": 432,
+        "y": 786,
+        "width": 119.875,
+        "height": 44,
+        "right": 551.875,
+        "bottom": 830
+      },
+      "label": {
+        "y": 800,
+        "bottom": 816
+      },
+      "status": {
+        "x": 24,
+        "y": 800.5,
+        "width": 128.765625,
+        "height": 15,
+        "right": 152.765625,
+        "bottom": 815.5
+      },
+      "credit": {
+        "x": 984.234375,
+        "y": 800.5,
+        "width": 103.765625,
+        "height": 15,
+        "right": 1088,
+        "bottom": 815.5
+      },
+      "control": {
+        "x": 432,
+        "y": 786,
+        "width": 273,
+        "height": 44,
+        "right": 705,
+        "bottom": 830
+      },
+      "cards": {
+        "x": 24,
+        "y": 20,
+        "width": 1064,
+        "height": 776,
+        "right": 1088,
+        "bottom": 796
+      },
+      "footer": {
+        "x": 24,
+        "y": 796,
+        "width": 1064,
+        "height": 24,
+        "right": 1088,
+        "bottom": 820
+      }
+    },
+    "activeDownload": true,
+    "doubleTapGuard": true,
+    "additionalApiRequests": 0,
+    "errors": []
+  },
+  {
+    "case": "completed period, failure, manual selection, Escape, simulation cleanup",
+    "passed": true,
+    "errors": []
+  }
+]

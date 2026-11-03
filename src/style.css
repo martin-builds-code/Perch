@@ -15,3 +15,24 @@ footer .status-line{height:auto;font-size:11px}
 @media(max-height:650px){.content{gap:30px}}
 
 .provider-credit{color:inherit;text-decoration:none;font-size:11px}
+
+/* Keep optional supplied airport names within the approved live route slots. */
+.display[data-scene="live"] .airport-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* Temporary diagnostic trial only: no reserved space in an ordinary display.
+   The transparent 44px hit area extends beyond the compact footer; its text
+   stays inside it and never covers aircraft information. */
+.diagnostic-export{display:inline-flex;align-items:center;white-space:nowrap;gap:8px}
+.diagnostic-export-trigger{min-height:44px;border:0;padding:0 8px;background:transparent;color:var(--muted);font:inherit;font-size:12px;text-decoration:underline;cursor:pointer}
+.diagnostic-memory-note{font-size:10px;color:var(--muted)}
+.diagnostic-export-trigger:focus-visible{outline:2px solid var(--accent);outline-offset:-8px}
+@media(max-height:650px){.diagnostic-export-trigger{transform:translateY(-2px)}}
+.diagnostic-export-backdrop{position:fixed;inset:0;z-index:10;background:rgba(8,25,37,.88);display:flex;align-items:center;justify-content:center;padding:16px}
+.diagnostic-export-panel{width:520px;max-width:100%;max-height:calc(var(--app-height,100vh) - 32px);overflow:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:16px;background:#162e3e;padding:24px;color:#fff8ed;font-size:16px;line-height:1.4}
+.diagnostic-export-panel h2{font-size:24px}
+.diagnostic-export-panel p{margin:12px 0}
+.diagnostic-export-filename{overflow-wrap:anywhere;font-size:14px;color:var(--muted)}
+.diagnostic-export-actions{display:flex;gap:12px}
+.diagnostic-export-panel button{min-height:44px;padding:8px 16px;border:1px solid var(--muted);border-radius:8px;background:transparent;color:inherit;font:inherit;cursor:pointer}
+.diagnostic-export-panel summary{min-height:44px;padding-top:16px;cursor:pointer}
+.diagnostic-export-panel textarea{display:block;width:100%;height:160px;margin-top:12px;font:16px monospace;color:#fff8ed;background:#081925;border:1px solid var(--muted);border-radius:4px;padding:8px}

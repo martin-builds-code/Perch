@@ -1,0 +1,65 @@
+[
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 624
+    },
+    "positionsBeforeSimulation": 4,
+    "enrichmentRequests": 2,
+    "layout": {
+      "footerBottom": 616,
+      "identityBottom": 158.375,
+      "routeTop": 243,
+      "routeBottom": 317,
+      "detailsTop": 317,
+      "nameTitle": "Dublin International Airport Passenger Terminal",
+      "nameSingleLine": "nowrap"
+    },
+    "delayedEpisodes": 0,
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 768
+    },
+    "positionsBeforeSimulation": 4,
+    "enrichmentRequests": 2,
+    "layout": {
+      "footerBottom": 758,
+      "identityBottom": 190.15625,
+      "routeTop": 340,
+      "routeBottom": 428,
+      "detailsTop": 428,
+      "nameTitle": "Dublin International Airport Passenger Terminal",
+      "nameSingleLine": "nowrap"
+    },
+    "delayedEpisodes": 0,
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 1112,
+      "height": 834
+    },
+    "positionsBeforeSimulation": 4,
+    "enrichmentRequests": 2,
+    "layout": {
+      "footerBottom": 820,
+      "identityBottom": 231.109375,
+      "routeTop": 328,
+      "routeBottom": 438,
+      "detailsTop": 438,
+      "nameTitle": "Dublin International Airport Passenger Terminal",
+      "nameSingleLine": "nowrap"
+    },
+    "delayedEpisodes": 0,
+    "errors": []
+  },
+  {
+    "case": "enrichment timeout",
+    "positionRequests": 2,
+    "positionalFailures": 0,
+    "delayedEpisodes": 0
+  }
+]

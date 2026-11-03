@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
+import type { ReactNode } from 'react';
 import type { Aircraft,Scene } from './simulation';
 import { altitude,distance,offsetFor,sceneAt,scenes } from './simulation';
 const stateLabels={available:'Demo data available',delayed:'Data delayed · last sample',unavailable:'Data unavailable',standby:'No aircraft reported'};
 function Airport({airport,label}:{airport:Aircraft['origin'];label:string}){
- return <div className="airport"><span className="eyebrow">{label}</span><div className="airport-code">{airport?.code??'—'}</div><div className="airport-name">{airport?.name??'Not reported'}</div></div>;
+ return <div className="airport"><span className="eyebrow">{label}</span><div className="airport-code">{airport?.code??'—'}</div><div className="airport-name" title={airport?.name}>{airport?.name??'Not reported'}</div></div>;
 }
 function Primary({aircraft,delayed}:{aircraft:Aircraft;delayed:boolean}){
  return <article className={'primary '+(delayed?'is-delayed':'')} aria-label="Primary aircraft">
@@ -21,12 +22,12 @@ function Secondary({aircraft}:{aircraft:Aircraft}){
 function Empty({unavailable,live=false}:{unavailable:boolean;live?:boolean}){
  return <section className="empty-state"><div className="empty-mark" aria-hidden="true">{unavailable?'—':'·'}</div><div className="eyebrow accent">{unavailable?(live?'Data interruption':'Simulated interruption'):'A quiet moment'}</div><h1>{unavailable?'Aircraft data unavailable':'Nothing nearby right now'}</h1><p>{unavailable?'Aircraft information is hidden until data returns.':(live?'No aircraft are currently reported within 15 km.':'No relevant aircraft are reported in this demonstration.')}<br/>{unavailable?(live?'The display will retry automatically.':'The demonstration will recover automatically.'):'The display will update automatically.'}</p></section>;
 }
-export function Display({scene,index=0,live=false}:{scene:Scene;index?:number;live?:boolean}){
+export function Display({scene,index=0,live=false,enrichmentCredit=false,diagnosticControl}:{scene:Scene;index?:number;live?:boolean;enrichmentCredit?:boolean;diagnosticControl?:ReactNode}){
  return <><div className="portrait-note">Aero Pane<span>Please turn your iPad to landscape.</span><small>{live?'Live · adsb.fi':'DEMO — SIMULATED DATA'}</small></div><main className="display" data-scene={scene.id}>
   <div className="content" key={scene.id}>{scene.primary?<Primary aircraft={scene.primary} delayed={scene.state==='delayed'}/>:<Empty unavailable={scene.state==='unavailable'} live={live}/>}
    <section className="nearby" aria-label="Other nearby aircraft"><div className="section-heading"><h2>Also nearby</h2><span>{scene.secondary.length?`${scene.secondary.length} other aircraft`:'No other aircraft reported'}</span></div><div className="nearby-list">{scene.secondary.length?scene.secondary.map(aircraft=><Secondary key={aircraft.id} aircraft={aircraft}/>):<p className="nearby-empty">{scene.state==='unavailable'?'Nearby aircraft will appear when data returns.':(live?'No other current aircraft reported.':'Clear skies in this demo snapshot.')}</p>}</div></section>
   </div>
-  <footer><div className={'status-line status-'+scene.state}><span className="status-dot"/><span>{live?`Live · ${scene.state==='available'?'Current aircraft information':stateLabels[scene.state]}`:scene.state==='available'?stateLabels[scene.state]:`Demo · ${stateLabels[scene.state]}`}</span></div>{live?<a className="provider-credit" href="https://adsb.fi/">Aircraft data: adsb.fi</a>:<div className="scene-track" aria-label={'Demo scenario: '+scene.label}>{scenes.map((s,i)=><span key={s.id} className={i===index?'selected':''}/>)}<span className="scene-label">{scene.label}</span></div>}</footer>
+  <footer><div className={'status-line status-'+scene.state}><span className="status-dot"/><span>{live?`Live · ${scene.state==='available'?'Current aircraft information':stateLabels[scene.state]}`:scene.state==='available'?stateLabels[scene.state]:`Demo · ${stateLabels[scene.state]}`}</span></div>{live ? diagnosticControl : null}{live?<span className="provider-credit"><a className="provider-credit" href="https://adsb.fi/">Aircraft data: adsb.fi</a>{enrichmentCredit?<> · <a className="provider-credit" href="https://hexdb.io/">HexDB</a></>:null}</span>:<div className="scene-track" aria-label={'Demo scenario: '+scene.label}>{scenes.map((s,i)=><span key={s.id} className={i===index?'selected':''}/>)}<span className="scene-label">{scene.label}</span></div>}</footer>
  </main></>;
 }
 export default function App(){
