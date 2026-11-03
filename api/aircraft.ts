@@ -1,3 +1,4 @@
+import {authorised} from '../server/auth.js';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { liveSnapshot } from '../server/service.js';
 import { ProviderError } from '../server/provider.js';
@@ -12,9 +13,11 @@ export default async function handler(
     res.end('{"error":"invalid-request"}');
     return;
   }
+  if(process.env.AERO_LIVE_ENABLED!=='true'||(process.env.VERCEL_ENV==='production'&&process.env.AERO_PRODUCTION_LIVE_ENABLED!=='true')){res.statusCode=404;res.end('{"error":"live-disabled"}');return;}
+  if (!authorised(req,res)) return;
   try {
     const snapshot = await liveSnapshot();
-    res.setHeader('Vercel-CDN-Cache-Control', 'max-age=10');
+    res.setHeader('Vercel-CDN-Cache-Control', 'no-store');
     res.statusCode = 200;
     res.end(JSON.stringify(snapshot));
   } catch (error) {

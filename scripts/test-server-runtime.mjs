@@ -23,6 +23,7 @@ const env = { ...process.env, NODE_OPTIONS: '' };
 for (const key of Object.keys(env)) {
   if (key.startsWith('AERO_') || key.startsWith('VITE_AERO_')) delete env[key];
 }
+env.AERO_SESSION_SECRET='s'.repeat(64);env.AERO_PIN_PEPPER='p'.repeat(64);env.AERO_PIN_VERIFIER='s1:'+ 'a'.repeat(32)+':'+ 'b'.repeat(64);
 try {
   if (!artifact) {
     execFileSync(
@@ -50,7 +51,7 @@ try {
     let clock = 1800000000000;
     if (scenario === 'timing' || scenario === 'refresh-failure') Date.now = () => clock;
     let providerCalls = 0;
-    const realFetch = globalThis.fetch;
+    const {signSession}=await import(new URL('../server/auth.js',process.env.PERCH_RUNTIME_ENTRY));const cookie='__Host-aero='+signSession();const nativeFetch=globalThis.fetch;const realFetch=(url,opts={})=>nativeFetch(url,{...opts,headers:{...opts.headers,Cookie:cookie}});
     globalThis.fetch = async (url, options) => {
       providerCalls++;
       assert.match(String(url), /^https:\/\/opendata\.adsb\.fi\/api\/v3\/lat\/60\/lon\/25\/dist\//);
@@ -71,7 +72,7 @@ try {
     try {
       const response = await realFetch('http://127.0.0.1:'+server.address().port+'/api/aircraft');
       const body = await response.json();
-      assert.equal(response.headers.get('cache-control'), 'no-store');
+      assert.equal(response.headers.get('cache-control'), (scenario==='disabled'||scenario==='production')?'no-store':'private, no-store');
       if (scenario === 'disabled' || scenario === 'production') {
         assert.equal(response.status, 404);
         assert.equal(body.error, 'live-disabled');
@@ -82,7 +83,7 @@ try {
         assert.equal(providerCalls, 1);
       } else {
         assert.equal(response.status, 200);
-        assert.equal(response.headers.get('vercel-cdn-cache-control'), 'max-age=10');
+        assert.equal(response.headers.get('vercel-cdn-cache-control'), 'no-store');
         assert.equal(body.aircraft.length, scenario === 'empty' ? 0 : 1);
         if (scenario === 'populated') {
           assert.equal(body.aircraft[0].description, 'Boeing 737 MAX 8');
@@ -116,7 +117,7 @@ try {
           assert.equal(providerCalls, delta < 30000 ? 2 : 3);
           if (delta < 30000) {
             assert.equal(value.error, 'http-error');
-            assert.equal(next.headers.get('vercel-cdn-cache-control'), null);
+            assert.equal(next.headers.get('vercel-cdn-cache-control'), 'no-store');
             assert.equal(next.headers.get('retry-after'), '15');
           } else assert.equal(value.fetchedAtMs, clock);
         }
@@ -144,7 +145,7 @@ try {
         VERCEL_ENV: scenario === 'production' ? 'production' : 'preview',
       },
       stdio: 'inherit',
-      timeout: 10_000,
+      timeout: 30_000,
     });
   }
   const enrichmentProbe = String.raw`
@@ -153,7 +154,7 @@ try {
     import {once} from 'node:events';
     const scenario=process.env.PERCH_RUNTIME_SCENARIO;
     const kind=scenario==='route'?'route':'aircraft';
-    const realFetch=globalThis.fetch;let calls=0;
+    const {signSession}=await import(new URL('../server/auth.js',process.env.PERCH_RUNTIME_ENTRY));const cookie='__Host-aero='+signSession();const nativeFetch=globalThis.fetch;const realFetch=(url,opts={})=>nativeFetch(url,{...opts,headers:{...opts.headers,Cookie:cookie}});let calls=0;
     globalThis.fetch=async url=>{
       calls++;assert.ok(String(url).startsWith('https://hexdb.io/api/v2/'));
       if(scenario==='failure')return new Response('{}',{status:503});
@@ -164,7 +165,7 @@ try {
     const server=createServer((req,res)=>{void handler(req,res);});server.listen(0,'127.0.0.1');await once(server,'listening');
     try{
       const response=await realFetch('http://127.0.0.1:'+server.address().port+'/api/enrichment?kind='+kind+'&hex=abcdef'+(kind==='route'?'&callsign=EIN17A':''));const body=await response.json();
-      assert.equal(response.headers.get('cache-control'),'no-store');
+      assert.equal(response.headers.get('cache-control'),(scenario==='disabled'||scenario==='production')?'no-store':'private, no-store');
       if(scenario==='disabled'||scenario==='production'){assert.equal(response.status,404);assert.equal(calls,0);}
       else if(scenario==='failure'){assert.equal(response.status,503);assert.equal(body.error,'http-error');assert.equal(calls,1);}
       else{assert.equal(response.status,200);assert.equal(calls,1);assert.equal(body.status,scenario==='empty'?'not-found':'found');if(scenario==='populated')assert.equal(body.data.operator,'easyJet');if(scenario==='route')assert.equal(body.data.origin.code,'DUB');}

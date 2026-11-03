@@ -25,7 +25,8 @@
     "deploymentEnabled": {
       "stage-2a-live-data": false,
       "stage-2b-aircraft-selection": false,
-      "stage-2c-aircraft-enrichment": false
+      "stage-2c-aircraft-enrichment": false,
+      "stage-2d-unattended-operation": false
     }
   },
   "functions": {
@@ -33,6 +34,9 @@
       "maxDuration": 10
     },
     "api/enrichment.ts": {
+      "maxDuration": 8
+    },
+    "api/session.ts": {
       "maxDuration": 8
     }
   }

@@ -1,3 +1,4 @@
+import {signSession} from '../server/auth';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -542,7 +543,7 @@ test('API success boundary: server-only config, safe projection, cache headers a
     'AERO_LIVE_ENABLED',
     'AERO_OBSERVATION_LATITUDE',
     'AERO_OBSERVATION_LONGITUDE',
-    'VERCEL_ENV',
+    'VERCEL_ENV','AERO_SESSION_SECRET','AERO_PIN_PEPPER','AERO_PIN_VERIFIER',
   ];
   const saved = keys.map((k) => process.env[k]);
   const originalFetch = globalThis.fetch;
@@ -559,6 +560,7 @@ test('API success boundary: server-only config, safe projection, cache headers a
     },
   };
   try {
+    process.env.AERO_SESSION_SECRET='s'.repeat(64);process.env.AERO_PIN_PEPPER='p'.repeat(64);process.env.AERO_PIN_VERIFIER='s1:'+'a'.repeat(32)+':'+'b'.repeat(64);
     process.env.AERO_LIVE_ENABLED = 'true';
     process.env.AERO_OBSERVATION_LATITUDE = '60';
     process.env.AERO_OBSERVATION_LONGITUDE = '25';
@@ -568,16 +570,16 @@ test('API success boundary: server-only config, safe projection, cache headers a
       return response({ ...envelope(), now: Date.now() });
     };
     await handler(
-      { method: 'GET', url: '/api/aircraft' } as IncomingMessage,
+      {method:'GET',url:'/api/aircraft',headers:{cookie:'__Host-aero='+signSession()}} as IncomingMessage,
       res as unknown as ServerResponse,
     );
     assert.equal(res.statusCode, 200);
     assert.equal(JSON.parse(body).aircraft.length, 1);
-    assert.equal(headers['Cache-Control'], 'no-store');
-    assert.equal(headers['Vercel-CDN-Cache-Control'], 'max-age=10');
+    assert.equal(headers['Cache-Control'], 'private, no-store');
+    assert.equal(headers['Vercel-CDN-Cache-Control'], 'no-store');
     assert.doesNotMatch(body, /latitude|longitude|rawDescription|opendata/);
     await handler(
-      { method: 'GET', url: '/api/aircraft' } as IncomingMessage,
+      {method:'GET',url:'/api/aircraft',headers:{cookie:'__Host-aero='+signSession()}} as IncomingMessage,
       res as unknown as ServerResponse,
     );
     assert.equal(calls, 1);
