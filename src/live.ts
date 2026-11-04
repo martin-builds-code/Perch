@@ -25,6 +25,7 @@ function presentation(a: LiveAircraft): Aircraft {
   ];
   return {
     id: a.id,
+    typeCode: a.typeCode,
     manufacturer: match ? match[1] : a.description ? null : 'Unidentified',
     model: match
       ? match[2]

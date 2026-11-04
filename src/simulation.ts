@@ -1,7 +1,7 @@
 export interface Aircraft {
-  id:string; manufacturer:string|null; model:string|null; operator:string|null;
-  altitudeFt:number|null; distanceKm:number|null; origin:{code:string;name:string}|null;
-  destination:{code:string;name:string}|null; callsign:string|null; registration:string|null;
+  id:string; manufacturer:string|null; model:string|null; operator:string|null; typeCode?:string|null;
+  altitudeFt:number|null; distanceKm:number|null; origin:{code:string;name:string;iata?:string|null;icao?:string|null}|null;
+  destination:{code:string;name:string;iata?:string|null;icao?:string|null}|null; callsign:string|null; registration:string|null;
   direction:string|null;
 }
 // All entities and identifiers below are fictional; no geographic observation point.
