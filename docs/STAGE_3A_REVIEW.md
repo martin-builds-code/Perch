@@ -47,10 +47,10 @@ unchanged. See [asset mapping and installation](artwork/README.md),
 and [house style](artwork/house-style.md). Actual files are in `public/aircraft/`;
 runtime configuration is `src/artwork/manifest.json`. No replacement art was generated.
 
-The pack contains artwork, not the approved dashboard mockup. No matching mockup or
-named handover reference could be retrieved through available Space tools. Following
-the subsequent instruction to continue engineering, composition follows the written
-approved direction; **exact comparison against the mockup remains outstanding**.
+The pack contains artwork rather than a full dashboard mockup. The user subsequently
+reviewed the three composition alternatives and approved B; its 1024×768 and
+1024×624 screenshots now provide the visual acceptance references. The implemented
+A380 composition matches those references pixel-for-pixel.
 Branding is provisional as authorised. Additional wide-body, turboprop, light-aircraft,
 business-jet and helicopter artwork belongs to the separate artwork project; these
 layouts work without misleadingly displaying the narrow-body illustration.
@@ -132,6 +132,6 @@ and desktop evidence, not physical Safari certification.
 
 **Ready for physical iPad review, not release approval.** Air 2 / iPadOS 15.8.5 still
 needs room-distance reading, image/font decoding, transition, prolonged memory,
-real-route and sleep/wake checks. Compare against the actual approved mockup once
-available. No material hardware compromise has been demonstrated or accepted.
+real-route and sleep/wake checks against the approved B reference screenshots.
+No material hardware compromise has been demonstrated or accepted.
 ChatGPT Work retains separately authorised deployment/release coordination.
