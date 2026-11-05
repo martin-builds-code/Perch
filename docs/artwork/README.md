@@ -6,11 +6,11 @@ by Codex. The original [manifest](source-manifest.json) and [house style](house-
 are preserved; [verification.json](verification.json) records decoded dimensions,
 alpha range, transparent-pixel counts, size and SHA-256. All six source hashes match.
 
-| Subject | Browser WebP / PNG fallback filename | Dimensions |
-| --- | --- | --- |
-| Accepted A380-800 | `aeropane_a380_baseline.webp` / `.png` | 1774×887 |
-| Generic narrow-body | `aeropane_generic_narrowbody.webp` / `.png` | 1600×800 |
-| Independent clouds | `aeropane_cloud_strip_01.webp` / `.png` | 1800×330 |
+| Subject             | Browser WebP / PNG fallback filename        | Dimensions |
+| ------------------- | ------------------------------------------- | ---------- |
+| Accepted A380-800   | `aeropane_a380_baseline.webp` / `.png`      | 1774×887   |
+| Generic narrow-body | `aeropane_generic_narrowbody.webp` / `.png` | 1600×800   |
+| Independent clouds  | `aeropane_cloud_strip_01.webp` / `.png`     | 1800×330   |
 
 Actual files: `public/aircraft/`; browser URLs: `/aircraft/<filename>`.
 Artwork never selects an airline/operator or changes aircraft identification. The
@@ -46,22 +46,47 @@ until the artwork project supplies their assets.
    win. The supplied generic entry uses `families: ["narrow-body"]`; known A380
    readable descriptions provide a bounded fallback when no type code is available.
    No registration/callsign association or runtime enrichment lookup is introduced.
+
 4. Optional `frame: {"x":0,"y":0,"width":2048,"height":1024}` describes the
    verified visible-content bounds in source pixels. Omit it to display the whole
    raster. Current frames use the alpha bounding box: only transparent padding is
    removed. Do not guess a crop cutting wings, tail or engines. Invalid bounds fail
    validation. No source pixels are modified by this display framing.
-5. Run tests/build and `scripts/stage3a-browser-check.mjs`. Inspect single/multiple
+5. Optional `multiAircraft` supplies silhouette-specific placement in the approved
+   aircraft-led composition, only when secondaries and a reliable route exist:
+
+   ```json
+   "multiAircraft": {
+     "regular": { "width": 640, "left": 8, "top": 100 },
+     "compact": { "width": 480, "left": 205, "top": 32 }
+   }
+   ```
+
+   Values are CSS pixels relative to the primary card; compact applies at heights
+   up to 650px. These numbers are the approved A380 positions, **not defaults for
+   another silhouette**. Width is for the framed image; height derives from its
+   frame aspect ratio. Card bounds constrain the SVG viewport, which always scales
+   uniformly. Aircraft and cloud layers remain independent. Omit `multiAircraft`
+   to retain the safe original layout for a new/unreviewed asset. Single-aircraft
+   layouts never consume this optional profile. No aircraft-type branches need to
+   be added to the dashboard. Verify both supported landscape sizes and wider
+   layouts, wide route codes and long names before approving a new placement.
+
+6. Run tests/build, `scripts/stage3a-browser-check.mjs` and
+   `scripts/stage3a-final-composition-check.mjs`. Inspect single/multiple
    layouts, image proportions, protected route area and actual Air 2 rendering.
    Adding an exact type needs no tracking, selection or dashboard changes.
 
 `AircraftArtwork.tsx` places the raster in an SVG viewport with uniform
 `preserveAspectRatio="xMaxYMax meet"` scaling. These remain supplied raster assets,
-not newly drawn vectors. The cloud is an independent lower layer; flight text has
-its own protected layout region and never relies on transparent pixels for safety.
-Panoramic visible silhouettes (aspect ratio above 2.8) share the full-width lower
-region used by single-aircraft layouts; taller subjects use the right-hand region.
-This is a geometry rule, not a separate dashboard or a registration/type-specific layout.
+not newly drawn vectors. The cloud is an independent lower layer. The approved
+A380 and generic narrow-body profiles share the multi-aircraft card with a compact
+route region; actual visible silhouette clearance is verified with an alpha-mask
+browser check and visual inspection. The A380 tail rises between the route codes;
+the panoramic generic jet has its own lower, wider placement. No source transparency
+is altered. Profiles are selected through the existing manifest asset mapping.
+Unconfigured panoramic silhouettes (aspect ratio above 2.8) retain the full-width
+lower region; taller unconfigured subjects use the original right-hand region.
 WebP errors fall back once to PNG; failed PNG hides the optional layer without
 clearing aircraft data or retrying indefinitely. Source dimensions exceed tested
 display sizes. Artwork cannot intercept pointer input.

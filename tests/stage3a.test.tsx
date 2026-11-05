@@ -130,6 +130,45 @@ test('one aircraft expands and no secondary placeholders reserve space', () => {
   assert.match(html, /single-aircraft/);
   assert.doesNotMatch(html, /class="nearby"|Also nearby|No other aircraft/);
 });
+test('approved composition applies to both artwork silhouettes only with a complete multi-aircraft route', () => {
+  for (const primary of [a380, { ...fleet[0], typeCode: 'A20N' }]) {
+    const multi = { ...scenes[1], primary, secondary: [fleet[3]] };
+    const html = renderToStaticMarkup(<Display scene={multi} />);
+    assert.match(html, /composed-artwork/);
+    assert.match(html, /--regular-art-width:640px/);
+    for (const scene of [
+      { ...multi, secondary: [] },
+      { ...multi, primary: { ...primary, origin: null } },
+    ]) {
+      const unchanged = renderToStaticMarkup(<Display scene={scene} />);
+      assert.doesNotMatch(unchanged, /composed-artwork|--regular-art-width/);
+      assert.match(unchanged, /aircraft-layer/);
+    }
+  }
+});
+test('new artwork can opt into per-silhouette composition without changing identification or single-aircraft rendering', () => {
+  const manifest = structuredClone(artworkManifest);
+  delete manifest.aircraft[0].multiAircraft;
+  const html = renderToStaticMarkup(
+    <Display
+      scene={{ ...scenes[1], primary: a380, secondary: [fleet[3]] }}
+      manifest={manifest}
+    />,
+  );
+  assert.doesNotMatch(html, /composed-artwork|--regular-art-width/);
+  assert.match(html, /aeropane_a380_baseline.webp/);
+  for (const asset of artworkManifest.aircraft) {
+    for (const p of Object.values(asset.multiAircraft ?? {})) {
+      assert.ok(
+        Number.isFinite(p.width) &&
+          p.width > 0 &&
+          p.width <= (asset.frame?.width ?? asset.width),
+      );
+      assert.ok(Number.isFinite(p.left) && p.left >= 0);
+      assert.ok(Number.isFinite(p.top) && p.top >= 0);
+    }
+  }
+});
 test('secondary list remains capped, unique and type-focused without missing-operator messages', () => {
   const scene = {
     ...scenes[1],

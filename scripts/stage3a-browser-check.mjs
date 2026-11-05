@@ -69,6 +69,7 @@ async function geometry(page) {
       flight: one('.flight-info'),
       art: one('.artwork-stage'),
       details: one('.details'),
+      composed: !!document.querySelector('.composed-artwork'),
       near: one('.nearby'),
       footer: one('footer'),
       metrics: [...document.querySelectorAll('.metric')].map((e) => ({
@@ -134,7 +135,7 @@ async function wire(page) {
             source: 'adsb.fi',
             validity: { position: true, timestamp: true, anomalies: [] },
           },
-        ],
+        ].flatMap(aircraft => [aircraft, { ...aircraft, id: '123456', callsign: 'SECONDARY', distanceKm: 10, barometricAltitudeFt: 20000 }]),
         fetchedAtMs: now,
         providerTimeMs: now,
         pollIntervalMs: 15000,
@@ -181,13 +182,15 @@ try {
           );
           assert.ok(m.size >= 88);
         }
-        if (g.route)
+        // Composed artwork shares transparent canvas space with the route;
+        // stage3a-final-composition-check validates its actual alpha silhouette.
+        if (g.route && !g.composed)
           assert.ok(
             g.flight.right <= g.art.x + 1 || g.flight.bottom <= g.art.y + 1,
             `${scenario}: protected route area`,
           );
         if (g.details) {
-          assert.ok(g.art.bottom <= g.details.y + 1);
+          if (!g.composed) assert.ok(g.art.bottom <= g.details.y + 1);
           if (g.route)
             assert.ok(
               g.route.bottom <= g.details.y,
@@ -358,6 +361,8 @@ try {
     }),
   });
   await live.locator('.airport-code').filter({ hasText: 'DUB' }).waitFor();
+  await live.locator('.composed-artwork').waitFor();
+  assert.equal(await live.locator('.nearby-aircraft').count(), 1);
   for (let i = 0; i < 2; i++) {
     await live.clock.fastForward(15000);
     await live.waitForFunction(

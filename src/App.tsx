@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import type { ReactNode } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import type { Aircraft, Scene } from './simulation';
 import { altitude, distance, offsetFor, sceneAt, scenes } from './simulation';
 import {
@@ -27,10 +27,49 @@ function Brand() {
     </div>
   );
 }
-function Route({ aircraft }: { aircraft: Aircraft }) {
+function Route({
+  aircraft,
+  composed,
+}: {
+  aircraft: Aircraft;
+  composed: boolean;
+}) {
   const route = prominentRoute(aircraft);
+  const element = useRef<HTMLDivElement>(null);
+  const from = route?.from,
+    to = route?.to;
+  useEffect(() => {
+    const root = element.current;
+    if (!composed || !root || !document.fonts) return;
+    let disposed = false;
+    // Fit only genuinely wide three-letter combinations, using the loaded font.
+    // No polling/render loop; route changes, font readiness and resize suffice.
+    const fitCodes = () => {
+      if (disposed) return;
+      const wanted = parseFloat(
+        getComputedStyle(root).getPropertyValue('--route-code-size'),
+      );
+      const ctx = document.createElement('canvas').getContext('2d');
+      if (!ctx || !Number.isFinite(wanted)) return;
+      ctx.font = `600 ${wanted}px "Barlow Condensed"`;
+      let size = wanted;
+      for (const code of root.querySelectorAll<HTMLElement>('.airport-code')) {
+        if (code.clientWidth <= 2) return; // Hidden/portrait: refit on resize.
+        const width = ctx.measureText(code.textContent || '').width + 3;
+        size = Math.min(size, (wanted * (code.clientWidth - 2)) / width);
+      }
+      root.style.setProperty('--route-fitted-size', `${Math.floor(size)}px`);
+    };
+    void document.fonts.ready.then(fitCodes);
+    window.addEventListener('resize', fitCodes);
+    return () => {
+      disposed = true;
+      window.removeEventListener('resize', fitCodes);
+      root.style.removeProperty('--route-fitted-size');
+    };
+  }, [composed, from, to]);
   return route ? (
-    <div className="route" aria-label="Reported route">
+    <div ref={element} className="route" aria-label="Reported route">
       <div className="airport">
         <span className="eyebrow">From</span>
         <div className="airport-code">{route.from}</div>
@@ -112,10 +151,12 @@ function Primary({
   aircraft,
   delayed,
   manifest,
+  multiple,
 }: {
   aircraft: Aircraft;
   delayed: boolean;
   manifest: ArtworkManifest;
+  multiple: boolean;
 }) {
   const name = aircraftName(aircraft);
   const asset = artworkFor(aircraft, manifest);
@@ -123,6 +164,20 @@ function Primary({
   // Panoramic silhouettes use the existing full-width lower region, rather
   // than becoming small in the side-by-side region used by taller artwork.
   const wideArtwork = frame ? frame.width / frame.height > 2.8 : false;
+  const composition =
+    multiple && prominentRoute(aircraft) ? asset?.multiAircraft : undefined;
+  const placement =
+    composition && frame
+      ? ({
+          '--regular-art-width': `${composition.regular.width}px`,
+          '--regular-art-left': `${composition.regular.left}px`,
+          '--regular-art-top': `${composition.regular.top}px`,
+          '--compact-art-width': `${composition.compact.width}px`,
+          '--compact-art-left': `${composition.compact.left}px`,
+          '--compact-art-top': `${composition.compact.top}px`,
+          '--art-ratio': frame.height / frame.width,
+        } as CSSProperties)
+      : undefined;
   return (
     <section
       className="primary-presentation"
@@ -158,11 +213,13 @@ function Primary({
           className={
             'aircraft-card ' +
             (prominentRoute(aircraft) ? 'has-route' : 'no-route') +
-            (wideArtwork ? ' wide-artwork' : '')
+            (wideArtwork ? ' wide-artwork' : '') +
+            (composition ? ' composed-artwork' : '')
           }
+          style={placement}
         >
           <div className="flight-info">
-            <Route aircraft={aircraft} />
+            <Route aircraft={aircraft} composed={!!composition} />
             {aircraft.operator ? (
               <p className="operator" title={aircraft.operator}>
                 {aircraft.operator}
@@ -292,6 +349,7 @@ export function Display({
               aircraft={scene.primary}
               delayed={scene.state === 'delayed'}
               manifest={manifest}
+              multiple={secondaries.length > 0}
             />
           ) : (
             <Empty

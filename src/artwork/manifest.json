@@ -5,9 +5,7 @@
       "id": "airbus-a380-800",
       "label": "Airbus A380-800",
       "approval": "approved",
-      "typeCodes": [
-        "A388"
-      ],
+      "typeCodes": ["A388"],
       "src": "/aircraft/aeropane_a380_baseline.png",
       "width": 1774,
       "height": 887,
@@ -17,6 +15,10 @@
         "y": 16,
         "width": 1763,
         "height": 871
+      },
+      "multiAircraft": {
+        "regular": { "width": 640, "left": 8, "top": 100 },
+        "compact": { "width": 480, "left": 205, "top": 32 }
       }
     },
     {
@@ -24,9 +26,7 @@
       "label": "Generic narrow-body jet",
       "approval": "approved",
       "typeCodes": [],
-      "families": [
-        "narrow-body"
-      ],
+      "families": ["narrow-body"],
       "src": "/aircraft/aeropane_generic_narrowbody.png",
       "width": 1600,
       "height": 800,
@@ -36,6 +36,10 @@
         "y": 238,
         "width": 1440,
         "height": 351
+      },
+      "multiAircraft": {
+        "regular": { "width": 640, "left": 22, "top": 188 },
+        "compact": { "width": 590, "left": 90, "top": 116 }
       }
     }
   ],

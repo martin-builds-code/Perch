@@ -1,10 +1,9 @@
 # Stage 3A — display redesign review
 
-Composition follow-up: [three multi-aircraft A380 alternatives](stage3a/composition-review/README.md)
-and [side-by-side gallery](stage3a/composition-review/index.html) are available for
-artistic review at 1024×768 and 1024×624. They are development-fixture experiments;
-no alternative is selected or included in normal application builds. The baseline
-implementation described below remains unchanged.
+**Composition B is approved and implemented in the application.** See the
+[final composition report and screenshots](stage3a/final-composition/README.md).
+The [A/B/C review archive](stage3a/composition-review/README.md) remains as evidence;
+its temporary runtime switch and stylesheet have been removed.
 
 Baseline: accepted main `8031a76d0a24e1bb4ba88febd87d9a9c15ff2166`, verified unchanged
 before development and review preparation. Branch: `stage-3a-display-redesign`,
@@ -18,7 +17,8 @@ source; other deployment settings are unchanged.
   Aero Pane branding. Names wrap and stay readable, including Challenger 350, PA-28
   variants, Dreamliner and longer technical descriptions; tested header minimum 34px.
 - The navy primary card has a protected upper-left route area and prominent artwork
-  towards the lower-right. Text and artwork occupy separate regions. Useful operator,
+  towards the lower-right. Approved per-asset placements integrate the visible
+  silhouette around the route while preserving text clearance. Useful operator,
   callsign, registration and direction information remains subordinate.
 - Complete reliable IATA routes use large condensed codes and smaller full airport
   names underneath. Partial or ICAO-only routes have no prominent missing-data block.
@@ -73,7 +73,7 @@ needs acceptance testing.
 
 ## Validation
 
-- **153 automated tests** pass: 137 inherited plus 16 Stage 3A checks. Old presentation
+- **155 automated tests** pass: 137 inherited plus 18 Stage 3A checks. Old presentation
   assertions were updated for intentional omission of empty secondary sections,
   missing operators and partial routes. Provider, selector, session/PIN, quiet-hours,
   lifecycle/soak, diagnostics and cooldown regression coverage remains.
@@ -91,6 +91,9 @@ needs acceptance testing.
 - Sleeping and PIN-entry screenshots are **pixel-identical** to Stage 2D at all three sizes, with
   no sleeping positional requests. Wake acquires fresh data; existing corner-hold
   quiet-hours settings still open/close normally.
+- Final-composition checks add 18 alpha-aware layouts across both artwork shapes
+  and three viewports, 39 pixel-identical unaffected states, exact approved B pixels
+  at both target sizes, and bounded route-fitting listener lifecycle checks.
 
 Evidence: [browser results](stage3a/browser-checks.json), [A380](stage3a/a380.png),
 [compact A380](stage3a/a380-compact.png), [generic A320 class](stage3a/a320.png),

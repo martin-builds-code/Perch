@@ -1,9 +1,14 @@
 # Multi-aircraft composition review
 
+**Historical review archive:** the user subsequently approved B. It is now
+[implemented in the application](../final-composition/README.md). The original
+comparison images and measurements below are preserved; the temporary composition
+query switch, review CSS and old generation script have been removed.
+
 Review baseline: `451fec765bb1dd92bf9ae0d8ae254de5badedef1`, on
 `stage-3a-display-redesign`, Draft [PR #5](https://github.com/martin-builds-code/Perch/pull/5).
-**Three experiments, no final selection.** Application source and normal production
-build output remain unchanged. Nothing was merged or deployed.
+This archive records the three alternatives before selection. At that review
+commit application source/build behavior remained unchanged. Nothing was deployed.
 
 ## Compare the alternatives
 
@@ -102,7 +107,7 @@ scaling, canvas text measurement, `document.fonts.ready`, resize listeners and
 Safari-supported prefixed two-line clamping. No new runtime dependency, polling
 timer, animation, network service or provider request is introduced.
 
-## Reproduce without deployment
+## Historical reproduction
 
 ```sh
 AERO_LIVE_ENABLED=false AERO_ENRICHMENT_ENABLED=false \
@@ -134,7 +139,6 @@ that target in the **temporary baseline's** Vite `server.fs.allow` so its font
 loads; do not change application security settings. The baseline source remains
 unchanged.
 
-After artistic selection, a separately authorised implementation can promote the
-chosen composition into the production stylesheet and validate other aircraft
-silhouettes. This change stops at review alternatives; no selection, deployment,
-merge, tracking change, infrastructure change or Stage 3B work is included.
+The commands above describe the archived `19c2518` review commit, where the old
+switch/script still exist. For the current application and verification commands,
+use the [final composition report](../final-composition/README.md).

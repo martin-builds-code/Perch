@@ -1,6 +1,12 @@
 import suppliedManifest from './artwork/manifest.json';
 import type { Aircraft } from './simulation';
 
+export interface ArtworkPlacement {
+  width: number;
+  left: number;
+  top: number;
+}
+
 export interface ArtworkAsset {
   id: string;
   label: string;
@@ -12,6 +18,9 @@ export interface ArtworkAsset {
   typeCodes?: string[];
   families?: string[];
   frame?: { x: number; y: number; width: number; height: number };
+  // Presentation only, relative to the card in CSS pixels. Unspecified assets
+  // retain the safe default layout; single-aircraft layouts never use this.
+  multiAircraft?: { regular: ArtworkPlacement; compact: ArtworkPlacement };
 }
 export interface ArtworkManifest {
   version: number;

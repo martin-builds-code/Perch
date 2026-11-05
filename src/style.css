@@ -83,3 +83,26 @@ footer{height:24px;flex-shrink:0;display:flex;justify-content:space-between;alig
 .single-aircraft .aircraft-card .airport-code{font-size:72px}
 @media(min-height:780px){.single-aircraft .aircraft-card .airport-code{font-size:86px}}
 @media(max-height:650px){.single-aircraft .aircraft-card .airport-code{font-size:61px}}
+
+/* Approved aircraft-led multi-aircraft composition. Asset placements live in the
+   artwork manifest; the single-aircraft and unconfigured-asset layouts above stay
+   independent. The SVG viewBox always scales artwork uniformly, even if a small
+   viewport constrains its available width/height. */
+.has-nearby .aircraft-card.composed-artwork{display:block;--art-width:var(--regular-art-width);--art-left:var(--regular-art-left);--art-top:var(--regular-art-top)}
+.composed-artwork .flight-info{position:absolute;left:0;top:0;width:auto;padding:10px 22px 0}
+.composed-artwork .route{--route-code-size:76px;grid-template-columns:128px 24px 128px;gap:12px;max-width:none}
+.has-nearby .composed-artwork.has-route .airport-code{font-size:var(--route-fitted-size,var(--route-code-size));line-height:.95}
+.composed-artwork .airport{align-self:start}
+.composed-artwork .route-connection{align-self:start;line-height:1;margin-top:calc(19px + var(--route-fitted-size,var(--route-code-size)) * .475 - 16px)}
+.composed-artwork .airport-name{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.composed-artwork .airport:last-child .airport-name{text-align:right}
+.composed-artwork .details{position:absolute;bottom:0;left:0;right:0}
+.aircraft-card.composed-artwork .artwork-stage{position:absolute;inset:0;margin:0;display:block}
+.composed-artwork .aircraft-layer{position:absolute;left:var(--art-left);top:var(--art-top);width:var(--art-width);height:calc(var(--art-width) * var(--art-ratio));max-width:calc(100% - var(--art-left) - 8px);max-height:calc(100% - var(--art-top) - 8px)}
+.composed-artwork .cloud-layer{position:absolute;left:var(--art-left);top:auto;bottom:58px;width:var(--art-width);height:62px;max-width:calc(100% - var(--art-left) - 8px)}
+@media(max-height:650px){
+ .has-nearby .aircraft-card.composed-artwork{--art-width:var(--compact-art-width);--art-left:var(--compact-art-left);--art-top:var(--compact-art-top)}
+ .composed-artwork .flight-info{padding:8px 18px 0}
+ .composed-artwork .route{--route-code-size:72px;grid-template-columns:122px 24px 122px;gap:8px}
+ .composed-artwork .cloud-layer{bottom:51px;height:50px}
+}
