@@ -1,5 +1,11 @@
 # Stage 3A — display redesign review
 
+Composition follow-up: [three multi-aircraft A380 alternatives](stage3a/composition-review/README.md)
+and [side-by-side gallery](stage3a/composition-review/index.html) are available for
+artistic review at 1024×768 and 1024×624. They are development-fixture experiments;
+no alternative is selected or included in normal application builds. The baseline
+implementation described below remains unchanged.
+
 Baseline: accepted main `8031a76d0a24e1bb4ba88febd87d9a9c15ff2166`, verified unchanged
 before development and review preparation. Branch: `stage-3a-display-redesign`,
 targeting main. No main reset/rewrite, Production change, deployment, Vercel Git

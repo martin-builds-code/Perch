@@ -1,10 +1,11 @@
 // Development-only fixture entry; not imported by index.html or the product.
 import { createRoot } from 'react-dom/client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Display } from '../../src/App';
 import type { Aircraft, Scene } from '../../src/simulation';
 import { fleet } from '../../src/simulation';
 import '../../src/style.css';
+import './composition-review.css';
 const names = {
   a380: ['Airbus', 'A380-800', 'A388'],
   challenger: ['Bombardier', 'BD-100 Challenger 350', 'CL35'],
@@ -79,7 +80,10 @@ function scene(kind: string): Scene {
   }
   if (kind === 'wide-codes') {
     primary.origin = { code: 'MMW', name: 'Wide-code origin fixture' };
-    primary.destination = { code: 'WWK', name: 'Wide-code destination fixture' };
+    primary.destination = {
+      code: 'WWK',
+      name: 'Wide-code destination fixture',
+    };
   }
   return {
     id: 'stage3a-fixture',
@@ -107,6 +111,11 @@ declare global {
   }
 }
 function Harness() {
+  const composition = new URLSearchParams(location.search).get('composition');
+  const validComposition =
+    composition && ['A', 'B', 'C'].includes(composition)
+      ? composition
+      : undefined;
   const [value, setValue] = useState(() =>
     scene(new URLSearchParams(location.search).get('scenario') || 'a380'),
   );
@@ -115,6 +124,45 @@ function Harness() {
     if (id && next.primary) next.primary.id = id;
     setValue(next);
   };
+  useEffect(() => {
+    if (!validComposition || value.primary?.typeCode !== 'A388') return;
+    document.documentElement.dataset.composition = validComposition;
+    let disposed = false;
+    // Wide three-letter combinations keep the intended font until they actually
+    // exceed the protected column. Font loading is complete before measuring.
+    const fitCodes = () => {
+      if (disposed) return;
+      const codes = [
+        ...document.querySelectorAll<HTMLElement>('.airport-code'),
+      ];
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      if (!ctx || !codes.length) return;
+      const wanted = parseFloat(
+        getComputedStyle(document.documentElement).getPropertyValue(
+          '--review-code',
+        ),
+      );
+      let size = wanted;
+      for (const code of codes) {
+        ctx.font = `600 ${wanted}px "Barlow Condensed"`;
+        const width = ctx.measureText(code.textContent || '').width + 3;
+        size = Math.min(size, (wanted * (code.clientWidth - 2)) / width);
+      }
+      document.documentElement.style.setProperty(
+        '--review-fitted-code',
+        `${Math.floor(size)}px`,
+      );
+    };
+    void document.fonts.ready.then(fitCodes);
+    window.addEventListener('resize', fitCodes);
+    return () => {
+      disposed = true;
+      window.removeEventListener('resize', fitCodes);
+      delete document.documentElement.dataset.composition;
+      document.documentElement.style.removeProperty('--review-fitted-code');
+    };
+  }, [validComposition, value]);
   return <Display scene={value} />;
 }
 createRoot(document.getElementById('root')!).render(<Harness />);
