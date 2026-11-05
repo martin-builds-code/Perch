@@ -1,0 +1,132 @@
+{
+  "project": "Aero Pane / Perch",
+  "pack_name": "Aero Pane aircraft artwork starter",
+  "version": "1.0.0",
+  "date": "2026-11-04",
+  "status": "artwork_only_not_integrated",
+  "card_background_reference": "#162E3E",
+  "dashboard_background_reference": "#081925",
+  "house_style": {
+    "finish": "bright white and polished silver, subtle shading and clean edges",
+    "accents": [
+      "strong red trim",
+      "navy blue contained within light fuselage or tail surfaces"
+    ],
+    "perspective": "flying aircraft, visible wings where feasible, facing toward upper-right",
+    "branding": "fictional red/white/navy striping, no real airline names, logos or registration",
+    "background": "true transparent alpha; airplane and cloud assets separate",
+    "restrictions": "No dashboard, text or atmospheric background is baked into aircraft art"
+  },
+  "integration": "Static pre-rendered images only; application code/deployments unchanged; prefer WebP for runtime and retain PNG as source.",
+  "source_notes": "Prior handover established accepted A380 1774x887 RGBA, retained pixel-identical and with matching checksum to current-conversation source. New narrow-body and cloud strip separated from generated source art. The 747 is explicitly excluded.",
+  "files": [
+    {
+      "filename": "aeropane_a380_baseline.png",
+      "path": "artwork/aircraft/aeropane_a380_baseline.png",
+      "subject": "Airbus A380-800",
+      "purpose": "Accepted type-specific house-style anchor",
+      "role": "baseline",
+      "format": "PNG",
+      "dimensions": {
+        "width": 1774,
+        "height": 887
+      },
+      "alpha_channel": true,
+      "transparent_background_verified": true,
+      "size_bytes": 935164,
+      "sha256": "ad1375ba5ed5b4a911afd6e0a90bef8d69c69e01a9ad515377a958e0b5ea227b",
+      "source": "Untouched accepted A380 from prior conversation",
+      "master": true
+    },
+    {
+      "filename": "aeropane_a380_baseline.webp",
+      "path": "artwork/aircraft/aeropane_a380_baseline.webp",
+      "subject": "Airbus A380-800",
+      "purpose": "Accepted type-specific house-style anchor",
+      "role": "baseline",
+      "format": "WEBP",
+      "dimensions": {
+        "width": 1774,
+        "height": 887
+      },
+      "alpha_channel": true,
+      "transparent_background_verified": true,
+      "size_bytes": 157666,
+      "sha256": "8b1b0d33763ff489fc850a6a681579e9a562b61e517226a69ebb01e201bb3f0f",
+      "source": "Untouched accepted A380 from prior conversation",
+      "master": false
+    },
+    {
+      "filename": "aeropane_generic_narrowbody.png",
+      "path": "artwork/aircraft/aeropane_generic_narrowbody.png",
+      "subject": "Generic narrow-body twin-engine airliner",
+      "purpose": "Fallback when specific 737/A320-family artwork unavailable; not exact operator or model",
+      "role": "fallback",
+      "format": "PNG",
+      "dimensions": {
+        "width": 1600,
+        "height": 800
+      },
+      "alpha_channel": true,
+      "transparent_background_verified": true,
+      "size_bytes": 504571,
+      "sha256": "16f00af11ec21c7af690aeaabc1b87a1eababbee662a463f62789b74629ca201",
+      "source": "Extracted and isolated from new generated transparent concept sheet",
+      "master": true
+    },
+    {
+      "filename": "aeropane_generic_narrowbody.webp",
+      "path": "artwork/aircraft/aeropane_generic_narrowbody.webp",
+      "subject": "Generic narrow-body twin-engine airliner",
+      "purpose": "Fallback when specific 737/A320-family artwork unavailable; not exact operator or model",
+      "role": "fallback",
+      "format": "WEBP",
+      "dimensions": {
+        "width": 1600,
+        "height": 800
+      },
+      "alpha_channel": true,
+      "transparent_background_verified": true,
+      "size_bytes": 88932,
+      "sha256": "6d7a30d86ea4c282a1e5db741d1233ebfb51f6f0df6c8fc0f47e329c93b8d7b2",
+      "source": "Extracted and isolated from new generated transparent concept sheet",
+      "master": false
+    },
+    {
+      "filename": "aeropane_cloud_strip_01.png",
+      "path": "artwork/clouds/aeropane_cloud_strip_01.png",
+      "subject": "Soft horizontal cloud strip",
+      "purpose": "Independent low atmospheric layer beneath aircraft",
+      "role": "support",
+      "format": "PNG",
+      "dimensions": {
+        "width": 1800,
+        "height": 330
+      },
+      "alpha_channel": true,
+      "transparent_background_verified": true,
+      "size_bytes": 246822,
+      "sha256": "cb893af59dfe3dc1b2246fcd667d509b26b864fac85cd5f1ef6eee4a0a7c9405",
+      "source": "Extracted and isolated from new generated transparent concept sheet",
+      "master": true
+    },
+    {
+      "filename": "aeropane_cloud_strip_01.webp",
+      "path": "artwork/clouds/aeropane_cloud_strip_01.webp",
+      "subject": "Soft horizontal cloud strip",
+      "purpose": "Independent low atmospheric layer beneath aircraft",
+      "role": "support",
+      "format": "WEBP",
+      "dimensions": {
+        "width": 1800,
+        "height": 330
+      },
+      "alpha_channel": true,
+      "transparent_background_verified": true,
+      "size_bytes": 51078,
+      "sha256": "1534d3e66d0c8372a498d6679a3e433c1f07bbd2746712863a7f81ee79fc76ee",
+      "source": "Extracted and isolated from new generated transparent concept sheet",
+      "master": false
+    }
+  ]
+}

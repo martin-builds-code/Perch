@@ -403,11 +403,11 @@ test('native identity/flight/registration remain authoritative, optional fields 
   for (const value of [
     'A320neo',
     'easyJet',
-    'DUB',
-    'Dublin Airport',
     'https://hexdb.io/',
   ])
     assert.ok(html.includes(value));
+  assert.doesNotMatch(html, /class="route"/, 'incomplete route must not become a prominent block');
+  assert.equal(result.aircraft.origin?.code, 'DUB', 'partial enrichment remains available in the data');
 });
 test('primary renders before enrichment, switching is independent, late route does not attach to another callsign', async () => {
   let now = T,

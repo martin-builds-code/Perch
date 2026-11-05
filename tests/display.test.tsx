@@ -5,7 +5,7 @@ import { Display } from '../src/App';
 import { scenes,sceneAt,cycleMs,offsetFor,fleet,altitude,distance } from '../src/simulation';
 
 test('Every scenario persists the demo label and never claims live tracking',()=>{
- for(const scene of scenes){const html=renderToStaticMarkup(<Display scene={scene}/>);assert.match(html,/DEMO — SIMULATED DATA/);assert.doesNotMatch(html,/>LIVE</);assert.match(html,/Also nearby/);}
+ for(const scene of scenes){const html=renderToStaticMarkup(<Display scene={scene}/>);assert.match(html,/DEMO — SIMULATED DATA/);assert.doesNotMatch(html,/>LIVE</);assert.equal(html.includes('Also nearby'),!!scene.primary&&scene.secondary.length>0);}
 });
 test('Complete identity prioritises model and labels barometric/horizontal units',()=>{
  const html=renderToStaticMarkup(<Display scene={scenes[0]}/>);
@@ -18,7 +18,8 @@ test('Three secondaries, no duplicate featured aircraft',()=>{
 });
 test('Unknown values remain explicit and are not made up',()=>{
  const html=renderToStaticMarkup(<Display scene={scenes[4]}/>);
- for(const text of ['Unidentified','Aircraft','Operator not reported','Not reported'])assert.ok(html.includes(text));
+ for(const text of ['Unidentified','Aircraft'])assert.ok(html.includes(text));
+ assert.doesNotMatch(html,/Operator not reported|class="route"/);
  assert.equal(altitude(null),'Not reported');assert.equal(distance(null),'Not reported');
 });
 test('Unavailable state hides last aircraft and recovers automatically in schedule',()=>{

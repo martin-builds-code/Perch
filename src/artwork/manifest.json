@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "aircraft": [
+    {
+      "id": "airbus-a380-800",
+      "label": "Airbus A380-800",
+      "approval": "approved",
+      "typeCodes": ["A388"],
+      "src": "/aircraft/aeropane_a380_baseline.png",
+      "width": 1774,
+      "height": 887,
+      "webp": "/aircraft/aeropane_a380_baseline.webp",
+      "frame": {
+        "x": 11,
+        "y": 16,
+        "width": 1763,
+        "height": 871
+      },
+      "cloudOverlap": 0.143,
+      "multiAircraft": {
+        "regular": { "width": 600, "left": 18, "top": 80, "bottom": 40 },
+        "compact": { "width": 480, "left": 205, "top": 32, "bottom": 56 }
+      }
+    },
+    {
+      "id": "generic-narrow-body",
+      "label": "Generic narrow-body jet",
+      "approval": "approved",
+      "typeCodes": [],
+      "families": ["narrow-body"],
+      "src": "/aircraft/aeropane_generic_narrowbody.png",
+      "width": 1600,
+      "height": 800,
+      "webp": "/aircraft/aeropane_generic_narrowbody.webp",
+      "frame": {
+        "x": 80,
+        "y": 238,
+        "width": 1440,
+        "height": 351
+      },
+      "cloudOverlap": 0.09,
+      "multiAircraft": {
+        "regular": { "width": 640, "left": 22, "top": 160, "bottom": 72 },
+        "compact": { "width": 590, "left": 90, "top": 112, "bottom": 57 }
+      }
+    }
+  ],
+  "clouds": {
+    "id": "cloud-strip",
+    "label": "Cloud layer",
+    "approval": "approved",
+    "src": "/aircraft/aeropane_cloud_strip_01.png",
+    "width": 1800,
+    "height": 330,
+    "webp": "/aircraft/aeropane_cloud_strip_01.webp",
+    "frame": {
+      "x": 81,
+      "y": 111,
+      "width": 1638,
+      "height": 172
+    }
+  }
+}

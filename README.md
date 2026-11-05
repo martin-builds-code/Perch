@@ -1,5 +1,8 @@
 # Perch / Aero Pane
 
+Stage 3A review branch: [display implementation, screenshots and compatibility](docs/STAGE_3A_REVIEW.md).
+Supplied artwork and future installation: [asset interface](docs/artwork/README.md).
+
 Passive, landscape aircraft display prototype. **DEMO — SIMULATED DATA.** All
 flights, operators, identifiers and movements are fictional. Airport names are
 real places used only as illustrative route labels. No real tracking API,

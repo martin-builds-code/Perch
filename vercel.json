@@ -23,6 +23,7 @@
   ],
   "git": {
     "deploymentEnabled": {
+      "stage-3a-display-redesign": false,
       "stage-2a-live-data": false,
       "stage-2b-aircraft-selection": false,
       "stage-2c-aircraft-enrichment": false,
