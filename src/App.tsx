@@ -164,18 +164,18 @@ function Primary({
   // Panoramic silhouettes use the existing full-width lower region, rather
   // than becoming small in the side-by-side region used by taller artwork.
   const wideArtwork = frame ? frame.width / frame.height > 2.8 : false;
-  const composition =
-    multiple && prominentRoute(aircraft) ? asset?.multiAircraft : undefined;
+  const composition = multiple ? asset?.multiAircraft : undefined;
   const placement =
     composition && frame
       ? ({
           '--regular-art-width': `${composition.regular.width}px`,
           '--regular-art-left': `${composition.regular.left}px`,
           '--regular-art-top': `${composition.regular.top}px`,
+          '--regular-art-bottom': `${composition.regular.bottom}px`,
           '--compact-art-width': `${composition.compact.width}px`,
           '--compact-art-left': `${composition.compact.left}px`,
           '--compact-art-top': `${composition.compact.top}px`,
-          '--art-ratio': frame.height / frame.width,
+          '--compact-art-bottom': `${composition.compact.bottom}px`,
         } as CSSProperties)
       : undefined;
   return (
@@ -226,7 +226,11 @@ function Primary({
               </p>
             ) : null}
           </div>
-          <AircraftArtwork asset={asset} clouds={manifest.clouds} />
+          <AircraftArtwork
+            asset={asset}
+            clouds={manifest.clouds}
+            multiple={!!composition}
+          />
           <Details aircraft={aircraft} />
         </div>
         <Measurements aircraft={aircraft} />

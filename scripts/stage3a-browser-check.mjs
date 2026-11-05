@@ -214,12 +214,8 @@ try {
           assert.ok(g.artSources.some((s) => s.includes('a380')));
         if (scenario === 'a320')
           assert.ok(g.artSources.some((s) => s.includes('narrowbody')));
-        if (
-          ['piper', 'atr', 'helicopter', 'dreamliner', 'challenger'].includes(
-            scenario,
-          )
-        )
-          assert.ok(!g.artSources.some((s) => /a380|narrowbody/.test(s)));
+        if (scenario !== 'a380' && !['single', 'missing-route', 'icao-only', 'delayed', 'long-airports', 'wide-codes'].includes(scenario))
+          assert.ok(g.artSources.some((s) => s.includes('narrowbody')), `${scenario}: universal placeholder`);
       } else {
         assert.equal(g.primary, null);
         assert.equal(g.near, null);

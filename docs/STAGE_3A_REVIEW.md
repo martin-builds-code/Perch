@@ -1,7 +1,7 @@
 # Stage 3A — display redesign review
 
-**Composition B is approved and implemented in the application.** See the
-[final composition report and screenshots](stage3a/final-composition/README.md).
+**Composition B is implemented, with the authorised fallback, spacing and radar corrections.**
+See the [current report and screenshots](stage3a/visual-corrections/README.md).
 The [A/B/C review archive](stage3a/composition-review/README.md) remains as evidence;
 its temporary runtime switch and stylesheet have been removed.
 
@@ -31,7 +31,7 @@ source; other deployment settings are unchanged.
 - Three compact secondary cards prioritise aircraft type and measurements. Missing
   operators are omitted and identifiers appear where space permits. A lone aircraft
   expands the presentation and removes the secondary section entirely.
-- Healthy empty airspace is a dark screen with a small slow radar sweep. Outages
+- Healthy empty airspace is a dark screen with a centred 220px slow radar sweep. Outages
   remain visibly distinct; existing freshness/footer rules still apply.
 - Actual primary ID triggers a restrained one-second card glow/header/image fade,
   including consecutive aircraft with the same model. Routine same-ID updates keep
@@ -48,12 +48,14 @@ and [house style](artwork/house-style.md). Actual files are in `public/aircraft/
 runtime configuration is `src/artwork/manifest.json`. No replacement art was generated.
 
 The pack contains artwork rather than a full dashboard mockup. The user subsequently
-reviewed the three composition alternatives and approved B; its 1024×768 and
-1024×624 screenshots now provide the visual acceptance references. The implemented
-A380 composition matches those references pixel-for-pixel.
-Branding is provisional as authorised. Additional wide-body, turboprop, light-aircraft,
-business-jet and helicopter artwork belongs to the separate artwork project; these
-layouts work without misleadingly displaying the narrow-body illustration.
+reviewed the three alternatives and approved B. The subsequent visual corrections
+preserve its aircraft-led composition and A380 tail/route relationship while
+improving clearance and keeping aircraft/clouds together as the card resizes.
+Branding is provisional as authorised. As explicitly requested, every non-A380
+aircraft now uses the generic jet as a visual placeholder, including light aircraft,
+helicopters, wide-bodies and unidentified records. The actual manufacturer/model
+text is preserved; the picture makes no claim about the aircraft's real shape or
+livery. No new artwork is needed or requested.
 
 ## Preserved technical behaviour
 
@@ -73,7 +75,7 @@ needs acceptance testing.
 
 ## Validation
 
-- **155 automated tests** pass: 137 inherited plus 18 Stage 3A checks. Old presentation
+- **159 automated tests** pass: 137 inherited plus 22 Stage 3A checks. Old presentation
   assertions were updated for intentional omission of empty secondary sections,
   missing operators and partial routes. Provider, selector, session/PIN, quiet-hours,
   lifecycle/soak, diagnostics and cooldown regression coverage remains.
@@ -91,9 +93,10 @@ needs acceptance testing.
 - Sleeping and PIN-entry screenshots are **pixel-identical** to Stage 2D at all three sizes, with
   no sleeping positional requests. Wake acquires fresh data; existing corner-hold
   quiet-hours settings still open/close normally.
-- Final-composition checks add 18 alpha-aware layouts across both artwork shapes
-  and three viewports, 39 pixel-identical unaffected states, exact approved B pixels
-  at both target sizes, and bounded route-fitting listener lifecycle checks.
+- Current final-composition checks cover 69 alpha-aware layouts, including routes
+  missing and both single/multiple states, plus three radar/outage checks. They
+  verify shared scaling, at least 12px clearance from information-row text, fixed
+  header/measurement/secondary/footer pixels and bounded listener lifecycle.
 
 Evidence: [browser results](stage3a/browser-checks.json), [A380](stage3a/a380.png),
 [compact A380](stage3a/a380-compact.png), [generic A320 class](stage3a/a320.png),
@@ -132,6 +135,6 @@ and desktop evidence, not physical Safari certification.
 
 **Ready for physical iPad review, not release approval.** Air 2 / iPadOS 15.8.5 still
 needs room-distance reading, image/font decoding, transition, prolonged memory,
-real-route and sleep/wake checks against the approved B reference screenshots.
+real-route and sleep/wake checks against the current corrected screenshots.
 No material hardware compromise has been demonstrated or accepted.
 ChatGPT Work retains separately authorised deployment/release coordination.

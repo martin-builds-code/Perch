@@ -1,5 +1,10 @@
 # Approved Composition B — final application implementation
 
+Historical record of `8669b10`. The subsequently authorised fallback, artwork
+spacing and radar changes are documented in the
+[current visual-corrections report](../visual-corrections/README.md). The screenshots
+below are retained as the previous baseline; current verification uses that report.
+
 Baseline: `19c2518f42f5151aee30b0b06de6337759f97a00` on
 `stage-3a-display-redesign`, [Draft PR #5](https://github.com/martin-builds-code/Perch/pull/5).
 The user approved the Aircraft-led composition. It is now the actual application

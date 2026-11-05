@@ -13,6 +13,8 @@ const names = {
   atr: ['ATR', '72-600', 'AT76'],
   helicopter: ['Airbus', 'H135', 'EC35'],
   a320: ['Airbus', 'A320neo', 'A20N'],
+  b777: ['Boeing', '777-300ER', 'B77W'],
+  pioneer: ['ALPI', 'Pioneer 330', ''],
 };
 const a = (kind: keyof typeof names, id = 'fixture-primary'): Aircraft => ({
   ...fleet[0],
@@ -56,6 +58,17 @@ function scene(kind: string): Scene {
     primary.origin = null;
     primary.destination = null;
     primary.operator = null;
+  }
+  if (kind === 'a320-no-route' || kind === 'a320-single-no-route') {
+    primary.origin = null;
+    primary.destination = null;
+  }
+  if (kind === 'a380-no-route') {
+    primary.origin = null;
+    primary.destination = null;
+  }
+  if (kind === 'demo-incomplete') {
+    Object.assign(primary, fleet[5], { id: 'fixture-primary', typeCode: null });
   }
   if (kind === 'icao-only') {
     primary.origin = { code: 'EHAM', iata: null, name: 'Amsterdam' };
@@ -106,6 +119,7 @@ function scene(kind: string): Scene {
     secondary: [
       'single',
       'a320-single',
+      'a320-single-no-route',
       'missing-route',
       'empty',
       'unavailable',

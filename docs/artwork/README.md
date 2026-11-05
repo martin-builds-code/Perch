@@ -14,12 +14,18 @@ alpha range, transparent-pixel counts, size and SHA-256. All six source hashes m
 
 Actual files: `public/aircraft/`; browser URLs: `/aircraft/<filename>`.
 Artwork never selects an airline/operator or changes aircraft identification. The
-generic illustration is for narrow-body families, not an exact model or real livery.
-It is not substituted for a helicopter, light aircraft, turboprop, business jet or
-wide-body. Those layouts work with an unobtrusive illustration-unavailable state
-until the artwork project supplies their assets.
+generic jet is now an explicitly authorised visual placeholder for **all aircraft
+other than an identified Airbus A380**, including wide-bodies, helicopters, light
+aircraft and incomplete/unknown records. It never changes their real identity text
+or claims to depict their actual configuration or livery. A388 or a supported
+readable A380 description selects the A380; otherwise the approved
+`generic-narrow-body` manifest entry is used. No callsign/registration inference.
 
 ## Adding a type without changing the dashboard
+
+The current correction task adds or requests **no artwork**. Any future expansion
+of the two-image policy requires separate authorisation; the following is the
+installation contract for that future work.
 
 1. Obtain approved PNG/WebP artwork and provenance from the artwork project. Verify
    actual alpha transparency, dimensions and appearance on `#162E3E`, not merely
@@ -42,9 +48,9 @@ until the artwork project supplies their assets.
    ```
 
    Omit `webp` when unavailable. Pending entries use `approval: "pending"`, null
-   source and zero dimensions; they are never requested. Exact ICAO type mappings
-   win. The supplied generic entry uses `families: ["narrow-body"]`; known A380
-   readable descriptions provide a bounded fallback when no type code is available.
+   source and zero dimensions; they are never requested. The current policy has
+   one type-specific exception, A388, followed by the universal generic entry.
+   The legacy `families` metadata does not restrict that generic fallback.
    No registration/callsign association or runtime enrichment lookup is introduced.
 
 4. Optional `frame: {"x":0,"y":0,"width":2048,"height":1024}` describes the
@@ -53,20 +59,24 @@ until the artwork project supplies their assets.
    removed. Do not guess a crop cutting wings, tail or engines. Invalid bounds fail
    validation. No source pixels are modified by this display framing.
 5. Optional `multiAircraft` supplies silhouette-specific placement in the approved
-   aircraft-led composition, only when secondaries and a reliable route exist:
+   aircraft-led composition whenever secondary aircraft exist, with or without a route:
 
    ```json
    "multiAircraft": {
-     "regular": { "width": 640, "left": 8, "top": 100 },
-     "compact": { "width": 480, "left": 205, "top": 32 }
+     "regular": { "width": 600, "left": 18, "top": 80, "bottom": 40 },
+     "compact": { "width": 480, "left": 205, "top": 32, "bottom": 56 }
    }
    ```
 
    Values are CSS pixels relative to the primary card; compact applies at heights
-   up to 650px. These numbers are the approved A380 positions, **not defaults for
-   another silhouette**. Width is for the framed image; height derives from its
-   frame aspect ratio. Card bounds constrain the SVG viewport, which always scales
-   uniformly. Aircraft and cloud layers remain independent. Omit `multiAircraft`
+   up to 650px. These are the corrected A380 settings, **not defaults for another
+   silhouette**. `top` and `bottom` bound the available viewport, rather than
+   independently positioning an aircraft and a cloud. Width caps the composition;
+   the shared canvas is uniformly fitted inside the available rectangle. Both
+   source frames stay intact. Aircraft and cloud layers remain independent.
+   Optional `cloudOverlap` (A380 0.143, generic 0.09) specifies how far the cloud
+   overlaps the aircraft frame, as a fraction of framed width. Its independent
+   height derives from its own frame ratio. Omit `multiAircraft`
    to retain the safe original layout for a new/unreviewed asset. Single-aircraft
    layouts never consume this optional profile. No aircraft-type branches need to
    be added to the dashboard. Verify both supported landscape sizes and wider
@@ -75,10 +85,14 @@ until the artwork project supplies their assets.
 6. Run tests/build, `scripts/stage3a-browser-check.mjs` and
    `scripts/stage3a-final-composition-check.mjs`. Inspect single/multiple
    layouts, image proportions, protected route area and actual Air 2 rendering.
-   Adding an exact type needs no tracking, selection or dashboard changes.
+   Future artwork work must preserve tracking/identification and the separately
+   authorised fallback policy.
 
-`AircraftArtwork.tsx` places the raster in an SVG viewport with uniform
-`preserveAspectRatio="xMaxYMax meet"` scaling. These remain supplied raster assets,
+`AircraftArtwork.tsx` gives the two independent layers the **same outer SVG canvas**
+and alignment. Nested source viewports retain their existing frames. Uniform
+`meet` scaling keeps the aircraft and clouds together even when height is limiting;
+single-aircraft layouts centre the whole composition vertically, while multiple
+layouts align towards the lower-right. These remain supplied raster assets,
 not newly drawn vectors. The cloud is an independent lower layer. The approved
 A380 and generic narrow-body profiles share the multi-aircraft card with a compact
 route region; actual visible silhouette clearance is verified with an alpha-mask

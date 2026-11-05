@@ -5,6 +5,7 @@ export interface ArtworkPlacement {
   width: number;
   left: number;
   top: number;
+  bottom: number;
 }
 
 export interface ArtworkAsset {
@@ -18,8 +19,11 @@ export interface ArtworkAsset {
   typeCodes?: string[];
   families?: string[];
   frame?: { x: number; y: number; width: number; height: number };
-  // Presentation only, relative to the card in CSS pixels. Unspecified assets
-  // retain the safe default layout; single-aircraft layouts never use this.
+  // How far the separate cloud strip overlaps the aircraft frame, as a fraction
+  // of framed width. Both layers then share one uniform composition transform.
+  cloudOverlap?: number;
+  // Presentation only, relative to the card in CSS pixels. Top/bottom bound the
+  // available viewport; both image layers scale together inside it.
   multiAircraft?: { regular: ArtworkPlacement; compact: ArtworkPlacement };
 }
 export interface ArtworkManifest {
@@ -34,19 +38,6 @@ export function aircraftName(a: Aircraft) {
     [a.manufacturer, a.model].filter(Boolean).join(' ') ||
     'Unidentified aircraft'
   );
-}
-
-// Exact known model families only. These are presentation fallbacks, never new
-// identification/enrichment, and never inferred from a registration or callsign.
-export function aircraftFamily(a: Aircraft) {
-  if (
-    /^(A318|A319|A320|A321|A19N|A20N|A21N|B73[0-9M]|B37M|B38M|B39M|B3XM)$/.test(
-      a.typeCode ?? '',
-    ) ||
-    /^(Airbus A(?:318|319|320|321)|Boeing 737)(?:\b|neo)/i.test(aircraftName(a))
-  )
-    return 'narrow-body';
-  return 'unknown';
 }
 
 export function approvedAsset(
@@ -76,18 +67,15 @@ export function approvedAsset(
 
 export function artworkFor(a: Aircraft, manifest = artworkManifest) {
   const approved = manifest.aircraft.filter(approvedAsset);
-  const exact = approved.find(
-    (asset) => !!a.typeCode && asset.typeCodes?.includes(a.typeCode),
-  );
-  // The current presentation already supplies readable manufacturer/model names.
-  // Permit the known A380 description when no ICAO type has been carried through.
-  const described = /^Airbus A380-800$/i.test(aircraftName(a))
-    ? approved.find((asset) => asset.typeCodes?.includes('A388'))
-    : undefined;
+  const a380 =
+    a.typeCode === 'A388' || /^Airbus A380(?:[-\s]|$)/i.test(aircraftName(a));
+  // The generic jet is an intentionally universal visual placeholder. It never
+  // changes the real manufacturer/model or infers an aircraft type/operator.
   return (
-    exact ??
-    described ??
-    approved.find((asset) => asset.families?.includes(aircraftFamily(a)))
+    (a380
+      ? approved.find((asset) => asset.typeCodes?.includes('A388'))
+      : undefined) ??
+    approved.find((asset) => asset.id === 'generic-narrow-body')
   );
 }
 

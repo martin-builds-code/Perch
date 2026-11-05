@@ -39,7 +39,7 @@
 .secondary-id{font-size:13px;color:var(--muted);font-weight:700;margin-top:5px;line-height:1.1}
 .nearby-value{min-width:0;display:flex;flex-direction:column;color:#ff8677;font-variant-numeric:tabular-nums}.nearby-value>span{font:600 39px/1 var(--numeric);white-space:nowrap}.nearby-value small{font:700 11px/1.2 'Nunito Variable',sans-serif;color:var(--muted)}.nearby-value>span>small{font-size:17px;color:inherit}.nearby-distance{border-left:1px solid var(--line);padding-left:10px}.nearby-aircraft:nth-child(2) .nearby-value{color:#ffc450}.nearby-aircraft:nth-child(3) .nearby-value{color:#4cd9c6}
 .empty-state{min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px}.unavailable-airspace h1{font-size:32px;letter-spacing:-.5px}.unavailable-airspace p{font-size:18px;color:var(--muted)}.outage-mark{font-size:40px;color:#ff8b7c}
-.radar{width:66px;height:66px;border:1px solid #2a4b5b;border-radius:50%;position:relative;opacity:.65;background:radial-gradient(circle,transparent 30%,#193b4b 31%,transparent 33%,transparent 63%,#193b4b 64%,transparent 66%)}.radar span{position:absolute;left:50%;top:50%;width:46%;height:1px;background:linear-gradient(to right,#4cd9c6,transparent);transform-origin:left center;animation:radar-sweep 16s linear infinite}.radar::after{content:'';position:absolute;left:50%;top:50%;width:3px;height:3px;margin:-1px;border-radius:50%;background:#4cd9c6}
+.radar{width:220px;height:220px;border:1px solid #2a4b5b;border-radius:50%;position:relative;opacity:.65;background:radial-gradient(circle,transparent 30%,#193b4b 31%,transparent 33%,transparent 63%,#193b4b 64%,transparent 66%)}.radar span{position:absolute;left:50%;top:50%;width:46%;height:1px;background:linear-gradient(to right,#4cd9c6,transparent);transform-origin:left center;animation:radar-sweep 16s linear infinite}.radar::after{content:'';position:absolute;left:50%;top:50%;width:3px;height:3px;margin:-1px;border-radius:50%;background:#4cd9c6}
 @keyframes radar-sweep{to{transform:rotate(360deg)}}
 @keyframes aircraft-handover{0%{box-shadow:0 0 0 2px rgba(255,191,67,.85),0 0 26px rgba(255,191,67,.18)}100%{box-shadow:0 0 0 2px transparent,0 0 26px transparent}}
 @keyframes aircraft-arrive{from{opacity:.65}to{opacity:1}}
@@ -84,12 +84,14 @@ footer{height:24px;flex-shrink:0;display:flex;justify-content:space-between;alig
 @media(min-height:780px){.single-aircraft .aircraft-card .airport-code{font-size:86px}}
 @media(max-height:650px){.single-aircraft .aircraft-card .airport-code{font-size:61px}}
 
-/* Approved aircraft-led multi-aircraft composition. Asset placements live in the
-   artwork manifest; the single-aircraft and unconfigured-asset layouts above stay
-   independent. The SVG viewBox always scales artwork uniformly, even if a small
-   viewport constrains its available width/height. */
-.has-nearby .aircraft-card.composed-artwork{display:block;--art-width:var(--regular-art-width);--art-left:var(--regular-art-left);--art-top:var(--regular-art-top)}
-.composed-artwork .flight-info{position:absolute;left:0;top:0;width:auto;padding:10px 22px 0}
+/* Aircraft/clouds share a composition canvas, so their relative scale and gap
+   stay fixed when the viewport is constrained. Single-aircraft art is centred
+   within its available area with extra clearance above the information row. */
+.artwork-stage{isolation:isolate}
+.artwork-stage>.aircraft-layer,.artwork-stage>.cloud-layer{position:absolute;inset:0;width:100%;height:100%}
+.single-aircraft .artwork-stage{margin-bottom:32px;max-width:660px;justify-self:end;width:calc(100% - 38px)}
+.has-nearby .aircraft-card.composed-artwork{display:block;--art-width:var(--regular-art-width);--art-left:var(--regular-art-left);--art-top:var(--regular-art-top);--art-bottom:var(--regular-art-bottom)}
+.composed-artwork .flight-info{position:absolute;left:0;top:0;width:348px;padding:10px 22px 0}
 .composed-artwork .route{--route-code-size:76px;grid-template-columns:128px 24px 128px;gap:12px;max-width:none}
 .has-nearby .composed-artwork.has-route .airport-code{font-size:var(--route-fitted-size,var(--route-code-size));line-height:.95}
 .composed-artwork .airport{align-self:start}
@@ -97,12 +99,9 @@ footer{height:24px;flex-shrink:0;display:flex;justify-content:space-between;alig
 .composed-artwork .airport-name{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
 .composed-artwork .airport:last-child .airport-name{text-align:right}
 .composed-artwork .details{position:absolute;bottom:0;left:0;right:0}
-.aircraft-card.composed-artwork .artwork-stage{position:absolute;inset:0;margin:0;display:block}
-.composed-artwork .aircraft-layer{position:absolute;left:var(--art-left);top:var(--art-top);width:var(--art-width);height:calc(var(--art-width) * var(--art-ratio));max-width:calc(100% - var(--art-left) - 8px);max-height:calc(100% - var(--art-top) - 8px)}
-.composed-artwork .cloud-layer{position:absolute;left:var(--art-left);top:auto;bottom:58px;width:var(--art-width);height:62px;max-width:calc(100% - var(--art-left) - 8px)}
+.aircraft-card.composed-artwork .artwork-stage{position:absolute;left:var(--art-left);right:auto;top:var(--art-top);bottom:var(--art-bottom);width:var(--art-width);max-width:calc(100% - var(--art-left) - 8px);margin:0;display:block}
 @media(max-height:650px){
- .has-nearby .aircraft-card.composed-artwork{--art-width:var(--compact-art-width);--art-left:var(--compact-art-left);--art-top:var(--compact-art-top)}
- .composed-artwork .flight-info{padding:8px 18px 0}
+ .has-nearby .aircraft-card.composed-artwork{--art-width:var(--compact-art-width);--art-left:var(--compact-art-left);--art-top:var(--compact-art-top);--art-bottom:var(--compact-art-bottom)}
+ .composed-artwork .flight-info{width:320px;padding:8px 18px 0}
  .composed-artwork .route{--route-code-size:72px;grid-template-columns:122px 24px 122px;gap:8px}
- .composed-artwork .cloud-layer{bottom:51px;height:50px}
 }

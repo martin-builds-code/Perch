@@ -46,6 +46,10 @@ test('exact aircraft type and readable A380 select the accepted illustration', (
     artworkFor({ ...a380, typeCode: undefined })?.id,
     'airbus-a380-800',
   );
+  assert.equal(
+    artworkFor({ ...a380, typeCode: undefined, model: 'A380-861' })?.id,
+    'airbus-a380-800',
+  );
   const html = renderToStaticMarkup(
     <Display scene={{ ...scenes[0], primary: a380 }} />,
   );
@@ -68,13 +72,15 @@ test('every approved runtime asset exists with its declared intrinsic dimensions
 for (const [maker, model, code, expected] of [
   ['Airbus', 'A320neo', 'A20N', 'generic-narrow-body'],
   ['Boeing', '737 MAX 8', 'B38M', 'generic-narrow-body'],
-  ['Boeing', '787-9 Dreamliner', 'B789', undefined],
-  ['ATR', '72-600', 'AT76', undefined],
-  ['Piper', 'PA-28-140/150/160/180', 'P28A', undefined],
-  ['Bombardier', 'BD-100 Challenger 350', 'CL35', undefined],
-  ['Airbus', 'H135', 'EC35', undefined],
+  ['Boeing', '777-300ER', 'B77W', 'generic-narrow-body'],
+  ['ALPI', 'Pioneer 330', null, 'generic-narrow-body'],
+  ['Boeing', '787-9 Dreamliner', 'B789', 'generic-narrow-body'],
+  ['ATR', '72-600', 'AT76', 'generic-narrow-body'],
+  ['Piper', 'PA-28-140/150/160/180', 'P28A', 'generic-narrow-body'],
+  ['Bombardier', 'BD-100 Challenger 350', 'CL35', 'generic-narrow-body'],
+  ['Airbus', 'H135', 'EC35', 'generic-narrow-body'],
 ] as const)
-  test(`artwork mapping preserves the ${maker} ${model} class`, () => {
+  test(`placeholder preserves the actual ${maker} ${model} identity`, () => {
     const aircraft = {
       ...a380,
       manufacturer: maker,
@@ -86,6 +92,21 @@ for (const [maker, model, code, expected] of [
     assert.equal(artworkFor(aircraft)?.id, expected);
     assert.equal(aircraftName(aircraft), maker + ' ' + model);
   });
+test('missing and incomplete identification always receive the generic placeholder', () => {
+  for (const partial of [
+    { manufacturer: null, model: null, typeCode: null },
+    { manufacturer: 'ALPI', model: null, typeCode: undefined },
+    { manufacturer: null, model: 'Pioneer 330', typeCode: null },
+  ]) {
+    const aircraft = { ...fleet[0], ...partial };
+    assert.equal(artworkFor(aircraft)?.id, 'generic-narrow-body');
+    const html = renderToStaticMarkup(
+      <Display scene={{ ...scenes[0], primary: aircraft }} />,
+    );
+    assert.match(html, /aeropane_generic_narrowbody.webp/);
+    assert.doesNotMatch(html, /Illustration unavailable/);
+  }
+});
 test('unapproved, unsafe, missing and invalid-frame artwork is never fetched', () => {
   const asset = artworkManifest.aircraft[0];
   for (const invalid of [
@@ -130,21 +151,41 @@ test('one aircraft expands and no secondary placeholders reserve space', () => {
   assert.match(html, /single-aircraft/);
   assert.doesNotMatch(html, /class="nearby"|Also nearby|No other aircraft/);
 });
-test('approved composition applies to both artwork silhouettes only with a complete multi-aircraft route', () => {
+test('multi-aircraft composition stays prominent with and without route metadata', () => {
   for (const primary of [a380, { ...fleet[0], typeCode: 'A20N' }]) {
     const multi = { ...scenes[1], primary, secondary: [fleet[3]] };
     const html = renderToStaticMarkup(<Display scene={multi} />);
     assert.match(html, /composed-artwork/);
-    assert.match(html, /--regular-art-width:640px/);
-    for (const scene of [
-      { ...multi, secondary: [] },
-      { ...multi, primary: { ...primary, origin: null } },
-    ]) {
-      const unchanged = renderToStaticMarkup(<Display scene={scene} />);
+    const missing = renderToStaticMarkup(
+      <Display scene={{ ...multi, primary: { ...primary, origin: null } }} />,
+    );
+    assert.match(missing, /composed-artwork/);
+    assert.doesNotMatch(missing, /aria-label="Reported route"/);
+    {
+      const unchanged = renderToStaticMarkup(
+        <Display scene={{ ...multi, secondary: [] }} />,
+      );
       assert.doesNotMatch(unchanged, /composed-artwork|--regular-art-width/);
       assert.match(unchanged, /aircraft-layer/);
     }
   }
+});
+test('independent aircraft and cloud images share a scaling canvas in both layouts', () => {
+  for (const primary of [a380, fleet[0]])
+    for (const secondary of [[], [fleet[3]]]) {
+      const html = renderToStaticMarkup(
+        <Display scene={{ ...scenes[0], primary, secondary }} />,
+      );
+      const layers = [
+        ...html.matchAll(
+          /class="(cloud-layer|aircraft-layer)" viewBox="([^"]+)" preserveAspectRatio="([^"]+)"/g,
+        ),
+      ];
+      assert.equal(layers.length, 2);
+      assert.equal(layers[0][2], layers[1][2]);
+      assert.equal(layers[0][3], layers[1][3]);
+      assert.match(html, /aeropane_cloud_strip_01.webp/);
+    }
 });
 test('new artwork can opt into per-silhouette composition without changing identification or single-aircraft rendering', () => {
   const manifest = structuredClone(artworkManifest);
