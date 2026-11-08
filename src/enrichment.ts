@@ -10,9 +10,17 @@ import {
   flightKey,
   validHex,
 } from './enrichmentTypes';
+export interface EnrichmentBudget {
+  nextAllowed: number;
+  nextSecondaryAllowed: number;
+}
 export interface EnrichmentEnvironment {
   fetch: typeof fetch;
   now: () => number;
+  // Wall time still validates provider timestamps; elapsed time budgets requests.
+  monotonicNow?: () => number;
+  // A page may reuse deadlines across visibility/sleep remounts, never caches.
+  budget?: EnrichmentBudget;
   active: () => boolean;
   setTimer: (fn: () => void, ms: number) => ReturnType<typeof setTimeout>;
   clearTimer: (timer: ReturnType<typeof setTimeout>) => void;
@@ -75,7 +83,8 @@ export function supplementAircraft(
   if (identity) {
     if (!a.registration && identity.registration)
       next.registration = identity.registration;
-    if (!a.operator && identity.operator) next.operator = identity.operator;
+    if (!a.operator && identity.operator)
+      next.operator = identity.operator;
     if (
       (a.model === null ||
         a.model === 'Aircraft' ||
@@ -111,10 +120,19 @@ export function createEnricher(
   let stopped = false,
     base: Scene | null = null,
     inFlight = false,
-    nextAllowed = 0,
+    budgetTime = 0,
     controller: AbortController | null = null;
   let timeout: ReturnType<typeof setTimeout> | undefined;
   const cache = new Map<string, EnrichmentResult>();
+  const budget = env.budget ?? { nextAllowed: 0, nextSecondaryAllowed: 0 };
+  const secondaryAttempts = new Map<string, number>();
+  function budgetNow() {
+    const time = (env.monotonicNow ?? env.now)();
+    if (!Number.isFinite(time)) return budgetTime;
+    // A broken/backwards clock cannot reopen an already consumed request slot.
+    budgetTime = Math.max(budgetTime, time);
+    return budgetTime;
+  }
   function prune() {
     for (const [key, value] of cache)
       if (value.expiresAtMs <= env.now() || value.fetchedAtMs > env.now())
@@ -134,7 +152,9 @@ export function createEnricher(
     return supplementAircraft(
       a,
       cache.get(enrichmentKey('aircraft', hex, null))?.data,
-      flight ? cache.get(enrichmentKey('route', hex, flight))?.data : undefined,
+      flight
+        ? cache.get(enrichmentKey('route', hex, flight))?.data
+        : undefined,
     );
   }
   function publish() {
@@ -155,18 +175,29 @@ export function createEnricher(
     kind: EnrichmentKind,
     hex: string,
     callsign: string | null,
+    secondary = false,
   ) {
     inFlight = true;
-    nextAllowed = env.now() + P.intervalMs;
+    const started = budgetNow();
+    budget.nextAllowed = started + P.intervalMs;
+    if (secondary) {
+      budget.nextSecondaryAllowed = started + P.secondaryIntervalMs;
+      secondaryAttempts.set(enrichmentKey(kind, hex, callsign), started);
+      if (secondaryAttempts.size > P.clientCapacity)
+        secondaryAttempts.delete(secondaryAttempts.keys().next().value!);
+    }
     controller = new AbortController();
     const request = controller;
     timeout = env.setTimer(() => request.abort(), P.clientTimeoutMs);
     try {
       const query = new URLSearchParams({ kind, hex });
       if (callsign) query.set('callsign', callsign);
-      const response = await env.fetch('/api/enrichment?' + query.toString(), {
-        signal: request.signal,
-      });
+      const response = await env.fetch(
+        '/api/enrichment?' + query.toString(),
+        {
+          signal: request.signal,
+        },
+      );
       if (!response.ok) {
         const raw = response.headers.get('retry-after'),
           seconds = raw === null ? NaN : Number(raw);
@@ -175,10 +206,10 @@ export function createEnricher(
           : raw
             ? Date.parse(raw) - env.now()
             : 0;
-        nextAllowed = Math.max(
-          nextAllowed,
-          env.now() + P.errorCooldownMs,
-          Number.isFinite(delay) ? env.now() + delay : 0,
+        budget.nextAllowed = Math.max(
+          budget.nextAllowed,
+          budgetNow() + P.errorCooldownMs,
+          Number.isFinite(delay) ? budgetNow() + delay : 0,
         );
         return;
       }
@@ -192,7 +223,10 @@ export function createEnricher(
       publish();
     } catch {
       if (!stopped)
-        nextAllowed = Math.max(nextAllowed, env.now() + P.errorCooldownMs);
+        budget.nextAllowed = Math.max(
+          budget.nextAllowed,
+          budgetNow() + P.errorCooldownMs,
+        );
     } finally {
       if (timeout !== undefined) env.clearTimer(timeout);
       timeout = undefined;
@@ -204,15 +238,55 @@ export function createEnricher(
     if (stopped) return;
     base = scene;
     publish();
+    const present = new Set(
+      scene.secondary.map((a) =>
+        enrichmentKey('route', a.id, flightKey(a.callsign)),
+      ),
+    );
+    for (const key of secondaryAttempts.keys())
+      if (!present.has(key)) secondaryAttempts.delete(key);
+    const time = budgetNow();
     const a = scene.primary;
     if (
       !a ||
       !env.active() ||
       inFlight ||
-      env.now() < nextAllowed ||
-      !validHex(a.id)
+      !Number.isFinite(time) ||
+      time < budget.nextAllowed
     )
       return;
+    if (validHex(a.id) && primaryLookup(a)) return;
+    if (
+      time < budget.nextSecondaryAllowed ||
+      !['available', 'delayed'].includes(scene.state)
+    )
+      return;
+    // Oldest attempt first; unattempted flights tie in selector/display order.
+    // Only current displayed flights participate; routes follow hex + callsign.
+    let candidate:
+      | { hex: string; callsign: string; last: number }
+      | undefined;
+    const seen = new Set([a.id.toLowerCase()]);
+    for (const other of scene.secondary) {
+      const hex = other.id.toLowerCase(),
+        callsign = flightKey(other.callsign);
+      if (seen.has(hex) || !validHex(hex) || !callsign) continue;
+      seen.add(hex);
+      const key = enrichmentKey('route', hex, callsign);
+      const current = decorate(other).aircraft;
+      const complete =
+        [current.origin, current.destination].every(
+          (airport) => airport && /^[A-Z]{3,4}$/.test(airport.code),
+        ) && current.origin!.code !== current.destination!.code;
+      if (complete || !due(key)) continue;
+      const last = secondaryAttempts.get(key) ?? -Infinity;
+      if (!candidate || last < candidate.last)
+        candidate = { hex, callsign, last };
+    }
+    if (candidate)
+      void lookup('route', candidate.hex, candidate.callsign, true);
+  }
+  function primaryLookup(a: Aircraft) {
     const hex = a.id.toLowerCase(),
       callsign = flightKey(a.callsign);
     const missingModel =
@@ -221,7 +295,7 @@ export function createEnricher(
       a.model.startsWith('Aircraft ·');
     if (missingModel && due(enrichmentKey('aircraft', hex, null))) {
       void lookup('aircraft', hex, null);
-      return;
+      return true;
     }
     if (
       callsign &&
@@ -229,7 +303,7 @@ export function createEnricher(
       due(enrichmentKey('route', hex, callsign))
     ) {
       void lookup('route', hex, callsign);
-      return;
+      return true;
     }
     if (
       (!a.operator ||
@@ -238,17 +312,25 @@ export function createEnricher(
         a.model === 'Aircraft' ||
         a.model.startsWith('Aircraft ·')) &&
       due(enrichmentKey('aircraft', hex, null))
-    )
+    ) {
       void lookup('aircraft', hex, null);
+      return true;
+    }
+    return false;
   }
   return {
     update,
-    inspect: () => ({ entries: cache.size, inFlight: inFlight ? 1 : 0 }),
+    inspect: () => ({
+      entries: cache.size,
+      inFlight: inFlight ? 1 : 0,
+      secondaryAttempts: secondaryAttempts.size,
+    }),
     stop: () => {
       stopped = true;
       controller?.abort();
       if (timeout !== undefined) env.clearTimer(timeout);
       cache.clear();
+      secondaryAttempts.clear();
       base = null;
     },
   };

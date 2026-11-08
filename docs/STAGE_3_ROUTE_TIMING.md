@@ -1,5 +1,9 @@
 # Stage 3 — route availability investigation
 
+This report describes the readability baseline `39eab343`. The subsequently
+authorised selective secondary lookup policy and its comparison evidence are
+documented in [Stage 3 secondary enrichment](STAGE_3_SECONDARY_ENRICHMENT.md).
+
 Baseline: `b22a5c2ecefcf9c903aa91ee4dfe52b15eecdcdf`. Evidence is source inspection
 and controlled fixtures/tests. No household or hosted monitoring was performed;
 this investigation does not measure the frequency of real-world provider delays.

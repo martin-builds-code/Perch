@@ -1,0 +1,71 @@
+{
+  "baselineCommit": "39eab343311ffbb46f1cdc84d8d0973de378cc58",
+  "automatedTests": {
+    "passed": 185,
+    "failed": 0,
+    "newSchedulerTests": 22
+  },
+  "compiledNodeEsmHttpChecks": {
+    "passed": 13,
+    "failed": 0
+  },
+  "builds": {
+    "eslint": "passed",
+    "typescript": "passed",
+    "nodeNext": "passed",
+    "default": "passed",
+    "allFeaturesSafari15": "passed"
+  },
+  "inheritedBrowser": {
+    "readabilityLayouts": 72,
+    "bidirectionalStationaryArtworkScenarios": 6,
+    "radarOutageCases": 3,
+    "stage3Layouts": 51,
+    "functionalPinSleepExportEnrichmentChecks": "passed"
+  },
+  "newBrowser": {
+    "viewports": [
+      [
+        1024,
+        768
+      ],
+      [
+        1024,
+        624
+      ]
+    ],
+    "immediateSecondaryPublication": true,
+    "primaryIllustrationCoordinateDeltaPx": 0,
+    "pollIntervalMs": 15000,
+    "singleFlight": true,
+    "sharedSecondaryIntervalMs": 90000,
+    "visibilityRemountBudgets": "passed",
+    "sleepWakeAndDisabled": "passed"
+  },
+  "simulation": {
+    "patterns": [
+      "quiet",
+      "moderate",
+      "busy"
+    ],
+    "hoursPerPattern": 18,
+    "actualAviationProviderRequests": 0,
+    "globalAndSecondaryGapAssertions": "passed",
+    "primaryPairedBusyExtraDelaySeconds": {
+      "median": 0,
+      "p95": 15,
+      "maximum": 15,
+      "delayedAircraft": 78,
+      "pairedAircraft": 996
+    }
+  },
+  "initialCheckIssues": [
+    "Default sandbox prohibited the existing session HTTP test from binding loopback (EPERM); the full suite passed with local-network permission.",
+    "One initial inherited screenshot run reported an A380/no-route header mismatch at 1112x834. Focused comparison was pixel-identical, and the full 72-layout rerun passed. No UI/CSS correction was made."
+  ],
+  "physicalSafariTested": false,
+  "hostedLiveProviderTested": false,
+  "sourcePresentationOrServerChanges": false,
+  "deploymentPerformed": false,
+  "productionOrPreviewChanged": false
+}

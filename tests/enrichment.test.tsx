@@ -665,12 +665,12 @@ test('late route publishes immediately to the matching secondary and survives po
     now = T + P.routeTtlMs;
     client.update({ ...base, primary: other, secondary: [a] });
     assert.equal(published[published.length - 1]!.secondary[0].origin, null);
-    assert.equal(calls, 1);
+    assert.equal(calls, 2, 'expired secondary route may now use an idle slot');
   } finally {
     client.stop();
   }
 });
-test('secondary route display creates no additional enrichment traffic; unknown-model sequencing retains the existing 30s gate', async () => {
+test('complete secondary routes create no enrichment traffic; unknown-model sequencing retains the existing 30s gate', async () => {
   let now = T;
   const kinds: string[] = [];
   const publications: Scene[] = [];
@@ -708,7 +708,7 @@ test('secondary route display creates no additional enrichment traffic; unknown-
     client.update({
       ...base,
       primary: complete,
-      secondary: [{ ...base.primary!, id: '123456' }],
+      secondary: [{ ...complete, id: '123456' }],
     });
     assert.equal(kinds.length, 0);
     const unknown = { ...base.primary!, model: 'Aircraft' };

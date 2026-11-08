@@ -25,6 +25,7 @@ export interface EnrichmentResult {
 }
 export const ENRICHMENT_POLICY = {
   intervalMs: 30_000,
+  secondaryIntervalMs: 90_000,
   refreshLeadMs: 30_000,
   identityTtlMs: 1_800_000,
   routeTtlMs: 300_000,

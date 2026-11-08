@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Display } from './App';
 import { createPoller, liveScene } from './live';
 import { createEnricher } from './enrichment';
+import type { EnrichmentBudget } from './enrichment';
 import { createDataDiagnostics } from './dataDiagnostics';
 import type { DataDiagnostics } from './dataDiagnostics';
 import { DiagnosticExport } from './DiagnosticExport';
@@ -14,6 +15,12 @@ declare global {
     };
   }
 }
+// Keep request deadlines for this page when Appliance remounts LiveApp on resume.
+// No aircraft records, route cache or credentials are retained here.
+const enrichmentBudget: EnrichmentBudget = {
+  nextAllowed: 0,
+  nextSecondaryAllowed: 0,
+};
 export default function LiveApp() {
   const [duration] = useState(() =>
     diagnosticDuration(
@@ -52,7 +59,11 @@ export default function LiveApp() {
       import.meta.env.VITE_AERO_ENRICHMENT_ENABLED === 'true'
         ? createEnricher(
             (scene, credited) => setDisplay({ scene, credited }),
-            env,
+            {
+              ...env,
+              monotonicNow: () => performance.now(),
+              budget: enrichmentBudget,
+            },
           )
         : undefined;
     const poller = createPoller(
