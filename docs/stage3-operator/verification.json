@@ -1,0 +1,36 @@
+{
+  "baseline": "7b446435a8eff825c11e21ab109429db33a52658",
+  "automatedTests": 195,
+  "newOperatorTests": 10,
+  "compiledNodeHttpChecks": 13,
+  "operatorLayouts": 52,
+  "operatorViewports": [
+    [
+      1024,
+      768
+    ],
+    [
+      1024,
+      624
+    ]
+  ],
+  "operatorBidirectionalTransitionScenarios": 4,
+  "primaryImageCoordinateDeltaPx": 0,
+  "unaffectedPanelPixelsIdentical": true,
+  "readabilityLayouts": 72,
+  "inheritedBidirectionalTransitionScenarios": 6,
+  "stage3Layouts": 51,
+  "secondarySchedulerBrowserChecks": "passed",
+  "lint": "passed",
+  "typescriptAndNodeNext": "passed",
+  "defaultBuild": "passed",
+  "allFeatureSafari15Build": "passed",
+  "newFontOrRuntimeDependency": false,
+  "actualAviationProviderCalls": 0,
+  "physicalIpadOrSafariTested": false,
+  "remainingFailures": [],
+  "testSetupNotes": [
+    "Corrected larger-text clearance by changing only the detail row spacing, never artwork.",
+    "Temporary baseline initially blocked the shared Nunito file. Local baseline filesystem configuration was corrected before successful comparisons and captures."
+  ]
+}

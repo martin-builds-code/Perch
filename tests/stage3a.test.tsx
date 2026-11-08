@@ -60,7 +60,10 @@ test('exact aircraft type and readable A380 select the accepted illustration', (
   assert.match(html, /preserveAspectRatio="xMaxYMax meet"/);
 });
 test('every approved runtime asset exists with its declared intrinsic dimensions', () => {
-  for (const asset of [...artworkManifest.aircraft, artworkManifest.clouds]) {
+  for (const asset of [
+    ...artworkManifest.aircraft,
+    artworkManifest.clouds,
+  ]) {
     if (!approvedAsset(asset)) continue;
     const source = readFileSync('public' + asset.src);
     if (asset.src!.endsWith('.png')) {
@@ -68,7 +71,8 @@ test('every approved runtime asset exists with its declared intrinsic dimensions
       assert.equal(source.readUInt32BE(20), asset.height);
       assert.equal(source[25], 6);
     }
-    if (asset.webp) assert.ok(readFileSync('public' + asset.webp).length > 0);
+    if (asset.webp)
+      assert.ok(readFileSync('public' + asset.webp).length > 0);
   }
 });
 for (const [maker, model, code, expected] of [
@@ -151,7 +155,10 @@ test('complete reliable IATA route is prominent; partial/ICAO-only/contradictory
 test('one aircraft expands and no secondary placeholders reserve space', () => {
   const html = renderToStaticMarkup(<Display scene={scenes[0]} />);
   assert.match(html, /single-aircraft/);
-  assert.doesNotMatch(html, /class="nearby"|Also nearby|No other aircraft/);
+  assert.doesNotMatch(
+    html,
+    /class="nearby"|Also nearby|No other aircraft/,
+  );
 });
 test('multi-aircraft composition stays prominent with and without route metadata', () => {
   for (const primary of [a380, { ...fleet[0], typeCode: 'A20N' }]) {
@@ -159,7 +166,9 @@ test('multi-aircraft composition stays prominent with and without route metadata
     const html = renderToStaticMarkup(<Display scene={multi} />);
     assert.match(html, /composed-artwork/);
     const missing = renderToStaticMarkup(
-      <Display scene={{ ...multi, primary: { ...primary, origin: null } }} />,
+      <Display
+        scene={{ ...multi, primary: { ...primary, origin: null } }}
+      />,
     );
     assert.match(missing, /composed-artwork/);
     assert.equal(
@@ -254,7 +263,14 @@ test('secondary shortening preserves known models and leaves unrecognised names 
 test('secondary list remains capped, unique and type-focused without missing-operator messages', () => {
   const scene = {
     ...scenes[1],
-    secondary: [fleet[0], fleet[1], fleet[1], fleet[2], fleet[3], fleet[4]],
+    secondary: [
+      fleet[0],
+      fleet[1],
+      fleet[1],
+      fleet[2],
+      fleet[3],
+      fleet[4],
+    ],
   };
   const html = renderToStaticMarkup(<Display scene={scene} />);
   assert.equal((html.match(/class="nearby-aircraft /g) ?? []).length, 3);
@@ -283,3 +299,55 @@ test('source motion is restrained, keyed by actual identity and has a reduced-mo
   assert.match(css, /prefers-reduced-motion:reduce/);
   assert.doesNotMatch(source, /setInterval/);
 });
+
+for (const single of [false, true])
+  for (const operator of [
+    'easyJet',
+    'British Airways',
+    'Northern Isles Regional Air Services Demonstration Operator',
+    null,
+    '   ',
+  ])
+    test(`primary operator hierarchy: ${single ? 'single' : 'multiple'} / ${operator || 'missing'}`, () => {
+      const primary = {
+        ...a380,
+        operator,
+        callsign: 'EZY49YH',
+        direction: 'North-west',
+      };
+      const html = renderToStaticMarkup(
+        <Display
+          scene={{
+            ...scenes[1],
+            primary,
+            secondary: single ? [] : [fleet[1]],
+          }}
+        />,
+      );
+      const details = JSDOM.fragment(html).querySelector('.details')!;
+      const airline = details.querySelector('.detail-operator dd');
+      const expected = operator?.trim() || null;
+      assert.equal(airline?.textContent ?? null, expected);
+      if (expected) {
+        assert.equal(
+          details.firstElementChild?.querySelector('dt')?.textContent,
+          'Operator',
+        );
+        assert.equal(airline?.getAttribute('title'), expected);
+      } else {
+        assert.equal(details.querySelector('.detail-operator'), null);
+        assert.doesNotMatch(
+          details.textContent!,
+          /easyJet|Operator not reported|Unknown operator/,
+        );
+      }
+      assert.equal(
+        details.querySelector('.detail-direction dd')?.textContent,
+        'North-west',
+      );
+      assert.equal(
+        details.querySelector('.detail-callsign dd')?.textContent,
+        'EZY49YH',
+      );
+      assert.doesNotMatch(html, /cloud-layer|cloud_strip/);
+    });

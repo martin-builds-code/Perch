@@ -25,13 +25,20 @@
 .artwork-stage{position:absolute;left:var(--art-left);top:var(--art-top);width:var(--art-width);height:calc(var(--art-width) * var(--art-ratio));max-width:calc(100% - var(--art-left) - 8px);pointer-events:none;user-select:none;--art-width:var(--regular-art-width);--art-left:var(--regular-art-left);--art-top:var(--regular-art-top)}
 .aircraft-layer{position:absolute;inset:0;display:block;width:100%;height:100%}
 .artwork-placeholder{color:var(--muted);font-size:14px}
-.details{position:absolute;left:0;right:0;bottom:0;display:flex;gap:16px;margin:0;padding:6px 22px 10px;min-width:0}
+.details{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:16px;margin:0;padding:6px 22px 10px;min-width:0}
 .details>div{min-width:0;flex:1}.details dt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 .details dd{font-size:20px;font-weight:800;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.1}
+.details.has-operator{padding-top:0;padding-bottom:2px}.details.has-operator .detail-operator{flex:2.8}.details.has-operator .detail-operator dd{font-size:32px;font-weight:900;color:#fff8ed}
+.details.has-operator .detail-direction dd{font-size:24px}.details.has-operator .detail-callsign{flex:.8}.details.has-operator .detail-callsign dd{font-size:16px;color:var(--muted)}
+.details.long-operator .detail-callsign{display:none}.details.long-operator .detail-operator dd{font:600 34px/1.05 var(--numeric)}
+.details.extended-operator .detail-direction{display:none}.details.extended-operator .detail-operator dd{font-size:30px}
 .single-aircraft .details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 20px;padding:18px 22px 22px}
 .single-aircraft .details dt{position:static;width:auto;height:auto;overflow:visible;clip:auto;font-size:16px;font-weight:800;color:var(--muted)}
 .single-aircraft .details dd{font-size:44px;line-height:1.1;margin-top:4px;overflow:visible;white-space:normal;overflow-wrap:anywhere}
-.single-aircraft .detail-operator{grid-column:1/-1}.single-aircraft .detail-operator dd{font-size:26px;color:var(--muted)}
+.single-aircraft .detail-operator{grid-column:1/-1}.single-aircraft .details .detail-operator dd{font:900 44px/1.1 'Nunito Variable',sans-serif;color:#fff8ed}
+.single-aircraft .details .detail-callsign{display:block}.single-aircraft .details.has-operator .detail-callsign dd{font-size:28px;color:var(--muted)}
+.single-aircraft .details .detail-direction{display:block}.single-aircraft .details .detail-direction dd{font-size:44px}
+.single-aircraft .details.extended-operator .detail-operator dd{font:600 42px/1.05 var(--numeric)}
 .measurements{display:grid;grid-template-rows:minmax(0,1fr) minmax(0,1fr);gap:12px;min-width:0;min-height:0}
 .metric{border-radius:18px;background:#42cfb9;color:#062334;padding:16px 14px;display:flex;flex-direction:column;justify-content:center;min-width:0;min-height:0}.metric.altitude{background:#ffbe3b}
 .metric .eyebrow{font-size:19px;line-height:1.1;font-weight:900;color:#062334}
@@ -93,7 +100,11 @@ footer{height:24px;flex-shrink:0;display:flex;justify-content:space-between;alig
  .flight-info{width:320px;padding:8px 18px 0}.route{--route-code-size:72px;grid-template-columns:122px 24px 122px;gap:8px}
  .artwork-stage{--art-width:var(--compact-art-width);--art-left:var(--compact-art-left);--art-top:var(--compact-art-top)}
  .details{padding:4px 18px 8px}.details dd{font-size:18px}
- .single-aircraft .details{padding:14px 18px 18px;gap:10px 18px}.single-aircraft .details dt{font-size:15px}.single-aircraft .details dd{font-size:40px}.single-aircraft .detail-operator dd{font-size:24px}
+ .details.has-operator .detail-operator dd{font-size:30px}.details.has-operator .detail-direction dd{font-size:22px}.details.has-operator .detail-callsign dd{font-size:15px}
+ .details.long-operator .detail-operator dd{font-size:32px}.details.extended-operator .detail-operator dd{font-size:30px}
+ .single-aircraft .details{padding:14px 18px 18px;gap:10px 18px}.single-aircraft .details dt{font-size:15px}.single-aircraft .details dd{font-size:40px}
+ .single-aircraft .details .detail-operator dd,.single-aircraft .details .detail-direction dd{font-size:40px}.single-aircraft .details.has-operator .detail-callsign dd{font-size:26px}
+ .single-aircraft .details.extended-operator .detail-operator dd{font-size:38px}
  .section-heading{height:24px;margin-bottom:4px}.section-heading h2{font-size:22px}
  .nearby-aircraft{padding:4px 10px;gap:3px}.nearby-identity h3{font-size:28px}.long-secondary .nearby-identity h3{font-size:26px}
  .secondary-route{font-size:64px}.secondary-arrow{font-size:30px}.nearby-value>span{font-size:22px}.nearby-value small{font-size:16px}.no-secondary-route .nearby-value>span{font-size:28px}

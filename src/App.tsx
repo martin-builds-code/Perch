@@ -92,18 +92,24 @@ function Route({
   ) : null;
 }
 function Details({ aircraft }: { aircraft: Aircraft }) {
+  const operator = aircraft.operator?.trim() || null;
   const entries = [
-    ['Callsign', aircraft.callsign],
-    ['Direction', aircraft.direction],
-    ['Operator', aircraft.operator],
-  ].filter(([, value]) => value);
+    ['operator', 'Operator', operator],
+    ['direction', 'Direction', aircraft.direction],
+    ['callsign', 'Callsign', aircraft.callsign],
+  ].filter(([, , value]) => value);
+  const operatorLength = operator?.length ?? 0;
   return entries.length ? (
-    <dl className="details">
-      {entries.map(([label, value]) => (
-        <div
-          key={label}
-          className={label === 'Operator' ? 'detail-operator' : ''}
-        >
+    <dl
+      className={
+        'details' +
+        (operatorLength ? ' has-operator' : '') +
+        (operatorLength > 22 ? ' long-operator' : '') +
+        (operatorLength > 45 ? ' extended-operator' : '')
+      }
+    >
+      {entries.map(([key, label, value]) => (
+        <div key={key} className={'detail-' + key}>
           <dt>{label}</dt>
           <dd title={value!}>{value}</dd>
         </div>
