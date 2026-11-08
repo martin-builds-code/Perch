@@ -1,111 +1,78 @@
 # Aero Pane artwork interface
 
-The supplied `Aero_Pane_Artwork_Starter_v1.zip` is integrated as independently
-replaceable static raster images. No artwork was generated, repainted or recompressed
-by Codex. The original [manifest](source-manifest.json) and [house style](house-style.md)
-are preserved; [verification.json](verification.json) records decoded dimensions,
-alpha range, transparent-pixel counts, size and SHA-256. All six source hashes match.
+The supplied `Aero_Pane_Artwork_Starter_v1.zip` remains the source of the accepted
+images. No artwork was generated, repainted or recompressed. The original
+[manifest](source-manifest.json), [house style](house-style.md) and
+[verification](verification.json) retain dimensions, transparency evidence and
+SHA-256 checksums; all six source hashes still match.
 
-| Subject             | Browser WebP / PNG fallback filename        | Dimensions |
-| ------------------- | ------------------------------------------- | ---------- |
-| Accepted A380-800   | `aeropane_a380_baseline.webp` / `.png`      | 1774×887   |
-| Generic narrow-body | `aeropane_generic_narrowbody.webp` / `.png` | 1600×800   |
-| Independent clouds  | `aeropane_cloud_strip_01.webp` / `.png`     | 1800×330   |
+| Subject                          | Browser WebP / PNG fallback                 | Dimensions |
+| -------------------------------- | ------------------------------------------- | ---------- |
+| A380-800                         | `aeropane_a380_baseline.webp` / `.png`      | 1774×887   |
+| Generic jet                      | `aeropane_generic_narrowbody.webp` / `.png` | 1600×800   |
+| Legacy cloud strip, not rendered | `aeropane_cloud_strip_01.webp` / `.png`     | 1800×330   |
 
-Actual files: `public/aircraft/`; browser URLs: `/aircraft/<filename>`.
-Artwork never selects an airline/operator or changes aircraft identification. The
-generic jet is now an explicitly authorised visual placeholder for **all aircraft
-other than an identified Airbus A380**, including wide-bodies, helicopters, light
-aircraft and incomplete/unknown records. It never changes their real identity text
-or claims to depict their actual configuration or livery. A388 or a supported
-readable A380 description selects the A380; otherwise the approved
-`generic-narrow-body` manifest entry is used. No callsign/registration inference.
+Files are in `public/aircraft/`, with same-origin `/aircraft/<filename>` URLs.
+The readability revision renders **only the aircraft**, never the cloud layer.
+Cloud metadata/files are retained to avoid unrelated archive changes; no cloud
+resource is fetched by the current interface.
 
-## Adding a type without changing the dashboard
+## Selection is presentation only
 
-The current correction task adds or requests **no artwork**. Any future expansion
-of the two-image policy requires separate authorisation; the following is the
-installation contract for that future work.
+An identified Airbus A380 uses its approved illustration; every other aircraft,
+including incomplete identity, uses the existing generic jet as an explicitly
+approved placeholder. It does not claim their actual configuration, model, livery
+or operator. Real manufacturer/model text is preserved. No callsign/registration
+inference or runtime enrichment call is used to select a picture.
 
-1. Obtain approved PNG/WebP artwork and provenance from the artwork project. Verify
-   actual alpha transparency, dimensions and appearance on `#162E3E`, not merely
-   the presence of an alpha channel. The current files were decoded using Pillow;
-   every PNG/WebP has alpha extrema 0–255. Keep the delivered bytes unchanged.
-2. Add files with lowercase, versioned names to `public/aircraft/`.
-3. Add an entry to `src/artwork/manifest.json`, using actual dimensions:
+Asset approval, safe local paths, positive intrinsic dimensions and valid source
+frames are checked. Exact current policy lives in `src/artwork.ts`; installing
+additional illustrations or expanding this two-image policy requires separate
+authorisation. This revision creates or requests none.
 
-   ```json
-   {
-     "id": "airbus-a350-900",
-     "label": "Airbus A350-900",
-     "approval": "approved",
-     "typeCodes": ["A359"],
-     "src": "/aircraft/airbus-a350-v1.png",
-     "webp": "/aircraft/airbus-a350-v1.webp",
-     "width": 2048,
-     "height": 1024
-   }
-   ```
+## One placement for all count modes
 
-   Omit `webp` when unavailable. Pending entries use `approval: "pending"`, null
-   source and zero dimensions; they are never requested. The current policy has
-   one type-specific exception, A388, followed by the universal generic entry.
-   The legacy `families` metadata does not restrict that generic fallback.
-   No registration/callsign association or runtime enrichment lookup is introduced.
+Each aircraft manifest entry in `src/artwork/manifest.json` supplies its source,
+intrinsic dimensions, optional WebP and verified frame, plus one placement per
+viewport. For the A380:
 
-4. Optional `frame: {"x":0,"y":0,"width":2048,"height":1024}` describes the
-   verified visible-content bounds in source pixels. Omit it to display the whole
-   raster. Current frames use the alpha bounding box: only transparent padding is
-   removed. Do not guess a crop cutting wings, tail or engines. Invalid bounds fail
-   validation. No source pixels are modified by this display framing.
-5. Optional `multiAircraft` supplies silhouette-specific placement in the approved
-   aircraft-led composition whenever secondary aircraft exist, with or without a route:
+```json
+"placement": {
+  "regular": { "width": 600, "left": 18, "top": 94 },
+  "compact": { "width": 480, "left": 205, "top": 33 }
+}
+```
 
-   ```json
-   "multiAircraft": {
-     "regular": { "width": 600, "left": 18, "top": 80, "bottom": 40 },
-     "compact": { "width": 480, "left": 205, "top": 32, "bottom": 56 }
-   }
-   ```
+Values are CSS pixels relative to the aircraft card. Compact applies at heights
+up to 650px. The generic uses 640/590px widths and its own matching positions.
+Height derives from the frame ratio; SVG `xMaxYMax meet` preserves proportions.
+Neither secondary count, route availability nor expanded-card height affects the
+placement. Single mode spends its extra space on supporting text rather than
+moving/enlarging the illustration. The old `multiAircraft`/bottom/cloud-overlap
+settings are superseded. Exact coordinates and zero-delta transition evidence are
+in the [current review report](../stage3-readability/README.md).
 
-   Values are CSS pixels relative to the primary card; compact applies at heights
-   up to 650px. These are the corrected A380 settings, **not defaults for another
-   silhouette**. `top` and `bottom` bound the available viewport, rather than
-   independently positioning an aircraft and a cloud. Width caps the composition;
-   the shared canvas is uniformly fitted inside the available rectangle. Both
-   source frames stay intact. Aircraft and cloud layers remain independent.
-   Optional `cloudOverlap` (A380 0.143, generic 0.09) specifies how far the cloud
-   overlaps the aircraft frame, as a fraction of framed width. Its independent
-   height derives from its own frame ratio. Omit `multiAircraft`
-   to retain the safe original layout for a new/unreviewed asset. Single-aircraft
-   layouts never consume this optional profile. No aircraft-type branches need to
-   be added to the dashboard. Verify both supported landscape sizes and wider
-   layouts, wide route codes and long names before approving a new placement.
+Frames continue to describe verified source content bounds. Omit no important
+features or guess a crop; current frames only remove transparent source padding.
+All delivered image bytes stay unchanged. Future approved artwork can supply its
+own viewport placements without adding a new dashboard or changing tracking logic;
+it still requires silhouette/text-clearance and long-name review.
 
-6. Run tests/build, `scripts/stage3a-browser-check.mjs` and
-   `scripts/stage3a-final-composition-check.mjs`. Inspect single/multiple
-   layouts, image proportions, protected route area and actual Air 2 rendering.
-   Future artwork work must preserve tracking/identification and the separately
-   authorised fallback policy.
+`AircraftArtwork.tsx` renders a single decorative SVG image viewport. WebP errors
+fall back once to PNG; a failed PNG hides the optional illustration without
+clearing aircraft data or retrying indefinitely. Images do not intercept touches.
+Only the primary illustration is mounted, with no prefetch, image history, database,
+asset polling or generation service. Browser caching reuses the source image.
 
-`AircraftArtwork.tsx` gives the two independent layers the **same outer SVG canvas**
-and alignment. Nested source viewports retain their existing frames. Uniform
-`meet` scaling keeps the aircraft and clouds together even when height is limiting;
-single-aircraft layouts centre the whole composition vertically, while multiple
-layouts align towards the lower-right. These remain supplied raster assets,
-not newly drawn vectors. The cloud is an independent lower layer. The approved
-A380 and generic narrow-body profiles share the multi-aircraft card with a compact
-route region; actual visible silhouette clearance is verified with an alpha-mask
-browser check and visual inspection. The A380 tail rises between the route codes;
-the panoramic generic jet has its own lower, wider placement. No source transparency
-is altered. Profiles are selected through the existing manifest asset mapping.
-Unconfigured panoramic silhouettes (aspect ratio above 2.8) retain the full-width
-lower region; taller unconfigured subjects use the original right-hand region.
-WebP errors fall back once to PNG; failed PNG hides the optional layer without
-clearing aircraft data or retrying indefinitely. Source dimensions exceed tested
-display sizes. Artwork cannot intercept pointer input.
+## Verify changes
 
-Only the current primary image/cloud are mounted, with no bulk prefetch, database,
-asset polling, new timer or generation service. Browser caching reuses static
-images. Version filenames when replacing content. File installation does not
-authorise deployment; release authority remains separate.
+Run `npm test`, `npm run lint`, `npm run build`, the all-feature Safari 15 build,
+`scripts/stage3-readability-check.mjs` and inherited
+`scripts/stage3a-browser-check.mjs`, using the baseline setup documented in the
+review report. The old `stage3a-final-composition-check.mjs` entry forwards to the
+current readability check. Source checksum tests still cover all six files,
+including the retained, unused cloud pair.
+
+Review both silhouettes at 1024×768 and 1024×624, wider landscape, missing routes,
+long names, secondary-count transitions, PNG fallback and reduced motion. Physical
+Air 2 review remains separate. File/source installation never authorises deployment.

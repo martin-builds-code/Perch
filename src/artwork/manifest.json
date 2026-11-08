@@ -16,10 +16,17 @@
         "width": 1763,
         "height": 871
       },
-      "cloudOverlap": 0.143,
-      "multiAircraft": {
-        "regular": { "width": 600, "left": 18, "top": 80, "bottom": 40 },
-        "compact": { "width": 480, "left": 205, "top": 32, "bottom": 56 }
+      "placement": {
+        "regular": {
+          "width": 600,
+          "left": 18,
+          "top": 94
+        },
+        "compact": {
+          "width": 480,
+          "left": 205,
+          "top": 33
+        }
       }
     },
     {
@@ -38,10 +45,17 @@
         "width": 1440,
         "height": 351
       },
-      "cloudOverlap": 0.09,
-      "multiAircraft": {
-        "regular": { "width": 640, "left": 22, "top": 160, "bottom": 72 },
-        "compact": { "width": 590, "left": 90, "top": 112, "bottom": 57 }
+      "placement": {
+        "regular": {
+          "width": 640,
+          "left": 22,
+          "top": 192
+        },
+        "compact": {
+          "width": 590,
+          "left": 90,
+          "top": 116
+        }
       }
     }
   ],

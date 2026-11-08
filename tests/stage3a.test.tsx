@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { renderToStaticMarkup } from 'react-dom/server';
+import { JSDOM } from 'jsdom';
 import { Display } from '../src/App';
 import {
   artworkFor,
@@ -10,6 +11,7 @@ import {
   approvedAsset,
   prominentRoute,
   aircraftName,
+  secondaryName,
 } from '../src/artwork';
 import type { ArtworkManifest } from '../src/artwork';
 import { fleet, scenes } from '../src/simulation';
@@ -54,7 +56,7 @@ test('exact aircraft type and readable A380 select the accepted illustration', (
     <Display scene={{ ...scenes[0], primary: a380 }} />,
   );
   assert.match(html, /aeropane_a380_baseline.webp/);
-  assert.match(html, /cloud-layer/);
+  assert.doesNotMatch(html, /cloud-layer|cloud_strip/);
   assert.match(html, /preserveAspectRatio="xMaxYMax meet"/);
 });
 test('every approved runtime asset exists with its declared intrinsic dimensions', () => {
@@ -160,46 +162,46 @@ test('multi-aircraft composition stays prominent with and without route metadata
       <Display scene={{ ...multi, primary: { ...primary, origin: null } }} />,
     );
     assert.match(missing, /composed-artwork/);
-    assert.doesNotMatch(missing, /aria-label="Reported route"/);
+    assert.equal(
+      JSDOM.fragment(missing).querySelector('.flight-info .route'),
+      null,
+    );
     {
       const unchanged = renderToStaticMarkup(
         <Display scene={{ ...multi, secondary: [] }} />,
       );
-      assert.doesNotMatch(unchanged, /composed-artwork|--regular-art-width/);
+      assert.equal(
+        JSDOM.fragment(unchanged)
+          .querySelector('.aircraft-card')
+          ?.getAttribute('style'),
+        JSDOM.fragment(html)
+          .querySelector('.aircraft-card')
+          ?.getAttribute('style'),
+      );
       assert.match(unchanged, /aircraft-layer/);
     }
   }
 });
-test('independent aircraft and cloud images share a scaling canvas in both layouts', () => {
+test('clouds are never rendered; the same aircraft viewport is used in both layouts', () => {
   for (const primary of [a380, fleet[0]])
     for (const secondary of [[], [fleet[3]]]) {
       const html = renderToStaticMarkup(
         <Display scene={{ ...scenes[0], primary, secondary }} />,
       );
-      const layers = [
-        ...html.matchAll(
-          /class="(cloud-layer|aircraft-layer)" viewBox="([^"]+)" preserveAspectRatio="([^"]+)"/g,
-        ),
-      ];
-      assert.equal(layers.length, 2);
-      assert.equal(layers[0][2], layers[1][2]);
-      assert.equal(layers[0][3], layers[1][3]);
-      assert.match(html, /aeropane_cloud_strip_01.webp/);
+      const fragment = JSDOM.fragment(html);
+      assert.equal(fragment.querySelectorAll('image').length, 1);
+      assert.doesNotMatch(html, /cloud-layer|cloud_strip/);
+      assert.equal(
+        fragment
+          .querySelector('.aircraft-layer')
+          ?.getAttribute('preserveAspectRatio'),
+        'xMaxYMax meet',
+      );
     }
 });
-test('new artwork can opt into per-silhouette composition without changing identification or single-aircraft rendering', () => {
-  const manifest = structuredClone(artworkManifest);
-  delete manifest.aircraft[0].multiAircraft;
-  const html = renderToStaticMarkup(
-    <Display
-      scene={{ ...scenes[1], primary: a380, secondary: [fleet[3]] }}
-      manifest={manifest}
-    />,
-  );
-  assert.doesNotMatch(html, /composed-artwork|--regular-art-width/);
-  assert.match(html, /aeropane_a380_baseline.webp/);
+test('one per-silhouette placement profile supplies each viewport without layout-mode overrides', () => {
   for (const asset of artworkManifest.aircraft) {
-    for (const p of Object.values(asset.multiAircraft ?? {})) {
+    for (const p of Object.values(asset.placement ?? {})) {
       assert.ok(
         Number.isFinite(p.width) &&
           p.width > 0 &&
@@ -209,6 +211,45 @@ test('new artwork can opt into per-silhouette composition without changing ident
       assert.ok(Number.isFinite(p.top) && p.top >= 0);
     }
   }
+});
+test('secondary cards prioritise validated routes and type without callsign substitutions', () => {
+  const secondary = [
+    { ...fleet[1], id: 'secondary-1', callsign: 'HIDE123' },
+    { ...fleet[2], id: 'secondary-2', origin: null, callsign: 'HIDE456' },
+  ];
+  const fragment = JSDOM.fragment(
+    renderToStaticMarkup(<Display scene={{ ...scenes[1], secondary }} />),
+  );
+  const cards = [...fragment.querySelectorAll('.nearby-aircraft')];
+  assert.equal(cards.length, 2);
+  assert.match(cards[0].textContent!, /DUB.*LPL/);
+  assert.equal(cards[1].querySelector('.secondary-route'), null);
+  assert.doesNotMatch(
+    cards.map((c) => c.textContent).join(''),
+    /HIDE123|HIDE456|Route unavailable/,
+  );
+});
+test('secondary shortening preserves known models and leaves unrecognised names unchanged', () => {
+  assert.equal(
+    secondaryName({
+      ...fleet[0],
+      manufacturer: 'Bombardier',
+      model: 'BD-100 Challenger 350',
+    }),
+    'Bombardier Challenger 350',
+  );
+  const piper = {
+    ...fleet[0],
+    manufacturer: 'Piper',
+    model: 'PA-28-140/150/160/180',
+  };
+  assert.equal(secondaryName(piper), aircraftName(piper));
+  const global = {
+    ...fleet[0],
+    manufacturer: 'Bombardier',
+    model: 'BD-700-2A12 Global 7500 Ultra Long Range Business Jet',
+  };
+  assert.equal(secondaryName(global), 'Bombardier Global 7500');
 });
 test('secondary list remains capped, unique and type-focused without missing-operator messages', () => {
   const scene = {

@@ -7,6 +7,7 @@ import {
   artworkFor,
   artworkManifest,
   prominentRoute,
+  secondaryName,
 } from './artwork';
 import type { ArtworkManifest } from './artwork';
 import { AircraftArtwork } from './AircraftArtwork';
@@ -93,15 +94,18 @@ function Route({
 function Details({ aircraft }: { aircraft: Aircraft }) {
   const entries = [
     ['Callsign', aircraft.callsign],
-    ['Registration', aircraft.registration],
     ['Direction', aircraft.direction],
+    ['Operator', aircraft.operator],
   ].filter(([, value]) => value);
   return entries.length ? (
     <dl className="details">
       {entries.map(([label, value]) => (
-        <div key={label}>
+        <div
+          key={label}
+          className={label === 'Operator' ? 'detail-operator' : ''}
+        >
           <dt>{label}</dt>
-          <dd>{value}</dd>
+          <dd title={value!}>{value}</dd>
         </div>
       ))}
     </dl>
@@ -151,31 +155,27 @@ function Primary({
   aircraft,
   delayed,
   manifest,
-  multiple,
 }: {
   aircraft: Aircraft;
   delayed: boolean;
   manifest: ArtworkManifest;
-  multiple: boolean;
 }) {
   const name = aircraftName(aircraft);
   const asset = artworkFor(aircraft, manifest);
   const frame = asset?.frame ?? asset;
-  // Panoramic silhouettes use the existing full-width lower region, rather
-  // than becoming small in the side-by-side region used by taller artwork.
-  const wideArtwork = frame ? frame.width / frame.height > 2.8 : false;
-  const composition = multiple ? asset?.multiAircraft : undefined;
+  // One placement for each artwork/viewport, independent of secondary count,
+  // route availability, and the height of the expanded information region.
+  const composition = asset?.placement;
   const placement =
     composition && frame
       ? ({
           '--regular-art-width': `${composition.regular.width}px`,
           '--regular-art-left': `${composition.regular.left}px`,
           '--regular-art-top': `${composition.regular.top}px`,
-          '--regular-art-bottom': `${composition.regular.bottom}px`,
           '--compact-art-width': `${composition.compact.width}px`,
           '--compact-art-left': `${composition.compact.left}px`,
           '--compact-art-top': `${composition.compact.top}px`,
-          '--compact-art-bottom': `${composition.compact.bottom}px`,
+          '--art-ratio': frame.height / frame.width,
         } as CSSProperties)
       : undefined;
   return (
@@ -213,24 +213,14 @@ function Primary({
           className={
             'aircraft-card ' +
             (prominentRoute(aircraft) ? 'has-route' : 'no-route') +
-            (wideArtwork ? ' wide-artwork' : '') +
             (composition ? ' composed-artwork' : '')
           }
           style={placement}
         >
           <div className="flight-info">
             <Route aircraft={aircraft} composed={!!composition} />
-            {aircraft.operator ? (
-              <p className="operator" title={aircraft.operator}>
-                {aircraft.operator}
-              </p>
-            ) : null}
           </div>
-          <AircraftArtwork
-            asset={asset}
-            clouds={manifest.clouds}
-            multiple={!!composition}
-          />
+          <AircraftArtwork asset={asset} />
           <Details aircraft={aircraft} />
         </div>
         <Measurements aircraft={aircraft} />
@@ -239,44 +229,52 @@ function Primary({
   );
 }
 function Secondary({ aircraft }: { aircraft: Aircraft }) {
-  const name = aircraftName(aircraft);
+  const fullName = aircraftName(aircraft);
+  const name = secondaryName(aircraft);
+  const route = prominentRoute(aircraft);
   return (
     <article
       className={
-        'nearby-aircraft ' + (name.length > 32 ? 'long-secondary' : '')
+        'nearby-aircraft ' +
+        (name.length > 24 ? 'long-secondary ' : '') +
+        (!route ? 'no-secondary-route' : '')
       }
     >
       <div className="nearby-identity">
-        <h3 title={name}>{name}</h3>
-        {aircraft.callsign || aircraft.registration ? (
-          <p className="secondary-id">
-            {aircraft.callsign || aircraft.registration}
-          </p>
-        ) : null}
+        <h3 title={fullName}>{name}</h3>
       </div>
-      <div
-        className={
-          'nearby-value ' +
-          (aircraft.altitudeFt === null ? 'missing-value' : '')
-        }
-      >
-        <span>
-          {aircraft.altitudeFt === null ? '—' : altitude(aircraft.altitudeFt)}
-          <small>{aircraft.altitudeFt === null ? '' : ' ft'}</small>
-        </span>
-        <small>Barometric</small>
-      </div>
-      <div
-        className={
-          'nearby-value nearby-distance ' +
-          (aircraft.distanceKm === null ? 'missing-value' : '')
-        }
-      >
-        <span>
-          {aircraft.distanceKm === null ? '—' : distance(aircraft.distanceKm)}
-          <small>{aircraft.distanceKm === null ? '' : ' km'}</small>
-        </span>
-        <small>Horizontal</small>
+      {route ? (
+        <div className="secondary-route" aria-label="Reported route">
+          <span>{route.from}</span>
+          <span className="secondary-arrow" aria-hidden="true">
+            →
+          </span>
+          <span>{route.to}</span>
+        </div>
+      ) : null}
+      <div className="secondary-metrics">
+        <div
+          className={
+            'nearby-value ' +
+            (aircraft.altitudeFt === null ? 'missing-value' : '')
+          }
+        >
+          <span>
+            {aircraft.altitudeFt === null ? '—' : altitude(aircraft.altitudeFt)}
+            <small>{aircraft.altitudeFt === null ? '' : ' ft'}</small>
+          </span>
+        </div>
+        <div
+          className={
+            'nearby-value nearby-distance ' +
+            (aircraft.distanceKm === null ? 'missing-value' : '')
+          }
+        >
+          <span>
+            {aircraft.distanceKm === null ? '—' : distance(aircraft.distanceKm)}
+            <small>{aircraft.distanceKm === null ? '' : ' km'}</small>
+          </span>
+        </div>
       </div>
     </article>
   );
@@ -353,7 +351,6 @@ export function Display({
               aircraft={scene.primary}
               delayed={scene.state === 'delayed'}
               manifest={manifest}
-              multiple={secondaries.length > 0}
             />
           ) : (
             <Empty
@@ -368,7 +365,12 @@ export function Display({
                 <h2>Also nearby</h2>
                 <span>{secondaries.length} other aircraft</span>
               </div>
-              <div className="nearby-list">
+              <div
+                className="nearby-list"
+                style={
+                  { '--nearby-count': secondaries.length } as CSSProperties
+                }
+              >
                 {secondaries.map((aircraft) => (
                   <Secondary key={aircraft.id} aircraft={aircraft} />
                 ))}

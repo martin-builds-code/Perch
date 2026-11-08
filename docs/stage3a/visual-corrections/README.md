@@ -1,5 +1,9 @@
 # Stage 3A — fallback, composition and radar corrections
 
+Historical record of `b22a5c2`. The [approved readability revision](../../stage3-readability/README.md)
+supersedes the count-dependent composition and cloud-rendering expectations below.
+Images and results here remain evidence for that earlier commit.
+
 Source baseline: `8669b10be0dc3679d589bb1e5d7946a9c294c949`.
 Branch: `stage-3a-display-redesign`, [Draft PR #5](https://github.com/martin-builds-code/Perch/pull/5).
 These are targeted corrections to the existing Composition B interface. No

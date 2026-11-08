@@ -15,6 +15,8 @@ const names = {
   a320: ['Airbus', 'A320neo', 'A20N'],
   b777: ['Boeing', '777-300ER', 'B77W'],
   pioneer: ['ALPI', 'Pioneer 330', ''],
+  boeing: ['Boeing', '737-800', 'B738'],
+  embraer: ['Embraer', '190', 'E190'],
 };
 const a = (kind: keyof typeof names, id = 'fixture-primary'): Aircraft => ({
   ...fleet[0],
@@ -35,6 +37,73 @@ const a = (kind: keyof typeof names, id = 'fixture-primary'): Aircraft => ({
   destination: { code: 'MAN', iata: 'MAN', icao: 'EGCC', name: 'Manchester' },
 });
 function scene(kind: string): Scene {
+  if (kind.startsWith('readability-')) {
+    const primary: Aircraft = {
+      ...a('a320'),
+      callsign: 'NLA 204',
+      direction: 'East',
+      altitudeFt: 6025,
+      distanceKm: 13,
+      origin: { code: 'MAN', iata: 'MAN', name: 'Manchester' },
+      destination: { code: 'AMS', iata: 'AMS', name: 'Amsterdam Schiphol' },
+    };
+    const secondary = [
+      a('atr', 'fixture-2'),
+      a('boeing', 'fixture-3'),
+      a('embraer', 'fixture-4'),
+    ];
+    const routes = [
+      ['DUB', 'MAN'],
+      ['AGP', 'GLA'],
+      ['LCY', 'AMS'],
+    ];
+    secondary.forEach((aircraft, i) => {
+      aircraft.origin = { code: routes[i][0], name: '' };
+      aircraft.destination = { code: routes[i][1], name: '' };
+      aircraft.operator = null;
+    });
+    secondary[0].altitudeFt = 7725;
+    secondary[0].distanceKm = 14.5;
+    secondary[1].altitudeFt = 38000;
+    secondary[1].distanceKm = 8.4;
+    secondary[2].altitudeFt = 12300;
+    secondary[2].distanceKm = 10.1;
+    if (kind === 'readability-partial') {
+      secondary[1].origin = null;
+      secondary[2].destination = null;
+    }
+    if (kind === 'readability-wide')
+      secondary.forEach((a) => {
+        a.origin = { code: 'MMW', name: '' };
+        a.destination = { code: 'WWK', name: '' };
+      });
+    if (kind === 'readability-sparse') {
+      primary.callsign = null;
+      primary.direction = null;
+      primary.operator = null;
+      secondary.forEach((a) => {
+        a.origin = null;
+        a.destination = null;
+      });
+      secondary[1].altitudeFt = null;
+      secondary[2].distanceKm = null;
+    }
+    return {
+      id: 'stage3a-fixture',
+      label: 'Synthetic display',
+      duration: 60000,
+      state: 'available',
+      primary,
+      secondary:
+        kind === 'readability-single'
+          ? []
+          : kind === 'readability-two'
+            ? secondary.slice(0, 2)
+            : kind === 'readability-one-secondary'
+              ? secondary.slice(0, 1)
+              : secondary,
+    };
+  }
   const primary = a(
     kind.startsWith('a320-')
       ? 'a320'

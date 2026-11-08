@@ -35,6 +35,7 @@ const scenarios = [
 ];
 const results = [];
 await mkdir('docs/stage3a', { recursive: true });
+await mkdir('docs/stage3-readability', { recursive: true });
 async function settled(page) {
   await page.evaluate(() => document.fonts.ready);
   await page.waitForTimeout(80);
@@ -86,6 +87,7 @@ async function geometry(page) {
           rect: rect(e),
           identity: rect(e.querySelector('.nearby-identity')),
           value: rect(e.querySelector('.nearby-value')),
+          route: e.querySelector('.secondary-route') ? rect(e.querySelector('.secondary-route')) : null,
           text: rect(e.querySelector('h3')),
         }),
       ),
@@ -106,6 +108,7 @@ async function geometry(page) {
 }
 async function wire(page) {
   const attempts = [];
+  await page.route('**/api/enrichment?*',r=>r.fulfill({status:503,contentType:'application/json',body:'{"error":"enrichment-disabled"}'}));
   await page.route('**/api/session', (r) =>
     r.fulfill({
       contentType: 'application/json',
@@ -203,6 +206,7 @@ try {
             `${scenario}: secondary text overlap`,
           );
           assert.ok(s.text.bottom <= s.value.y + 1);
+          if(s.route){assert.ok(s.text.bottom<=s.route.y+1,`${scenario}: secondary route/type collision`);assert.ok(s.route.bottom<=s.value.y+1,`${scenario}: secondary route/metrics collision`);}
           assert.ok(s.value.bottom <= s.rect.bottom);
         }
         if (g.near) assert.ok(g.near.bottom <= g.footer.y + 1);
@@ -302,7 +306,7 @@ try {
       e.getAttribute('href').endsWith('.png'),
     ),
   );
-  assert.equal(pngs.length, 2);
+  assert.equal(pngs.length, 1);
   assert.equal(await fallback.locator('.primary').count(), 1);
   await fallback.close();
   results.push({
@@ -402,6 +406,7 @@ try {
       pinShots.push(await p.screenshot());
     }
     assert.ok(pinShots[0].equals(pinShots[1]), 'PIN screen pixels changed');
+    if(viewport.width===1024)await p.screenshot({path:`docs/stage3-readability/pin-${viewport.width}x${viewport.height}.png`});
     await p.unroute('**/api/session');
     await p.route('**/api/session', r => r.fulfill({contentType:'application/json', body:'{"authenticated":true}'}));
     const shots = [];
@@ -412,6 +417,7 @@ try {
       shots.push(await p.screenshot());
     }
     assert.ok(shots[0].equals(shots[1]), 'sleep pixels changed');
+    if(viewport.width===1024)await p.screenshot({path:`docs/stage3-readability/sleep-${viewport.width}x${viewport.height}.png`});
     assert.equal(requests.length, 0);
     if (viewport.height === 768)
       await p.screenshot({ path: 'docs/stage3a/quiet-hours.png' });

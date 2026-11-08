@@ -5,7 +5,6 @@ export interface ArtworkPlacement {
   width: number;
   left: number;
   top: number;
-  bottom: number;
 }
 
 export interface ArtworkAsset {
@@ -19,12 +18,8 @@ export interface ArtworkAsset {
   typeCodes?: string[];
   families?: string[];
   frame?: { x: number; y: number; width: number; height: number };
-  // How far the separate cloud strip overlaps the aircraft frame, as a fraction
-  // of framed width. Both layers then share one uniform composition transform.
-  cloudOverlap?: number;
-  // Presentation only, relative to the card in CSS pixels. Top/bottom bound the
-  // available viewport; both image layers scale together inside it.
-  multiAircraft?: { regular: ArtworkPlacement; compact: ArtworkPlacement };
+  // One presentation-only placement per viewport, shared by every layout mode.
+  placement?: { regular: ArtworkPlacement; compact: ArtworkPlacement };
 }
 export interface ArtworkManifest {
   version: number;
@@ -38,6 +33,21 @@ export function aircraftName(a: Aircraft) {
     [a.manufacturer, a.model].filter(Boolean).join(' ') ||
     'Unidentified aircraft'
   );
+}
+
+// Remove only known redundant technical/category wording. The actual model is
+// retained in the primary header and the secondary title; no type is guessed.
+export function secondaryName(a: Aircraft) {
+  const full = aircraftName(a);
+  if (/^Bombardier BD-100 Challenger 350$/i.test(full))
+    return 'Bombardier Challenger 350';
+  if (
+    /^Bombardier BD-700-2A12 Global 7500(?: Ultra Long Range Business Jet)?$/i.test(
+      full,
+    )
+  )
+    return 'Bombardier Global 7500';
+  return full;
 }
 
 export function approvedAsset(
