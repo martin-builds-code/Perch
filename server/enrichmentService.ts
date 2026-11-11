@@ -1,4 +1,5 @@
 import type { ProviderTrace } from '../src/routeTraceTypes.js';
+import { capturePolicy, rememberResearchRoute } from './routeResearchCapture.js';
 import { fetchHexdb, EnrichmentError, validateLookup } from './hexdb.js';
 import {
   ENRICHMENT_POLICY as P,
@@ -37,7 +38,8 @@ export function createEnrichmentService(
     callsign: string | null,
     observe?: (trace: ProviderTrace) => void,
   ) => Promise<Supplement | null> = (kind, hex, callsign, observe) =>
-    fetchHexdb(kind, hex, callsign, fetch, Date.now, P.timeoutMs, observe),
+    fetchHexdb(kind, hex, callsign, fetch, Date.now, P.timeoutMs, observe,
+      kind === 'route' && capturePolicy() ? (v,t)=>rememberResearchRoute(hex,callsign!,v,t) : undefined),
   now = Date.now,
 ) {
   const cache = new Map<string, EnrichmentResult>();

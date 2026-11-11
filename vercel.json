@@ -31,6 +31,7 @@
     }
   },
   "functions": {
+    "api/route-research.ts": { "maxDuration": 10 },
     "api/aircraft.ts": {
       "maxDuration": 10
     },
