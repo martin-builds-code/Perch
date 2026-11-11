@@ -8,7 +8,12 @@ The previous investigation and its original evidence are preserved unchanged in
 R01 corrects the verified 30-second local-server deferral becoming a five-minute
 browser-wide enrichment pause. It does not change route coverage, the 180-day
 association-age guard, caches, relevance selection or provider request ceilings.
-The final live comparison will be added after a genuinely observed bounded run.
+The [completed report](REPORT.md) compares 46.85 minutes of real observation
+against the original session. Two live local deferrals applied 30-second deadlines
+and recovered at 59.186/44.336 seconds with documented scene restrictions, without
+five-minute pauses. Five of 16 primary aircraft had complete routes (31.25% versus
+25%); complete primary-display time was 16.66% versus 13.18%. Different populations
+and cache/client conditions prevent a firm long-term causal claim.
 
 **Response contract and correction.** Only the service's typed
 LocalEnrichmentDeferral can generate schemaVersion=1, origin=application,
@@ -73,18 +78,30 @@ against the approved baseline. No normal artwork/layout/CSS file was changed.
 The test fixtures use compatible indexing; the Safari build target was not raised.
 No physical iPad or Safari-engine execution is claimed.
 
-**Live trial and access policy.** After committing the verified source, Codex
-will deploy it only to mml3 / perch-aero-pane-stage3a /
-prj_QU4OICxi2QPrRtK0JS83ZTaLP9bW as Preview using the existing direct workflow.
-Only its stable Stage 3A alias will be reassigned; earlier immutable URLs remain.
-Existing Preview credentials/configuration are reused without reading secrets.
-A new explicit server-only lease will last at most 50 minutes, including build
-and validation. Observation runs until that absolute expiry, with a 50-minute
-observer ceiling and a target of at least 40 minutes of real observation. The
-server restores PIN access at the end of the trial; the project flag is disabled
-for future builds after activating the one deployment. Expiry and locked-screen
-HTTP/browser checks must be completed. The corrected Preview stays on the stable
-alias after expiry; normal operation uses the same PIN and the R01 error contract.
+**Completed live trial and access cleanup.** Corrected code commit
+`903a1cf191ba648dbde001014b5c13eafb2ed9e0` is READY in Preview
+`dpl_V6WySMt7yY2eJ4pHXWQtp7pW2DUo`, mml3 / perch-aero-pane-stage3a /
+prj_QU4OICxi2QPrRtK0JS83ZTaLP9bW. All 69 runtime source hashes matched.
+Only the stable Stage 3A alias was reassigned; earlier immutable URLs remain.
+The direct source deployment left Git integration disconnected.
+
+A server-only lease ran from 17:13:30.191 to 18:03:30.191 UTC on 11 November
+2026, including build and validation. The actual controlled browser ran from
+17:16:42 to 18:03:33 UTC (46.85 minutes); it stopped when the absolute lease
+expired. The project flag was disabled for future builds immediately after
+activation. No bypass cookie was issued. [Cleanup evidence](CLEANUP.json)
+records nine real post-expiry API 401s and four real PIN browser checks at
+1024×768/624, with zero tracking requests and no diagnostic handle. Both the
+corrected immutable URL and the stable URL now require the existing PIN.
+The superseded partial-run deployment is also closed. No observation process or
+task development server remains running.
+
+The [stable Preview](https://perch-aero-pane-stage3a.vercel.app/?mode=live)
+remains on R01. Refresh existing tabs to load its corrected client bundle.
+Normal PIN-protected operation receives the same safe error contract;
+diagnostic access is not needed for the correction. Configuration metadata
+confirms all other Preview values unchanged; secret values were not viewed.
+Household Production remains 8031a76 / dpl_2WX2Y9nNudmiJCtYMcAaMofp7Yzw.
 
 The baseline comparison is 40 minutes, 29 aircraft, 16 primary, 16 without any
 route API attempt, 25% of primary aircraft ever complete and 13.2% of primary
@@ -95,4 +112,9 @@ are counted; other clients' provider work is unknown. There is no paid service,
 new provider, wider radius, faster positional polling, permanent monitoring,
 credential change, merge or household Production deployment.
 
-An initial exploratory run on 8a5baf0 was stopped after 27.84 minutes when two additional red regression tests exposed a longer-provider-wait edge case. The final client retains Retry-After before reading the body, even on body timeout; a validated contract can only lengthen fallback protection if a header is missing. Both tests then passed. Partial evidence is retained separately and excluded from the final comparison; the final controlled observation uses the revised commit.
+An initial exploratory run on 8a5baf0 was stopped after 27.84 minutes when two
+additional red regression tests exposed a longer-provider-wait edge case. The
+final client retains Retry-After before reading the body, even on body timeout; a
+validated contract can only lengthen fallback protection if a header is missing.
+Both tests then passed. Partial evidence is retained separately and excluded from
+the final comparison; the final controlled observation uses the revised commit.

@@ -1,6 +1,6 @@
 {
   "baseline": "b8076615e4989fe85edebc33ee7058b38f5529f7",
-  "automatedTests": 254,
+  "automatedTests": 256,
   "compiledNodeHttpCases": 19,
   "stage3": [
     {
@@ -12022,5 +12022,7 @@
       "expiredToPin": true,
       "noExtraPolls": true
     }
-  ]
+  ],
+  "r01FinalSource": "903a1cf191ba648dbde001014b5c13eafb2ed9e0",
+  "longerRetryAfterBodyFailureRegressionsPassed": true
 }

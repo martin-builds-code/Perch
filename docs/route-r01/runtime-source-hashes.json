@@ -1,0 +1,290 @@
+{
+  "codeCommit": "903a1cf191ba648dbde001014b5c13eafb2ed9e0",
+  "deploymentId": "dpl_V6WySMt7yY2eJ4pHXWQtp7pW2DUo",
+  "all69ComparedWithVercelSourceUids": true,
+  "files": [
+    {
+      "file": ".gitignore",
+      "sha": "510667c9c75279c13882e0ab1ae2ec1ddcf33879"
+    },
+    {
+      "file": "api/aircraft.ts",
+      "sha": "ca1d6073dfa398a0b49c871ed7b5348d59973284"
+    },
+    {
+      "file": "api/enrichment.ts",
+      "sha": "9a305fa1278fdd7d242edc62682c5c82354854a8"
+    },
+    {
+      "file": "api/session.ts",
+      "sha": "4eb653f4ad03cbd4ab49887c3694d515621e669a"
+    },
+    {
+      "file": "eslint.config.js",
+      "sha": "3cdcba69443dbeb85fc22c7eabe2ec4e7bd14972"
+    },
+    {
+      "file": "index.html",
+      "sha": "01f29497d3f94a080820b9db46e92fdf232c9ab5"
+    },
+    {
+      "file": "package-lock.json",
+      "sha": "d001bf248ca550dde9024f5d5aac2e91d98eb7ba"
+    },
+    {
+      "file": "package.json",
+      "sha": "871a2f6d1af01e0a35c4a086b565f746b13b64fa"
+    },
+    {
+      "file": "public/OFL-Nunito.txt",
+      "sha": "a33131941c985a976a4f7c3b2421f2db548d7396"
+    },
+    {
+      "file": "public/fonts/OFL-BarlowCondensed.txt",
+      "sha": "12beb2906b258db6fdf88f2021bd0b87689ba855"
+    },
+    {
+      "file": "scripts/browser-check.mjs",
+      "sha": "9269f974b0f72c8a0572fd36e941b6e9a2297bc6"
+    },
+    {
+      "file": "scripts/compare-secondary-enrichment.mjs",
+      "sha": "21ca77a60835141833f5e3110d9624c2a94b8178"
+    },
+    {
+      "file": "scripts/configure-auth.mjs",
+      "sha": "ddb3231037598446eb506ba544264a6400761b53"
+    },
+    {
+      "file": "scripts/diagnostic-export-browser-check.mjs",
+      "sha": "730c4e5f3663f4f14ee8570b8501aba680ed0350"
+    },
+    {
+      "file": "scripts/enrichment-browser-check.mjs",
+      "sha": "481cae2756188e4961b687bf509151e4fb8a7834"
+    },
+    {
+      "file": "scripts/observe-route-trial.mjs",
+      "sha": "180fe7d6396d14a00e9a9de3087d5d9aa47275fd"
+    },
+    {
+      "file": "scripts/operator-browser-check.mjs",
+      "sha": "67701b0c449e5efb65057a8461220c2105f31658"
+    },
+    {
+      "file": "scripts/r01-browser-check.mjs",
+      "sha": "9f28345315afbbc142f29e92506e7533084d868a"
+    },
+    {
+      "file": "scripts/replay-selection.mjs",
+      "sha": "b36223c0b617144fc5a922f3dd4dd7ea75384bc2"
+    },
+    {
+      "file": "scripts/route-trial-browser-check.mjs",
+      "sha": "d27e0332df89a558ddcc8a3684dcce9a0b573eb8"
+    },
+    {
+      "file": "scripts/secondary-enrichment-browser-check.mjs",
+      "sha": "fcaa6a7a7c4683b5b401182553dff327c46878b7"
+    },
+    {
+      "file": "scripts/selection-browser-check.mjs",
+      "sha": "be89dcfec32d0c56e68b566cbe15bcc9db17be7b"
+    },
+    {
+      "file": "scripts/stage3-readability-check.mjs",
+      "sha": "731b16b340bcc20a4166a457b7996821b4802ceb"
+    },
+    {
+      "file": "scripts/stage3-readability-gallery.mjs",
+      "sha": "f2963a20f7ff75cf3d36a07803a9e7bcca946ff3"
+    },
+    {
+      "file": "scripts/stage3a-browser-check.mjs",
+      "sha": "9a818dd061b3392c00da14900b403349cabd0498"
+    },
+    {
+      "file": "scripts/stage3a-final-composition-check.mjs",
+      "sha": "4fd77c0a83f57f73ba45de6eeb1b27de89375c73"
+    },
+    {
+      "file": "scripts/test-server-runtime.mjs",
+      "sha": "10e9a88538d9a8151e6f50f27353428b439ab12e"
+    },
+    {
+      "file": "server/aircraft.ts",
+      "sha": "74dfdceb09032921476c79f6d4e764f733fd4190"
+    },
+    {
+      "file": "server/auth.ts",
+      "sha": "d4b52ce381e9cd532b4b67cabf9cfcdf1dab94ca"
+    },
+    {
+      "file": "server/enrichmentService.ts",
+      "sha": "2f9cdb61c071d09430d5a22f68b201b43a59e83f"
+    },
+    {
+      "file": "server/hexdb.ts",
+      "sha": "74f717114813b7aff1877812dcf30d5e13855b73"
+    },
+    {
+      "file": "server/provider.ts",
+      "sha": "ad0f1d53c36be929f0d1c82fcc40cc2f6b13dcf8"
+    },
+    {
+      "file": "server/routeTrial.ts",
+      "sha": "52256eba879c04a842eef7bd3bad1a639136d11b"
+    },
+    {
+      "file": "server/service.ts",
+      "sha": "7211e632fc880e7a3b8f1b17a7a0693083b408da"
+    },
+    {
+      "file": "src/AircraftArtwork.tsx",
+      "sha": "c47a1e03670ddbfa319580f4566daf926f6ba2e6"
+    },
+    {
+      "file": "src/App.tsx",
+      "sha": "10f17235490effd325f693120576b82114af24a1"
+    },
+    {
+      "file": "src/Appliance.tsx",
+      "sha": "f25cf3ec58e45a8c840c0faf99c641b4979747aa"
+    },
+    {
+      "file": "src/DiagnosticExport.tsx",
+      "sha": "dba79bc196c94e21dac88649e783e7312e4a8e47"
+    },
+    {
+      "file": "src/LiveApp.tsx",
+      "sha": "8da7b3a2c62cf8e5d12d75938431f3e09beadf94"
+    },
+    {
+      "file": "src/RouteTrialDisplay.tsx",
+      "sha": "90add14d454b6c90f8c51ea74acd1bde9efb2d20"
+    },
+    {
+      "file": "src/artwork.ts",
+      "sha": "f348097a4c349a507bc13a5f34d866754a1ce04d"
+    },
+    {
+      "file": "src/artwork/manifest.json",
+      "sha": "ab1f09c62100ecf26dbf33c00a0d75b3aa8cc03a"
+    },
+    {
+      "file": "src/dataDiagnostics.ts",
+      "sha": "12752a2a04f2a035f5eed930c008a52c68136391"
+    },
+    {
+      "file": "src/diagnosticExport.ts",
+      "sha": "4acafaf78754b4b406ae0b25f5c325076c38272f"
+    },
+    {
+      "file": "src/enrichment.ts",
+      "sha": "61c740101792ebe26497c4cc186b18cff38630dc"
+    },
+    {
+      "file": "src/enrichmentFailure.ts",
+      "sha": "5dec0ec79290e325acc07b2f81f84f891bd85c8f"
+    },
+    {
+      "file": "src/enrichmentTypes.ts",
+      "sha": "d6d27d465f4cd9fd7718cc44748077b590ce17c7"
+    },
+    {
+      "file": "src/live.ts",
+      "sha": "1d4569bff0af48db9ca09738198aba873ad37591"
+    },
+    {
+      "file": "src/liveTypes.ts",
+      "sha": "2cb734cd170b71c1a3dea7234be5bc10b9ca4752"
+    },
+    {
+      "file": "src/main.tsx",
+      "sha": "5f3fb2a3ec04a0f71010ab38cea8f604fb326bfb"
+    },
+    {
+      "file": "src/mode.ts",
+      "sha": "778dace19007cf70655e32991f1d70a4fe1b75cd"
+    },
+    {
+      "file": "src/qa.tsx",
+      "sha": "de742c93ccde40688ca19e81ce15836ab5e1f879"
+    },
+    {
+      "file": "src/quietHours.ts",
+      "sha": "8e2ffb17b1d81c2649f851bb2de687eb0ecda04c"
+    },
+    {
+      "file": "src/routeDiagnostics.ts",
+      "sha": "bf422d24b9eb20e006390bc9ac2775791c6aaec7"
+    },
+    {
+      "file": "src/routeTraceTypes.ts",
+      "sha": "459fa38ef3f7a2771a9a32b5042906beefa33b37"
+    },
+    {
+      "file": "src/selection.ts",
+      "sha": "e4769f905d4f85ca961f0cae750b0a6918a91879"
+    },
+    {
+      "file": "src/simulation.ts",
+      "sha": "1729b7f831909c8f34f8929a6ce80de5db9b55b6"
+    },
+    {
+      "file": "src/style.css",
+      "sha": "d3a52dc8bfad5f8d175ef1821b70645c0f2bcb97"
+    },
+    {
+      "file": "tsconfig.json",
+      "sha": "95f133b6e03b0dacab9fcac6f657ab97c51701a4"
+    },
+    {
+      "file": "tsconfig.server.json",
+      "sha": "2536afdadf0ab833c30e2d8622f6d85b40549d0e"
+    },
+    {
+      "file": "vercel.json",
+      "sha": "ff32347bda1a75143470c0dfc00ca10e5c5ee49e"
+    },
+    {
+      "file": "vite.config.ts",
+      "sha": "4afd27e61e1fa31631ac3e5f1a117d42c91d6efe"
+    },
+    {
+      "file": "public/aircraft/aeropane_a380_baseline.png",
+      "sha": "48688a2347ee3c90e629ca105deb825020303c92",
+      "size": 935164
+    },
+    {
+      "file": "public/aircraft/aeropane_a380_baseline.webp",
+      "sha": "95fa71e9ff8b18700f4915f7c072f73e9c7c7ce5",
+      "size": 157666
+    },
+    {
+      "file": "public/aircraft/aeropane_cloud_strip_01.png",
+      "sha": "98a91e55e5faca66ac6454d893f97ebe1d6c156d",
+      "size": 246822
+    },
+    {
+      "file": "public/aircraft/aeropane_cloud_strip_01.webp",
+      "sha": "df28d47692f44c5253878259861a8c7ab596d55a",
+      "size": 51078
+    },
+    {
+      "file": "public/aircraft/aeropane_generic_narrowbody.png",
+      "sha": "3387e315f02186963613702a6eca673fb7478ced",
+      "size": 504571
+    },
+    {
+      "file": "public/aircraft/aeropane_generic_narrowbody.webp",
+      "sha": "adf16cd636a36c82dedc023ae1a750a439a6560e",
+      "size": 88932
+    },
+    {
+      "file": "public/fonts/barlow-condensed-600-latin.woff",
+      "sha": "3885689789013b8a9b776125d91f0ffcceaed0b4",
+      "size": 23356
+    }
+  ]
+}

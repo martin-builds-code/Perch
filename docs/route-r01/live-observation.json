@@ -1,0 +1,2456 @@
+{
+  "schemaVersion": 1,
+  "startedAtMs": 1794417402303,
+  "observedUntilMs": 1794420213370,
+  "actualElapsedMs": 2811067,
+  "requestedMinutes": 50,
+  "stoppedReason": "diagnostic-lifecycle-ended",
+  "network": {
+    "positionRequests": 188,
+    "enrichmentRequests": 33,
+    "sessionDenials": 1,
+    "networkFailures": 2
+  },
+  "pageErrorCount": 0,
+  "lastReport": {
+    "schemaVersion": 1,
+    "startedAtMs": 1794417404810,
+    "endedAtMs": 1794420198354,
+    "expiresAtMs": 1794420210191,
+    "finished": false,
+    "truncated": false,
+    "distinctAircraft": 18,
+    "distinctDetectedFlights": 18,
+    "distinctDisplayedFlights": 17,
+    "distinctFlights": 17,
+    "aircraftBecomingPrimary": 16,
+    "aircraftWithValidCallsigns": 18,
+    "primaryAircraftWithCompleteRoutes": 5,
+    "secondaryAircraftObserved": 9,
+    "secondaryAircraftWithCompleteRoutes": 3,
+    "primaryAircraftCompleteRoutePercent": 31.25,
+    "secondaryAircraftCompleteRoutePercent": 33.333333333333336,
+    "counters": {
+      "positionalSnapshots": 187,
+      "primaryAttempts": 28,
+      "applicationAttempts": 32,
+      "routeLookupAttempts": 16,
+      "primaryRouteLookupAttempts": 12,
+      "primaryResponses": 28,
+      "applicationResponses": 32,
+      "hexdbRequestsStarted": 20,
+      "hexdbResponsesReceived": 20,
+      "primaryHexdbRequestsStarted": 18,
+      "routeHexdbRequestsStarted": 11,
+      "hexdbRouteNegativeResponses": 3,
+      "routeNegativeResponses": 4,
+      "primaryRouteNegativeResponses": 2,
+      "clientNegativeCacheSceneUses": 142,
+      "hexdbRouteRejectedResponses": 5,
+      "routeRejectedResponses": 7,
+      "primaryRouteRejectedResponses": 6,
+      "disappearedBeforeLookup": 1,
+      "secondaryDisappearedBeforeLookup": 1,
+      "identityLookupAttempts": 16,
+      "aircraftHexdbRequestsStarted": 9,
+      "serverCacheHits": 10,
+      "secondaryAttempts": 4,
+      "secondaryRouteLookupAttempts": 4,
+      "secondaryResponses": 4,
+      "secondaryHexdbRequestsStarted": 2,
+      "secondaryRouteNegativeResponses": 2,
+      "hexdbRouteCompleteResponses": 3,
+      "routeCompleteResponses": 5,
+      "primaryRouteCompleteResponses": 4,
+      "clientPositiveCacheSceneUses": 34,
+      "secondaryRouteRejectedResponses": 1,
+      "applicationErrors": 2,
+      "applicationHttpErrors": 2,
+      "serverCooldownIncidents": 2,
+      "verifiedLocalDeferrals": 2,
+      "secondaryRouteCompleteResponses": 1
+    },
+    "exposure": {
+      "primaryMs": 1517856,
+      "secondaryMs": 142618,
+      "primaryCompleteMs": 252832,
+      "secondaryCompleteMs": 33689
+    },
+    "primaryCompleteRoutePercent": 16.657179600699934,
+    "secondaryCompleteRoutePercent": 23.621842965123616,
+    "firstDetectionToLookup": {
+      "count": 16,
+      "medianMs": 0,
+      "maxMs": 2598
+    },
+    "firstDetectionToUsableRoute": {
+      "count": 5,
+      "medianMs": 702,
+      "maxMs": 3387
+    },
+    "primaryFirstDetectionToLookup": {
+      "count": 12,
+      "medianMs": 0,
+      "maxMs": 2598
+    },
+    "secondaryFirstDetectionToLookup": {
+      "count": 4,
+      "medianMs": 0,
+      "maxMs": 1
+    },
+    "primaryFirstDetectionToUsableRoute": {
+      "count": 4,
+      "medianMs": 753,
+      "maxMs": 3387
+    },
+    "secondaryFirstDetectionToUsableRoute": {
+      "count": 1,
+      "medianMs": 364,
+      "maxMs": 364
+    },
+    "responseToScenePublication": {
+      "count": 5,
+      "medianMs": 0,
+      "maxMs": 0
+    },
+    "routesAvailableInternallyNotDisplayed": 0,
+    "globalWaitMs": 11801.39999999106,
+    "secondaryWaitMs": 0,
+    "current": [
+      {
+        "ref": "F0017",
+        "model": "Boeing 737 MAX 8",
+        "validCallsign": true,
+        "firstSeenMs": 1794420180155,
+        "firstLookupMs": 1794420180155,
+        "firstRouteMs": 1794420180857,
+        "role": "primary",
+        "state": "Route found",
+        "reason": "complete-iata-pair-displayed",
+        "displayedRoute": "PRG \u2192 DUB",
+        "internalRoute": "PRG \u2192 DUB",
+        "cache": "positive",
+        "cacheRemainingMs": 273166,
+        "lastRequestAtMs": 1794420180155,
+        "primaryWithoutRouteMs": 702,
+        "observedMs": 18199,
+        "present": true,
+        "firstLookupRole": "primary",
+        "responseAtMs": 1794420180857,
+        "response": {
+          "apiStatus": 200,
+          "diagnostic": {
+            "origin": "hexdb",
+            "serverCache": "hit",
+            "upstreamRequestsStarted": 0,
+            "upstreamResponses": 0,
+            "outcome": "complete",
+            "reason": "validated",
+            "httpStatus": 200,
+            "durationMs": 0,
+            "summary": {
+              "callsignMatches": true,
+              "origin": true,
+              "destination": true,
+              "iataPair": true,
+              "associationAgeDays": 18.1
+            }
+          }
+        },
+        "firstRouteRole": "primary",
+        "publicationDelayMs": 0,
+        "cacheObservedAtMs": 1794420195346
+      }
+    ],
+    "deferrals": [
+      {
+        "atMs": 1794418920987,
+        "elapsedMs": 1518676.900000006,
+        "role": "primary",
+        "kind": "aircraft",
+        "ref": "identity",
+        "scheduling": {
+          "treatment": "local-deferral",
+          "reason": "global-gate",
+          "serverRetryAfterMs": 30000,
+          "serverWaitMs": 30000,
+          "priorGlobalWaitMs": 29744.09999999404,
+          "globalWaitMs": 30000,
+          "secondaryWaitMs": 0,
+          "nextGlobalEligibleAtMs": 1794418950987,
+          "nextSecondaryEligibleAtMs": 1794418950987
+        },
+        "upstreamRequestsStarted": 0,
+        "nextAttemptAtMs": 1794418980173,
+        "nextAttemptRole": "primary",
+        "nextAttemptKind": "aircraft",
+        "actualDelayMs": 59186,
+        "additionalDelayMs": 29186,
+        "observedRestrictions": [
+          "no-current-primary",
+          "scene-opportunity"
+        ]
+      },
+      {
+        "atMs": 1794419205906,
+        "elapsedMs": 1803596.099999994,
+        "role": "primary",
+        "kind": "aircraft",
+        "ref": "identity",
+        "scheduling": {
+          "treatment": "local-deferral",
+          "reason": "global-gate",
+          "serverRetryAfterMs": 30000,
+          "serverWaitMs": 30000,
+          "priorGlobalWaitMs": 29672.20000000298,
+          "globalWaitMs": 30000,
+          "secondaryWaitMs": 59631.5,
+          "nextGlobalEligibleAtMs": 1794419235906,
+          "nextSecondaryEligibleAtMs": 1794419265537.5
+        },
+        "upstreamRequestsStarted": 0,
+        "nextAttemptAtMs": 1794419250242,
+        "nextAttemptRole": "primary",
+        "nextAttemptKind": "aircraft",
+        "actualDelayMs": 44335.80000001192,
+        "additionalDelayMs": 14335.800000011921,
+        "observedRestrictions": [
+          "scene-opportunity"
+        ]
+      }
+    ],
+    "flights": [
+      {
+        "ref": "F0001",
+        "model": "Boeing 747-400",
+        "validCallsign": true,
+        "firstSeenMs": 1794417405932,
+        "firstLookupMs": 1794417405934,
+        "firstRouteMs": null,
+        "role": "primary",
+        "state": "Cached negative result",
+        "reason": "http-404",
+        "displayedRoute": null,
+        "internalRoute": null,
+        "cache": "negative",
+        "cacheRemainingMs": 273689,
+        "lastRequestAtMs": 1794417405934,
+        "primaryWithoutRouteMs": 29189,
+        "observedMs": 29189,
+        "present": false,
+        "firstLookupRole": "primary",
+        "responseAtMs": 1794417407835,
+        "response": {
+          "apiStatus": 200,
+          "diagnostic": {
+            "origin": "hexdb",
+            "serverCache": "miss",
+            "upstreamRequestsStarted": 1,
+            "upstreamResponses": 1,
+            "outcome": "negative",
+            "reason": "http-404",
+            "httpStatus": 404,
+            "durationMs": 1568
+          }
+        },
+        "cacheObservedAtMs": 1794417434001
+      },
+      {
+        "ref": "F0002",
+        "model": "ATR-72-600",
+        "validCallsign": true,
+        "firstSeenMs": 1794417555304,
+        "firstLookupMs": 1794417555305,
+        "firstRouteMs": null,
+        "role": "primary",
+        "state": "Route rejected",
+        "reason": "route-too-old",
+        "displayedRoute": null,
+        "internalRoute": null,
+        "cache": "negative",
+        "cacheRemainingMs": 30470,
+        "lastRequestAtMs": 1794417555305,
+        "primaryWithoutRouteMs": 285365,
+        "observedMs": 285365,
+        "present": false,
+        "firstLookupRole": "primary",
+        "responseAtMs": 1794417556123,
+        "response": {
+          "apiStatus": 200,
+          "diagnostic": {
+            "origin": "hexdb",
+            "serverCache": "miss",
+            "upstreamRequestsStarted": 1,
+            "upstreamResponses": 1,
+            "outcome": "rejected",
+            "reason": "route-too-old",
+            "httpStatus": 200,
+            "durationMs": 341,
+            "summary": {
+              "callsignMatches": true,
+              "origin": true,
+              "destination": true,
+              "iataPair": true,
+              "associationAgeDays": 542
+            }
+          }
+        },
+        "cacheObservedAtMs": 1794417825519
+      },
+      {
+        "ref": "F0003",
+        "model": "Embraer ERJ-190-100",
+        "validCallsign": true,
+        "firstSeenMs": 1794417555304,
+        "firstLookupMs": null,
+        "firstRouteMs": null,
+        "role": "secondary",
+        "state": "Waiting for scheduler",
+        "reason": "global-interval-or-cooldown",
+        "displayedRoute": null,
+        "internalRoute": null,
+        "cache": "missing",
+        "cacheRemainingMs": 0,
+        "lastRequestAtMs": null,
+        "primaryWithoutRouteMs": 0,
+        "observedMs": 15203,
+        "present": false
+      },
+      {
+        "ref": "F0004",
+        "model": "Boeing 737-800",
+        "validCallsign": true,
+        "firstSeenMs": 1794417960836,
+        "firstLookupMs": 1794417960836,
+        "firstRouteMs": null,
+        "role": "secondary",
+        "state": "Route rejected",
+        "reason": "route-too-old",
+        "displayedRoute": null,
+        "internalRoute": null,
+        "cache": "negative",
+        "cacheRemainingMs": 180940,
+        "lastRequestAtMs": 1794417960836,
+        "primaryWithoutRouteMs": 119851,
+        "observedMs": 123091,
+        "present": false,
+        "firstLookupRole": "primary",
+        "responseAtMs": 1794417961728,
+        "response": {
+          "apiStatus": 200,
+          "diagnostic": {
+            "origin": "hexdb",
+            "serverCache": "miss",
+            "upstreamRequestsStarted": 1,
+            "upstreamResponses": 1,
+            "outcome": "rejected",
+            "reason": "route-too-old",
+            "httpStatus": 200,
+            "durationMs": 649,
+            "summary": {
+              "callsignMatches": true,
+              "origin": true,
+              "destination": true,
+              "iataPair": true,
+              "associationAgeDays": 542
+            }
+          }
+        },
+        "cacheObservedAtMs": 1794418080687
+      },
+      {
+        "ref": "F0005",
+        "model": "PIPER PA-38 Tomahawk",
+        "validCallsign": true,
+        "firstSeenMs": 1794418065143,
+        "firstLookupMs": 1794418065143,
+        "firstRouteMs": null,
+        "role": "primary",
+        "state": "Cached negative result",
+        "reason": "http-404",
+        "displayedRoute": null,
+        "internalRoute": null,
+        "cache": "negative",
+        "cacheRemainingMs": 80797,
+        "lastRequestAtMs": 1794418065143,
+        "primaryWithoutRouteMs": 164089,
+        "observedMs": 195091,
+        "present": false,
+        "firstLookupRole": "secondary",
+        "responseAtMs": 1794418065459,
+        "response": {
+          "apiStatus": 200,
+          "diagnostic": {
+            "origin": "hexdb",
+            "serverCache": "hit",
+            "upstreamRequestsStarted": 0,
+            "upstreamResponses": 0,
+            "outcome": "negative",
+            "reason": "http-404",
+            "httpStatus": 404,
+            "durationMs": 0
+          }
+        },
+        "cacheObservedAtMs": 1794418275514
+      },
+      {
+        "ref": "F0006",
+        "model": "Airbus A-320",
+        "validCallsign": true,
+        "firstSeenMs": 1794418125223,
+        "firstLookupMs": 1794418127821,
+        "firstRouteMs": 1794418128610,
+        "role": "secondary",
+        "state": "Route found",
+        "reason": "complete-iata-pair-displayed",
+        "displayedRoute": "LPL \u2192 IOM",
+        "internalRoute": "LPL \u2192 IOM",
+        "cache": "positive",
+        "cacheRemainingMs": 254786,
+        "lastRequestAtMs": 1794418127821,
+        "primaryWithoutRouteMs": 789,
+        "observedMs": 60543,
+        "present": false,
+        "firstLookupRole": "primary",
+        "responseAtMs": 1794418128610,
+        "response": {
+          "apiStatus": 200,
+          "diagnostic": {
+            "origin": "hexdb",
+            "serverCache": "miss",
+            "upstreamRequestsStarted": 1,
+            "upstreamResponses": 1,
+            "outcome": "complete",
+            "reason": "validated",
+            "httpStatus": 200,
+            "durationMs": 565,
+            "summary": {
+              "callsignMatches": true,
+              "origin": true,
+              "destination": true,
+              "iataPair": true,
+              "associationAgeDays": 14.5
+            }
+          }
+        },
+        "firstRouteRole": "primary",
+        "publicationDelayMs": 0,
+        "cacheObservedAtMs": 1794418173727
+      },
+      {
+        "ref": "F0007",
+        "model": "Boeing 737 MAX 8",
+        "validCallsign": true,
+        "firstSeenMs": 1794418410498,
+        "firstLookupMs": 1794418410499,
+        "firstRouteMs": 1794418411013,
+        "role": "secondary",
+        "state": "Route found",
+        "reason": "complete-iata-pair-displayed",
+        "displayedRoute": "DUB \u2192 AMS",
+        "internalRoute": "DUB \u2192 AMS",
+        "cache": "positive",
+        "cacheRemainingMs": 201262,
+        "lastRequestAtMs": 1794418410499,
+        "primaryWithoutRouteMs": 514,
+        "observedMs": 93370,
+        "present": false,
+        "firstLookupRole": "primary",
+        "responseAtMs": 1794418411013,
+        "response": {
+          "apiStatus": 200,
+          "diagnostic": {
+            "origin": "hexdb",
+            "serverCache": "hit",
+            "upstreamRequestsStarted": 0,
+            "upstreamResponses": 0,
+            "outcome": "complete",
+            "reason": "validated",
+            "httpStatus": 200,
+            "durationMs": 0,
+            "summary": {
+              "callsignMatches": true,
+              "origin": true,
+              "destination": true,
+              "iataPair": true,
+              "associationAgeDays": 18
+            }
+          }
+        },
+        "firstRouteRole": "primary",
+        "publicationDelayMs": 0,
+        "cacheObservedAtMs": 1794418500382
+      },
+      {
+        "ref": "F0008",
+        "model": "Boeing 787-9 Dreamliner",
+        "validCallsign": true,
+        "firstSeenMs": 1794418485058,
+        "firstLookupMs": 1794418485058,
+        "firstRouteMs": null,
+        "role": "primary",
+        "state": "Route rejected",
+        "reason": "route-too-old",
+        "displayedRoute": null,
+        "internalRoute": null,
+        "cache": "negative",
+        "cacheRemainingMs": 201787,
+        "lastRequestAtMs": 1794418485058,
+        "primaryWithoutRouteMs": 90036,
+        "observedMs": 105360,
+        "present": false,
+        "firstLookupRole": "secondary",
+        "responseAtMs": 1794418485740,
+        "response": {
+          "apiStatus": 200,
+          "diagnostic": {
+            "origin": "hexdb",
+            "serverCache": "hit",
+            "upstreamRequestsStarted": 0,
+            "upstreamResponses": 0,
+            "outcome": "rejected",
+            "reason": "route-too-old",
+            "httpStatus": 200,
+            "durationMs": 0,
+            "summary": {
+              "callsignMatches": true,
+              "origin": true,
+              "destination": true,
+              "iataPair": true,
+              "associationAgeDays": 377.7
+            }
+          }
+        },
+        "cacheObservedAtMs": 1794418575357
+      },
+      {
+        "ref": "F0009",
+        "model": "Airbus A-320",
+        "validCallsign": true,
+        "firstSeenMs": 1794418620071,
+        "firstLookupMs": 1794418620071,
+        "firstRouteMs": null,
+        "role": "primary",
+        "state": "Route rejected",
+        "reason": "route-too-old",
+        "displayedRoute": null,
+        "internalRoute": null,
+        "cache": "negative",
+        "cacheRemainingMs": 215921,
+        "lastRequestAtMs": 1794418620071,
+        "primaryWithoutRouteMs": 90498,
+        "observedMs": 90498,
+        "present": false,
+        "firstLookupRole": "primary",
+        "responseAtMs": 1794418620315,
+        "response": {
+          "apiStatus": 200,
+          "diagnostic": {
+            "origin": "hexdb",
+            "serverCache": "hit",
+            "upstreamRequestsStarted": 0,
+            "upstreamResponses": 0,
+            "outcome": "rejected",
+            "reason": "route-too-old",
+            "httpStatus": 200,
+            "durationMs": 0,
+            "summary": {
+              "callsignMatches": true,
+              "origin": true,
+              "destination": true,
+              "iataPair": true,
+              "associationAgeDays": 542
+            }
+          }
+        },
+        "cacheObservedAtMs": 1794418695542
+      },
+      {
+        "ref": "F0010",
+        "model": "Airbus HELICOPTERS EC-120",
+        "validCallsign": true,
+        "firstSeenMs": 1794418890551,
+        "firstLookupMs": 1794418890552,
+        "firstRouteMs": null,
+        "role": "primary",
+        "state": "Cached negative result",
+        "reason": "http-404",
+        "displayedRoute": null,
+        "internalRoute": null,
+        "cache": "negative",
+        "cacheRemainingMs": 201417,
+        "lastRequestAtMs": 1794418890552,
+        "primaryWithoutRouteMs": 75438,
+        "observedMs": 75438,
+        "present": false,
+        "firstLookupRole": "primary",
+        "responseAtMs": 1794418891531,
+        "response": {
+          "apiStatus": 200,
+          "diagnostic": {
+            "origin": "hexdb",
+            "serverCache": "miss",
+            "upstreamRequestsStarted": 1,
+            "upstreamResponses": 1,
+            "outcome": "negative",
+            "reason": "http-404",
+            "httpStatus": 404,
+            "durationMs": 462
+          }
+        },
+        "cacheObservedAtMs": 1794418990030
+      },
+      {
+        "ref": "F0011",
+        "model": "Boeing 787-9 Dreamliner",
+        "validCallsign": true,
+        "firstSeenMs": 1794419100543,
+        "firstLookupMs": 1794419100543,
+        "firstRouteMs": null,
+        "role": "secondary",
+        "state": "Route rejected",
+        "reason": "route-too-old",
+        "displayedRoute": null,
+        "internalRoute": null,
+        "cache": "negative",
+        "cacheRemainingMs": 211542,
+        "lastRequestAtMs": 1794419100543,
+        "primaryWithoutRouteMs": 89814,
+        "observedMs": 105035,
+        "present": false,
+        "firstLookupRole": "primary",
+        "responseAtMs": 1794419102026,
+        "response": {
+          "apiStatus": 200,
+          "diagnostic": {
+            "origin": "hexdb",
+            "serverCache": "miss",
+            "upstreamRequestsStarted": 1,
+            "upstreamResponses": 1,
+            "outcome": "rejected",
+            "reason": "route-too-old",
+            "httpStatus": 200,
+            "durationMs": 669,
+            "summary": {
+              "callsignMatches": true,
+              "origin": true,
+              "destination": true,
+              "iataPair": true,
+              "associationAgeDays": 542
+            }
+          }
+        },
+        "cacheObservedAtMs": 1794419190357
+      },
+      {
+        "ref": "F0012",
+        "model": "PILATUS PC-24",
+        "validCallsign": true,
+        "firstSeenMs": 1794419175537,
+        "firstLookupMs": 1794419175538,
+        "firstRouteMs": null,
+        "role": "secondary",
+        "state": "Cached negative result",
+        "reason": "http-404",
+        "displayedRoute": null,
+        "internalRoute": null,
+        "cache": "negative",
+        "cacheRemainingMs": 162087,
+        "lastRequestAtMs": 1794419175538,
+        "primaryWithoutRouteMs": 123537,
+        "observedMs": 149514,
+        "present": false,
+        "firstLookupRole": "secondary",
+        "responseAtMs": 1794419176112,
+        "response": {
+          "apiStatus": 200,
+          "diagnostic": {
+            "origin": "hexdb",
+            "serverCache": "miss",
+            "upstreamRequestsStarted": 1,
+            "upstreamResponses": 1,
+            "outcome": "negative",
+            "reason": "http-404",
+            "httpStatus": 404,
+            "durationMs": 137
+          }
+        },
+        "cacheObservedAtMs": 1794419313894
+      },
+      {
+        "ref": "F0013",
+        "model": "Airbus A-319",
+        "validCallsign": true,
+        "firstSeenMs": 1794419295367,
+        "firstLookupMs": 1794419295367,
+        "firstRouteMs": 1794419295731,
+        "role": "primary",
+        "state": "Route found",
+        "reason": "complete-iata-pair-displayed",
+        "displayedRoute": "GLA \u2192 STN",
+        "internalRoute": "GLA \u2192 STN",
+        "cache": "positive",
+        "cacheRemainingMs": 254734,
+        "lastRequestAtMs": 1794419295367,
+        "primaryWithoutRouteMs": 0,
+        "observedMs": 59790,
+        "present": false,
+        "firstLookupRole": "secondary",
+        "responseAtMs": 1794419295731,
+        "response": {
+          "apiStatus": 200,
+          "diagnostic": {
+            "origin": "hexdb",
+            "serverCache": "miss",
+            "upstreamRequestsStarted": 1,
+            "upstreamResponses": 1,
+            "outcome": "complete",
+            "reason": "validated",
+            "httpStatus": 200,
+            "durationMs": 56,
+            "summary": {
+              "callsignMatches": true,
+              "origin": true,
+              "destination": true,
+              "iataPair": true,
+              "associationAgeDays": 14.5
+            }
+          }
+        },
+        "firstRouteRole": "secondary",
+        "publicationDelayMs": 0,
+        "cacheObservedAtMs": 1794419340866
+      },
+      {
+        "ref": "F0014",
+        "model": "Airbus A-320neo",
+        "validCallsign": true,
+        "firstSeenMs": 1794419460635,
+        "firstLookupMs": 1794419460635,
+        "firstRouteMs": null,
+        "role": "primary",
+        "state": "Route rejected",
+        "reason": "route-too-old",
+        "displayedRoute": null,
+        "internalRoute": null,
+        "cache": "negative",
+        "cacheRemainingMs": 255459,
+        "lastRequestAtMs": 1794419460635,
+        "primaryWithoutRouteMs": 59648,
+        "observedMs": 59648,
+        "present": false,
+        "firstLookupRole": "primary",
+        "responseAtMs": 1794419461113,
+        "response": {
+          "apiStatus": 200,
+          "diagnostic": {
+            "origin": "hexdb",
+            "serverCache": "miss",
+            "upstreamRequestsStarted": 1,
+            "upstreamResponses": 1,
+            "outcome": "rejected",
+            "reason": "route-too-old",
+            "httpStatus": 200,
+            "durationMs": 164,
+            "summary": {
+              "callsignMatches": true,
+              "origin": true,
+              "destination": true,
+              "iataPair": true,
+              "associationAgeDays": 265.9
+            }
+          }
+        },
+        "cacheObservedAtMs": 1794419505531
+      },
+      {
+        "ref": "F0015",
+        "model": "Boeing 767-300",
+        "validCallsign": true,
+        "firstSeenMs": 1794419625253,
+        "firstLookupMs": 1794419625253,
+        "firstRouteMs": 1794419626006,
+        "role": "primary",
+        "state": "Route found",
+        "reason": "complete-iata-pair-displayed",
+        "displayedRoute": "BRU \u2192 CVG",
+        "internalRoute": "BRU \u2192 CVG",
+        "cache": "positive",
+        "cacheRemainingMs": 255797,
+        "lastRequestAtMs": 1794419625253,
+        "primaryWithoutRouteMs": 753,
+        "observedMs": 60339,
+        "present": false,
+        "firstLookupRole": "primary",
+        "responseAtMs": 1794419626006,
+        "response": {
+          "apiStatus": 200,
+          "diagnostic": {
+            "origin": "hexdb",
+            "serverCache": "miss",
+            "upstreamRequestsStarted": 1,
+            "upstreamResponses": 1,
+            "outcome": "complete",
+            "reason": "validated",
+            "httpStatus": 200,
+            "durationMs": 182,
+            "summary": {
+              "callsignMatches": true,
+              "origin": true,
+              "destination": true,
+              "iataPair": true,
+              "associationAgeDays": 14.5
+            }
+          }
+        },
+        "firstRouteRole": "primary",
+        "publicationDelayMs": 0,
+        "cacheObservedAtMs": 1794419670103
+      },
+      {
+        "ref": "F0016",
+        "model": "ATR-72-600",
+        "validCallsign": true,
+        "firstSeenMs": 1794419970506,
+        "firstLookupMs": 1794419970506,
+        "firstRouteMs": null,
+        "role": "primary",
+        "state": "Route rejected",
+        "reason": "route-too-old",
+        "displayedRoute": null,
+        "internalRoute": null,
+        "cache": "negative",
+        "cacheRemainingMs": 180285,
+        "lastRequestAtMs": 1794419970506,
+        "primaryWithoutRouteMs": 134801,
+        "observedMs": 134801,
+        "present": false,
+        "firstLookupRole": "primary",
+        "responseAtMs": 1794419970981,
+        "response": {
+          "apiStatus": 200,
+          "diagnostic": {
+            "origin": "hexdb",
+            "serverCache": "miss",
+            "upstreamRequestsStarted": 1,
+            "upstreamResponses": 1,
+            "outcome": "rejected",
+            "reason": "route-too-old",
+            "httpStatus": 200,
+            "durationMs": 163,
+            "summary": {
+              "callsignMatches": true,
+              "origin": true,
+              "destination": true,
+              "iataPair": true,
+              "associationAgeDays": 542
+            }
+          }
+        },
+        "cacheObservedAtMs": 1794420090563
+      },
+      {
+        "ref": "F0017",
+        "model": "Boeing 737 MAX 8",
+        "validCallsign": true,
+        "firstSeenMs": 1794420180155,
+        "firstLookupMs": 1794420180155,
+        "firstRouteMs": 1794420180857,
+        "role": "primary",
+        "state": "Route found",
+        "reason": "complete-iata-pair-displayed",
+        "displayedRoute": "PRG \u2192 DUB",
+        "internalRoute": "PRG \u2192 DUB",
+        "cache": "positive",
+        "cacheRemainingMs": 276174,
+        "lastRequestAtMs": 1794420180155,
+        "primaryWithoutRouteMs": 702,
+        "observedMs": 18199,
+        "present": true,
+        "firstLookupRole": "primary",
+        "responseAtMs": 1794420180857,
+        "response": {
+          "apiStatus": 200,
+          "diagnostic": {
+            "origin": "hexdb",
+            "serverCache": "hit",
+            "upstreamRequestsStarted": 0,
+            "upstreamResponses": 0,
+            "outcome": "complete",
+            "reason": "validated",
+            "httpStatus": 200,
+            "durationMs": 0,
+            "summary": {
+              "callsignMatches": true,
+              "origin": true,
+              "destination": true,
+              "iataPair": true,
+              "associationAgeDays": 18.1
+            }
+          }
+        },
+        "firstRouteRole": "primary",
+        "publicationDelayMs": 0,
+        "cacheObservedAtMs": 1794420195346
+      }
+    ],
+    "events": [
+      {
+        "type": "lookup-response",
+        "atMs": 1794417407835,
+        "ref": "F0001",
+        "role": "primary",
+        "kind": "route",
+        "apiStatus": 200,
+        "durationMs": 1901.7999999970198,
+        "elapsedMs": 5525.20000000298,
+        "startedElapsedMs": 3623.4000000059605,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "miss",
+          "upstreamRequestsStarted": 1,
+          "upstreamResponses": 1,
+          "outcome": "negative",
+          "reason": "http-404",
+          "httpStatus": 404,
+          "durationMs": 1568
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794417556123,
+        "ref": "F0002",
+        "role": "primary",
+        "kind": "route",
+        "apiStatus": 200,
+        "durationMs": 818.5999999940395,
+        "elapsedMs": 153813,
+        "startedElapsedMs": 152994.40000000596,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "miss",
+          "upstreamRequestsStarted": 1,
+          "upstreamResponses": 1,
+          "outcome": "rejected",
+          "reason": "route-too-old",
+          "httpStatus": 200,
+          "durationMs": 341,
+          "summary": {
+            "callsignMatches": true,
+            "origin": true,
+            "destination": true,
+            "iataPair": true,
+            "associationAgeDays": 542
+          }
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794417587497,
+        "ref": "identity",
+        "role": "primary",
+        "kind": "aircraft",
+        "apiStatus": 200,
+        "durationMs": 1692.7999999970198,
+        "elapsedMs": 185186.5,
+        "startedElapsedMs": 183493.70000000298,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "miss",
+          "upstreamRequestsStarted": 1,
+          "upstreamResponses": 1,
+          "outcome": "identity",
+          "reason": "validated",
+          "httpStatus": 200,
+          "durationMs": 1168
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794417961728,
+        "ref": "F0004",
+        "role": "primary",
+        "kind": "route",
+        "apiStatus": 200,
+        "durationMs": 892.0999999940395,
+        "elapsedMs": 559418.099999994,
+        "startedElapsedMs": 558526,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "miss",
+          "upstreamRequestsStarted": 1,
+          "upstreamResponses": 1,
+          "outcome": "rejected",
+          "reason": "route-too-old",
+          "httpStatus": 200,
+          "durationMs": 649,
+          "summary": {
+            "callsignMatches": true,
+            "origin": true,
+            "destination": true,
+            "iataPair": true,
+            "associationAgeDays": 542
+          }
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794418006042,
+        "ref": "identity",
+        "role": "primary",
+        "kind": "aircraft",
+        "apiStatus": 200,
+        "durationMs": 740.3999999910593,
+        "elapsedMs": 603731.599999994,
+        "startedElapsedMs": 602991.200000003,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "hit",
+          "upstreamRequestsStarted": 0,
+          "upstreamResponses": 0,
+          "outcome": "identity",
+          "reason": "validated",
+          "httpStatus": 200,
+          "durationMs": 1
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794418065459,
+        "ref": "F0005",
+        "role": "secondary",
+        "kind": "route",
+        "apiStatus": 200,
+        "durationMs": 316,
+        "elapsedMs": 663149,
+        "startedElapsedMs": 662833,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "hit",
+          "upstreamRequestsStarted": 0,
+          "upstreamResponses": 0,
+          "outcome": "negative",
+          "reason": "http-404",
+          "httpStatus": 404,
+          "durationMs": 0
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794418096202,
+        "ref": "identity",
+        "role": "primary",
+        "kind": "aircraft",
+        "apiStatus": 200,
+        "durationMs": 800.5,
+        "elapsedMs": 693891.5,
+        "startedElapsedMs": 693091,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "miss",
+          "upstreamRequestsStarted": 1,
+          "upstreamResponses": 1,
+          "outcome": "identity",
+          "reason": "validated",
+          "httpStatus": 200,
+          "durationMs": 302
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794418128610,
+        "ref": "F0006",
+        "role": "primary",
+        "kind": "route",
+        "apiStatus": 200,
+        "durationMs": 788.3999999910593,
+        "elapsedMs": 726299.299999997,
+        "startedElapsedMs": 725510.900000006,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "miss",
+          "upstreamRequestsStarted": 1,
+          "upstreamResponses": 1,
+          "outcome": "complete",
+          "reason": "validated",
+          "httpStatus": 200,
+          "durationMs": 565,
+          "summary": {
+            "callsignMatches": true,
+            "origin": true,
+            "destination": true,
+            "iataPair": true,
+            "associationAgeDays": 14.5
+          }
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794418171322,
+        "ref": "identity",
+        "role": "primary",
+        "kind": "aircraft",
+        "apiStatus": 200,
+        "durationMs": 800.6000000089407,
+        "elapsedMs": 769011.700000003,
+        "startedElapsedMs": 768211.099999994,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "miss",
+          "upstreamRequestsStarted": 1,
+          "upstreamResponses": 1,
+          "outcome": "identity",
+          "reason": "validated",
+          "httpStatus": 200,
+          "durationMs": 291
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794418411013,
+        "ref": "F0007",
+        "role": "primary",
+        "kind": "route",
+        "apiStatus": 200,
+        "durationMs": 514.2999999970198,
+        "elapsedMs": 1008702.700000003,
+        "startedElapsedMs": 1008188.400000006,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "hit",
+          "upstreamRequestsStarted": 0,
+          "upstreamResponses": 0,
+          "outcome": "complete",
+          "reason": "validated",
+          "httpStatus": 200,
+          "durationMs": 0,
+          "summary": {
+            "callsignMatches": true,
+            "origin": true,
+            "destination": true,
+            "iataPair": true,
+            "associationAgeDays": 18
+          }
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794418454098,
+        "ref": "identity",
+        "role": "primary",
+        "kind": "aircraft",
+        "apiStatus": 200,
+        "durationMs": 596,
+        "elapsedMs": 1051788.099999994,
+        "startedElapsedMs": 1051192.099999994,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "hit",
+          "upstreamRequestsStarted": 0,
+          "upstreamResponses": 0,
+          "outcome": "identity",
+          "reason": "validated",
+          "httpStatus": 200,
+          "durationMs": 1
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794418485740,
+        "ref": "F0008",
+        "role": "secondary",
+        "kind": "route",
+        "apiStatus": 200,
+        "durationMs": 682.1999999880791,
+        "elapsedMs": 1083430.099999994,
+        "startedElapsedMs": 1082747.900000006,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "hit",
+          "upstreamRequestsStarted": 0,
+          "upstreamResponses": 0,
+          "outcome": "rejected",
+          "reason": "route-too-old",
+          "httpStatus": 200,
+          "durationMs": 0,
+          "summary": {
+            "callsignMatches": true,
+            "origin": true,
+            "destination": true,
+            "iataPair": true,
+            "associationAgeDays": 377.7
+          }
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794418516012,
+        "ref": "identity",
+        "role": "primary",
+        "kind": "aircraft",
+        "apiStatus": 200,
+        "durationMs": 947.2999999970198,
+        "elapsedMs": 1113701.700000003,
+        "startedElapsedMs": 1112754.400000006,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "miss",
+          "upstreamRequestsStarted": 1,
+          "upstreamResponses": 1,
+          "outcome": "identity",
+          "reason": "validated",
+          "httpStatus": 200,
+          "durationMs": 430
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794418620315,
+        "ref": "F0009",
+        "role": "primary",
+        "kind": "route",
+        "apiStatus": 200,
+        "durationMs": 244.5,
+        "elapsedMs": 1218005.200000003,
+        "startedElapsedMs": 1217760.700000003,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "hit",
+          "upstreamRequestsStarted": 0,
+          "upstreamResponses": 0,
+          "outcome": "rejected",
+          "reason": "route-too-old",
+          "httpStatus": 200,
+          "durationMs": 0,
+          "summary": {
+            "callsignMatches": true,
+            "origin": true,
+            "destination": true,
+            "iataPair": true,
+            "associationAgeDays": 542
+          }
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794418651571,
+        "ref": "identity",
+        "role": "primary",
+        "kind": "aircraft",
+        "apiStatus": 200,
+        "durationMs": 1085.2999999970198,
+        "elapsedMs": 1249260.799999997,
+        "startedElapsedMs": 1248175.5,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "miss",
+          "upstreamRequestsStarted": 1,
+          "upstreamResponses": 1,
+          "outcome": "identity",
+          "reason": "validated",
+          "httpStatus": 200,
+          "durationMs": 421
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794418891531,
+        "ref": "F0010",
+        "role": "primary",
+        "kind": "route",
+        "apiStatus": 200,
+        "durationMs": 979.7000000029802,
+        "elapsedMs": 1489221,
+        "startedElapsedMs": 1488241.299999997,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "miss",
+          "upstreamRequestsStarted": 1,
+          "upstreamResponses": 1,
+          "outcome": "negative",
+          "reason": "http-404",
+          "httpStatus": 404,
+          "durationMs": 462
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794418920987,
+        "ref": "identity",
+        "role": "primary",
+        "kind": "aircraft",
+        "apiStatus": 503,
+        "durationMs": 255.90000000596046,
+        "elapsedMs": 1518676.900000006,
+        "startedElapsedMs": 1518421,
+        "diagnostic": {
+          "origin": "application",
+          "serverCache": "none",
+          "upstreamRequestsStarted": 0,
+          "upstreamResponses": 0,
+          "outcome": "error",
+          "reason": "cooldown",
+          "httpStatus": null,
+          "durationMs": 1,
+          "retryAfterMs": 30000
+        },
+        "failure": {
+          "schemaVersion": 1,
+          "origin": "application",
+          "category": "local-deferral",
+          "reason": "global-gate",
+          "retryAfterMs": 30000,
+          "issuedAtMs": 1794418920876,
+          "upstreamRequestsStarted": 0,
+          "upstreamResponses": 0
+        },
+        "scheduling": {
+          "treatment": "local-deferral",
+          "reason": "global-gate",
+          "serverRetryAfterMs": 30000,
+          "serverWaitMs": 30000,
+          "priorGlobalWaitMs": 29744.09999999404,
+          "globalWaitMs": 30000,
+          "secondaryWaitMs": 0,
+          "nextGlobalEligibleAtMs": 1794418950987,
+          "nextSecondaryEligibleAtMs": 1794418950987
+        },
+        "error": "cooldown",
+        "clientCooldownMs": 30000
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794418980469,
+        "ref": "identity",
+        "role": "primary",
+        "kind": "aircraft",
+        "apiStatus": 200,
+        "durationMs": 296.19999998807907,
+        "elapsedMs": 1578159.099999994,
+        "startedElapsedMs": 1577862.900000006,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "hit",
+          "upstreamRequestsStarted": 0,
+          "upstreamResponses": 0,
+          "outcome": "identity",
+          "reason": "validated",
+          "httpStatus": 200,
+          "durationMs": 0
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794419102026,
+        "ref": "F0011",
+        "role": "primary",
+        "kind": "route",
+        "apiStatus": 200,
+        "durationMs": 1482.5999999940395,
+        "elapsedMs": 1699715.700000003,
+        "startedElapsedMs": 1698233,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "miss",
+          "upstreamRequestsStarted": 1,
+          "upstreamResponses": 1,
+          "outcome": "rejected",
+          "reason": "route-too-old",
+          "httpStatus": 200,
+          "durationMs": 669,
+          "summary": {
+            "callsignMatches": true,
+            "origin": true,
+            "destination": true,
+            "iataPair": true,
+            "associationAgeDays": 542
+          }
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794419144326,
+        "ref": "identity",
+        "role": "primary",
+        "kind": "aircraft",
+        "apiStatus": 200,
+        "durationMs": 716,
+        "elapsedMs": 1742015.599999994,
+        "startedElapsedMs": 1741299.599999994,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "hit",
+          "upstreamRequestsStarted": 0,
+          "upstreamResponses": 0,
+          "outcome": "identity",
+          "reason": "validated",
+          "httpStatus": 200,
+          "durationMs": 0
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794419176112,
+        "ref": "F0012",
+        "role": "secondary",
+        "kind": "route",
+        "apiStatus": 200,
+        "durationMs": 574.7000000029802,
+        "elapsedMs": 1773802.200000003,
+        "startedElapsedMs": 1773227.5,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "miss",
+          "upstreamRequestsStarted": 1,
+          "upstreamResponses": 1,
+          "outcome": "negative",
+          "reason": "http-404",
+          "httpStatus": 404,
+          "durationMs": 137
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794419205906,
+        "ref": "identity",
+        "role": "primary",
+        "kind": "aircraft",
+        "apiStatus": 503,
+        "durationMs": 327.8999999910593,
+        "elapsedMs": 1803596.099999994,
+        "startedElapsedMs": 1803268.200000003,
+        "diagnostic": {
+          "origin": "application",
+          "serverCache": "none",
+          "upstreamRequestsStarted": 0,
+          "upstreamResponses": 0,
+          "outcome": "error",
+          "reason": "cooldown",
+          "httpStatus": null,
+          "durationMs": 0,
+          "retryAfterMs": 30000
+        },
+        "failure": {
+          "schemaVersion": 1,
+          "origin": "application",
+          "category": "local-deferral",
+          "reason": "global-gate",
+          "retryAfterMs": 30000,
+          "issuedAtMs": 1794419205778,
+          "upstreamRequestsStarted": 0,
+          "upstreamResponses": 0
+        },
+        "scheduling": {
+          "treatment": "local-deferral",
+          "reason": "global-gate",
+          "serverRetryAfterMs": 30000,
+          "serverWaitMs": 30000,
+          "priorGlobalWaitMs": 29672.20000000298,
+          "globalWaitMs": 30000,
+          "secondaryWaitMs": 59631.5,
+          "nextGlobalEligibleAtMs": 1794419235906,
+          "nextSecondaryEligibleAtMs": 1794419265537.5
+        },
+        "error": "cooldown",
+        "clientCooldownMs": 29999.90000000596
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794419250852,
+        "ref": "identity",
+        "role": "primary",
+        "kind": "aircraft",
+        "apiStatus": 200,
+        "durationMs": 609.3999999910593,
+        "elapsedMs": 1848541.299999997,
+        "startedElapsedMs": 1847931.900000006,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "miss",
+          "upstreamRequestsStarted": 1,
+          "upstreamResponses": 1,
+          "outcome": "identity",
+          "reason": "validated",
+          "httpStatus": 200,
+          "durationMs": 297
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794419295731,
+        "ref": "F0013",
+        "role": "secondary",
+        "kind": "route",
+        "apiStatus": 200,
+        "durationMs": 364.20000000298023,
+        "elapsedMs": 1893420.900000006,
+        "startedElapsedMs": 1893056.700000003,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "miss",
+          "upstreamRequestsStarted": 1,
+          "upstreamResponses": 1,
+          "outcome": "complete",
+          "reason": "validated",
+          "httpStatus": 200,
+          "durationMs": 56,
+          "summary": {
+            "callsignMatches": true,
+            "origin": true,
+            "destination": true,
+            "iataPair": true,
+            "associationAgeDays": 14.5
+          }
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794419340866,
+        "ref": "identity",
+        "role": "primary",
+        "kind": "aircraft",
+        "apiStatus": 200,
+        "durationMs": 1193.5,
+        "elapsedMs": 1938555.299999997,
+        "startedElapsedMs": 1937361.799999997,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "miss",
+          "upstreamRequestsStarted": 1,
+          "upstreamResponses": 1,
+          "outcome": "identity",
+          "reason": "validated",
+          "httpStatus": 200,
+          "durationMs": 133
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794419461113,
+        "ref": "F0014",
+        "role": "primary",
+        "kind": "route",
+        "apiStatus": 200,
+        "durationMs": 478,
+        "elapsedMs": 2058803,
+        "startedElapsedMs": 2058325,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "miss",
+          "upstreamRequestsStarted": 1,
+          "upstreamResponses": 1,
+          "outcome": "rejected",
+          "reason": "route-too-old",
+          "httpStatus": 200,
+          "durationMs": 164,
+          "summary": {
+            "callsignMatches": true,
+            "origin": true,
+            "destination": true,
+            "iataPair": true,
+            "associationAgeDays": 265.9
+          }
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794419504675,
+        "ref": "identity",
+        "role": "primary",
+        "kind": "aircraft",
+        "apiStatus": 200,
+        "durationMs": 706.5,
+        "elapsedMs": 2102364.400000006,
+        "startedElapsedMs": 2101657.900000006,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "miss",
+          "upstreamRequestsStarted": 1,
+          "upstreamResponses": 1,
+          "outcome": "negative",
+          "reason": "http-404",
+          "httpStatus": 404,
+          "durationMs": 141
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794419626006,
+        "ref": "F0015",
+        "role": "primary",
+        "kind": "route",
+        "apiStatus": 200,
+        "durationMs": 753.1000000089407,
+        "elapsedMs": 2223695.700000003,
+        "startedElapsedMs": 2222942.599999994,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "miss",
+          "upstreamRequestsStarted": 1,
+          "upstreamResponses": 1,
+          "outcome": "complete",
+          "reason": "validated",
+          "httpStatus": 200,
+          "durationMs": 182,
+          "summary": {
+            "callsignMatches": true,
+            "origin": true,
+            "destination": true,
+            "iataPair": true,
+            "associationAgeDays": 14.5
+          }
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794419656342,
+        "ref": "identity",
+        "role": "primary",
+        "kind": "aircraft",
+        "apiStatus": 200,
+        "durationMs": 888.2000000029802,
+        "elapsedMs": 2254031.299999997,
+        "startedElapsedMs": 2253143.099999994,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "miss",
+          "upstreamRequestsStarted": 1,
+          "upstreamResponses": 1,
+          "outcome": "identity",
+          "reason": "validated",
+          "httpStatus": 200,
+          "durationMs": 128
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794419970981,
+        "ref": "F0016",
+        "role": "primary",
+        "kind": "route",
+        "apiStatus": 200,
+        "durationMs": 474.8999999910593,
+        "elapsedMs": 2568670.599999994,
+        "startedElapsedMs": 2568195.700000003,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "miss",
+          "upstreamRequestsStarted": 1,
+          "upstreamResponses": 1,
+          "outcome": "rejected",
+          "reason": "route-too-old",
+          "httpStatus": 200,
+          "durationMs": 163,
+          "summary": {
+            "callsignMatches": true,
+            "origin": true,
+            "destination": true,
+            "iataPair": true,
+            "associationAgeDays": 542
+          }
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794420014441,
+        "ref": "identity",
+        "role": "primary",
+        "kind": "aircraft",
+        "apiStatus": 200,
+        "durationMs": 693.1999999880791,
+        "elapsedMs": 2612131.099999994,
+        "startedElapsedMs": 2611437.900000006,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "hit",
+          "upstreamRequestsStarted": 0,
+          "upstreamResponses": 0,
+          "outcome": "identity",
+          "reason": "validated",
+          "httpStatus": 200,
+          "durationMs": 0
+        },
+        "clientCooldownMs": 0
+      },
+      {
+        "type": "lookup-response",
+        "atMs": 1794420180857,
+        "ref": "F0017",
+        "role": "primary",
+        "kind": "route",
+        "apiStatus": 200,
+        "durationMs": 701.7000000029802,
+        "elapsedMs": 2778546.299999997,
+        "startedElapsedMs": 2777844.599999994,
+        "diagnostic": {
+          "origin": "hexdb",
+          "serverCache": "hit",
+          "upstreamRequestsStarted": 0,
+          "upstreamResponses": 0,
+          "outcome": "complete",
+          "reason": "validated",
+          "httpStatus": 200,
+          "durationMs": 0,
+          "summary": {
+            "callsignMatches": true,
+            "origin": true,
+            "destination": true,
+            "iataPair": true,
+            "associationAgeDays": 18.1
+          }
+        },
+        "clientCooldownMs": 0
+      }
+    ],
+    "notes": [
+      "Bounded page-memory evidence; no coordinates, raw provider bodies, full hex/callsign or credentials.",
+      "Percentages measure observed displayed aircraft-time, not traffic detection or independent route accuracy.",
+      "upstreamRequestsStarted counts initiated server HTTP attempts; upstreamResponsesReceived confirms responses.",
+      "Sampling uses scene publications; disappearances between polls and unshown ADS-B aircraft are separate limitations."
+    ]
+  },
+  "apiSamples": [
+    {
+      "atMs": 1794417407840,
+      "ref": "F0001",
+      "kind": "route",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "miss",
+        "upstreamRequestsStarted": 1,
+        "upstreamResponses": 1,
+        "outcome": "negative",
+        "reason": "http-404",
+        "httpStatus": 404,
+        "durationMs": 1568
+      },
+      "failure": null,
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794417556126,
+      "ref": "F0002",
+      "kind": "route",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "miss",
+        "upstreamRequestsStarted": 1,
+        "upstreamResponses": 1,
+        "outcome": "rejected",
+        "reason": "route-too-old",
+        "httpStatus": 200,
+        "durationMs": 341,
+        "summary": {
+          "callsignMatches": true,
+          "origin": true,
+          "destination": true,
+          "iataPair": true,
+          "associationAgeDays": 542
+        }
+      },
+      "failure": null,
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794417587501,
+      "ref": "identity-or-unattributed",
+      "kind": "aircraft",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "miss",
+        "upstreamRequestsStarted": 1,
+        "upstreamResponses": 1,
+        "outcome": "identity",
+        "reason": "validated",
+        "httpStatus": 200,
+        "durationMs": 1168
+      },
+      "failure": null,
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794417961732,
+      "ref": "F0004",
+      "kind": "route",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "miss",
+        "upstreamRequestsStarted": 1,
+        "upstreamResponses": 1,
+        "outcome": "rejected",
+        "reason": "route-too-old",
+        "httpStatus": 200,
+        "durationMs": 649,
+        "summary": {
+          "callsignMatches": true,
+          "origin": true,
+          "destination": true,
+          "iataPair": true,
+          "associationAgeDays": 542
+        }
+      },
+      "failure": null,
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794418006045,
+      "ref": "identity-or-unattributed",
+      "kind": "aircraft",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "hit",
+        "upstreamRequestsStarted": 0,
+        "upstreamResponses": 0,
+        "outcome": "identity",
+        "reason": "validated",
+        "httpStatus": 200,
+        "durationMs": 1
+      },
+      "failure": null,
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794418065464,
+      "ref": "F0005",
+      "kind": "route",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "hit",
+        "upstreamRequestsStarted": 0,
+        "upstreamResponses": 0,
+        "outcome": "negative",
+        "reason": "http-404",
+        "httpStatus": 404,
+        "durationMs": 0
+      },
+      "failure": null,
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794418096205,
+      "ref": "identity-or-unattributed",
+      "kind": "aircraft",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "miss",
+        "upstreamRequestsStarted": 1,
+        "upstreamResponses": 1,
+        "outcome": "identity",
+        "reason": "validated",
+        "httpStatus": 200,
+        "durationMs": 302
+      },
+      "failure": null,
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794418128614,
+      "ref": "F0006",
+      "kind": "route",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "miss",
+        "upstreamRequestsStarted": 1,
+        "upstreamResponses": 1,
+        "outcome": "complete",
+        "reason": "validated",
+        "httpStatus": 200,
+        "durationMs": 565,
+        "summary": {
+          "callsignMatches": true,
+          "origin": true,
+          "destination": true,
+          "iataPair": true,
+          "associationAgeDays": 14.5
+        }
+      },
+      "failure": null,
+      "returnedOrigin": "LPL",
+      "returnedDestination": "IOM"
+    },
+    {
+      "atMs": 1794418171327,
+      "ref": "identity-or-unattributed",
+      "kind": "aircraft",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "miss",
+        "upstreamRequestsStarted": 1,
+        "upstreamResponses": 1,
+        "outcome": "identity",
+        "reason": "validated",
+        "httpStatus": 200,
+        "durationMs": 291
+      },
+      "failure": null,
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794418411017,
+      "ref": "F0007",
+      "kind": "route",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "hit",
+        "upstreamRequestsStarted": 0,
+        "upstreamResponses": 0,
+        "outcome": "complete",
+        "reason": "validated",
+        "httpStatus": 200,
+        "durationMs": 0,
+        "summary": {
+          "callsignMatches": true,
+          "origin": true,
+          "destination": true,
+          "iataPair": true,
+          "associationAgeDays": 18
+        }
+      },
+      "failure": null,
+      "returnedOrigin": "DUB",
+      "returnedDestination": "AMS"
+    },
+    {
+      "atMs": 1794418454103,
+      "ref": "identity-or-unattributed",
+      "kind": "aircraft",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "hit",
+        "upstreamRequestsStarted": 0,
+        "upstreamResponses": 0,
+        "outcome": "identity",
+        "reason": "validated",
+        "httpStatus": 200,
+        "durationMs": 1
+      },
+      "failure": null,
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794418485743,
+      "ref": "F0008",
+      "kind": "route",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "hit",
+        "upstreamRequestsStarted": 0,
+        "upstreamResponses": 0,
+        "outcome": "rejected",
+        "reason": "route-too-old",
+        "httpStatus": 200,
+        "durationMs": 0,
+        "summary": {
+          "callsignMatches": true,
+          "origin": true,
+          "destination": true,
+          "iataPair": true,
+          "associationAgeDays": 377.7
+        }
+      },
+      "failure": null,
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794418516020,
+      "ref": "identity-or-unattributed",
+      "kind": "aircraft",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "miss",
+        "upstreamRequestsStarted": 1,
+        "upstreamResponses": 1,
+        "outcome": "identity",
+        "reason": "validated",
+        "httpStatus": 200,
+        "durationMs": 430
+      },
+      "failure": null,
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794418620321,
+      "ref": "F0009",
+      "kind": "route",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "hit",
+        "upstreamRequestsStarted": 0,
+        "upstreamResponses": 0,
+        "outcome": "rejected",
+        "reason": "route-too-old",
+        "httpStatus": 200,
+        "durationMs": 0,
+        "summary": {
+          "callsignMatches": true,
+          "origin": true,
+          "destination": true,
+          "iataPair": true,
+          "associationAgeDays": 542
+        }
+      },
+      "failure": null,
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794418651577,
+      "ref": "identity-or-unattributed",
+      "kind": "aircraft",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "miss",
+        "upstreamRequestsStarted": 1,
+        "upstreamResponses": 1,
+        "outcome": "identity",
+        "reason": "validated",
+        "httpStatus": 200,
+        "durationMs": 421
+      },
+      "failure": null,
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794418891535,
+      "ref": "F0010",
+      "kind": "route",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "miss",
+        "upstreamRequestsStarted": 1,
+        "upstreamResponses": 1,
+        "outcome": "negative",
+        "reason": "http-404",
+        "httpStatus": 404,
+        "durationMs": 462
+      },
+      "failure": null,
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794418920992,
+      "ref": "identity-or-unattributed",
+      "kind": "aircraft",
+      "apiStatus": 503,
+      "diagnostic": {
+        "origin": "application",
+        "serverCache": "none",
+        "upstreamRequestsStarted": 0,
+        "upstreamResponses": 0,
+        "outcome": "error",
+        "reason": "cooldown",
+        "httpStatus": null,
+        "durationMs": 1,
+        "retryAfterMs": 30000
+      },
+      "failure": {
+        "schemaVersion": 1,
+        "origin": "application",
+        "category": "local-deferral",
+        "reason": "global-gate",
+        "retryAfterMs": 30000,
+        "issuedAtMs": 1794418920876,
+        "upstreamRequestsStarted": 0,
+        "upstreamResponses": 0
+      },
+      "error": "cooldown",
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794418980474,
+      "ref": "identity-or-unattributed",
+      "kind": "aircraft",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "hit",
+        "upstreamRequestsStarted": 0,
+        "upstreamResponses": 0,
+        "outcome": "identity",
+        "reason": "validated",
+        "httpStatus": 200,
+        "durationMs": 0
+      },
+      "failure": null,
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794419102030,
+      "ref": "F0011",
+      "kind": "route",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "miss",
+        "upstreamRequestsStarted": 1,
+        "upstreamResponses": 1,
+        "outcome": "rejected",
+        "reason": "route-too-old",
+        "httpStatus": 200,
+        "durationMs": 669,
+        "summary": {
+          "callsignMatches": true,
+          "origin": true,
+          "destination": true,
+          "iataPair": true,
+          "associationAgeDays": 542
+        }
+      },
+      "failure": null,
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794419144330,
+      "ref": "identity-or-unattributed",
+      "kind": "aircraft",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "hit",
+        "upstreamRequestsStarted": 0,
+        "upstreamResponses": 0,
+        "outcome": "identity",
+        "reason": "validated",
+        "httpStatus": 200,
+        "durationMs": 0
+      },
+      "failure": null,
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794419176118,
+      "ref": "F0012",
+      "kind": "route",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "miss",
+        "upstreamRequestsStarted": 1,
+        "upstreamResponses": 1,
+        "outcome": "negative",
+        "reason": "http-404",
+        "httpStatus": 404,
+        "durationMs": 137
+      },
+      "failure": null,
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794419205911,
+      "ref": "identity-or-unattributed",
+      "kind": "aircraft",
+      "apiStatus": 503,
+      "diagnostic": {
+        "origin": "application",
+        "serverCache": "none",
+        "upstreamRequestsStarted": 0,
+        "upstreamResponses": 0,
+        "outcome": "error",
+        "reason": "cooldown",
+        "httpStatus": null,
+        "durationMs": 0,
+        "retryAfterMs": 30000
+      },
+      "failure": {
+        "schemaVersion": 1,
+        "origin": "application",
+        "category": "local-deferral",
+        "reason": "global-gate",
+        "retryAfterMs": 30000,
+        "issuedAtMs": 1794419205778,
+        "upstreamRequestsStarted": 0,
+        "upstreamResponses": 0
+      },
+      "error": "cooldown",
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794419250854,
+      "ref": "identity-or-unattributed",
+      "kind": "aircraft",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "miss",
+        "upstreamRequestsStarted": 1,
+        "upstreamResponses": 1,
+        "outcome": "identity",
+        "reason": "validated",
+        "httpStatus": 200,
+        "durationMs": 297
+      },
+      "failure": null,
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794419295736,
+      "ref": "F0013",
+      "kind": "route",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "miss",
+        "upstreamRequestsStarted": 1,
+        "upstreamResponses": 1,
+        "outcome": "complete",
+        "reason": "validated",
+        "httpStatus": 200,
+        "durationMs": 56,
+        "summary": {
+          "callsignMatches": true,
+          "origin": true,
+          "destination": true,
+          "iataPair": true,
+          "associationAgeDays": 14.5
+        }
+      },
+      "failure": null,
+      "returnedOrigin": "GLA",
+      "returnedDestination": "STN"
+    },
+    {
+      "atMs": 1794419340869,
+      "ref": "identity-or-unattributed",
+      "kind": "aircraft",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "miss",
+        "upstreamRequestsStarted": 1,
+        "upstreamResponses": 1,
+        "outcome": "identity",
+        "reason": "validated",
+        "httpStatus": 200,
+        "durationMs": 133
+      },
+      "failure": null,
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794419461118,
+      "ref": "F0014",
+      "kind": "route",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "miss",
+        "upstreamRequestsStarted": 1,
+        "upstreamResponses": 1,
+        "outcome": "rejected",
+        "reason": "route-too-old",
+        "httpStatus": 200,
+        "durationMs": 164,
+        "summary": {
+          "callsignMatches": true,
+          "origin": true,
+          "destination": true,
+          "iataPair": true,
+          "associationAgeDays": 265.9
+        }
+      },
+      "failure": null,
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794419504678,
+      "ref": "identity-or-unattributed",
+      "kind": "aircraft",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "miss",
+        "upstreamRequestsStarted": 1,
+        "upstreamResponses": 1,
+        "outcome": "negative",
+        "reason": "http-404",
+        "httpStatus": 404,
+        "durationMs": 141
+      },
+      "failure": null,
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794419626011,
+      "ref": "F0015",
+      "kind": "route",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "miss",
+        "upstreamRequestsStarted": 1,
+        "upstreamResponses": 1,
+        "outcome": "complete",
+        "reason": "validated",
+        "httpStatus": 200,
+        "durationMs": 182,
+        "summary": {
+          "callsignMatches": true,
+          "origin": true,
+          "destination": true,
+          "iataPair": true,
+          "associationAgeDays": 14.5
+        }
+      },
+      "failure": null,
+      "returnedOrigin": "BRU",
+      "returnedDestination": "CVG"
+    },
+    {
+      "atMs": 1794419656345,
+      "ref": "identity-or-unattributed",
+      "kind": "aircraft",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "miss",
+        "upstreamRequestsStarted": 1,
+        "upstreamResponses": 1,
+        "outcome": "identity",
+        "reason": "validated",
+        "httpStatus": 200,
+        "durationMs": 128
+      },
+      "failure": null,
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794419970986,
+      "ref": "F0016",
+      "kind": "route",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "miss",
+        "upstreamRequestsStarted": 1,
+        "upstreamResponses": 1,
+        "outcome": "rejected",
+        "reason": "route-too-old",
+        "httpStatus": 200,
+        "durationMs": 163,
+        "summary": {
+          "callsignMatches": true,
+          "origin": true,
+          "destination": true,
+          "iataPair": true,
+          "associationAgeDays": 542
+        }
+      },
+      "failure": null,
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794420014447,
+      "ref": "identity-or-unattributed",
+      "kind": "aircraft",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "hit",
+        "upstreamRequestsStarted": 0,
+        "upstreamResponses": 0,
+        "outcome": "identity",
+        "reason": "validated",
+        "httpStatus": 200,
+        "durationMs": 0
+      },
+      "failure": null,
+      "returnedOrigin": null,
+      "returnedDestination": null
+    },
+    {
+      "atMs": 1794420180860,
+      "ref": "F0017",
+      "kind": "route",
+      "apiStatus": 200,
+      "diagnostic": {
+        "origin": "hexdb",
+        "serverCache": "hit",
+        "upstreamRequestsStarted": 0,
+        "upstreamResponses": 0,
+        "outcome": "complete",
+        "reason": "validated",
+        "httpStatus": 200,
+        "durationMs": 0,
+        "summary": {
+          "callsignMatches": true,
+          "origin": true,
+          "destination": true,
+          "iataPair": true,
+          "associationAgeDays": 18.1
+        }
+      },
+      "failure": null,
+      "returnedOrigin": "PRG",
+      "returnedDestination": "DUB"
+    }
+  ]
+}

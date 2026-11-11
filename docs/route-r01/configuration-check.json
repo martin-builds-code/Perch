@@ -1,0 +1,127 @@
+{
+  "projectId": "prj_QU4OICxi2QPrRtK0JS83ZTaLP9bW",
+  "environment": "preview",
+  "otherConfigurationUnchanged": true,
+  "futureDiagnosticFlagDisabled": true,
+  "diagnosticFlagPreviewOnly": true,
+  "variables": [
+    {
+      "key": "AERO_ROUTE_DIAGNOSTICS",
+      "type": "plain",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1794417381557,
+      "unchanged": false
+    },
+    {
+      "key": "AERO_PIN_PEPPER",
+      "type": "sensitive",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1793872365965,
+      "unchanged": true
+    },
+    {
+      "key": "AERO_PIN_VERIFIER",
+      "type": "sensitive",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1793872365965,
+      "unchanged": true
+    },
+    {
+      "key": "AERO_SESSION_SECRET",
+      "type": "sensitive",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1793872365965,
+      "unchanged": true
+    },
+    {
+      "key": "AERO_OBSERVATION_LATITUDE",
+      "type": "sensitive",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1793872365965,
+      "unchanged": true
+    },
+    {
+      "key": "AERO_OBSERVATION_LONGITUDE",
+      "type": "sensitive",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1793872365965,
+      "unchanged": true
+    },
+    {
+      "key": "AERO_LIVE_ENABLED",
+      "type": "plain",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1793872365965,
+      "unchanged": true
+    },
+    {
+      "key": "AERO_ENRICHMENT_ENABLED",
+      "type": "plain",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1793872365965,
+      "unchanged": true
+    },
+    {
+      "key": "AERO_POLL_INTERVAL_MS",
+      "type": "plain",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1793872365965,
+      "unchanged": true
+    },
+    {
+      "key": "VITE_AERO_LIVE_ENABLED",
+      "type": "plain",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1793872365965,
+      "unchanged": true
+    },
+    {
+      "key": "VITE_AERO_ENRICHMENT_ENABLED",
+      "type": "plain",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1793872365965,
+      "unchanged": true
+    },
+    {
+      "key": "VITE_AERO_APPLIANCE_ENABLED",
+      "type": "plain",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1793872365965,
+      "unchanged": true
+    },
+    {
+      "key": "VITE_AERO_DIAGNOSTICS_ENABLED",
+      "type": "plain",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1793872365965,
+      "unchanged": true
+    }
+  ],
+  "valuesNotExported": true
+}

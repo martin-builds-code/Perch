@@ -1,0 +1,77 @@
+{
+  "checkedAt": "2026-11-11T18:04:22.680246+00:00",
+  "checks": [
+    {
+      "deployment": "stable",
+      "path": "/api/session",
+      "status": 401,
+      "authenticationRequired": true,
+      "temporaryGrantAbsent": true,
+      "noSetCookie": true
+    },
+    {
+      "deployment": "stable",
+      "path": "/api/aircraft",
+      "status": 401,
+      "authenticationRequired": true,
+      "temporaryGrantAbsent": true,
+      "noSetCookie": true
+    },
+    {
+      "deployment": "stable",
+      "path": "/api/enrichment",
+      "status": 401,
+      "authenticationRequired": true,
+      "temporaryGrantAbsent": true,
+      "noSetCookie": true
+    },
+    {
+      "deployment": "corrected",
+      "path": "/api/session",
+      "status": 401,
+      "authenticationRequired": true,
+      "temporaryGrantAbsent": true,
+      "noSetCookie": true
+    },
+    {
+      "deployment": "corrected",
+      "path": "/api/aircraft",
+      "status": 401,
+      "authenticationRequired": true,
+      "temporaryGrantAbsent": true,
+      "noSetCookie": true
+    },
+    {
+      "deployment": "corrected",
+      "path": "/api/enrichment",
+      "status": 401,
+      "authenticationRequired": true,
+      "temporaryGrantAbsent": true,
+      "noSetCookie": true
+    },
+    {
+      "deployment": "superseded-partial",
+      "path": "/api/session",
+      "status": 401,
+      "authenticationRequired": true,
+      "temporaryGrantAbsent": true,
+      "noSetCookie": true
+    },
+    {
+      "deployment": "superseded-partial",
+      "path": "/api/aircraft",
+      "status": 401,
+      "authenticationRequired": true,
+      "temporaryGrantAbsent": true,
+      "noSetCookie": true
+    },
+    {
+      "deployment": "superseded-partial",
+      "path": "/api/enrichment",
+      "status": 401,
+      "authenticationRequired": true,
+      "temporaryGrantAbsent": true,
+      "noSetCookie": true
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "projectId": "prj_QU4OICxi2QPrRtK0JS83ZTaLP9bW",
+  "team": "mml3",
+  "environment": "preview",
+  "apiTarget": null,
+  "codeCommit": "903a1cf191ba648dbde001014b5c13eafb2ed9e0",
+  "deploymentId": "dpl_V6WySMt7yY2eJ4pHXWQtp7pW2DUo",
+  "uniqueUrl": "https://perch-aero-pane-stage3a-d8qti1wku-mml3.vercel.app/?mode=live",
+  "stableUrl": "https://perch-aero-pane-stage3a.vercel.app/?mode=live",
+  "state": "READY",
+  "runtimeFiles": 69,
+  "allSourceHashesMatch": true,
+  "lease": {
+    "startedAt": "2026-11-11T17:13:30.191Z",
+    "expiresAt": "2026-11-11T18:03:30.191Z",
+    "futureBuildFlagDisabled": true
+  },
+  "previousPreview": {
+    "deploymentId": "dpl_9tmsCijuHXUiXrvu1egEbCv7ctht",
+    "url": "https://perch-aero-pane-stage3a-eixaj6pkv-mml3.vercel.app/?mode=live",
+    "commit": "3b87077eab07a1d861c910fdaf385e3d32f49c6f",
+    "preserved": true
+  },
+  "supersededR01": {
+    "deploymentId": "dpl_2Y4EBfP82q79Bm1SZWfFhsUjjFDX",
+    "commit": "8a5baf08b2f398fcb5a3333f4cc516cb38f6a699",
+    "leaseExpired": true
+  },
+  "householdBefore": {
+    "id": "dpl_2WX2Y9nNudmiJCtYMcAaMofp7Yzw",
+    "commit": "8031a76d0a24e1bb4ba88febd87d9a9c15ff2166",
+    "target": "production"
+  }
+}
