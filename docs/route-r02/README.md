@@ -18,6 +18,7 @@ The review page is a narrowly scoped public study of these curated, historical f
 
 - [Investigation report and policy options](REPORT.md)
 - [HexDB timestamp findings](TIMESTAMP.md)
+- [Compatibility assessment](COMPATIBILITY.md), [deployed source and access checks](deployment.json)
 - [Frozen cases](cases.json), [public-source checks](independent-checks.json), [initial counts](initial-analysis.json)
 - [Raw bounded observation](raw-collection.json), [actual stop status](collection-status.json), [acquisition access closure](capture-access-closed.json)
 - Mobile/iPad screenshots and browser results are in this directory. They assess software behavior, not physical-device verification.

@@ -51,7 +51,7 @@ try {
     assert.ok(parseReviewDataset(dataset));
     assert.equal(canonical(dataset), canonical(expected));
     const navigation = await page.goto(base + '/route-review', {
-      waitUntil: 'networkidle',
+      waitUntil: 'domcontentloaded',
     });
     assert.equal(navigation.status(), 200);
     for (let i = 0; i < expected.cases.length; i++) {
@@ -120,7 +120,7 @@ try {
         .getAttribute('aria-pressed'),
       'true',
     );
-    await page.reload({ waitUntil: 'networkidle' });
+    await page.reload({ waitUntil: 'domcontentloaded' });
     await page
       .getByRole('heading', {
         name: expected.cases[15].callsign,
@@ -176,11 +176,18 @@ try {
       405,
     );
     if (viewport.width === 1024) {
-      await page.goto(base + '/?mode=live', { waitUntil: 'networkidle' });
+      await page.goto(base + '/?mode=live', {
+        waitUntil: 'domcontentloaded',
+      });
       await page
         .getByRole('heading', { name: 'Enter your PIN', exact: true })
         .waitFor();
       assert.equal(await page.locator('.primary-card').count(), 0);
+      assert.equal(
+        requests.filter((p) => /^\/api\/(aircraft|enrichment)$/.test(p))
+          .length,
+        0,
+      );
       await page.screenshot({
         path: 'docs/route-r02/hosted-pin-' + viewport.height + '.png',
       });

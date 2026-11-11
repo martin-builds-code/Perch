@@ -89,6 +89,22 @@
     "An initial restricted-sandbox run could not bind local test sockets; rerun with local network permission passed.",
     "A new test-script style lint error was corrected; final ESLint passed.",
     "No mocked route count is represented as real provider accuracy.",
-    "Initial hosted review API passed but /route-review returned platform NOT_FOUND. A narrow SPA rewrite was added before changing the stable alias; all API paths remain separate. Hosted checks are repeated on the corrected commit."
-  ]
+    "Initial hosted review API passed but /route-review returned platform NOT_FOUND. A narrow SPA rewrite was added before changing the stable alias; all API paths remain separate. Hosted checks are repeated on the corrected commit.",
+    "A hosted PIN-page navigation network-idle wait timed out. The readiness check was changed to DOM loaded plus the actual PIN heading; final immutable and stable hosted runs passed at all four sizes. No application change was needed for that test wait."
+  ],
+  "hostedBrowser": {
+    "immutable": "hosted-immutable-checks.json",
+    "stable": "hosted-checks.json",
+    "viewports": [
+      "320x568",
+      "390x844",
+      "1024x768",
+      "1024x624"
+    ],
+    "realFrozenCases": 16,
+    "mockedApiResponses": false,
+    "providerCalls": 0,
+    "mainPinAndApiGuards": "pass",
+    "ownerAviationVerdicts": 0
+  }
 }

@@ -1,0 +1,149 @@
+{
+  "checkedAt": "2026-11-11T20:20:42.814Z",
+  "base": "https://perch-aero-pane-stage3a-kibned6ue-mml3.vercel.app",
+  "checks": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "frozenCaseCount": 16,
+      "exactDataset": true,
+      "allCallsDatesAndRegistrationLinks": true,
+      "localResume": true,
+      "validPartialExport": true,
+      "exportVerdictsAreSyntheticTestActions": true,
+      "reviewPageTrackingRequests": 0,
+      "reviewPageProviderRequests": 0,
+      "horizontalOverflow": false,
+      "mainPinProtected": true,
+      "http": [
+        {
+          "path": "/api/session",
+          "status": 401
+        },
+        {
+          "path": "/api/aircraft",
+          "status": 401
+        },
+        {
+          "path": "/api/enrichment",
+          "status": 401
+        },
+        {
+          "path": "/api/route-research",
+          "status": 404
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "frozenCaseCount": 16,
+      "exactDataset": true,
+      "allCallsDatesAndRegistrationLinks": true,
+      "localResume": true,
+      "validPartialExport": true,
+      "exportVerdictsAreSyntheticTestActions": true,
+      "reviewPageTrackingRequests": 0,
+      "reviewPageProviderRequests": 0,
+      "horizontalOverflow": false,
+      "mainPinProtected": true,
+      "http": [
+        {
+          "path": "/api/session",
+          "status": 401
+        },
+        {
+          "path": "/api/aircraft",
+          "status": 401
+        },
+        {
+          "path": "/api/enrichment",
+          "status": 401
+        },
+        {
+          "path": "/api/route-research",
+          "status": 404
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "frozenCaseCount": 16,
+      "exactDataset": true,
+      "allCallsDatesAndRegistrationLinks": true,
+      "localResume": true,
+      "validPartialExport": true,
+      "exportVerdictsAreSyntheticTestActions": true,
+      "reviewPageTrackingRequests": 0,
+      "reviewPageProviderRequests": 0,
+      "horizontalOverflow": false,
+      "mainPinProtected": true,
+      "http": [
+        {
+          "path": "/api/session",
+          "status": 401
+        },
+        {
+          "path": "/api/aircraft",
+          "status": 401
+        },
+        {
+          "path": "/api/enrichment",
+          "status": 401
+        },
+        {
+          "path": "/api/route-research",
+          "status": 404
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "frozenCaseCount": 16,
+      "exactDataset": true,
+      "allCallsDatesAndRegistrationLinks": true,
+      "localResume": true,
+      "validPartialExport": true,
+      "exportVerdictsAreSyntheticTestActions": true,
+      "reviewPageTrackingRequests": 0,
+      "reviewPageProviderRequests": 0,
+      "horizontalOverflow": false,
+      "mainPinProtected": true,
+      "http": [
+        {
+          "path": "/api/session",
+          "status": 401
+        },
+        {
+          "path": "/api/aircraft",
+          "status": 401
+        },
+        {
+          "path": "/api/enrichment",
+          "status": 401
+        },
+        {
+          "path": "/api/route-research",
+          "status": 404
+        }
+      ]
+    }
+  ],
+  "physicalDeviceTest": false,
+  "actualOwnerVerdicts": 0,
+  "notes": [
+    "The hosted page uses real frozen research cases; no mocked API responses.",
+    "No FR24 flight page or aviation provider was requested by these tests.",
+    "Main protected live content was not unlocked; PIN screen and unauthorized HTTP guards were checked."
+  ]
+}
