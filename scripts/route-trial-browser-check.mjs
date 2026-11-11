@@ -18,6 +18,22 @@ try {
     const page = await browser.newPage({
       viewport: { width: 1024, height },
     });
+    await page.addInitScript(() => {
+      const nativeFetch = window.fetch.bind(window);
+      window.fetch = async (...args) => {
+        const response = await nativeFetch(...args);
+        if (String(args[0]) === '/api/session' && response.ok) {
+          const json = response.json.bind(response);
+          response.json = async () => {
+            await new Promise((release) => {
+              window.releaseRouteTrialSession = release;
+            });
+            return json();
+          };
+        }
+        return response;
+      };
+    });
     await page.clock.install({ time: new Date(T) });
     await page.clock.pauseAt(new Date(T));
     let expired = false,
@@ -135,6 +151,19 @@ try {
       });
     });
     await page.goto('http://127.0.0.1:5173/?mode=live');
+    await page.waitForFunction(
+      () => typeof window.releaseRouteTrialSession === 'function',
+    );
+    await page.waitForTimeout(150);
+    assert.equal(
+      positions,
+      0,
+      'do not mount an unauthorised/half-configured poller while session JSON is pending',
+    );
+    await page.evaluate(() => {
+      window.releaseRouteTrialSession();
+      delete window.releaseRouteTrialSession;
+    });
     await page
       .getByRole('heading', { name: 'Experimental route investigation' })
       .waitFor();

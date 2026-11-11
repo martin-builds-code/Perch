@@ -43,10 +43,10 @@ export default function Appliance() {
           signal: abort.signal,
         });
         if (!stopped) {
-          setAuth(r.ok ? "yes" : r.status === 401 ? "no" : "offline");
           if (r.ok) {
-            lastCheck = Date.now();
             const body = await r.json();
+            if (stopped) return;
+            lastCheck = Date.now();
             const expires = body.routeDiagnosticTrial?.expiresAtMs;
             setRouteTrialUntil(
               typeof expires === "number" &&
@@ -55,7 +55,13 @@ export default function Appliance() {
                 ? expires
                 : undefined,
             );
-          } else setRouteTrialUntil(undefined);
+            // Publish authentication and its trial policy together: mounting
+            // before JSON arrives creates an immediately aborted extra poller.
+            setAuth("yes");
+          } else {
+            setAuth(r.status === 401 ? "no" : "offline");
+            setRouteTrialUntil(undefined);
+          }
         }
       } catch {
         if (!stopped) setAuth((a) => (a === "yes" ? "yes" : "offline"));

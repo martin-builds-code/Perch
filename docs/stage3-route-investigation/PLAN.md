@@ -74,3 +74,13 @@ PIN with no remaining positional polling. Browser screenshots in this directory
 are explicitly synthetic; they are not live-provider evidence or physical-iPad
 verification. React effects/timers/listeners were reviewed using the Vercel
 React best-practices checklist; no provider timer was introduced.
+
+The first live browser recorded one aborted startup positional request. A delayed
+session-body browser regression reproduced the diagnostic startup race: setting
+authenticated before reading the trial policy mounted a half-configured LiveApp.
+The correction publishes authentication and policy together after JSON parsing
+and rechecks unmount. The red regression fails on the initial diagnostic commit
+and passes after the correction. This reduces startup work; it is not a cause
+of the pre-existing household route problem. It does not change polling cadence,
+enrichment priority or budgets. All 212 tests, 13 compiled-server checks, lint,
+both builds and both mocked browser dimensions passed again after this change.
