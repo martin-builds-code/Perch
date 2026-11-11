@@ -1,5 +1,7 @@
 # R02 route verification
 
+The owner's first complete export has been received and consolidated. [Results and policy recommendation](HUMAN-VERIFICATION.md): 14 supplied pairs corroborated, including all seven age-rejected pairs; one missing route identified and one case unverified. The operational rule is unchanged. The instructions below remain available for revising or resuming a review; the original frozen dataset has not been modified.
+
 Open **[the prepared route review](https://perch-aero-pane-stage3a.vercel.app/route-review)** on an iPhone or iPad. The page contains 16 frozen observations from **11 November 2026, 19:04–19:45 UTC**. It does not track the aircraft now or make aviation-provider requests.
 
 1. Open **aircraft history in FR24**. This opens the recorded registration, not a guessed flight number. Select the flight airborne around the displayed observation time on **11 November**. The HexDB association timestamp is a different date and is not the flight date.

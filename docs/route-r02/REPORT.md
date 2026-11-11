@@ -1,6 +1,8 @@
 # R02 — historical route accuracy and verification
 
-R02 has prepared 16 genuine flight cases and a mobile review/export page. Seven complete associations are excluded solely by the 180-day rule, but **none is yet confirmed as the route of the observed flight**. Public schedule evidence is useful context, not a substitute for that check. No operational age-policy change is justified by the evidence collected so far.
+The owner has now completed all 16 prepared checks. **All 14 supplied HexDB route pairs were corroborated by the owner, including all seven rejected by the 180-day rule**. One provider-missing route was identified as a positioning flight; one case remains unverified. No supplied-route mismatch was reported. The results establish useful routes lost to the age rule in this sample, not universal route accuracy.
+
+See the [completed human-verification report](HUMAN-VERIFICATION.md), [original export](owner-review-2026-11-11-211716.json), [consolidated counts](owner-analysis.json) and [validation record](owner-review-validation.json). Recommendation: consider a bounded, qualified historical fallback (Option C) under a separate implementation authorization. The operational 180-day rule and deployed application remain unchanged.
 
 ## Baseline and operating safeguards
 
@@ -26,7 +28,7 @@ Calls were sequential and at least 91 seconds apart, within the existing 30-seco
 
 Selection favored currently observed fresh, airborne commercial types and then nearby records, skipping already sampled identities. This is purposive evening sampling, not random traffic coverage. It uses no wider radius, no aircraft history database and no extra source. Samples include Airbus A319/A320/A321neo, Boeing 737-800/MAX 8, ATR 42/72, ERJ 145 and an EMB-135 Legacy. Exact airborne positions, private observation coordinates and credentials were not retained in the study.
 
-## Cases and initial results
+## Cases and initial results — before owner review
 
 | HexDB association category | Cases | Exact-flight corroborated matches | Confirmed mismatches | Unverified |
 | --- | ---: | ---: | ---: | ---: |
@@ -39,7 +41,7 @@ Accuracy is **undetermined**, not zero percent or 100 percent. All seven histori
 
 Cases are interleaved by category for review, never duplicated to meet a target. The [dataset](cases.json) retains observed UTC instants, airframe identifiers, manufacturer/model, endpoint/HTTP outcome, airport codes/names, original timestamp, calculated age, validation reason and independent-evidence confidence. The file and final server copy have a canonical SHA-256 fingerprint. Cases are frozen; their association age is calculated at lookup, not repeatedly aged while the owner reviews them.
 
-## Independent verification: what is and is not established
+## Initial automated independent verification — before owner review
 
 Permitted public searches covered all 16 callsigns and the observation date, excluding automated FR24 flight-page scraping. [Source URLs and limited facts](independent-checks.json) are preserved. Thirteen cases have date-specific public schedule support, mostly airport boards. They pair the same callsign/date with planned airports; they do not establish an actual completed route or source independence from HexDB. They remain **limited**, excluded from accuracy counts.
 
@@ -60,7 +62,9 @@ Each case has an aircraft-history link, observation UTC time, copyable callsign,
 
 Drafts remain on the device in versioned, fingerprint-specific local storage. There is no server submission, account, permanent diagnostics store or automatic upload. JSON export uses feature-detected native file sharing or a conventional browser download, with an explicit download fallback. Cancels/failures do not clear answers. Duplicate exports are idempotent, conflicting verdicts are excluded for deliberate consolidation, and altered dataset/flight identities are rejected. The offline analysis tool reports raw counts by age category, exact-date verification denominators, missing-source recoveries and unresolved conflicts. No-route-available is not counted as a mismatch or accuracy success.
 
-## Policy options awaiting results
+## Initial policy assessment — superseded by completed owner review
+
+This section preserves the pre-review assessment. The updated recommendation and evidence limits are in [HUMAN-VERIFICATION.md](HUMAN-VERIFICATION.md).
 
 | Option | Expected benefit | Incorrect-route risk | Complexity and provider usage |
 | --- | --- | --- | --- |
@@ -80,6 +84,6 @@ Safari 15 supports the baseline File/Blob/object-URL/download/localStorage techn
 
 The normal PIN screen and authenticated API rejection can be checked without the owner's PIN. This does not claim a new authenticated live-flight acceptance test. The operational server graph is byte-identical to R01 after removing the acquisition hooks; the new evidence sampler, while active, verified actual nearby records and HexDB responses separately. Existing visual and operational regressions provide additional checks.
 
-Next action: owner reviews the prepared cases and exports one results file. Codex then consolidates exact-flight evidence, reports historical/recent raw results and recommends a policy for explicit approval. Stop here; no merge, Production release or automatic age-rule adjustment.
+The owner's first complete export has now been consolidated in [HUMAN-VERIFICATION.md](HUMAN-VERIFICATION.md). Next action is an explicit route-policy decision. No further owner data entry is required for this sample. No merge, Production release or automatic age-rule adjustment has occurred.
 
 The first hosted page check found a Vercel `NOT_FOUND` response despite a working frozen-case API. A single-path SPA rewrite corrected this before the stable alias was reassigned. All final hosted checks passed. The prior R01 immutable Preview is retained for comparison/rollback; only the explicit Stage 3A stable alias was moved. [Cleanup](cleanup.json) confirms task servers/observer stopped, temporary capability files removed, expired sampler access and unchanged original Preview configuration metadata.

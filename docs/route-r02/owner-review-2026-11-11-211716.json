@@ -1,0 +1,992 @@
+{
+  "schemaVersion": 1,
+  "kind": "aero-pane-route-review",
+  "datasetId": "r02-2026-11-11",
+  "datasetRevision": 1,
+  "datasetFingerprint": "25036c5700a1dd09062767e442e36fd23d352b74698e6e7198fa2eb20867a55e",
+  "exportedAtMs": 1794431836152,
+  "complete": true,
+  "cases": [
+    {
+      "case": {
+        "hex": "40838c",
+        "callsign": "SHT9Q",
+        "lookedUpAtMs": 1794425137748,
+        "endpoint": "https://hexdb.io/api/v2/routes/{callsign}",
+        "httpStatus": 200,
+        "updatedAtRaw": "2026-02-18T19:54:09Z",
+        "associationTimeMs": 1771444449000,
+        "associationAgeDays": 265.9801938425926,
+        "ageCategory": "historical-180-365",
+        "origin": {
+          "code": "EDI",
+          "iata": "EDI",
+          "icao": "EGPH",
+          "name": "Edinburgh Airport"
+        },
+        "destination": {
+          "code": "LHR",
+          "iata": "LHR",
+          "icao": "EGLL",
+          "name": "Heathrow Airport"
+        },
+        "operationalOutcome": "rejected",
+        "operationalReason": "route-too-old",
+        "structuralReason": "complete-pair",
+        "callsignMatches": true,
+        "timestampValid": true,
+        "source": "hexdb.io",
+        "completeIataPair": true,
+        "registration": "G-TTSJ",
+        "model": "Airbus A-320neo",
+        "typeCode": "A20N",
+        "observedAtMs": 1794425137699,
+        "providerObservedAtMs": 1794425136000,
+        "aircraftPositionAtMs": 1794425135854,
+        "providerRequestStarted": true,
+        "id": "r02-1d54ff8d92fd",
+        "independent": {
+          "scope": "general-association",
+          "verdict": "unverified",
+          "confidence": "unverified",
+          "evidence": [
+            {
+              "url": "https://yaft.live/regnr/G-EUYU",
+              "title": "Different-date / different-airframe association",
+              "accessedAtMs": 1794427123606
+            }
+          ],
+          "note": "Public results associate SHT9Q with EDI–LHR on 28 October 2026 using G-EUYU. This case was G-TTSJ on 11 November; the other flight is not corroboration."
+        }
+      },
+      "answer": {
+        "verdict": "same-route",
+        "matchScope": "same-aircraft-date",
+        "originCode": "",
+        "destinationCode": "",
+        "notes": "",
+        "evidenceUrl": "",
+        "revision": 2,
+        "updatedAtMs": 1794430420643
+      }
+    },
+    {
+      "case": {
+        "hex": "400880",
+        "callsign": "LOG31AW",
+        "lookedUpAtMs": 1794423850297,
+        "endpoint": "https://hexdb.io/api/v2/routes/{callsign}",
+        "httpStatus": 200,
+        "updatedAtRaw": "2025-05-18T18:30:22Z",
+        "associationTimeMs": 1747593022000,
+        "associationAgeDays": 542.0234756597222,
+        "ageCategory": "historical-over-365",
+        "origin": {
+          "code": "ABZ",
+          "iata": "ABZ",
+          "icao": "EGPD",
+          "name": "Aberdeen Airport"
+        },
+        "destination": {
+          "code": "MAN",
+          "iata": "MAN",
+          "icao": "EGCC",
+          "name": "Manchester Airport"
+        },
+        "operationalOutcome": "rejected",
+        "operationalReason": "route-too-old",
+        "structuralReason": "complete-pair",
+        "callsignMatches": true,
+        "timestampValid": true,
+        "source": "hexdb.io",
+        "completeIataPair": true,
+        "registration": "G-SAJF",
+        "model": "Embraer ERJ-145",
+        "typeCode": "E145",
+        "observedAtMs": 1794423850045,
+        "providerObservedAtMs": 1794423848000,
+        "aircraftPositionAtMs": 1794423848000,
+        "providerRequestStarted": true,
+        "id": "r02-4c11c31803b5",
+        "independent": {
+          "scope": "same-flight-date",
+          "verdict": "same-route",
+          "confidence": "limited",
+          "evidence": [
+            {
+              "url": "https://wwnbg.flightera.net/en/airport/Aberdeen/EGPD/departure",
+              "title": "Dated Aberdeen departure board",
+              "accessedAtMs": 1794427123606
+            }
+          ],
+          "note": "11 November 2026: LM27 / LOG31AW scheduled ABZ–MAN at 18:15 GMT. Limited schedule support only: completion/current flown route and data independence from HexDB are not established. This is excluded from accuracy counts until a stronger flight-specific check."
+        }
+      },
+      "answer": {
+        "verdict": "same-route",
+        "matchScope": "same-aircraft-date",
+        "originCode": "",
+        "destinationCode": "",
+        "notes": "",
+        "evidenceUrl": "",
+        "revision": 2,
+        "updatedAtMs": 1794430718512
+      }
+    },
+    {
+      "case": {
+        "hex": "40631a",
+        "callsign": "EZY64RF",
+        "lookedUpAtMs": 1794424310293,
+        "endpoint": "https://hexdb.io/api/v2/routes/{callsign}",
+        "httpStatus": 200,
+        "updatedAtRaw": "2026-10-24T16:43:07Z",
+        "associationTimeMs": 1792860187000,
+        "associationAgeDays": 18.103278854166668,
+        "ageCategory": "recent-0-180",
+        "origin": {
+          "code": "BFS",
+          "iata": "BFS",
+          "icao": "EGAA",
+          "name": "Belfast International Airport"
+        },
+        "destination": {
+          "code": "STN",
+          "iata": "STN",
+          "icao": "EGSS",
+          "name": "London Stansted Airport"
+        },
+        "operationalOutcome": "complete",
+        "operationalReason": "validated",
+        "structuralReason": "complete-pair",
+        "callsignMatches": true,
+        "timestampValid": true,
+        "source": "hexdb.io",
+        "completeIataPair": true,
+        "registration": "G-EZFV",
+        "model": "Airbus A-319",
+        "typeCode": "A319",
+        "observedAtMs": 1794424309897,
+        "providerObservedAtMs": 1794424308000,
+        "aircraftPositionAtMs": 1794424307959,
+        "providerRequestStarted": true,
+        "id": "r02-0252198cc94f",
+        "independent": {
+          "scope": "same-flight-date",
+          "verdict": "same-route",
+          "confidence": "limited",
+          "evidence": [
+            {
+              "url": "https://useast.flightera.net/en/airport/Belfast/EGAA/departure",
+              "title": "Dated Belfast departure board",
+              "accessedAtMs": 1794427123606
+            }
+          ],
+          "note": "11 November 2026: U245 / EZY64RF scheduled BFS–STN at 18:55 GMT. Limited schedule support only: completion/current flown route and data independence from HexDB are not established. This is excluded from accuracy counts until a stronger flight-specific check."
+        }
+      },
+      "answer": {
+        "verdict": "same-route",
+        "matchScope": "same-aircraft-date",
+        "originCode": "",
+        "destinationCode": "",
+        "notes": "",
+        "evidenceUrl": "",
+        "revision": 2,
+        "updatedAtMs": 1794430778706
+      }
+    },
+    {
+      "case": {
+        "hex": "4c4a21",
+        "callsign": "YUSRB",
+        "lookedUpAtMs": 1794424402455,
+        "endpoint": "https://hexdb.io/api/v2/routes/{callsign}",
+        "httpStatus": 404,
+        "updatedAtRaw": null,
+        "associationTimeMs": null,
+        "associationAgeDays": null,
+        "ageCategory": "missing-unusable",
+        "origin": null,
+        "destination": null,
+        "operationalOutcome": "negative",
+        "operationalReason": "http-404",
+        "structuralReason": "no-provider-route",
+        "callsignMatches": null,
+        "timestampValid": false,
+        "source": "hexdb.io",
+        "completeIataPair": false,
+        "registration": "YU-SRB",
+        "model": "Embraer EMB-135 Legacy",
+        "typeCode": "E35L",
+        "observedAtMs": 1794424402209,
+        "providerObservedAtMs": 1794424402000,
+        "aircraftPositionAtMs": 1794424401607,
+        "providerRequestStarted": true,
+        "id": "r02-cee5968b0830",
+        "independent": {
+          "scope": "unverified",
+          "verdict": "unverified",
+          "confidence": "unverified",
+          "evidence": [],
+          "note": "No reliable independent match to this observed flight was established. Please check its aircraft, date and time in FR24."
+        }
+      },
+      "answer": {
+        "verdict": "unable-to-verify",
+        "matchScope": "not-matched",
+        "originCode": "",
+        "destinationCode": "",
+        "notes": "",
+        "evidenceUrl": "",
+        "revision": 1,
+        "updatedAtMs": 1794430912853
+      }
+    },
+    {
+      "case": {
+        "hex": "40624f",
+        "callsign": "SHT19B",
+        "lookedUpAtMs": 1794425989904,
+        "endpoint": "https://hexdb.io/api/v2/routes/{callsign}",
+        "httpStatus": 200,
+        "updatedAtRaw": "2026-02-18T19:54:09Z",
+        "associationTimeMs": 1771444449000,
+        "associationAgeDays": 265.99005675925923,
+        "ageCategory": "historical-180-365",
+        "origin": {
+          "code": "ABZ",
+          "iata": "ABZ",
+          "icao": "EGPD",
+          "name": "Aberdeen Airport"
+        },
+        "destination": {
+          "code": "LHR",
+          "iata": "LHR",
+          "icao": "EGLL",
+          "name": "Heathrow Airport"
+        },
+        "operationalOutcome": "rejected",
+        "operationalReason": "route-too-old",
+        "structuralReason": "complete-pair",
+        "callsignMatches": true,
+        "timestampValid": true,
+        "source": "hexdb.io",
+        "completeIataPair": true,
+        "registration": "G-EUYH",
+        "model": "Airbus A-320",
+        "typeCode": "A320",
+        "observedAtMs": 1794425989864,
+        "providerObservedAtMs": 1794425988000,
+        "aircraftPositionAtMs": 1794425987830,
+        "providerRequestStarted": true,
+        "id": "r02-f1a1fab2048f",
+        "independent": {
+          "scope": "same-aircraft-date",
+          "verdict": "same-route",
+          "confidence": "limited",
+          "evidence": [
+            {
+              "url": "https://planefinder.net/data/flight/BA1315/history/5-2605748",
+              "title": "Plane Finder BA1315 dated upcoming table",
+              "accessedAtMs": 1794427123606
+            }
+          ],
+          "note": "The 11 November 2026 upcoming row lists ABZ–LHR, 19:10–20:40 GMT, G-EUYH, under flight BA1315 / SHT19B. The page header describes another flight in January 2025; that header is NOT evidence for this case. Limited schedule support only: completion/current flown route and data independence from HexDB are not established. This is excluded from accuracy counts until a stronger flight-specific check."
+        }
+      },
+      "answer": {
+        "verdict": "same-route",
+        "matchScope": "same-aircraft-date",
+        "originCode": "",
+        "destinationCode": "",
+        "notes": "",
+        "evidenceUrl": "",
+        "revision": 2,
+        "updatedAtMs": 1794430987641
+      }
+    },
+    {
+      "case": {
+        "hex": "406dce",
+        "callsign": "LOG17ZA",
+        "lookedUpAtMs": 1794423942337,
+        "endpoint": "https://hexdb.io/api/v2/routes/{callsign}",
+        "httpStatus": 200,
+        "updatedAtRaw": "2025-05-18T18:30:22Z",
+        "associationTimeMs": 1747593022000,
+        "associationAgeDays": 542.0245409375,
+        "ageCategory": "historical-over-365",
+        "origin": {
+          "code": "INV",
+          "iata": "INV",
+          "icao": "EGPE",
+          "name": "Inverness Airport"
+        },
+        "destination": {
+          "code": "MAN",
+          "iata": "MAN",
+          "icao": "EGCC",
+          "name": "Manchester Airport"
+        },
+        "operationalOutcome": "rejected",
+        "operationalReason": "route-too-old",
+        "structuralReason": "complete-pair",
+        "callsignMatches": true,
+        "timestampValid": true,
+        "source": "hexdb.io",
+        "completeIataPair": true,
+        "registration": "G-LMRD",
+        "model": "ATR-42-500",
+        "typeCode": "AT45",
+        "observedAtMs": 1794423942071,
+        "providerObservedAtMs": 1794423940000,
+        "aircraftPositionAtMs": 1794423939845,
+        "providerRequestStarted": true,
+        "id": "r02-3371418e3b52",
+        "independent": {
+          "scope": "same-flight-date",
+          "verdict": "same-route",
+          "confidence": "limited",
+          "evidence": [
+            {
+              "url": "https://wwnbg.flightera.net/en/airport/Inverness/EGPE/departure",
+              "title": "Dated Inverness departure board",
+              "accessedAtMs": 1794427123606
+            }
+          ],
+          "note": "11 November 2026: LM597 / LOG17ZA scheduled INV–MAN at 17:55 GMT. Limited schedule support only: completion/current flown route and data independence from HexDB are not established. This is excluded from accuracy counts until a stronger flight-specific check."
+        }
+      },
+      "answer": {
+        "verdict": "same-route",
+        "matchScope": "same-aircraft-date",
+        "originCode": "",
+        "destinationCode": "",
+        "notes": "",
+        "evidenceUrl": "",
+        "revision": 2,
+        "updatedAtMs": 1794431042616
+      }
+    },
+    {
+      "case": {
+        "hex": "406670",
+        "callsign": "EZY387T",
+        "lookedUpAtMs": 1794424953882,
+        "endpoint": "https://hexdb.io/api/v2/routes/{callsign}",
+        "httpStatus": 200,
+        "updatedAtRaw": "2026-10-28T06:14:05Z",
+        "associationTimeMs": 1793168045000,
+        "associationAgeDays": 14.547556504629629,
+        "ageCategory": "recent-0-180",
+        "origin": {
+          "code": "LGW",
+          "iata": "LGW",
+          "icao": "EGKK",
+          "name": "Gatwick Airport"
+        },
+        "destination": {
+          "code": "BFS",
+          "iata": "BFS",
+          "icao": "EGAA",
+          "name": "Belfast International Airport"
+        },
+        "operationalOutcome": "complete",
+        "operationalReason": "validated",
+        "structuralReason": "complete-pair",
+        "callsignMatches": true,
+        "timestampValid": true,
+        "source": "hexdb.io",
+        "completeIataPair": true,
+        "registration": "G-EZUW",
+        "model": "Airbus A-320",
+        "typeCode": "A320",
+        "observedAtMs": 1794424953824,
+        "providerObservedAtMs": 1794424952000,
+        "aircraftPositionAtMs": 1794424951889,
+        "providerRequestStarted": true,
+        "id": "r02-2badbb7eaa54",
+        "independent": {
+          "scope": "same-flight-date",
+          "verdict": "same-route",
+          "confidence": "limited",
+          "evidence": [
+            {
+              "url": "https://useast.flightera.net/fr/airport/Belfast/EGAA/arrival",
+              "title": "Dated Belfast arrival board",
+              "accessedAtMs": 1794427123606
+            }
+          ],
+          "note": "11 November 2026: U2831 / EZY387T listed from LGW to BFS, scheduled arrival 20:10 GMT. Limited schedule support only: completion/current flown route and data independence from HexDB are not established. This is excluded from accuracy counts until a stronger flight-specific check."
+        }
+      },
+      "answer": {
+        "verdict": "same-route",
+        "matchScope": "same-aircraft-date",
+        "originCode": "",
+        "destinationCode": "",
+        "notes": "",
+        "evidenceUrl": "",
+        "revision": 2,
+        "updatedAtMs": 1794431109902
+      }
+    },
+    {
+      "case": {
+        "hex": "406a63",
+        "callsign": "EXS041A",
+        "lookedUpAtMs": 1794424586378,
+        "endpoint": "https://hexdb.io/api/v2/routes/{callsign}",
+        "httpStatus": 404,
+        "updatedAtRaw": null,
+        "associationTimeMs": null,
+        "associationAgeDays": null,
+        "ageCategory": "missing-unusable",
+        "origin": null,
+        "destination": null,
+        "operationalOutcome": "negative",
+        "operationalReason": "http-404",
+        "structuralReason": "no-provider-route",
+        "callsignMatches": null,
+        "timestampValid": false,
+        "source": "hexdb.io",
+        "completeIataPair": false,
+        "registration": "G-GDFW",
+        "model": "Boeing 737-800",
+        "typeCode": "B738",
+        "observedAtMs": 1794424586095,
+        "providerObservedAtMs": 1794424584000,
+        "aircraftPositionAtMs": 1794424583620,
+        "providerRequestStarted": true,
+        "id": "r02-833393fea5fc",
+        "independent": {
+          "scope": "unverified",
+          "verdict": "unverified",
+          "confidence": "unverified",
+          "evidence": [],
+          "note": "No reliable independent match to this observed flight was established. Please check its aircraft, date and time in FR24."
+        }
+      },
+      "answer": {
+        "verdict": "different-route",
+        "matchScope": "same-aircraft-date",
+        "originCode": "LBA",
+        "destinationCode": "MAN",
+        "notes": "Positioning flight",
+        "evidenceUrl": "",
+        "revision": 24,
+        "updatedAtMs": 1794431281787
+      }
+    },
+    {
+      "case": {
+        "hex": "406532",
+        "callsign": "SHT7P",
+        "lookedUpAtMs": 1794426081906,
+        "endpoint": "https://hexdb.io/api/v2/routes/{callsign}",
+        "httpStatus": 200,
+        "updatedAtRaw": "2026-02-18T19:54:09Z",
+        "associationTimeMs": 1771444449000,
+        "associationAgeDays": 265.9911215972222,
+        "ageCategory": "historical-180-365",
+        "origin": {
+          "code": "GLA",
+          "iata": "GLA",
+          "icao": "EGPF",
+          "name": "Glasgow Airport"
+        },
+        "destination": {
+          "code": "LHR",
+          "iata": "LHR",
+          "icao": "EGLL",
+          "name": "Heathrow Airport"
+        },
+        "operationalOutcome": "rejected",
+        "operationalReason": "route-too-old",
+        "structuralReason": "complete-pair",
+        "callsignMatches": true,
+        "timestampValid": true,
+        "source": "hexdb.io",
+        "completeIataPair": true,
+        "registration": "G-EUYM",
+        "model": "Airbus A-320",
+        "typeCode": "A320",
+        "observedAtMs": 1794426081860,
+        "providerObservedAtMs": 1794426080000,
+        "aircraftPositionAtMs": 1794426079921,
+        "providerRequestStarted": true,
+        "id": "r02-13659fed15b4",
+        "independent": {
+          "scope": "same-flight-date",
+          "verdict": "same-route",
+          "confidence": "limited",
+          "evidence": [
+            {
+              "url": "https://wwnbg.flightera.net/en/airport/Glasgow/EGPF/departure",
+              "title": "Dated Glasgow departure board",
+              "accessedAtMs": 1794427123606
+            }
+          ],
+          "note": "11 November 2026: BA1489 / SHT7P scheduled GLA–LHR at 19:15 GMT. Limited schedule support only: completion/current flown route and data independence from HexDB are not established. This is excluded from accuracy counts until a stronger flight-specific check."
+        }
+      },
+      "answer": {
+        "verdict": "same-route",
+        "matchScope": "same-aircraft-date",
+        "originCode": "",
+        "destinationCode": "",
+        "notes": "",
+        "evidenceUrl": "",
+        "revision": 2,
+        "updatedAtMs": 1794431399248
+      }
+    },
+    {
+      "case": {
+        "hex": "4caa53",
+        "callsign": "EAI19MS",
+        "lookedUpAtMs": 1794424862031,
+        "endpoint": "https://hexdb.io/api/v2/routes/{callsign}",
+        "httpStatus": 200,
+        "updatedAtRaw": "2025-05-18T18:30:22Z",
+        "associationTimeMs": 1747593022000,
+        "associationAgeDays": 542.0351855439815,
+        "ageCategory": "historical-over-365",
+        "origin": {
+          "code": "MAN",
+          "iata": "MAN",
+          "icao": "EGCC",
+          "name": "Manchester Airport"
+        },
+        "destination": {
+          "code": "DUB",
+          "iata": "DUB",
+          "icao": "EIDW",
+          "name": "Dublin Airport"
+        },
+        "operationalOutcome": "rejected",
+        "operationalReason": "route-too-old",
+        "structuralReason": "complete-pair",
+        "callsignMatches": true,
+        "timestampValid": true,
+        "source": "hexdb.io",
+        "completeIataPair": true,
+        "registration": "EI-GPN",
+        "model": "ATR-72-600",
+        "typeCode": "AT76",
+        "observedAtMs": 1794424861860,
+        "providerObservedAtMs": 1794424860000,
+        "aircraftPositionAtMs": 1794424860000,
+        "providerRequestStarted": true,
+        "id": "r02-4aee7106e2c2",
+        "independent": {
+          "scope": "same-flight-date",
+          "verdict": "same-route",
+          "confidence": "limited",
+          "evidence": [
+            {
+              "url": "https://useast.flightera.net/en/airport/Manchester/EGCC/departure",
+              "title": "Dated Manchester departure board",
+              "accessedAtMs": 1794427123606
+            }
+          ],
+          "note": "11 November 2026: EI3327 / EAI19MS scheduled MAN–DUB at 19:15 GMT. Limited schedule support only: completion/current flown route and data independence from HexDB are not established. This is excluded from accuracy counts until a stronger flight-specific check."
+        }
+      },
+      "answer": {
+        "verdict": "same-route",
+        "matchScope": "same-aircraft-date",
+        "originCode": "",
+        "destinationCode": "",
+        "notes": "",
+        "evidenceUrl": "",
+        "revision": 2,
+        "updatedAtMs": 1794431461917
+      }
+    },
+    {
+      "case": {
+        "hex": "4cae90",
+        "callsign": "RYR1AC",
+        "lookedUpAtMs": 1794425045949,
+        "endpoint": "https://hexdb.io/api/v2/routes/{callsign}",
+        "httpStatus": 200,
+        "updatedAtRaw": "2026-10-24T16:43:07Z",
+        "associationTimeMs": 1792860187000,
+        "associationAgeDays": 18.111793391203705,
+        "ageCategory": "recent-0-180",
+        "origin": {
+          "code": "FCO",
+          "iata": "FCO",
+          "icao": "LIRF",
+          "name": "Rome–Fiumicino International Airport"
+        },
+        "destination": {
+          "code": "DUB",
+          "iata": "DUB",
+          "icao": "EIDW",
+          "name": "Dublin Airport"
+        },
+        "operationalOutcome": "complete",
+        "operationalReason": "validated",
+        "structuralReason": "complete-pair",
+        "callsignMatches": true,
+        "timestampValid": true,
+        "source": "hexdb.io",
+        "completeIataPair": true,
+        "registration": "EI-IKA",
+        "model": "Boeing 737 MAX 8",
+        "typeCode": "B38M",
+        "observedAtMs": 1794425045864,
+        "providerObservedAtMs": 1794425044000,
+        "aircraftPositionAtMs": 1794425043720,
+        "providerRequestStarted": true,
+        "id": "r02-70b45ad7dc07",
+        "independent": {
+          "scope": "same-flight-date",
+          "verdict": "same-route",
+          "confidence": "limited",
+          "evidence": [
+            {
+              "url": "https://wwnbg.flightera.net/en/airport/Dublin/EIDW/arrival",
+              "title": "Dated Dublin arrival board",
+              "accessedAtMs": 1794427123606
+            }
+          ],
+          "note": "11 November 2026: FR9612 / RYR1AC listed from FCO to DUB, scheduled arrival 19:50 GMT. Limited schedule support only: completion/current flown route and data independence from HexDB are not established. This is excluded from accuracy counts until a stronger flight-specific check."
+        }
+      },
+      "answer": {
+        "verdict": "same-route",
+        "matchScope": "same-aircraft-date",
+        "originCode": "FCO",
+        "destinationCode": "DUB",
+        "notes": "",
+        "evidenceUrl": "",
+        "revision": 10,
+        "updatedAtMs": 1794431562015
+      }
+    },
+    {
+      "case": {
+        "hex": "407f41",
+        "callsign": "EAG18C",
+        "lookedUpAtMs": 1794426265681,
+        "endpoint": "https://hexdb.io/api/v2/routes/{callsign}",
+        "httpStatus": 200,
+        "updatedAtRaw": "2025-05-18T18:30:22Z",
+        "associationTimeMs": 1747593022000,
+        "associationAgeDays": 542.0514314930556,
+        "ageCategory": "historical-over-365",
+        "origin": {
+          "code": "BHD",
+          "iata": "BHD",
+          "icao": "EGAC",
+          "name": "George Best Belfast City Airport"
+        },
+        "destination": {
+          "code": "MAN",
+          "iata": "MAN",
+          "icao": "EGCC",
+          "name": "Manchester Airport"
+        },
+        "operationalOutcome": "rejected",
+        "operationalReason": "route-too-old",
+        "structuralReason": "complete-pair",
+        "callsignMatches": true,
+        "timestampValid": true,
+        "source": "hexdb.io",
+        "completeIataPair": true,
+        "registration": "G-CMMK",
+        "model": "ATR-72-600",
+        "typeCode": "AT76",
+        "observedAtMs": 1794426265638,
+        "providerObservedAtMs": 1794426264000,
+        "aircraftPositionAtMs": 1794426263627,
+        "providerRequestStarted": true,
+        "id": "r02-de9bbace9c44",
+        "independent": {
+          "scope": "same-flight-date",
+          "verdict": "same-route",
+          "confidence": "limited",
+          "evidence": [
+            {
+              "url": "https://wwnbg.flightera.net/en/airport/Manchester/EGCC/arrival",
+              "title": "Dated Manchester arrival board",
+              "accessedAtMs": 1794427123606
+            }
+          ],
+          "note": "11 November 2026: EI3618 / EAG18C listed BHD–MAN, scheduled arrival 19:25 GMT, marked delayed. Limited schedule support only: completion/current flown route and data independence from HexDB are not established. This is excluded from accuracy counts until a stronger flight-specific check."
+        }
+      },
+      "answer": {
+        "verdict": "same-route",
+        "matchScope": "same-aircraft-date",
+        "originCode": "",
+        "destinationCode": "",
+        "notes": "",
+        "evidenceUrl": "",
+        "revision": 2,
+        "updatedAtMs": 1794431641360
+      }
+    },
+    {
+      "case": {
+        "hex": "40622b",
+        "callsign": "EZY86NE",
+        "lookedUpAtMs": 1794425714415,
+        "endpoint": "https://hexdb.io/api/v2/routes/{callsign}",
+        "httpStatus": 200,
+        "updatedAtRaw": "2026-10-28T06:14:05Z",
+        "associationTimeMs": 1793168045000,
+        "associationAgeDays": 14.556358969907407,
+        "ageCategory": "recent-0-180",
+        "origin": {
+          "code": "MAD",
+          "iata": "MAD",
+          "icao": "LEMD",
+          "name": "Adolfo Suarez Madrid-Barajas Airport"
+        },
+        "destination": {
+          "code": "EDI",
+          "iata": "EDI",
+          "icao": "EGPH",
+          "name": "Edinburgh Airport"
+        },
+        "operationalOutcome": "complete",
+        "operationalReason": "validated",
+        "structuralReason": "complete-pair",
+        "callsignMatches": true,
+        "timestampValid": true,
+        "source": "hexdb.io",
+        "completeIataPair": true,
+        "registration": "G-EZTT",
+        "model": "Airbus A-320",
+        "typeCode": "A320",
+        "observedAtMs": 1794425714325,
+        "providerObservedAtMs": 1794425714000,
+        "aircraftPositionAtMs": 1794425713845,
+        "providerRequestStarted": true,
+        "id": "r02-0075eb693280",
+        "independent": {
+          "scope": "same-flight-date",
+          "verdict": "same-route",
+          "confidence": "limited",
+          "evidence": [
+            {
+              "url": "https://useast.flightera.net/en/airport/Madrid/LEMD/departure",
+              "title": "Dated Madrid departure board",
+              "accessedAtMs": 1794427123606
+            }
+          ],
+          "note": "11 November 2026: U23210 / EZY86NE listed MAD–EDI. These are schedule fields, not proof of the flown route. Limited schedule support only: completion/current flown route and data independence from HexDB are not established. This is excluded from accuracy counts until a stronger flight-specific check."
+        }
+      },
+      "answer": {
+        "verdict": "same-route",
+        "matchScope": "same-aircraft-date",
+        "originCode": "",
+        "destinationCode": "",
+        "notes": "",
+        "evidenceUrl": "",
+        "revision": 2,
+        "updatedAtMs": 1794431700956
+      }
+    },
+    {
+      "case": {
+        "hex": "40836d",
+        "callsign": "EZY208N",
+        "lookedUpAtMs": 1794425806225,
+        "endpoint": "https://hexdb.io/api/v2/routes/{callsign}",
+        "httpStatus": 200,
+        "updatedAtRaw": "2026-10-24T16:43:07Z",
+        "associationTimeMs": 1792860187000,
+        "associationAgeDays": 18.120592881944443,
+        "ageCategory": "recent-0-180",
+        "origin": {
+          "code": "BRS",
+          "iata": "BRS",
+          "icao": "EGGD",
+          "name": "Bristol Airport"
+        },
+        "destination": {
+          "code": "GLA",
+          "iata": "GLA",
+          "icao": "EGPF",
+          "name": "Glasgow Airport"
+        },
+        "operationalOutcome": "complete",
+        "operationalReason": "validated",
+        "structuralReason": "complete-pair",
+        "callsignMatches": true,
+        "timestampValid": true,
+        "source": "hexdb.io",
+        "completeIataPair": true,
+        "registration": "G-ZXIA",
+        "model": "Airbus A-321neo",
+        "typeCode": "A21N",
+        "observedAtMs": 1794425806183,
+        "providerObservedAtMs": 1794425806000,
+        "aircraftPositionAtMs": 1794425805767,
+        "providerRequestStarted": true,
+        "id": "r02-2a4f12ceb57a",
+        "independent": {
+          "scope": "same-flight-date",
+          "verdict": "same-route",
+          "confidence": "limited",
+          "evidence": [
+            {
+              "url": "https://useast.flightera.net/en/airport/Bristol/EGGD/departure",
+              "title": "Dated Bristol departure board",
+              "accessedAtMs": 1794427123606
+            }
+          ],
+          "note": "11 November 2026: U2203 / EZY208N scheduled BRS–GLA at 19:15 GMT. Limited schedule support only: completion/current flown route and data independence from HexDB are not established. This is excluded from accuracy counts until a stronger flight-specific check."
+        }
+      },
+      "answer": {
+        "verdict": "same-route",
+        "matchScope": "same-aircraft-date",
+        "originCode": "",
+        "destinationCode": "",
+        "notes": "",
+        "evidenceUrl": "",
+        "revision": 2,
+        "updatedAtMs": 1794431746810
+      }
+    },
+    {
+      "case": {
+        "hex": "406015",
+        "callsign": "EZY465Y",
+        "lookedUpAtMs": 1794425898075,
+        "endpoint": "https://hexdb.io/api/v2/routes/{callsign}",
+        "httpStatus": 200,
+        "updatedAtRaw": "2026-10-24T16:43:07Z",
+        "associationTimeMs": 1792860187000,
+        "associationAgeDays": 18.121655960648148,
+        "ageCategory": "recent-0-180",
+        "origin": {
+          "code": "MAN",
+          "iata": "MAN",
+          "icao": "EGCC",
+          "name": "Manchester Airport"
+        },
+        "destination": {
+          "code": "BFS",
+          "iata": "BFS",
+          "icao": "EGAA",
+          "name": "Belfast International Airport"
+        },
+        "operationalOutcome": "complete",
+        "operationalReason": "validated",
+        "structuralReason": "complete-pair",
+        "callsignMatches": true,
+        "timestampValid": true,
+        "source": "hexdb.io",
+        "completeIataPair": true,
+        "registration": "G-EZTK",
+        "model": "Airbus A-320",
+        "typeCode": "A320",
+        "observedAtMs": 1794425897954,
+        "providerObservedAtMs": 1794425896000,
+        "aircraftPositionAtMs": 1794425895537,
+        "providerRequestStarted": true,
+        "id": "r02-7fb99c408082",
+        "independent": {
+          "scope": "same-flight-date",
+          "verdict": "same-route",
+          "confidence": "limited",
+          "evidence": [
+            {
+              "url": "https://useast.flightera.net/en/airport/Manchester/EGCC/departure",
+              "title": "Dated Manchester departure board",
+              "accessedAtMs": 1794427123606
+            }
+          ],
+          "note": "11 November 2026: U2707 / EZY465Y scheduled MAN–BFS at 19:25 GMT. Limited schedule support only: completion/current flown route and data independence from HexDB are not established. This is excluded from accuracy counts until a stronger flight-specific check."
+        }
+      },
+      "answer": {
+        "verdict": "same-route",
+        "matchScope": "same-aircraft-date",
+        "originCode": "",
+        "destinationCode": "",
+        "notes": "",
+        "evidenceUrl": "",
+        "revision": 2,
+        "updatedAtMs": 1794431781829
+      }
+    },
+    {
+      "case": {
+        "hex": "4cad3c",
+        "callsign": "RYR82JD",
+        "lookedUpAtMs": 1794426173871,
+        "endpoint": "https://hexdb.io/api/v2/routes/{callsign}",
+        "httpStatus": 200,
+        "updatedAtRaw": "2026-10-24T16:43:07Z",
+        "associationTimeMs": 1792860187000,
+        "associationAgeDays": 18.12484804398148,
+        "ageCategory": "recent-0-180",
+        "origin": {
+          "code": "MAN",
+          "iata": "MAN",
+          "icao": "EGCC",
+          "name": "Manchester Airport"
+        },
+        "destination": {
+          "code": "ORK",
+          "iata": "ORK",
+          "icao": "EICK",
+          "name": "Cork Airport"
+        },
+        "operationalOutcome": "complete",
+        "operationalReason": "validated",
+        "structuralReason": "complete-pair",
+        "callsignMatches": true,
+        "timestampValid": true,
+        "source": "hexdb.io",
+        "completeIataPair": true,
+        "registration": "EI-HMT",
+        "model": "Boeing 737 MAX 8",
+        "typeCode": "B38M",
+        "observedAtMs": 1794426173769,
+        "providerObservedAtMs": 1794426172000,
+        "aircraftPositionAtMs": 1794426171724,
+        "providerRequestStarted": true,
+        "id": "r02-1cf282daa9e2",
+        "independent": {
+          "scope": "same-flight-date",
+          "verdict": "same-route",
+          "confidence": "limited",
+          "evidence": [
+            {
+              "url": "https://useast.flightera.net/en/airport/Manchester/EGCC/departure",
+              "title": "Dated Manchester departure board",
+              "accessedAtMs": 1794427123606
+            }
+          ],
+          "note": "11 November 2026: FR1863 / RYR82JD scheduled MAN–ORK at 19:05 GMT. Limited schedule support only: completion/current flown route and data independence from HexDB are not established. This is excluded from accuracy counts until a stronger flight-specific check."
+        }
+      },
+      "answer": {
+        "verdict": "same-route",
+        "matchScope": "same-aircraft-date",
+        "originCode": "",
+        "destinationCode": "",
+        "notes": "",
+        "evidenceUrl": "",
+        "revision": 2,
+        "updatedAtMs": 1794431817172
+      }
+    }
+  ],
+  "summary": {
+    "cases": 16,
+    "reviewed": 16,
+    "exactDateMatches": 15
+  }
+}
