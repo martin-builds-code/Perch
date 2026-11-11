@@ -1,4 +1,6 @@
-import {authorised} from '../server/auth.js';
+import { routeTrial } from '../server/routeTrial.js';
+import type { EnrichmentDiagnostic } from '../src/routeTraceTypes.js';
+import { authorised } from '../server/auth.js';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { enrichmentService } from '../server/enrichmentService.js';
 import { EnrichmentError, validateLookup } from '../server/hexdb.js';
@@ -11,13 +13,16 @@ export default async function handler(
   if (
     process.env.AERO_ENRICHMENT_ENABLED !== 'true' ||
     process.env.AERO_LIVE_ENABLED !== 'true' ||
-    (process.env.VERCEL_ENV === 'production' && process.env.AERO_PRODUCTION_LIVE_ENABLED !== 'true')
+    (process.env.VERCEL_ENV === 'production' &&
+      process.env.AERO_PRODUCTION_LIVE_ENABLED !== 'true')
   ) {
     res.statusCode = 404;
     res.end('{"error":"enrichment-disabled"}');
     return;
   }
-  if (!authorised(req,res)) return;
+  if (!authorised(req, res)) return;
+  const trial = routeTrial(),
+    started = Date.now();
   try {
     if (req.method !== 'GET') throw new EnrichmentError('invalid-request');
     const url = new URL(req.url ?? '', 'https://local.invalid');
@@ -39,10 +44,44 @@ export default async function handler(
       input.kind,
       input.hex,
       input.callsign,
+      !!trial,
     );
     res.statusCode = 200;
     res.setHeader('X-Aero-Enrichment-Cache', result.cache);
-    res.end(JSON.stringify(result.result));
+    const { providerTrace, ...payload } = result.result;
+    const diagnostic: EnrichmentDiagnostic | undefined = trial
+      ? {
+          origin: 'hexdb',
+          serverCache: result.cache,
+          upstreamRequestsStarted:
+            result.cache === 'miss' && providerTrace?.requestStarted
+              ? 1
+              : 0,
+          upstreamResponses:
+            result.cache === 'miss' && providerTrace?.httpStatus ? 1 : 0,
+          outcome:
+            providerTrace?.outcome ??
+            (payload.status === 'not-found'
+              ? 'negative'
+              : input.kind === 'aircraft'
+                ? 'identity'
+                : payload.data.origin && payload.data.destination
+                  ? 'complete'
+                  : 'partial'),
+          reason: providerTrace?.reason ?? 'cached-outcome-without-trace',
+          httpStatus: providerTrace?.httpStatus ?? null,
+          durationMs: Math.max(0, Date.now() - started),
+          ...(providerTrace?.summary
+            ? { summary: providerTrace.summary }
+            : {}),
+        }
+      : undefined;
+    res.end(
+      JSON.stringify({
+        ...payload,
+        ...(diagnostic ? { diagnostic } : {}),
+      }),
+    );
   } catch (error) {
     const failure =
       error instanceof EnrichmentError
@@ -53,6 +92,27 @@ export default async function handler(
       'Retry-After',
       String(Math.ceil(failure.retryAfterMs / 1000)),
     );
-    res.end(JSON.stringify({ error: failure.code }));
+    const diagnostic: EnrichmentDiagnostic | undefined = trial
+      ? {
+          origin: failure.origin,
+          serverCache: 'none',
+          upstreamRequestsStarted: failure.trace?.requestStarted ? 1 : 0,
+          upstreamResponses: failure.trace?.httpStatus ? 1 : 0,
+          outcome: failure.trace?.outcome ?? 'error',
+          reason: failure.code,
+          httpStatus: failure.trace?.httpStatus ?? null,
+          retryAfterMs: failure.retryAfterMs,
+          durationMs: Math.max(0, Date.now() - started),
+          ...(failure.trace?.summary
+            ? { summary: failure.trace.summary }
+            : {}),
+        }
+      : undefined;
+    res.end(
+      JSON.stringify({
+        error: failure.code,
+        ...(diagnostic ? { diagnostic } : {}),
+      }),
+    );
   }
 }

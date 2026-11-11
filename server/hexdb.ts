@@ -1,3 +1,4 @@
+import type { ProviderTrace } from '../src/routeTraceTypes.js';
 import {
   ENRICHMENT_POLICY,
   flightKey,
@@ -9,18 +10,27 @@ import type {
   EnrichedAirport,
 } from '../src/enrichmentTypes.js';
 export class EnrichmentError extends Error {
+  trace?: ProviderTrace;
+  origin: 'application' | 'hexdb';
   constructor(
     public code: string,
     public retryAfterMs = ENRICHMENT_POLICY.errorCooldownMs,
   ) {
     super(code);
+    this.origin = ['cooldown', 'invalid-request'].includes(code)
+      ? 'application'
+      : 'hexdb';
   }
 }
 const text = (v: unknown, max = 120) =>
   typeof v === 'string' && v.trim() ? v.trim().slice(0, max) : null;
 const object = (v: unknown): v is Record<string, unknown> =>
   !!v && typeof v === 'object' && !Array.isArray(v);
-export function validateLookup(kind: unknown, hex: unknown, callsign: unknown) {
+export function validateLookup(
+  kind: unknown,
+  hex: unknown,
+  callsign: unknown,
+) {
   if (
     (kind !== 'aircraft' && kind !== 'route') ||
     typeof hex !== 'string' ||
@@ -28,7 +38,8 @@ export function validateLookup(kind: unknown, hex: unknown, callsign: unknown) {
   )
     throw new EnrichmentError('invalid-request');
   const flight = typeof callsign === 'string' ? flightKey(callsign) : null;
-  if (kind === 'route' && !flight) throw new EnrichmentError('invalid-request');
+  if (kind === 'route' && !flight)
+    throw new EnrichmentError('invalid-request');
   return {
     kind: kind as EnrichmentKind,
     hex: hex.toLowerCase(),
@@ -39,9 +50,13 @@ function airport(v: unknown): EnrichedAirport | undefined {
   if (v === null || v === undefined) return undefined;
   if (!object(v)) throw new EnrichmentError('invalid-structure');
   const icao =
-    typeof v.icao === 'string' && /^[A-Z]{4}$/.test(v.icao) ? v.icao : null;
+    typeof v.icao === 'string' && /^[A-Z]{4}$/.test(v.icao)
+      ? v.icao
+      : null;
   const iata =
-    typeof v.iata === 'string' && /^[A-Z]{3}$/.test(v.iata) ? v.iata : null;
+    typeof v.iata === 'string' && /^[A-Z]{3}$/.test(v.iata)
+      ? v.iata
+      : null;
   if (!icao && !iata) throw new EnrichmentError('invalid-structure');
   return {
     code: iata ?? icao!,
@@ -85,7 +100,9 @@ export function normaliseHexdb(
       data.operator = 'easyJet';
     if (
       owner &&
-      /^(ryanair(?: dac| ltd| limited)?|malta air(?: limited)?)$/.test(owner) &&
+      /^(ryanair(?: dac| ltd| limited)?|malta air(?: limited)?)$/.test(
+        owner,
+      ) &&
       ['RYR', 'MAY'].includes(flag ?? '')
     )
       data.operator = 'Ryanair';
@@ -96,7 +113,9 @@ export function normaliseHexdb(
   let updated: number | null = null;
   if (value.updated_at !== null && value.updated_at !== undefined) {
     updated =
-      typeof value.updated_at === 'string' ? Date.parse(value.updated_at) : NaN;
+      typeof value.updated_at === 'string'
+        ? Date.parse(value.updated_at)
+        : NaN;
     if (!Number.isFinite(updated) || updated > now)
       throw new EnrichmentError('invalid-route-time');
     if (now - updated > ENRICHMENT_POLICY.maxRouteAgeMs) return null;
@@ -141,12 +160,23 @@ export async function fetchHexdb(
   fetcher: typeof fetch = fetch,
   now = Date.now,
   timeoutMs = ENRICHMENT_POLICY.timeoutMs,
+  observe?: (trace: ProviderTrace) => void,
 ): Promise<Supplement | null> {
   validateLookup(kind, hex, callsign);
   const controller = new AbortController(),
     timer = setTimeout(() => controller.abort(), timeoutMs);
+  const trace: ProviderTrace = {
+    outcome: 'error',
+    reason: 'pending',
+    httpStatus: null,
+    requestStarted: false,
+    endpoint:
+      kind === 'route' ? 'v2/routes/:callsign' : 'v2/aircraft/:hex',
+  };
   try {
-    const path = kind === 'aircraft' ? `aircraft/${hex}` : `routes/${callsign}`;
+    const path =
+      kind === 'aircraft' ? `aircraft/${hex}` : `routes/${callsign}`;
+    trace.requestStarted = true;
     const response = await fetcher(`https://hexdb.io/api/v2/${path}`, {
       signal: controller.signal,
       redirect: 'error',
@@ -156,7 +186,12 @@ export async function fetchHexdb(
           'Perch-Aero-Pane/Stage2C (personal; github.com/martin-builds-code/Perch)',
       },
     });
-    if (response.status === 404) return null;
+    trace.httpStatus = response.status;
+    if (response.status === 404) {
+      trace.outcome = 'negative';
+      trace.reason = 'http-404';
+      return null;
+    }
     if (response.status === 401 || response.status === 403)
       throw new EnrichmentError('access-denied', 600_000);
     if (response.status === 429) {
@@ -210,13 +245,73 @@ export async function fetchHexdb(
     } catch {
       throw new EnrichmentError('invalid-json');
     }
-    return normaliseHexdb(kind, hex, callsign, value, now());
+    if (kind === 'route' && object(value)) {
+      const age =
+        typeof value.updated_at === 'string'
+          ? now() - Date.parse(value.updated_at)
+          : NaN;
+      trace.summary = {
+        callsignMatches: value.callsign === callsign,
+        origin: object(value.origin),
+        destination: object(value.destination),
+        iataPair:
+          object(value.origin) &&
+          object(value.destination) &&
+          typeof value.origin.iata === 'string' &&
+          /^[A-Z]{3}$/.test(value.origin.iata) &&
+          typeof value.destination.iata === 'string' &&
+          /^[A-Z]{3}$/.test(value.destination.iata),
+        associationAgeDays: Number.isFinite(age)
+          ? Math.round((age / 86400000) * 10) / 10
+          : null,
+      };
+    }
+    const data = normaliseHexdb(kind, hex, callsign, value, now());
+    const tooOld =
+      kind === 'route' &&
+      object(value) &&
+      typeof value.updated_at === 'string' &&
+      now() - Date.parse(value.updated_at) >
+        ENRICHMENT_POLICY.maxRouteAgeMs;
+    trace.outcome = tooOld
+      ? 'rejected'
+      : !data
+        ? 'negative'
+        : kind === 'aircraft'
+          ? 'identity'
+          : data.origin && data.destination
+            ? 'complete'
+            : 'partial';
+    trace.reason = tooOld
+      ? 'route-too-old'
+      : !data
+        ? 'no-usable-fields'
+        : kind === 'route' &&
+            data.origin &&
+            data.destination &&
+            !trace.summary?.iataPair
+          ? 'icao-only-pair'
+          : 'validated';
+    return data;
   } catch (error) {
-    if (controller.signal.aborted) throw new EnrichmentError('timeout');
-    if (error instanceof EnrichmentError) throw error;
-    throw new EnrichmentError('network-error');
+    const failure = controller.signal.aborted
+      ? new EnrichmentError('timeout')
+      : error instanceof EnrichmentError
+        ? error
+        : new EnrichmentError('network-error');
+    trace.reason = failure.code;
+    trace.outcome = /^(invalid-|contradictory-)/.test(failure.code)
+      ? 'rejected'
+      : 'error';
+    failure.trace = trace;
+    throw failure;
   } finally {
     clearTimeout(timer);
     controller.abort();
+    try {
+      observe?.(trace);
+    } catch {
+      /* Diagnostics never change the lookup. */
+    }
   }
 }

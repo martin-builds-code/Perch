@@ -138,6 +138,7 @@ function validSnapshot(value: unknown): value is Snapshot {
   );
 }
 export interface PollEnvironment {
+  onSnapshot?: (snapshot: Snapshot) => void;
   observer?: DataDiagnostics;
   context?: () => DiagnosticContext;
   fetch: typeof fetch;
@@ -327,6 +328,7 @@ export function createPoller(
       const value: unknown = await response.json();
       if (!validSnapshot(value)) throw Error('invalid-response');
       if (!stopped && !thisRequest.signal.aborted) {
+        try { env.onSnapshot?.(value); } catch { /* Temporary observation cannot affect polling. */ }
         snapshot = value;
         interval = value.pollIntervalMs;
         failed = false;

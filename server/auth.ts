@@ -1,3 +1,4 @@
+import { routeTrial } from './routeTrial.js';
 import {
   createHmac,
   randomBytes,
@@ -99,6 +100,7 @@ export function sessionCookie(token: string, maxAge = SESSION_SECONDS) {
 export function authorised(req: IncomingMessage, res: ServerResponse) {
   res.setHeader("Cache-Control", "private, no-store");
   res.setHeader("Vercel-CDN-Cache-Control", "no-store");
+  if (routeTrial()) return true;
   try {
     const c = authConfig();
     const token =

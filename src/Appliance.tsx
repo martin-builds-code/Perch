@@ -6,6 +6,9 @@ export default function Appliance() {
   const [auth, setAuth] = useState<"checking" | "yes" | "no" | "offline">(
     "checking",
   );
+  const [routeTrialUntil, setRouteTrialUntil] = useState<number | undefined>(
+    undefined,
+  );
   const [pin, setPin] = useState(""),
     [error, setError] = useState("");
   const [quiet, setQuiet] = useState<QuietHours>(readQuiet),
@@ -41,7 +44,18 @@ export default function Appliance() {
         });
         if (!stopped) {
           setAuth(r.ok ? "yes" : r.status === 401 ? "no" : "offline");
-          if (r.ok) lastCheck = Date.now();
+          if (r.ok) {
+            lastCheck = Date.now();
+            const body = await r.json();
+            const expires = body.routeDiagnosticTrial?.expiresAtMs;
+            setRouteTrialUntil(
+              typeof expires === "number" &&
+                Number.isSafeInteger(expires) &&
+                expires > Date.now()
+                ? expires
+                : undefined,
+            );
+          } else setRouteTrialUntil(undefined);
         }
       } catch {
         if (!stopped) setAuth((a) => (a === "yes" ? "yes" : "offline"));
@@ -77,6 +91,18 @@ export default function Appliance() {
       window.removeEventListener("aero-auth-required", denied);
     };
   }, []);
+  useEffect(() => {
+    if (routeTrialUntil === undefined) return;
+    const timer = setTimeout(
+      () => {
+        setAuth("checking");
+        setRouteTrialUntil(undefined);
+        window.dispatchEvent(new Event("pageshow"));
+      },
+      Math.max(0, routeTrialUntil - Date.now()),
+    );
+    return () => clearTimeout(timer);
+  }, [routeTrialUntil]);
   const asleep = sleeping(quiet, clock);
   async function login(e: React.FormEvent) {
     e.preventDefault();
@@ -156,13 +182,22 @@ export default function Appliance() {
     );
   return (
     <>
+      {routeTrialUntil ? (
+        <div className="route-trial-banner">
+          Experimental, temporarily unsecured Preview · expires{" "}
+          {new Date(routeTrialUntil).toISOString()}
+        </div>
+      ) : null}
       {asleep ? (
         <main className="sleep-screen">
           <p>Sleeping until {quiet.end}</p>
           <small>Aircraft tracking paused</small>
         </main>
       ) : visible ? (
-        <LiveApp key={generation} />
+        <LiveApp
+          key={String(generation) + ":" + String(routeTrialUntil)}
+          routeTrialUntil={routeTrialUntil}
+        />
       ) : (
         <main className="sleep-screen" />
       )}

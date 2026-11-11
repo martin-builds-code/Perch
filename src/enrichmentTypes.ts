@@ -1,3 +1,4 @@
+import type { EnrichmentDiagnostic, ProviderTrace } from './routeTraceTypes.js';
 export type EnrichmentKind = 'aircraft' | 'route';
 export interface EnrichedAirport {
   code: string;
@@ -22,6 +23,8 @@ export interface EnrichmentResult {
   data: Supplement;
   fetchedAtMs: number;
   expiresAtMs: number;
+  diagnostic?: EnrichmentDiagnostic;
+  providerTrace?: ProviderTrace;
 }
 export const ENRICHMENT_POLICY = {
   intervalMs: 30_000,

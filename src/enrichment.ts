@@ -1,3 +1,6 @@
+import type { EnrichmentEvent, LookupRef } from './routeDiagnostics';
+import { parseEnrichmentDiagnostic } from './routeTraceTypes';
+import type { EnrichmentDiagnostic } from './routeTraceTypes';
 import type { Aircraft, Scene } from './simulation';
 import type {
   EnrichmentResult,
@@ -22,6 +25,7 @@ export interface EnrichmentEnvironment {
   // A page may reuse deadlines across visibility/sleep remounts, never caches.
   budget?: EnrichmentBudget;
   active: () => boolean;
+  observe?: (event: EnrichmentEvent) => void;
   setTimer: (fn: () => void, ms: number) => ReturnType<typeof setTimeout>;
   clearTimer: (timer: ReturnType<typeof setTimeout>) => void;
 }
@@ -126,6 +130,45 @@ export function createEnricher(
   const cache = new Map<string, EnrichmentResult>();
   const budget = env.budget ?? { nextAllowed: 0, nextSecondaryAllowed: 0 };
   const secondaryAttempts = new Map<string, number>();
+  let pending: LookupRef | null = null;
+  function emit(event: EnrichmentEvent) {
+    try {
+      env.observe?.(event);
+    } catch {
+      /* Diagnostic failure cannot change tracking. */
+    }
+  }
+  function report(scene?: Scene) {
+    if (!env.observe || !base || stopped) return;
+    const current = scene ?? {
+      ...base,
+      primary: base.primary ? decorate(base.primary).aircraft : null,
+      secondary: base.secondary.map((a) => decorate(a).aircraft),
+    };
+    const t = budgetNow();
+    emit({
+      type: 'scene',
+      atMs: env.now(),
+      scene: current,
+      globalWaitMs: Math.max(0, budget.nextAllowed - t),
+      secondaryWaitMs: Math.max(0, budget.nextSecondaryAllowed - t),
+      active: env.active(),
+      pending,
+      primaryEligible: !!(
+        base.primary &&
+        validHex(base.primary.id) &&
+        primaryCandidate(base.primary)
+      ),
+      routes: [base.primary, ...base.secondary]
+        .filter((a): a is Aircraft => !!a)
+        .map((a) => ({
+          key: a.id.toLowerCase() + ':' + (flightKey(a.callsign) ?? ''),
+          result: cache.get(
+            enrichmentKey('route', a.id, flightKey(a.callsign)),
+          ),
+        })),
+    });
+  }
   function budgetNow() {
     const time = (env.monotonicNow ?? env.now)();
     if (!Number.isFinite(time)) return budgetTime;
@@ -162,14 +205,13 @@ export function createEnricher(
     prune();
     const primary = base.primary ? decorate(base.primary) : null;
     const secondary = base.secondary.map(decorate);
-    onScene(
-      {
-        ...base,
-        primary: primary?.aircraft ?? null,
-        secondary: secondary.map((a) => a.aircraft),
-      },
-      !!primary?.used || secondary.some((a) => a.used),
-    );
+    const scene = {
+      ...base,
+      primary: primary?.aircraft ?? null,
+      secondary: secondary.map((a) => a.aircraft),
+    };
+    onScene(scene, !!primary?.used || secondary.some((a) => a.used));
+    report(scene);
   }
   async function lookup(
     kind: EnrichmentKind,
@@ -178,7 +220,14 @@ export function createEnricher(
     secondary = false,
   ) {
     inFlight = true;
-    const started = budgetNow();
+    const started = budgetNow(),
+      wallStarted = env.now();
+    const lookupRef: LookupRef = { kind, hex, callsign, secondary };
+    pending = lookupRef;
+    let errorCode = 'network-or-timeout';
+    let apiStatus: number | null = null,
+      diagnostic: EnrichmentDiagnostic | undefined;
+    emit({ type: 'attempt', atMs: wallStarted, lookup: lookupRef });
     budget.nextAllowed = started + P.intervalMs;
     if (secondary) {
       budget.nextSecondaryAllowed = started + P.secondaryIntervalMs;
@@ -198,7 +247,22 @@ export function createEnricher(
           signal: request.signal,
         },
       );
+      apiStatus = response.status;
       if (!response.ok) {
+        let error = 'api-http-error';
+        if (env.observe) {
+          try {
+            const body = await response.clone().json();
+            diagnostic = parseEnrichmentDiagnostic(body.diagnostic);
+            if (
+              typeof body.error === 'string' &&
+              /^[a-z0-9-]{1,64}$/.test(body.error)
+            )
+              error = body.error;
+          } catch {
+            /* Non-JSON platform errors are an undetermined API failure. */
+          }
+        }
         const raw = response.headers.get('retry-after'),
           seconds = raw === null ? NaN : Number(raw);
         const delay = Number.isFinite(seconds)
@@ -211,27 +275,88 @@ export function createEnricher(
           budgetNow() + P.errorCooldownMs,
           Number.isFinite(delay) ? budgetNow() + delay : 0,
         );
+        emit({
+          type: 'response',
+          atMs: env.now(),
+          lookup: lookupRef,
+          ok: false,
+          apiStatus,
+          diagnostic,
+          error,
+          durationMs: budgetNow() - started,
+          clientCooldownMs: Math.max(0, budget.nextAllowed - budgetNow()),
+        });
         return;
       }
+      errorCode = 'api-invalid-json';
       const result: unknown = await response.json();
-      if (!validResult(result, kind, hex, callsign, env.now()))
+      if (env.observe && result && typeof result === 'object')
+        diagnostic = parseEnrichmentDiagnostic(
+          (result as EnrichmentResult).diagnostic,
+        );
+      if (!validResult(result, kind, hex, callsign, env.now())) {
+        const v = result as Partial<EnrichmentResult> | null;
+        errorCode =
+          v &&
+          typeof v === 'object' &&
+          Number.isFinite(v.fetchedAtMs) &&
+          v.fetchedAtMs! > env.now()
+            ? 'client-future-server-timestamp'
+            : v &&
+                typeof v === 'object' &&
+                Number.isFinite(v.expiresAtMs) &&
+                v.expiresAtMs! <= env.now()
+              ? 'client-expired-server-cache'
+              : v &&
+                  typeof v === 'object' &&
+                  (v.hex !== hex || v.callsign !== callsign)
+                ? 'client-identity-mismatch'
+                : 'client-validation-failed';
         throw Error('invalid-enrichment');
+      }
       if (stopped || request.signal.aborted) return;
       if (cache.size >= P.clientCapacity)
         cache.delete(cache.keys().next().value!);
-      cache.set(enrichmentKey(kind, hex, callsign), result);
+      cache.set(
+        enrichmentKey(kind, hex, callsign),
+        env.observe ? { ...result, diagnostic } : result,
+      );
+      emit({
+        type: 'response',
+        atMs: env.now(),
+        lookup: lookupRef,
+        ok: true,
+        apiStatus,
+        diagnostic,
+        durationMs: budgetNow() - started,
+        clientCooldownMs: 0,
+      });
       publish();
     } catch {
-      if (!stopped)
+      if (!stopped) {
         budget.nextAllowed = Math.max(
           budget.nextAllowed,
           budgetNow() + P.errorCooldownMs,
         );
+        emit({
+          type: 'response',
+          atMs: env.now(),
+          lookup: lookupRef,
+          ok: false,
+          apiStatus,
+          diagnostic,
+          error: errorCode,
+          durationMs: budgetNow() - started,
+          clientCooldownMs: Math.max(0, budget.nextAllowed - budgetNow()),
+        });
+      }
     } finally {
       if (timeout !== undefined) env.clearTimer(timeout);
       timeout = undefined;
       inFlight = false;
       controller = null;
+      pending = null;
+      report();
     }
   }
   function update(scene: Scene) {
@@ -255,7 +380,11 @@ export function createEnricher(
       time < budget.nextAllowed
     )
       return;
-    if (validHex(a.id) && primaryLookup(a)) return;
+    const primary = validHex(a.id) ? primaryCandidate(a) : null;
+    if (primary) {
+      void lookup(primary.kind, primary.hex, primary.callsign);
+      return;
+    }
     if (
       time < budget.nextSecondaryAllowed ||
       !['available', 'delayed'].includes(scene.state)
@@ -286,7 +415,7 @@ export function createEnricher(
     if (candidate)
       void lookup('route', candidate.hex, candidate.callsign, true);
   }
-  function primaryLookup(a: Aircraft) {
+  function primaryCandidate(a: Aircraft): LookupRef | null {
     const hex = a.id.toLowerCase(),
       callsign = flightKey(a.callsign);
     const missingModel =
@@ -294,16 +423,14 @@ export function createEnricher(
       a.model === 'Aircraft' ||
       a.model.startsWith('Aircraft ·');
     if (missingModel && due(enrichmentKey('aircraft', hex, null))) {
-      void lookup('aircraft', hex, null);
-      return true;
+      return { kind: 'aircraft', hex, callsign: null, secondary: false };
     }
     if (
       callsign &&
       (!a.origin || !a.destination) &&
       due(enrichmentKey('route', hex, callsign))
     ) {
-      void lookup('route', hex, callsign);
-      return true;
+      return { kind: 'route', hex, callsign, secondary: false };
     }
     if (
       (!a.operator ||
@@ -313,10 +440,9 @@ export function createEnricher(
         a.model.startsWith('Aircraft ·')) &&
       due(enrichmentKey('aircraft', hex, null))
     ) {
-      void lookup('aircraft', hex, null);
-      return true;
+      return { kind: 'aircraft', hex, callsign: null, secondary: false };
     }
-    return false;
+    return null;
   }
   return {
     update,

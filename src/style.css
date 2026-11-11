@@ -109,3 +109,9 @@ footer{height:24px;flex-shrink:0;display:flex;justify-content:space-between;alig
  .nearby-aircraft{padding:4px 10px;gap:3px}.nearby-identity h3{font-size:28px}.long-secondary .nearby-identity h3{font-size:26px}
  .secondary-route{font-size:64px}.secondary-arrow{font-size:30px}.nearby-value>span{font-size:22px}.nearby-value small{font-size:16px}.no-secondary-route .nearby-value>span{font-size:28px}
 }
+
+/* Temporary server-authorised route investigation only; absent in normal use. */
+.route-trial-banner{position:fixed;top:0;left:0;right:0;z-index:50;padding:6px;background:#ffbe3b;color:#062334;font:800 14px sans-serif;text-align:center}
+.route-trial-dashboard{position:fixed;inset:30px 0 0;overflow:auto;padding:16px;background:#081925;color:#fff8ed;font:16px/1.4 sans-serif}
+.route-trial-dashboard h1{font-size:26px;letter-spacing:0}.route-trial-dashboard p{margin:6px 0}.route-trial-dashboard h2{font-size:20px}
+.route-trial-warning{color:#ffbe3b}.route-trial-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.route-trial-cards article{min-width:0;background:#162e3e;padding:12px;border:1px solid #aac5d9;overflow-wrap:anywhere}.route-trial-status{display:block;font-size:22px;color:#42cfb9}

@@ -1,3 +1,5 @@
+import { createRouteDiagnostics } from './routeDiagnostics';
+import RouteTrialDisplay from './RouteTrialDisplay';
 import { useEffect, useRef, useState } from 'react';
 import { Display } from './App';
 import { createPoller, liveScene } from './live';
@@ -9,6 +11,12 @@ import { DiagnosticExport } from './DiagnosticExport';
 import { diagnosticDuration } from './diagnosticExport';
 declare global {
   interface Window {
+    aeroPaneRouteDiagnostics?: {
+      summary: () => ReturnType<
+        ReturnType<typeof createRouteDiagnostics>['summary']
+      >;
+      reference: (hex: string, callsign: string | null) => string | null;
+    };
     aeroPaneDiagnostics?: {
       summary: () => ReturnType<DataDiagnostics['summary']>;
       export: () => string;
@@ -21,7 +29,14 @@ const enrichmentBudget: EnrichmentBudget = {
   nextAllowed: 0,
   nextSecondaryAllowed: 0,
 };
-export default function LiveApp() {
+export default function LiveApp({
+  routeTrialUntil,
+}: { routeTrialUntil?: number } = {}) {
+  const [routeDiagnostics] = useState(() =>
+    routeTrialUntil && routeTrialUntil > Date.now()
+      ? createRouteDiagnostics(Date.now(), routeTrialUntil)
+      : undefined,
+  );
   const [duration] = useState(() =>
     diagnosticDuration(
       window.location.search,
@@ -34,6 +49,13 @@ export default function LiveApp() {
     credited: false,
   }));
   useEffect(() => {
+    const routeHandle = routeDiagnostics
+      ? {
+          summary: () => routeDiagnostics.summary(Date.now()),
+          reference: routeDiagnostics.reference,
+        }
+      : undefined;
+    if (routeHandle) window.aeroPaneRouteDiagnostics = routeHandle;
     const active = () =>
       document.visibilityState !== 'hidden' && navigator.onLine !== false;
     const observer =
@@ -44,16 +66,23 @@ export default function LiveApp() {
     const diagnosticHandle = observer
       ? {
           summary: () => observer.summary(Date.now()),
-          export: () => JSON.stringify(observer.summary(Date.now()), null, 2),
+          export: () =>
+            JSON.stringify(observer.summary(Date.now()), null, 2),
         }
       : undefined;
     if (diagnosticHandle) window.aeroPaneDiagnostics = diagnosticHandle;
     const env = {
-      fetch: async (...args: Parameters<typeof fetch>) => {const r=await fetch(...args);if(r.status===401)window.dispatchEvent(new Event('aero-auth-required'));return r;},
+      fetch: async (...args: Parameters<typeof fetch>) => {
+        const r = await fetch(...args);
+        if (r.status === 401)
+          window.dispatchEvent(new Event('aero-auth-required'));
+        return r;
+      },
       now: Date.now,
       active,
       setTimer: (fn: () => void, ms: number) => setTimeout(fn, ms),
-      clearTimer: (timer: ReturnType<typeof setTimeout>) => clearTimeout(timer),
+      clearTimer: (timer: ReturnType<typeof setTimeout>) =>
+        clearTimeout(timer),
     };
     const enricher =
       import.meta.env.VITE_AERO_ENRICHMENT_ENABLED === 'true'
@@ -63,6 +92,9 @@ export default function LiveApp() {
               ...env,
               monotonicNow: () => performance.now(),
               budget: enrichmentBudget,
+              ...(routeDiagnostics
+                ? { observe: routeDiagnostics.observe }
+                : {}),
             },
           )
         : undefined;
@@ -74,6 +106,9 @@ export default function LiveApp() {
       {
         ...env,
         observer,
+        ...(routeDiagnostics
+          ? { onSnapshot: routeDiagnostics.snapshot }
+          : {}),
         context: () => ({
           active: active(),
           visible: document.visibilityState !== 'hidden',
@@ -81,6 +116,11 @@ export default function LiveApp() {
         }),
       },
     );
+    const routeContext = () =>
+      routeDiagnostics?.context(active(), Date.now());
+    document.addEventListener('visibilitychange', routeContext);
+    window.addEventListener('offline', routeContext);
+    window.addEventListener('online', routeContext);
     const resize = () =>
       document.documentElement.style.setProperty(
         '--app-height',
@@ -96,8 +136,15 @@ export default function LiveApp() {
     window.visualViewport?.addEventListener('resize', resize);
     return () => {
       enricher?.stop();
+      routeDiagnostics?.stop(Date.now());
+      if (window.aeroPaneRouteDiagnostics === routeHandle)
+        delete window.aeroPaneRouteDiagnostics;
+      document.removeEventListener('visibilitychange', routeContext);
+      window.removeEventListener('offline', routeContext);
+      window.removeEventListener('online', routeContext);
       poller.stop();
-      if (observerRef.current === observer) observerRef.current = undefined;
+      if (observerRef.current === observer)
+        observerRef.current = undefined;
       if (window.aeroPaneDiagnostics === diagnosticHandle)
         delete window.aeroPaneDiagnostics;
       document.removeEventListener('visibilitychange', poller.resume);
@@ -107,7 +154,14 @@ export default function LiveApp() {
       window.removeEventListener('resize', resize);
       window.visualViewport?.removeEventListener('resize', resize);
     };
-  }, [duration]);
+  }, [duration, routeDiagnostics]);
+  if (routeDiagnostics && routeTrialUntil)
+    return (
+      <RouteTrialDisplay
+        diagnostics={routeDiagnostics}
+        expiresAtMs={routeTrialUntil}
+      />
+    );
   return (
     <Display
       scene={display.scene}
