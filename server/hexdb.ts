@@ -119,7 +119,7 @@ export function normaliseHexdb(
         : NaN;
     if (!Number.isFinite(updated) || updated > now)
       throw new EnrichmentError('invalid-route-time');
-    if (now - updated > ENRICHMENT_POLICY.maxRouteAgeMs) return null;
+
   }
   const origin = airport(value.origin),
     destination = airport(value.destination);
@@ -146,6 +146,8 @@ export function normaliseHexdb(
     )
       throw new EnrichmentError('contradictory-route');
   }
+  // Complete every structural check even when age alone will reject a pair.
+  if (updated !== null && now - updated > ENRICHMENT_POLICY.maxRouteAgeMs) return null;
   return origin || destination
     ? {
         ...(origin ? { origin } : {}),

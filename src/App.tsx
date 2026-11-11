@@ -88,6 +88,7 @@ function Route({
           {route.toName || ''}
         </div>
       </div>
+      {aircraft.routeHistorical && <span className="historical-route primary-history">Historical route</span>}
     </div>
   ) : null;
 }
@@ -242,6 +243,7 @@ function Secondary({ aircraft }: { aircraft: Aircraft }) {
     <article
       className={
         'nearby-aircraft ' +
+        (route && aircraft.routeHistorical ? 'historical-secondary ' : '') +
         (name.length > 24 ? 'long-secondary ' : '') +
         (!route ? 'no-secondary-route' : '')
       }
@@ -256,6 +258,7 @@ function Secondary({ aircraft }: { aircraft: Aircraft }) {
             →
           </span>
           <span>{route.to}</span>
+          {aircraft.routeHistorical && <span className="historical-route secondary-history">Historical route</span>}
         </div>
       ) : null}
       <div className="secondary-metrics">

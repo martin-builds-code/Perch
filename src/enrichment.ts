@@ -85,12 +85,15 @@ function validResult(
     )
       return false;
   }
+  if (r.data.associationTimeMs !== undefined && r.data.associationTimeMs !== null &&
+    (!Number.isFinite(r.data.associationTimeMs) || r.data.associationTimeMs > now || now-r.data.associationTimeMs > P.maxRouteAgeMs)) return false;
   return true;
 }
 export function supplementAircraft(
   a: Aircraft,
   identity: Supplement | undefined,
   route: Supplement | undefined,
+  now = Date.now(),
 ): { aircraft: Aircraft; used: boolean } {
   const next = { ...a };
   if (identity) {
@@ -112,6 +115,7 @@ export function supplementAircraft(
     }
   }
   if (route) {
+    next.routeHistorical = route.associationTimeMs == null ? undefined : now - route.associationTimeMs > P.recentRouteAgeMs;
     if (!a.origin && route.origin) next.origin = route.origin;
     if (!a.destination && route.destination)
       next.destination = route.destination;
@@ -123,7 +127,8 @@ export function supplementAircraft(
       next.operator !== a.operator ||
       next.model !== a.model ||
       next.origin !== a.origin ||
-      next.destination !== a.destination,
+      next.destination !== a.destination ||
+      next.routeHistorical !== a.routeHistorical,
   };
 }
 export function createEnricher(
@@ -187,7 +192,8 @@ export function createEnricher(
   }
   function prune() {
     for (const [key, value] of cache)
-      if (value.expiresAtMs <= env.now() || value.fetchedAtMs > env.now())
+      if (value.expiresAtMs <= env.now() || value.fetchedAtMs > env.now() ||
+        (value.data.associationTimeMs != null && env.now()-value.data.associationTimeMs>P.maxRouteAgeMs))
         cache.delete(key);
   }
   function due(key: string) {
@@ -207,6 +213,7 @@ export function createEnricher(
       flight
         ? cache.get(enrichmentKey('route', hex, flight))?.data
         : undefined,
+      env.now(),
     );
   }
   function publish() {

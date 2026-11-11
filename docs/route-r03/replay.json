@@ -1,0 +1,162 @@
+{
+  "fixtureBasis": "Reconstructed retained provider fields from frozen R02 cases; not full raw provider payloads or a live trial.",
+  "recent": 7,
+  "historical": 7,
+  "missing": 2,
+  "cases": [
+    {
+      "id": "r02-1d54ff8d92fd",
+      "callsign": "SHT9Q",
+      "route": [
+        "EDI",
+        "LHR"
+      ],
+      "ageDays": 265.9801938425926,
+      "historical": true
+    },
+    {
+      "id": "r02-4c11c31803b5",
+      "callsign": "LOG31AW",
+      "route": [
+        "ABZ",
+        "MAN"
+      ],
+      "ageDays": 542.0234756597222,
+      "historical": true
+    },
+    {
+      "id": "r02-0252198cc94f",
+      "callsign": "EZY64RF",
+      "route": [
+        "BFS",
+        "STN"
+      ],
+      "ageDays": 18.103278854166668,
+      "historical": false
+    },
+    {
+      "id": "r02-cee5968b0830",
+      "callsign": "YUSRB",
+      "route": null,
+      "ageDays": null,
+      "historical": null
+    },
+    {
+      "id": "r02-f1a1fab2048f",
+      "callsign": "SHT19B",
+      "route": [
+        "ABZ",
+        "LHR"
+      ],
+      "ageDays": 265.99005675925923,
+      "historical": true
+    },
+    {
+      "id": "r02-3371418e3b52",
+      "callsign": "LOG17ZA",
+      "route": [
+        "INV",
+        "MAN"
+      ],
+      "ageDays": 542.0245409375,
+      "historical": true
+    },
+    {
+      "id": "r02-2badbb7eaa54",
+      "callsign": "EZY387T",
+      "route": [
+        "LGW",
+        "BFS"
+      ],
+      "ageDays": 14.547556504629629,
+      "historical": false
+    },
+    {
+      "id": "r02-833393fea5fc",
+      "callsign": "EXS041A",
+      "route": null,
+      "ageDays": null,
+      "historical": null
+    },
+    {
+      "id": "r02-13659fed15b4",
+      "callsign": "SHT7P",
+      "route": [
+        "GLA",
+        "LHR"
+      ],
+      "ageDays": 265.9911215972222,
+      "historical": true
+    },
+    {
+      "id": "r02-4aee7106e2c2",
+      "callsign": "EAI19MS",
+      "route": [
+        "MAN",
+        "DUB"
+      ],
+      "ageDays": 542.0351855439815,
+      "historical": true
+    },
+    {
+      "id": "r02-70b45ad7dc07",
+      "callsign": "RYR1AC",
+      "route": [
+        "FCO",
+        "DUB"
+      ],
+      "ageDays": 18.111793391203705,
+      "historical": false
+    },
+    {
+      "id": "r02-de9bbace9c44",
+      "callsign": "EAG18C",
+      "route": [
+        "BHD",
+        "MAN"
+      ],
+      "ageDays": 542.0514314930556,
+      "historical": true
+    },
+    {
+      "id": "r02-0075eb693280",
+      "callsign": "EZY86NE",
+      "route": [
+        "MAD",
+        "EDI"
+      ],
+      "ageDays": 14.556358969907407,
+      "historical": false
+    },
+    {
+      "id": "r02-2a4f12ceb57a",
+      "callsign": "EZY208N",
+      "route": [
+        "BRS",
+        "GLA"
+      ],
+      "ageDays": 18.120592881944443,
+      "historical": false
+    },
+    {
+      "id": "r02-7fb99c408082",
+      "callsign": "EZY465Y",
+      "route": [
+        "MAN",
+        "BFS"
+      ],
+      "ageDays": 18.121655960648148,
+      "historical": false
+    },
+    {
+      "id": "r02-1cf282daa9e2",
+      "callsign": "RYR82JD",
+      "route": [
+        "MAN",
+        "ORK"
+      ],
+      "ageDays": 18.12484804398148,
+      "historical": false
+    }
+  ]
+}

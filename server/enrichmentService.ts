@@ -54,7 +54,8 @@ export function createEnrichmentService(
       key = enrichmentKey(input.kind, input.hex, input.callsign),
       time = now();
     for (const [k, v] of cache)
-      if (v.expiresAtMs <= time || v.fetchedAtMs > time) cache.delete(k);
+      if (v.expiresAtMs <= time || v.fetchedAtMs > time ||
+          (v.data.associationTimeMs != null && time-v.data.associationTimeMs>P.maxRouteAgeMs)) cache.delete(k);
     const hit = cache.get(key);
     if (
       hit &&

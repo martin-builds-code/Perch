@@ -26,8 +26,8 @@ for(const [days,category] of [[20,'recent-0-180'],[180,'recent-0-180'],[181,'his
   const inspected=inspectAssociation('abcdef','TST123',raw,trace,T);
   assert.equal(inspected.ageCategory,category);assert.equal(inspected.associationAgeDays,days);assert.equal(inspected.updatedAtRaw,raw.updated_at);assert.ok(inspected.completeIataPair);
   assert.equal(JSON.stringify(inspected).includes('latitude'),false);assert.equal(JSON.stringify(inspected).includes('longitude'),false);
-  if(days>180) assert.equal(normaliseHexdb('route','abcdef','TST123',raw,T),null);
-  else assert.ok(normaliseHexdb('route','abcdef','TST123',raw,T));
+  // R02's original operational verdict stays frozen in evidence; R03 now recovers these valid pairs.
+  assert.ok(normaliseHexdb('route','abcdef','TST123',raw,T));
  });
 }
 test('R02 historical structural contradictions remain rejected; no invented route or timestamp',()=>{

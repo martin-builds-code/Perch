@@ -153,7 +153,7 @@ try {
     import {createServer} from 'node:http';
     import {once} from 'node:events';
     const scenario=process.env.PERCH_RUNTIME_SCENARIO;
-    const kind=scenario==='route'?'route':'aircraft';
+    const kind=(scenario==='route'||scenario==='historical')?'route':'aircraft';
     const {signSession}=await import(new URL('../server/auth.js',process.env.PERCH_RUNTIME_ENTRY));const cookie='__Host-aero='+signSession();const nativeFetch=globalThis.fetch;const realFetch=(url,opts={})=>nativeFetch(url,{...opts,headers:{...opts.headers,Cookie:cookie}});let calls=0, releaseProvider;
     globalThis.fetch=async url=>{
       calls++;assert.ok(String(url).startsWith('https://hexdb.io/api/v2/'));
@@ -161,7 +161,7 @@ try {
       if(scenario==='rate-seconds'||scenario==='rate-date')return new Response('{}',{status:429,headers:{'Retry-After':scenario==='rate-seconds'?'600':new Date(Date.now()+900000).toUTCString()}});
       if(scenario==='failure')return new Response('{}',{status:503});
       if(scenario==='empty')return new Response('{}',{status:404});
-      return new Response(JSON.stringify(kind==='route'?{callsign:'EIN17A',origin:{icao:'EIDW',iata:'DUB',name:'Dublin Airport'},destination:{icao:'EGLL',iata:'LHR',name:'Heathrow Airport'},updated_at:new Date(Date.now()-1000).toISOString()}:{hex:'ABCDEF',manufacturer:'Airbus',type:'A319 111',registration:'TEST-REG',registered_owner:'easyJet UK',operator_flag_code:'EZY'}));
+      return new Response(JSON.stringify(kind==='route'?{callsign:'EIN17A',origin:{icao:'EIDW',iata:'DUB',name:'Dublin Airport'},destination:{icao:'EGLL',iata:'LHR',name:'Heathrow Airport'},updated_at:new Date(Date.now()-(scenario==='historical'?542*86400000:1000)).toISOString()}:{hex:'ABCDEF',manufacturer:'Airbus',type:'A319 111',registration:'TEST-REG',registered_owner:'easyJet UK',operator_flag_code:'EZY'}));
     };
     const {default:handler}=await import(process.env.PERCH_RUNTIME_ENTRY);
     const {enrichmentService}=await import(new URL('../server/enrichmentService.js',process.env.PERCH_RUNTIME_ENTRY));
@@ -189,7 +189,7 @@ try {
       else if(scenario==='unexpected'){assert.equal(response.status,503);assert.equal(body.failure.origin,'unexpected');assert.equal(body.failure.category,'unexpected-error');assert.equal(body.failure.upstreamRequestsStarted,0);assert.equal(calls,0);}
       else if(scenario==='failure'){assert.equal(response.status,503);assert.equal(body.error,'http-error');assert.equal(body.failure.category,'upstream-failure');assert.equal(calls,1);}
       else if(scenario==='rate-seconds'||scenario==='rate-date'){assert.equal(response.status,503);assert.equal(body.failure.origin,'hexdb');assert.equal(body.failure.category,'upstream-failure');assert.equal(body.failure.upstreamRequestsStarted,1);assert.ok(body.failure.retryAfterMs>=(scenario==='rate-seconds'?600000:899000));assert.equal(calls,1);}
-      else{assert.equal(response.status,200);assert.equal(calls,1);assert.equal(body.status,scenario==='empty'?'not-found':'found');if(scenario==='populated')assert.equal(body.data.operator,'easyJet');if(scenario==='route')assert.equal(body.data.origin.code,'DUB');}
+      else{assert.equal(response.status,200);assert.equal(calls,1);assert.equal(body.status,scenario==='empty'?'not-found':'found');if(scenario==='populated')assert.equal(body.data.operator,'easyJet');if(scenario==='route'||scenario==='historical')assert.equal(body.data.origin.code,'DUB');if(scenario==='historical')assert.ok(Date.now()-body.data.associationTimeMs>=542*86400000);}
       assert.doesNotMatch(JSON.stringify(body),/latitude|longitude|registered_owner|images|credentials/);
       if(scenario==='local-gate'){const second=await realFetch(endpoint+'?kind=aircraft&hex=111111'),b=await second.json();assert.equal(second.status,503);assert.equal(b.failure.schemaVersion,1);assert.equal(b.failure.category,'local-deferral');assert.equal(b.failure.origin,'application');assert.equal(b.failure.reason,'global-gate');assert.equal(b.failure.upstreamRequestsStarted,0);assert.equal(b.failure.retryAfterMs,30000);assert.equal(second.headers.get('retry-after'),'30');assert.equal(calls,1);}
       }
@@ -198,7 +198,7 @@ try {
   `;
   for (const scenario of scope === 'position'
     ? []
-    : ['disabled', 'production', 'populated', 'route', 'empty', 'failure', 'local-gate', 'in-flight', 'rate-seconds', 'rate-date', 'coalesced-rate', 'unexpected']) {
+    : ['disabled', 'production', 'populated', 'route', 'historical', 'empty', 'failure', 'local-gate', 'in-flight', 'rate-seconds', 'rate-date', 'coalesced-rate', 'unexpected']) {
     execFileSync(
       process.execPath,
       ['--input-type=module', '--eval', enrichmentProbe],

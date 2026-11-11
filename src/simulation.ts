@@ -3,6 +3,7 @@ export interface Aircraft {
   altitudeFt:number|null; distanceKm:number|null; origin:{code:string;name:string;iata?:string|null;icao?:string|null}|null;
   destination:{code:string;name:string;iata?:string|null;icao?:string|null}|null; callsign:string|null; registration:string|null;
   direction:string|null;
+  routeHistorical?:boolean;
 }
 // All entities and identifiers below are fictional; no geographic observation point.
 export const fleet:Aircraft[]=[

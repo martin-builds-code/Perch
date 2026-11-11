@@ -199,6 +199,7 @@ function scene(kind: string): Scene {
 }
 declare global {
   interface Window {
+    r03Historical: (value:boolean)=>void;
     stage3aFixture: (kind: string, id?: string) => void;
   }
 }
@@ -206,6 +207,7 @@ function Harness() {
   const [value, setValue] = useState(() =>
     scene(new URLSearchParams(location.search).get('scenario') || 'a380'),
   );
+  window.r03Historical = (routeHistorical) => setValue(s=>({...s,primary:s.primary?{...s.primary,routeHistorical}:null,secondary:s.secondary.map(a=>({...a,routeHistorical}))}));
   window.stage3aFixture = (kind, id) => {
     const next = scene(kind);
     if (id && next.primary) next.primary.id = id;

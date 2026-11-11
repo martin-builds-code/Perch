@@ -39,7 +39,8 @@ export const ENRICHMENT_POLICY = {
   timeoutMs: 2500,
   clientTimeoutMs: 5000,
   maxBytes: 65536,
-  maxRouteAgeMs: 180 * 86400000,
+  recentRouteAgeMs: 180 * 86400000,
+  maxRouteAgeMs: 730 * 86400000,
 };
 export function validHex(value: string) {
   return /^[0-9A-F]{6}$/i.test(value);
