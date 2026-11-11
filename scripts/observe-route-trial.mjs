@@ -2,6 +2,7 @@
 // provider lookups, request scheduling, geolocation or raw response/URL logging.
 import { mkdir, writeFile, rename } from 'node:fs/promises';
 import { parseEnrichmentDiagnostic } from '../src/routeTraceTypes.ts';
+import { parseEnrichmentFailure } from '../src/enrichmentFailure.ts';
 const { chromium } = await import(
   process.env.PERCH_PLAYWRIGHT_MODULE ?? 'playwright-core'
 );
@@ -46,6 +47,7 @@ let report,
   networkFailures = 0,
   lastPrint = 0;
 const screenshots = new Set();
+const deferralScreenshots = new Set();
 const pending = new Set();
 function boundedPush(xs, value, max) {
   if (xs.length >= max) xs.shift();
@@ -112,6 +114,7 @@ page.on('response', (r) => {
         kind: q.get('kind'),
         apiStatus: r.status(),
         diagnostic: diagnostic ?? null,
+        failure: parseEnrichmentFailure(body.failure) ?? null,
         ...(typeof body.error === 'string' &&
         /^[a-z0-9-]{1,64}$/.test(body.error)
           ? { error: body.error }
@@ -167,6 +170,22 @@ try {
         screenshots.add(signature);
         await page.screenshot({
           path: output + '/state-' + screenshots.size + '.png',
+        });
+      }
+    }
+    for (const d of (report.deferrals ?? []).slice(0, 3)) {
+      const state = d.nextAttemptAtMs === null ? 'pending' : 'resumed';
+      const key = String(d.atMs) + ':' + state;
+      if (!deferralScreenshots.has(key)) {
+        deferralScreenshots.add(key);
+        await page.screenshot({
+          path:
+            output +
+            '/deferral-' +
+            deferralScreenshots.size +
+            '-' +
+            state +
+            '.png',
         });
       }
     }

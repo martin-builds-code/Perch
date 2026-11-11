@@ -5,6 +5,14 @@ import type { EnrichmentDiagnostic } from './routeTraceTypes';
 import { parseEnrichmentDiagnostic } from './routeTraceTypes';
 import { flightKey, validHex } from './enrichmentTypes';
 import { prominentRoute } from './artwork';
+import {
+  parseEnrichmentFailure,
+  copyEnrichmentScheduling,
+} from './enrichmentFailure';
+import type {
+  EnrichmentFailure,
+  EnrichmentScheduling,
+} from './enrichmentFailure';
 export type LookupRef = {
   kind: EnrichmentKind;
   hex: string;
@@ -23,7 +31,12 @@ export type EnrichmentEvent =
       primaryEligible: boolean;
       routes: { key: string; result?: EnrichmentResult }[];
     }
-  | { type: 'attempt'; atMs: number; lookup: LookupRef }
+  | {
+      type: 'attempt';
+      atMs: number;
+      elapsedMs?: number;
+      lookup: LookupRef;
+    }
   | {
       type: 'response';
       atMs: number;
@@ -31,7 +44,11 @@ export type EnrichmentEvent =
       ok: boolean;
       apiStatus: number | null;
       durationMs: number;
+      startedElapsedMs?: number;
+      elapsedMs?: number;
       diagnostic?: EnrichmentDiagnostic;
+      failure?: EnrichmentFailure;
+      scheduling?: EnrichmentScheduling;
       error?: string;
       clientCooldownMs: number;
     };
@@ -75,7 +92,23 @@ interface Row {
     apiStatus: number | null;
     diagnostic?: EnrichmentDiagnostic;
     error?: string;
+    scheduling?: EnrichmentScheduling;
   };
+}
+interface DeferralRecord {
+  atMs: number;
+  elapsedMs?: number;
+  role: 'primary' | 'secondary';
+  kind: EnrichmentKind;
+  ref: string;
+  scheduling: EnrichmentScheduling;
+  upstreamRequestsStarted: 0;
+  nextAttemptAtMs: number | null;
+  nextAttemptRole: 'primary' | 'secondary' | null;
+  nextAttemptKind: EnrichmentKind | null;
+  actualDelayMs: number | null;
+  additionalDelayMs: number | null;
+  observedRestrictions: string[];
 }
 const MAX_FLIGHTS = 4096,
   MAX_EVENTS = 1024,
@@ -95,6 +128,8 @@ export function createRouteDiagnostics(
   const listeners = new Set<() => void>();
   const counters: Record<string, number> = {};
   const events: Record<string, unknown>[] = [];
+  const deferrals: DeferralRecord[] = [];
+  let pendingDeferral: DeferralRecord | undefined;
   let stopped = false,
     lastMs = startMs,
     active = true,
@@ -182,6 +217,23 @@ export function createRouteDiagnostics(
     if (e.type === 'scene') {
       current = e;
       active = e.active;
+      if (pendingDeferral && e.globalWaitMs <= 0) {
+        const restriction = !e.active
+          ? 'inactive'
+          : e.pending
+            ? 'single-request-busy'
+            : !e.scene.primary
+              ? 'no-current-primary'
+              : pendingDeferral.role === 'secondary' &&
+                  !e.primaryEligible &&
+                  e.secondaryWaitMs > 0
+                ? 'secondary-interval'
+                : pendingDeferral.role === 'secondary' && e.primaryEligible
+                  ? 'primary-priority'
+                  : 'scene-opportunity';
+        if (!pendingDeferral.observedRestrictions.includes(restriction))
+          pendingDeferral.observedRestrictions.push(restriction);
+      }
       const present = new Set(
         [e.scene.primary, ...e.scene.secondary]
           .filter((a): a is Aircraft => !!a)
@@ -291,6 +343,12 @@ export function createRouteDiagnostics(
           row.reason = !validHex(a.id)
             ? 'invalid-identifier'
             : 'missing-or-invalid-callsign';
+        } else if (
+          e.globalWaitMs > 0 &&
+          row.response?.scheduling?.treatment === 'local-deferral'
+        ) {
+          row.state = ROUTE_STATES.waiting;
+          row.reason = 'local-' + row.response.scheduling.reason;
         } else if (e.globalWaitMs > 0 && row.response?.error) {
           row.state = ROUTE_STATES.unavailable;
           row.reason = row.response.error;
@@ -323,6 +381,26 @@ export function createRouteDiagnostics(
           : 'primary' + (e.type === 'attempt' ? 'Attempts' : 'Responses'),
       );
       if (e.type === 'attempt') {
+        if (pendingDeferral) {
+          pendingDeferral.nextAttemptAtMs = e.atMs;
+          pendingDeferral.nextAttemptRole = e.lookup.secondary
+            ? 'secondary'
+            : 'primary';
+          pendingDeferral.nextAttemptKind = e.lookup.kind;
+          const delay =
+            e.elapsedMs !== undefined &&
+            pendingDeferral.elapsedMs !== undefined
+              ? e.elapsedMs - pendingDeferral.elapsedMs
+              : e.atMs - pendingDeferral.atMs;
+          if (delay >= 0) {
+            pendingDeferral.actualDelayMs = delay;
+            pendingDeferral.additionalDelayMs = Math.max(
+              0,
+              delay - pendingDeferral.scheduling.globalWaitMs,
+            );
+          } else count('clockAnomalies');
+          pendingDeferral = undefined;
+        }
         count('applicationAttempts');
         count(
           e.lookup.kind === 'route'
@@ -398,7 +476,46 @@ export function createRouteDiagnostics(
             );
           }
         } else count('responsesWithoutServerEvidence');
-        if (e.clientCooldownMs > 0) count('clientCooldownIncidents');
+        if (e.scheduling?.treatment === 'local-deferral') {
+          count('verifiedLocalDeferrals');
+          if (
+            e.scheduling.globalWaitMs >
+            Math.max(
+              e.scheduling.serverWaitMs ?? 0,
+              e.scheduling.priorGlobalWaitMs,
+            ) +
+              1
+          )
+            count('localDeferralsAmplified');
+          const entry: DeferralRecord = {
+            atMs: e.atMs,
+            elapsedMs: e.elapsedMs,
+            role: e.lookup.secondary ? 'secondary' : 'primary',
+            kind: e.lookup.kind,
+            ref: flights.get(k)?.ref ?? 'identity',
+            scheduling: copyEnrichmentScheduling(e.scheduling),
+            upstreamRequestsStarted: 0,
+            nextAttemptAtMs: null,
+            nextAttemptRole: null,
+            nextAttemptKind: null,
+            actualDelayMs: null,
+            additionalDelayMs: null,
+            observedRestrictions: [],
+          };
+          if (deferrals.length >= MAX_EVENTS) {
+            deferrals.shift();
+            truncated = true;
+          }
+          deferrals.push(entry);
+          pendingDeferral = entry;
+        } else if (e.clientCooldownMs > 0) {
+          count('clientCooldownIncidents');
+          count(
+            e.failure?.category === 'upstream-failure'
+              ? 'providerFailureBackoffs'
+              : 'unverifiedFailureBackoffs',
+          );
+        }
         const row = e.lookup.kind === 'route' ? ensure(k) : undefined;
         if (row) {
           row.responseAtMs = e.atMs;
@@ -406,18 +523,24 @@ export function createRouteDiagnostics(
             apiStatus: e.apiStatus,
             ...(d ? { diagnostic: d } : {}),
             ...(e.error ? { error: e.error } : {}),
+            ...(e.scheduling
+              ? { scheduling: copyEnrichmentScheduling(e.scheduling) }
+              : {}),
           };
-          row.state = !e.ok
-            ? d?.outcome === 'rejected'
-              ? ROUTE_STATES.rejected
-              : ROUTE_STATES.unavailable
-            : d?.outcome === 'rejected'
-              ? ROUTE_STATES.rejected
-              : d?.outcome === 'negative'
-                ? ROUTE_STATES.negative
-                : d?.outcome === 'partial'
-                  ? ROUTE_STATES.partial
-                  : row.state;
+          row.state =
+            e.scheduling?.treatment === 'local-deferral'
+              ? ROUTE_STATES.waiting
+              : !e.ok
+                ? d?.outcome === 'rejected'
+                  ? ROUTE_STATES.rejected
+                  : ROUTE_STATES.unavailable
+                : d?.outcome === 'rejected'
+                  ? ROUTE_STATES.rejected
+                  : d?.outcome === 'negative'
+                    ? ROUTE_STATES.negative
+                    : d?.outcome === 'partial'
+                      ? ROUTE_STATES.partial
+                      : row.state;
           row.reason =
             d?.reason ?? e.error ?? 'response-without-server-evidence';
         }
@@ -429,7 +552,19 @@ export function createRouteDiagnostics(
           kind: e.lookup.kind,
           apiStatus: e.apiStatus,
           durationMs: e.durationMs,
+          ...(e.elapsedMs !== undefined
+            ? {
+                elapsedMs: e.elapsedMs,
+                startedElapsedMs: e.startedElapsedMs,
+              }
+            : {}),
           ...(d ? { diagnostic: d } : {}),
+          ...(e.failure
+            ? { failure: parseEnrichmentFailure(e.failure) }
+            : {}),
+          ...(e.scheduling
+            ? { scheduling: copyEnrichmentScheduling(e.scheduling) }
+            : {}),
           ...(e.error ? { error: e.error } : {}),
           clientCooldownMs: e.clientCooldownMs,
         });
@@ -444,6 +579,13 @@ export function createRouteDiagnostics(
         ? {
             response: {
               ...row.response,
+              ...(row.response.scheduling
+                ? {
+                    scheduling: copyEnrichmentScheduling(
+                      row.response.scheduling,
+                    ),
+                  }
+                : {}),
               ...(row.response.diagnostic
                 ? {
                     diagnostic: parseEnrichmentDiagnostic(
@@ -548,11 +690,28 @@ export function createRouteDiagnostics(
             r.cacheRemainingMs - (current ? now - current.atMs : 0),
           ),
         })),
+      deferrals: (includeEvidence ? deferrals : deferrals.slice(-4)).map(
+        (d) => ({
+          ...d,
+          scheduling: copyEnrichmentScheduling(d.scheduling),
+          observedRestrictions: [...d.observedRestrictions],
+        }),
+      ),
       flights: includeEvidence ? rows.map(copyRow) : [],
       events: includeEvidence
         ? events.map(
             (e): Record<string, unknown> => ({
               ...e,
+              ...(e.failure
+                ? { failure: parseEnrichmentFailure(e.failure) }
+                : {}),
+              ...(e.scheduling
+                ? {
+                    scheduling: copyEnrichmentScheduling(
+                      e.scheduling as EnrichmentScheduling,
+                    ),
+                  }
+                : {}),
               ...(e.diagnostic
                 ? { diagnostic: parseEnrichmentDiagnostic(e.diagnostic) }
                 : {}),
@@ -608,6 +767,12 @@ export function createRouteDiagnostics(
     context: (on: boolean, now: number) => {
       advance(now);
       active = on;
+      if (
+        !on &&
+        pendingDeferral &&
+        !pendingDeferral.observedRestrictions.includes('inactive')
+      )
+        pendingDeferral.observedRestrictions.push('inactive');
     },
   };
 }

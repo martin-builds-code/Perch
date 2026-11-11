@@ -11,7 +11,8 @@ import type {
 } from '../src/enrichmentTypes.js';
 export class EnrichmentError extends Error {
   trace?: ProviderTrace;
-  origin: 'application' | 'hexdb';
+  origin: 'application' | 'hexdb' | 'unexpected';
+  serverCache?: 'miss' | 'coalesced' | 'none';
   constructor(
     public code: string,
     public retryAfterMs = ENRICHMENT_POLICY.errorCooldownMs,

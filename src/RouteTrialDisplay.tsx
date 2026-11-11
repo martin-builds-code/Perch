@@ -44,9 +44,43 @@ export default function RouteTrialDisplay({
       <p>
         Global wait: {Math.ceil(report.globalWaitMs / 1000)} s · Secondary
         wait: {Math.ceil(report.secondaryWaitMs / 1000)} s · Server
-        cooldowns: {report.counters.serverCooldownIncidents ?? 0} · Client
-        pauses: {report.counters.clientCooldownIncidents ?? 0}
+        deferrals: {report.counters.serverCooldownIncidents ?? 0} ·
+        Verified local: {report.counters.verifiedLocalDeferrals ?? 0} ·
+        Failure backoffs: {report.counters.clientCooldownIncidents ?? 0} ·
+        Amplified local waits:{' '}
+        {report.counters.localDeferralsAmplified ?? 0}
       </p>
+      {report.deferrals.map((d) => (
+        <section key={d.atMs} aria-label="Local deferral timing">
+          <strong>
+            {d.role} {d.kind} · application-local / {d.scheduling.reason} ·
+            no HexDB request
+          </strong>
+          <p>
+            Server wait{' '}
+            {Math.ceil((d.scheduling.serverRetryAfterMs ?? 0) / 1000)} s ·
+            browser global deadline{' '}
+            {new Date(d.scheduling.nextGlobalEligibleAtMs).toISOString()} ·
+            secondary deadline{' '}
+            {new Date(
+              d.scheduling.nextSecondaryEligibleAtMs,
+            ).toISOString()}
+          </p>
+          <p>
+            Actual next attempt{' '}
+            {d.actualDelayMs === null
+              ? 'pending'
+              : (d.actualDelayMs / 1000).toFixed(1) + ' s'}{' '}
+            ({d.nextAttemptRole ?? 'waiting'} {d.nextAttemptKind ?? ''}) ·
+            additional delay{' '}
+            {d.additionalDelayMs === null
+              ? 'pending'
+              : (d.additionalDelayMs / 1000).toFixed(1) + ' s'}{' '}
+            · observed restrictions:{' '}
+            {d.observedRestrictions.join(', ') || 'none recorded'}
+          </p>
+        </section>
+      ))}
       <div className="route-trial-cards">
         {report.current.map((row) => (
           <article

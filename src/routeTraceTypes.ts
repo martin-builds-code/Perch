@@ -21,7 +21,7 @@ export interface ProviderTrace {
   };
 }
 export interface EnrichmentDiagnostic {
-  origin: 'application' | 'hexdb';
+  origin: 'application' | 'hexdb' | 'unexpected';
   serverCache: 'hit' | 'miss' | 'coalesced' | 'none';
   upstreamRequestsStarted: number;
   upstreamResponses: number;
@@ -38,7 +38,7 @@ export function parseEnrichmentDiagnostic(
   if (!v || typeof v !== 'object') return undefined;
   const d = v as EnrichmentDiagnostic;
   if (
-    !['application', 'hexdb'].includes(d.origin) ||
+    !['application', 'hexdb', 'unexpected'].includes(d.origin) ||
     !['hit', 'miss', 'coalesced', 'none'].includes(d.serverCache) ||
     ![
       'complete',

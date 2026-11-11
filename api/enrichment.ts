@@ -1,8 +1,12 @@
 import { routeTrial } from '../server/routeTrial.js';
 import type { EnrichmentDiagnostic } from '../src/routeTraceTypes.js';
+import type { EnrichmentFailure } from '../src/enrichmentFailure.js';
 import { authorised } from '../server/auth.js';
 import type { IncomingMessage, ServerResponse } from 'node:http';
-import { enrichmentService } from '../server/enrichmentService.js';
+import {
+  enrichmentService,
+  LocalEnrichmentDeferral,
+} from '../server/enrichmentService.js';
 import { EnrichmentError, validateLookup } from '../server/hexdb.js';
 export default async function handler(
   req: IncomingMessage,
@@ -87,6 +91,39 @@ export default async function handler(
       error instanceof EnrichmentError
         ? error
         : new EnrichmentError('unavailable');
+    if (!(error instanceof EnrichmentError)) failure.origin = 'unexpected';
+    const upstreamRequestsStarted =
+      failure.serverCache === 'coalesced'
+        ? 0
+        : failure.trace?.requestStarted
+          ? 1
+          : 0;
+    const upstreamResponses =
+      failure.serverCache === 'coalesced'
+        ? 0
+        : failure.trace?.httpStatus
+          ? 1
+          : 0;
+    const contract: EnrichmentFailure = {
+      schemaVersion: 1,
+      origin: failure.origin,
+      category:
+        error instanceof LocalEnrichmentDeferral
+          ? 'local-deferral'
+          : failure.origin === 'hexdb'
+            ? 'upstream-failure'
+            : failure.origin === 'unexpected'
+              ? 'unexpected-error'
+              : 'request-error',
+      reason:
+        error instanceof LocalEnrichmentDeferral
+          ? error.reason
+          : failure.code,
+      retryAfterMs: Math.ceil(failure.retryAfterMs),
+      issuedAtMs: Date.now(),
+      upstreamRequestsStarted,
+      upstreamResponses,
+    };
     res.statusCode = failure.code === 'invalid-request' ? 400 : 503;
     res.setHeader(
       'Retry-After',
@@ -95,13 +132,13 @@ export default async function handler(
     const diagnostic: EnrichmentDiagnostic | undefined = trial
       ? {
           origin: failure.origin,
-          serverCache: 'none',
-          upstreamRequestsStarted: failure.trace?.requestStarted ? 1 : 0,
-          upstreamResponses: failure.trace?.httpStatus ? 1 : 0,
+          serverCache: failure.serverCache ?? 'none',
+          upstreamRequestsStarted,
+          upstreamResponses,
           outcome: failure.trace?.outcome ?? 'error',
           reason: failure.code,
           httpStatus: failure.trace?.httpStatus ?? null,
-          retryAfterMs: failure.retryAfterMs,
+          retryAfterMs: contract.retryAfterMs,
           durationMs: Math.max(0, Date.now() - started),
           ...(failure.trace?.summary
             ? { summary: failure.trace.summary }
@@ -111,6 +148,7 @@ export default async function handler(
     res.end(
       JSON.stringify({
         error: failure.code,
+        failure: contract,
         ...(diagnostic ? { diagnostic } : {}),
       }),
     );

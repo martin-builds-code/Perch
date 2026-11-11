@@ -289,7 +289,7 @@ test('server cache trace counts one provider call, and local conflicts make none
   assert.equal(calls, 1);
 });
 
-test('reproduced baseline defect: subsecond server-arrival jitter turns 30s local gate into 300s client pause', async () => {
+test('legacy unverified cooldown payload retains conservative backoff; R01 typed-contract recovery is tested separately', async () => {
   let wall = T,
     elapsed = 0,
     serverNow = T + 100,
@@ -336,7 +336,10 @@ test('reproduced baseline defect: subsecond server-arrival jitter turns 30s loca
           }),
           {
             status: 503,
-            headers: { 'Retry-After': String(e.retryAfterMs / 1000) },
+            headers: {
+              'Content-Type': 'application/json',
+              'Retry-After': String(e.retryAfterMs / 1000),
+            },
           },
         );
       }

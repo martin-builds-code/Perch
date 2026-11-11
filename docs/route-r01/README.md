@@ -1,0 +1,96 @@
+# Route reliability correction R01
+
+Baseline: b8076615e4989fe85edebc33ee7058b38f5529f7, verified local and GitHub
+branch head, with open Draft PR #5. Main remains accepted Stage 2D 8031a76.
+The previous investigation and its original evidence are preserved unchanged in
+`docs/stage3-route-investigation/`.
+
+R01 corrects the verified 30-second local-server deferral becoming a five-minute
+browser-wide enrichment pause. It does not change route coverage, the 180-day
+association-age guard, caches, relevance selection or provider request ceilings.
+The final live comparison will be added after a genuinely observed bounded run.
+
+**Response contract and correction.** Only the service's typed
+LocalEnrichmentDeferral can generate schemaVersion=1, origin=application,
+category=local-deferral, reason=global-gate or in-flight. It declares zero
+upstream requests/responses and the server's retry duration/issue time. The API
+emits this contract in ordinary PIN-protected use too; the correction does not
+require diagnostic mode. Upstream, invalid-request and unexpected failures have
+different categories. Internal exception text and provider bodies are not exposed.
+
+The browser requires HTTP 503, JSON media type, exact parent/error/envelope
+fields, supported version/category/reason, zero upstream work, coherent
+Retry-After and (when present) non-contradictory diagnostic metadata. A generic
+503, an old diagnostic label alone, malformed/oversized JSON or an ambiguous
+contract never receives the short treatment. Error bodies are bounded to 8 KiB.
+Numeric and HTTP-date retry headers are supported; a date must agree with the
+server's own relative duration/issue time rather than trusting browser clock
+agreement. Millisecond durations are rounded up in the published contract.
+
+A verified local deferral sets the next global opportunity to the maximum of
+the existing client deadline and the server-requested wait from receipt, using
+monotonic browser time. It creates no retry timer. The next existing scene or
+resume opportunity decides the eligible aircraft. Thus an ordinary 30-second
+deferral normally retries in 30–45 seconds, depending on the 15-second positional
+phase. A secondary still cannot retry until the collective 90-second deadline;
+a new eligible primary can use the earlier global opportunity. Old/absent aircraft
+are not queued for automatic retries. Identity/route priority and fairness stay
+unchanged. Stop-aborted late responses cannot extend shared budgets or publish.
+
+Genuine upstream errors retain the five-minute floor, access-denial protections
+and any longer valid Retry-After. No provider retry is weakened. A long server
+protective deadline and an existing client deadline remain authoritative even
+when longer than the ordinary local wait. Server cache, 30-second gate and single
+in-flight protection are unchanged; gates/cache remain process-local on Vercel,
+not globally coordinated across instances. Coalesced failing callers get separate
+error context so they do not double-count the same upstream HTTP request.
+
+**Diagnostics.** The bounded collector retains the original states and gains
+verified-deferral records: identity/route, role, application origin/reason,
+server duration, browser global/secondary deadlines, monotonic actual time to
+next attempt, next role/type, and observed restrictions. These restrictions are
+correlations from scene/lifecycle samples, not claims of exclusive causation.
+The next attempt can concern another eligible aircraft; a local deferral never
+forces a disappeared aircraft to be queried. Existing intervals, secondary
+eligibility, primary priority, inactivity and absent aircraft can extend the
+observed delay. Four recent deferrals appear in the temporary dashboard; exports
+retain at most 1,024 records. Coordinates, complete positions, credentials, full
+hex/callsigns, registrations and browser identifiers are not exported.
+
+**Automated verification.** 254 tests, 19 compiled plain-Node HTTP cases,
+ESLint, TypeScript/server checks and default/all-feature Safari 15 builds pass.
+New cases cover the original 50 ms timing variation, malformed/contradictory
+contracts, numeric/date Retry-After, upstream rate/access/timeout/network/invalid
+responses, shared-server clients, single concurrency, cache/role correctness,
+secondary deadlines, clock adjustments and lifecycle cancellation.
+
+Mocked R01 browser checks at 1024×768 and 1024×624 prove 30-second global
+recovery, a justified 90-second secondary wait, primary refresh priority, no
+five-minute local backoff, shutdown and a full ten-minute upstream rate-limit
+wait. All 51 inherited Stage 3 layouts plus secondary-enrichment and diagnostic
+browser regressions pass, including no sleep requests and exact PIN/sleep pixels
+against the approved baseline. No normal artwork/layout/CSS file was changed.
+The test fixtures use compatible indexing; the Safari build target was not raised.
+No physical iPad or Safari-engine execution is claimed.
+
+**Live trial and access policy.** After committing the verified source, Codex
+will deploy it only to mml3 / perch-aero-pane-stage3a /
+prj_QU4OICxi2QPrRtK0JS83ZTaLP9bW as Preview using the existing direct workflow.
+Only its stable Stage 3A alias will be reassigned; earlier immutable URLs remain.
+Existing Preview credentials/configuration are reused without reading secrets.
+A new explicit server-only lease will last at most 50 minutes, including build
+and validation. Observation runs until that absolute expiry, with a 50-minute
+observer ceiling and a target of at least 40 minutes of real observation. The
+server restores PIN access at the end of the trial; the project flag is disabled
+for future builds after activating the one deployment. Expiry and locked-screen
+HTTP/browser checks must be completed. The corrected Preview stays on the stable
+alias after expiry; normal operation uses the same PIN and the R01 error contract.
+
+The baseline comparison is 40 minutes, 29 aircraft, 16 primary, 16 without any
+route API attempt, 25% of primary aircraft ever complete and 13.2% of primary
+screen time complete, with three amplified local deferrals. Different traffic,
+provider coverage, cache state and other clients prevent a causal accuracy claim.
+Only provider HTTP starts/responses confirmed through this observer's requests
+are counted; other clients' provider work is unknown. There is no paid service,
+new provider, wider radius, faster positional polling, permanent monitoring,
+credential change, merge or household Production deployment.

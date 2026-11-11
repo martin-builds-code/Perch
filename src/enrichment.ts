@@ -1,6 +1,15 @@
 import type { EnrichmentEvent, LookupRef } from './routeDiagnostics';
 import { parseEnrichmentDiagnostic } from './routeTraceTypes';
 import type { EnrichmentDiagnostic } from './routeTraceTypes';
+import {
+  parseEnrichmentFailure,
+  readEnrichmentFailure,
+  verifiedLocalDeferral,
+} from './enrichmentFailure';
+import type {
+  EnrichmentFailure,
+  EnrichmentScheduling,
+} from './enrichmentFailure';
 import type { Aircraft, Scene } from './simulation';
 import type {
   EnrichmentResult,
@@ -227,7 +236,50 @@ export function createEnricher(
     let errorCode = 'network-or-timeout';
     let apiStatus: number | null = null,
       diagnostic: EnrichmentDiagnostic | undefined;
-    emit({ type: 'attempt', atMs: wallStarted, lookup: lookupRef });
+    let failure: EnrichmentFailure | undefined;
+    function applyWait(
+      delay: number,
+      local?: ReturnType<typeof verifiedLocalDeferral>,
+    ): EnrichmentScheduling {
+      const at = budgetNow(),
+        wall = env.now();
+      const priorGlobalWaitMs = Math.max(0, budget.nextAllowed - at);
+      budget.nextAllowed = Math.max(
+        budget.nextAllowed,
+        at + (local ? local.waitMs : P.errorCooldownMs),
+        Number.isFinite(delay) ? at + delay : 0,
+      );
+      const globalWaitMs = Math.max(0, budget.nextAllowed - at),
+        secondaryWaitMs = Math.max(0, budget.nextSecondaryAllowed - at);
+      return {
+        treatment: local ? 'local-deferral' : 'failure-backoff',
+        reason: local
+          ? (local.failure.reason as 'global-gate' | 'in-flight')
+          : 'failure',
+        serverRetryAfterMs: local
+          ? local.failure.retryAfterMs
+          : Number.isFinite(delay)
+            ? delay
+            : null,
+        serverWaitMs: local
+          ? local.waitMs
+          : Number.isFinite(delay)
+            ? delay
+            : null,
+        priorGlobalWaitMs,
+        globalWaitMs,
+        secondaryWaitMs,
+        nextGlobalEligibleAtMs: wall + globalWaitMs,
+        nextSecondaryEligibleAtMs:
+          wall + Math.max(globalWaitMs, secondaryWaitMs),
+      };
+    }
+    emit({
+      type: 'attempt',
+      atMs: wallStarted,
+      elapsedMs: started,
+      lookup: lookupRef,
+    });
     budget.nextAllowed = started + P.intervalMs;
     if (secondary) {
       budget.nextSecondaryAllowed = started + P.secondaryIntervalMs;
@@ -247,34 +299,37 @@ export function createEnricher(
           signal: request.signal,
         },
       );
+      if (stopped) return;
+      if (request.signal.aborted) throw Error('request-aborted');
       apiStatus = response.status;
       if (!response.ok) {
         let error = 'api-http-error';
-        if (env.observe) {
-          try {
-            const body = await response.clone().json();
-            diagnostic = parseEnrichmentDiagnostic(body.diagnostic);
-            if (
-              typeof body.error === 'string' &&
-              /^[a-z0-9-]{1,64}$/.test(body.error)
-            )
-              error = body.error;
-          } catch {
-            /* Non-JSON platform errors are an undetermined API failure. */
-          }
+        const body = await readEnrichmentFailure(response);
+        if (stopped) return;
+        if (request.signal.aborted) throw Error('request-aborted');
+        if (body && typeof body === 'object') {
+          const payload = body as {
+            error?: unknown;
+            failure?: unknown;
+            diagnostic?: unknown;
+          };
+          diagnostic = parseEnrichmentDiagnostic(payload.diagnostic);
+          failure = parseEnrichmentFailure(payload.failure);
+          if (
+            typeof payload.error === 'string' &&
+            /^[a-z0-9-]{1,64}$/.test(payload.error)
+          )
+            error = payload.error;
         }
+        const local = verifiedLocalDeferral(response, body);
         const raw = response.headers.get('retry-after'),
           seconds = raw === null ? NaN : Number(raw);
         const delay = Number.isFinite(seconds)
           ? seconds * 1000
           : raw
             ? Date.parse(raw) - env.now()
-            : 0;
-        budget.nextAllowed = Math.max(
-          budget.nextAllowed,
-          budgetNow() + P.errorCooldownMs,
-          Number.isFinite(delay) ? budgetNow() + delay : 0,
-        );
+            : NaN;
+        const scheduling = applyWait(local ? local.waitMs : delay, local);
         emit({
           type: 'response',
           atMs: env.now(),
@@ -282,8 +337,12 @@ export function createEnricher(
           ok: false,
           apiStatus,
           diagnostic,
+          failure,
+          scheduling,
           error,
           durationMs: budgetNow() - started,
+          startedElapsedMs: started,
+          elapsedMs: budgetNow(),
           clientCooldownMs: Math.max(0, budget.nextAllowed - budgetNow()),
         });
         return;
@@ -329,15 +388,14 @@ export function createEnricher(
         apiStatus,
         diagnostic,
         durationMs: budgetNow() - started,
+        startedElapsedMs: started,
+        elapsedMs: budgetNow(),
         clientCooldownMs: 0,
       });
       publish();
     } catch {
       if (!stopped) {
-        budget.nextAllowed = Math.max(
-          budget.nextAllowed,
-          budgetNow() + P.errorCooldownMs,
-        );
+        const scheduling = applyWait(NaN);
         emit({
           type: 'response',
           atMs: env.now(),
@@ -345,8 +403,12 @@ export function createEnricher(
           ok: false,
           apiStatus,
           diagnostic,
+          failure,
+          scheduling,
           error: errorCode,
           durationMs: budgetNow() - started,
+          startedElapsedMs: started,
+          elapsedMs: budgetNow(),
           clientCooldownMs: Math.max(0, budget.nextAllowed - budgetNow()),
         });
       }

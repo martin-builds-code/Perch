@@ -9,6 +9,27 @@ import type {
   EnrichmentResult,
   Supplement,
 } from '../src/enrichmentTypes.js';
+export class LocalEnrichmentDeferral extends EnrichmentError {
+  constructor(
+    public reason: 'global-gate' | 'in-flight',
+    retryAfterMs: number,
+  ) {
+    super('cooldown', retryAfterMs);
+    this.serverCache = 'none';
+  }
+}
+function requestFailure(error: unknown, cache: 'miss' | 'coalesced') {
+  const failure =
+    error instanceof EnrichmentError
+      ? error
+      : new EnrichmentError('unavailable');
+  const copy = new EnrichmentError(failure.code, failure.retryAfterMs);
+  copy.origin =
+    error instanceof EnrichmentError ? failure.origin : 'unexpected';
+  copy.trace = failure.trace;
+  copy.serverCache = cache;
+  return copy;
+}
 export function createEnrichmentService(
   load: (
     kind: EnrichmentKind,
@@ -43,14 +64,19 @@ export function createEnrichmentService(
         time < nextAllowed)
     )
       return { result: hit, cache: 'hit' as const };
-    if (pending?.key === key)
-      return {
-        result: await pending.promise,
-        cache: 'coalesced' as const,
-      };
+    if (pending?.key === key) {
+      try {
+        return {
+          result: await pending.promise,
+          cache: 'coalesced' as const,
+        };
+      } catch (error) {
+        throw requestFailure(error, 'coalesced');
+      }
+    }
     if (pending || time < nextAllowed)
-      throw new EnrichmentError(
-        'cooldown',
+      throw new LocalEnrichmentDeferral(
+        pending ? 'in-flight' : 'global-gate',
         Math.max(P.intervalMs, nextAllowed - time),
       );
     nextAllowed = time + P.intervalMs;
@@ -91,6 +117,8 @@ export function createEnrichmentService(
           error instanceof EnrichmentError
             ? error
             : new EnrichmentError('unavailable');
+        if (!(error instanceof EnrichmentError))
+          failure.origin = 'unexpected';
         nextAllowed = Math.max(nextAllowed, now() + failure.retryAfterMs);
         throw failure;
       })
@@ -98,7 +126,11 @@ export function createEnrichmentService(
         pending = null;
       });
     pending = { key, promise };
-    return { result: await promise, cache: 'miss' as const };
+    try {
+      return { result: await promise, cache: 'miss' as const };
+    } catch (error) {
+      throw requestFailure(error, 'miss');
+    }
   }
   return {
     get,
