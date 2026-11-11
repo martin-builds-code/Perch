@@ -7,9 +7,10 @@
     "dev": "vite --host 127.0.0.1",
     "build": "tsc -b && npm run check:server && vite build",
     "lint": "eslint .",
-    "test": "node --expose-gc --import tsx --test --test-reporter=spec tests/*.test.tsx && npm run test:server-runtime",
+    "test": "node --expose-gc --import tsx --test --test-reporter=spec tests/*.test.tsx && npm run test:server-runtime && npm run test:route-review-runtime",
     "check:server": "tsc -p tsconfig.server.json",
     "test:server-runtime": "node scripts/test-server-runtime.mjs",
+    "test:route-review-runtime": "node scripts/test-route-review-runtime.mjs",
     "replay:selection": "node --import tsx scripts/replay-selection.mjs"
   },
   "dependencies": {

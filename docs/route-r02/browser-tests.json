@@ -1,0 +1,81 @@
+[
+  {
+    "viewport": {
+      "width": 320,
+      "height": 568
+    },
+    "validExport": true,
+    "completeCases": 4,
+    "exactDateMatches": 2,
+    "localResume": true,
+    "repeatedExportSafe": true,
+    "badImportPreservesAnswers": true,
+    "providerRequests": 0,
+    "horizontalOverflow": false
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "validExport": true,
+    "completeCases": 4,
+    "exactDateMatches": 2,
+    "localResume": true,
+    "repeatedExportSafe": true,
+    "badImportPreservesAnswers": true,
+    "providerRequests": 0,
+    "horizontalOverflow": false
+  },
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 768
+    },
+    "validExport": true,
+    "completeCases": 4,
+    "exactDateMatches": 2,
+    "localResume": true,
+    "repeatedExportSafe": true,
+    "badImportPreservesAnswers": true,
+    "providerRequests": 0,
+    "horizontalOverflow": false
+  },
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 624
+    },
+    "validExport": true,
+    "completeCases": 4,
+    "exactDateMatches": 2,
+    "localResume": true,
+    "repeatedExportSafe": true,
+    "badImportPreservesAnswers": true,
+    "providerRequests": 0,
+    "horizontalOverflow": false
+  },
+  {
+    "case": "storage unavailable",
+    "memoryReviewAndPartialExport": true
+  },
+  {
+    "case": "native share cancelled",
+    "draftUnchanged": true,
+    "noAutomaticDownload": true
+  },
+  {
+    "case": "download failure",
+    "draftUnchanged": true,
+    "retryAvailable": true
+  },
+  {
+    "case": "unavailable review",
+    "noPollingOrTracking": true
+  },
+  {
+    "case": "old observation",
+    "historyLimitExplained": true,
+    "originalAssociationAgePreserved": true
+  }
+]

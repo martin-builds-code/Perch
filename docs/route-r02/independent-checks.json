@@ -1,0 +1,156 @@
+{
+  "checkedOn": "2026-11-11 UTC",
+  "method": "Permitted public web/document searches. No automated FR24 scraping or authenticated-account circumvention.",
+  "queries": [
+    "\"LOG31AW\" \"11 Nov 2026\" -site:flightradar24.com",
+    "\"LOG17ZA\" \"11 Nov 2026\" -site:flightradar24.com",
+    "\"EZY64RF\" \"11 Nov 2026\" -site:flightradar24.com",
+    "\"YUSRB\" \"11 Nov 2026\" -site:flightradar24.com",
+    "\"EXS041A\" \"11 Nov 2026\" -site:flightradar24.com",
+    "\"EAI19MS\" \"11 Nov 2026\" -site:flightradar24.com",
+    "\"EZY387T\" \"11 Nov 2026\" -site:flightradar24.com",
+    "\"RYR1AC\" \"11 Nov 2026\" -site:flightradar24.com",
+    "\"SHT9Q\" \"11 Nov 2026\" -site:flightradar24.com",
+    "\"EZY86NE\" \"11 Nov 2026\" -site:flightradar24.com",
+    "\"EZY208N\" \"11 Nov 2026\" -site:flightradar24.com",
+    "\"EZY465Y\" \"11 Nov 2026\" -site:flightradar24.com",
+    "\"SHT19B\" \"11 Nov 2026\" -site:flightradar24.com",
+    "\"SHT7P\" \"11 Nov 2026\" -site:flightradar24.com",
+    "\"RYR82JD\" \"11 Nov 2026\" -site:flightradar24.com",
+    "\"EAG18C\" \"11 Nov 2026\" -site:flightradar24.com"
+  ],
+  "sourceFacts": {
+    "LOG31AW": {
+      "pair": [
+        "ABZ",
+        "MAN"
+      ],
+      "url": "https://wwnbg.flightera.net/en/airport/Aberdeen/EGPD/departure",
+      "title": "Dated Aberdeen departure board",
+      "fact": "11 November 2026: LM27 / LOG31AW scheduled ABZ–MAN at 18:15 GMT."
+    },
+    "LOG17ZA": {
+      "pair": [
+        "INV",
+        "MAN"
+      ],
+      "url": "https://wwnbg.flightera.net/en/airport/Inverness/EGPE/departure",
+      "title": "Dated Inverness departure board",
+      "fact": "11 November 2026: LM597 / LOG17ZA scheduled INV–MAN at 17:55 GMT."
+    },
+    "EZY64RF": {
+      "pair": [
+        "BFS",
+        "STN"
+      ],
+      "url": "https://useast.flightera.net/en/airport/Belfast/EGAA/departure",
+      "title": "Dated Belfast departure board",
+      "fact": "11 November 2026: U245 / EZY64RF scheduled BFS–STN at 18:55 GMT."
+    },
+    "EAI19MS": {
+      "pair": [
+        "MAN",
+        "DUB"
+      ],
+      "url": "https://useast.flightera.net/en/airport/Manchester/EGCC/departure",
+      "title": "Dated Manchester departure board",
+      "fact": "11 November 2026: EI3327 / EAI19MS scheduled MAN–DUB at 19:15 GMT."
+    },
+    "EZY387T": {
+      "pair": [
+        "LGW",
+        "BFS"
+      ],
+      "url": "https://useast.flightera.net/fr/airport/Belfast/EGAA/arrival",
+      "title": "Dated Belfast arrival board",
+      "fact": "11 November 2026: U2831 / EZY387T listed from LGW to BFS, scheduled arrival 20:10 GMT."
+    },
+    "RYR1AC": {
+      "pair": [
+        "FCO",
+        "DUB"
+      ],
+      "url": "https://wwnbg.flightera.net/en/airport/Dublin/EIDW/arrival",
+      "title": "Dated Dublin arrival board",
+      "fact": "11 November 2026: FR9612 / RYR1AC listed from FCO to DUB, scheduled arrival 19:50 GMT."
+    },
+    "EZY86NE": {
+      "pair": [
+        "MAD",
+        "EDI"
+      ],
+      "url": "https://useast.flightera.net/en/airport/Madrid/LEMD/departure",
+      "title": "Dated Madrid departure board",
+      "fact": "11 November 2026: U23210 / EZY86NE listed MAD–EDI. These are schedule fields, not proof of the flown route."
+    },
+    "EZY208N": {
+      "pair": [
+        "BRS",
+        "GLA"
+      ],
+      "url": "https://useast.flightera.net/en/airport/Bristol/EGGD/departure",
+      "title": "Dated Bristol departure board",
+      "fact": "11 November 2026: U2203 / EZY208N scheduled BRS–GLA at 19:15 GMT."
+    },
+    "EZY465Y": {
+      "pair": [
+        "MAN",
+        "BFS"
+      ],
+      "url": "https://useast.flightera.net/en/airport/Manchester/EGCC/departure",
+      "title": "Dated Manchester departure board",
+      "fact": "11 November 2026: U2707 / EZY465Y scheduled MAN–BFS at 19:25 GMT."
+    },
+    "RYR82JD": {
+      "pair": [
+        "MAN",
+        "ORK"
+      ],
+      "url": "https://useast.flightera.net/en/airport/Manchester/EGCC/departure",
+      "title": "Dated Manchester departure board",
+      "fact": "11 November 2026: FR1863 / RYR82JD scheduled MAN–ORK at 19:05 GMT."
+    },
+    "SHT7P": {
+      "pair": [
+        "GLA",
+        "LHR"
+      ],
+      "url": "https://wwnbg.flightera.net/en/airport/Glasgow/EGPF/departure",
+      "title": "Dated Glasgow departure board",
+      "fact": "11 November 2026: BA1489 / SHT7P scheduled GLA–LHR at 19:15 GMT."
+    },
+    "SHT19B": {
+      "pair": [
+        "ABZ",
+        "LHR"
+      ],
+      "url": "https://planefinder.net/data/flight/BA1315/history/5-2605748",
+      "title": "Plane Finder BA1315 dated upcoming table",
+      "fact": "The 11 November 2026 upcoming row lists ABZ–LHR, 19:10–20:40 GMT, G-EUYH, under flight BA1315 / SHT19B. The page header describes another flight in January 2025; that header is NOT evidence for this case.",
+      "airframe": "G-EUYH"
+    },
+    "EAG18C": {
+      "pair": [
+        "BHD",
+        "MAN"
+      ],
+      "url": "https://wwnbg.flightera.net/en/airport/Manchester/EGCC/arrival",
+      "title": "Dated Manchester arrival board",
+      "fact": "11 November 2026: EI3618 / EAG18C listed BHD–MAN, scheduled arrival 19:25 GMT, marked delayed."
+    }
+  },
+  "blocked": [
+    {
+      "url": "https://www.flightaware.com/live/flight/LOG31AW/history/20261111",
+      "result": "Not accessible through web tool; no bypass/retry via another account or mirror."
+    },
+    {
+      "url": "https://www.flightaware.com/live/flight/LOG17ZA/history/20261111",
+      "result": "Not accessible through web tool; no bypass/retry via another account or mirror."
+    }
+  ],
+  "limitedScheduleSupports": 13,
+  "confirmedActualFlightRouteMatches": 0,
+  "confirmedActualFlightRouteMismatches": 0,
+  "note": "Sources list schedules or other dates. Source independence from HexDB is not established. Do not count these as accurate observed-flight routes."
+}

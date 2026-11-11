@@ -1,0 +1,93 @@
+{
+  "checkedAt": "2026-11-11T20:08:25.906758+00:00",
+  "baseline": "465eb5cb483d681d2bbfb9c2d1cf6c40f4df6527",
+  "r01Application": "903a1cf191ba648dbde001014b5c13eafb2ed9e0",
+  "unitTests": {
+    "passed": 281,
+    "failed": 0
+  },
+  "compiledHttp": {
+    "inheritedScenarios": 19,
+    "r02Scenarios": 9,
+    "passed": 28,
+    "failed": 0,
+    "ordinaryNodeEsm": true,
+    "externalProviderCalls": 0
+  },
+  "eslint": "pass",
+  "typescript": "pass via both builds",
+  "defaultBuild": "pass",
+  "allFeaturesSafari15Build": "pass",
+  "mockedBrowser": {
+    "mobileReviewViewports": [
+      "320x568",
+      "390x844",
+      "1024x768",
+      "1024x624"
+    ],
+    "stage3Layouts": 51,
+    "r01Cooldowns": "pass",
+    "secondaryScheduler": "pass",
+    "routeDiagnostics": "pass",
+    "reviewPage": "pass",
+    "providerCalls": 0,
+    "baselinePinSleepComparison": "pixel equality passed"
+  },
+  "physicalSafari15DeviceTest": "not performed",
+  "operationalSourceComparison": {
+    "server/hexdb.ts": {
+      "unchangedFromR01": true,
+      "sha256": "16051a2f553e4d9667f6cff18c346f472c10e6d819f5ae1b66a29406ed24a48c"
+    },
+    "server/enrichmentService.ts": {
+      "unchangedFromR01": true,
+      "sha256": "94dd498d9d0cb443053a0fe5bb72efc57fcb32bf49807706684b9f718e07f158"
+    },
+    "server/auth.ts": {
+      "unchangedFromR01": true,
+      "sha256": "8b7f810607f2efa7f52349ed7db90e5372982b332d3809f7aea824aede5001b1"
+    },
+    "api/aircraft.ts": {
+      "unchangedFromR01": true,
+      "sha256": "605e27778a45281a25f5aa5bde53b24f1fcb884d7722844dd61c977baa1b4597"
+    },
+    "api/enrichment.ts": {
+      "unchangedFromR01": true,
+      "sha256": "a0980764cdbb7c1f9a74e8d225139137cf6ed9631cbb0d4569af65e8a3aa6800"
+    },
+    "api/session.ts": {
+      "unchangedFromR01": true,
+      "sha256": "b2ca4fd196757fdc280cc3650ad2a75c527fbd6328ace756c03bc3b91aafc301"
+    },
+    "src/enrichment.ts": {
+      "unchangedFromR01": true,
+      "sha256": "b19b90ed761244190b55d74834de141a4a24f8f6edebf8e34a895d7b0966427a"
+    },
+    "src/selection.ts": {
+      "unchangedFromR01": true,
+      "sha256": "acace13be1c5180657a3c7c95b0063b716e6cc6c7e7f3f01bea998cf316e80a3"
+    },
+    "src/style.css": {
+      "unchangedFromR01": true,
+      "sha256": "0c8f176565a3a601f65b9cc364a0b9dfea5b2cda8b5ece69e324f3994e8f4d58"
+    },
+    "src/Appliance.tsx": {
+      "unchangedFromR01": true,
+      "sha256": "3c84df04cdd4bd7838d3104845592697bda3f391d84cc34506f7a6e1aa4a28fa"
+    },
+    "src/LiveApp.tsx": {
+      "unchangedFromR01": true,
+      "sha256": "9ebdfcebe1e6fb593f25f81ca24b70e04792f9507743bc5538fc2063542ea6b4"
+    },
+    "src/App.tsx": {
+      "unchangedFromR01": true,
+      "sha256": "2758d1f6746f3143209bd2dcb109d49b4c3112aced56edc724bda57b619e2dbf"
+    }
+  },
+  "priorEvidenceArchivesRestored": true,
+  "notes": [
+    "An initial restricted-sandbox run could not bind local test sockets; rerun with local network permission passed.",
+    "A new test-script style lint error was corrected; final ESLint passed.",
+    "No mocked route count is represented as real provider accuracy."
+  ]
+}

@@ -1,0 +1,134 @@
+[
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 768
+    },
+    "lookups": [
+      {
+        "at": 1116,
+        "kind": "route",
+        "hex": "abcdef"
+      },
+      {
+        "at": 31116,
+        "kind": "aircraft",
+        "hex": "abcdef"
+      },
+      {
+        "at": 61116,
+        "kind": "route",
+        "hex": "111111"
+      },
+      {
+        "at": 151116,
+        "kind": "route",
+        "hex": "222222"
+      }
+    ],
+    "positionPolls": 11,
+    "illustrationBefore": {
+      "x": 38,
+      "y": 194,
+      "width": 600,
+      "height": 296.421875
+    },
+    "illustrationAfter": {
+      "x": 38,
+      "y": 194,
+      "width": 600,
+      "height": 296.421875
+    },
+    "immediatePublication": true,
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 624
+    },
+    "lookups": [
+      {
+        "at": 3,
+        "kind": "route",
+        "hex": "abcdef"
+      },
+      {
+        "at": 30003,
+        "kind": "aircraft",
+        "hex": "abcdef"
+      },
+      {
+        "at": 60003,
+        "kind": "route",
+        "hex": "111111"
+      },
+      {
+        "at": 150003,
+        "kind": "route",
+        "hex": "222222"
+      }
+    ],
+    "positionPolls": 11,
+    "illustrationBefore": {
+      "x": 221,
+      "y": 121,
+      "width": 480,
+      "height": 237.140625
+    },
+    "illustrationAfter": {
+      "x": 221,
+      "y": 121,
+      "width": 480,
+      "height": 237.140625
+    },
+    "immediatePublication": true,
+    "errors": []
+  },
+  {
+    "case": "visibility remount",
+    "lookups": [
+      {
+        "at": 3,
+        "kind": "route",
+        "hex": "abcdef"
+      },
+      {
+        "at": 30003,
+        "kind": "aircraft",
+        "hex": "abcdef"
+      },
+      {
+        "at": 60003,
+        "kind": "route",
+        "hex": "111111"
+      },
+      {
+        "at": 90003,
+        "kind": "route",
+        "hex": "abcdef"
+      },
+      {
+        "at": 120003,
+        "kind": "aircraft",
+        "hex": "abcdef"
+      },
+      {
+        "at": 150003,
+        "kind": "route",
+        "hex": "111111"
+      }
+    ],
+    "globalAndSecondaryDeadlinesPreserved": true
+  },
+  {
+    "case": "sleep and wake",
+    "sleepRequests": 0,
+    "firstWakeLookup": "primary"
+  },
+  {
+    "case": "enrichment disabled",
+    "positionPolls": 9,
+    "enrichmentRequests": 0
+  }
+]

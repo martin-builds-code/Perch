@@ -1,0 +1,183 @@
+{
+  "datasetId": "r02-2026-11-11",
+  "fingerprint": "25036c5700a1dd09062767e442e36fd23d352b74698e6e7198fa2eb20867a55e",
+  "groups": {
+    "recent-0-180": {
+      "sampleSize": 7,
+      "corroboratedMatches": 0,
+      "confirmedMismatches": 0,
+      "noIndependentRoute": 0,
+      "unverified": 7,
+      "recoveredMissingRoutes": 0,
+      "accuracyPercent": null
+    },
+    "historical-180-365": {
+      "sampleSize": 3,
+      "corroboratedMatches": 0,
+      "confirmedMismatches": 0,
+      "noIndependentRoute": 0,
+      "unverified": 3,
+      "recoveredMissingRoutes": 0,
+      "accuracyPercent": null
+    },
+    "historical-over-365": {
+      "sampleSize": 4,
+      "corroboratedMatches": 0,
+      "confirmedMismatches": 0,
+      "noIndependentRoute": 0,
+      "unverified": 4,
+      "recoveredMissingRoutes": 0,
+      "accuracyPercent": null
+    },
+    "missing-unusable": {
+      "sampleSize": 2,
+      "corroboratedMatches": 0,
+      "confirmedMismatches": 0,
+      "noIndependentRoute": 0,
+      "unverified": 2,
+      "recoveredMissingRoutes": 0,
+      "accuracyPercent": null
+    }
+  },
+  "cases": [
+    {
+      "id": "r02-1d54ff8d92fd",
+      "category": "historical-180-365",
+      "result": "unverified",
+      "method": "none",
+      "reason": "No exact-flight/date verification",
+      "historicalCandidate": true
+    },
+    {
+      "id": "r02-4c11c31803b5",
+      "category": "historical-over-365",
+      "result": "unverified",
+      "method": "none",
+      "reason": "No exact-flight/date verification",
+      "historicalCandidate": true
+    },
+    {
+      "id": "r02-0252198cc94f",
+      "category": "recent-0-180",
+      "result": "unverified",
+      "method": "none",
+      "reason": "No exact-flight/date verification",
+      "historicalCandidate": false
+    },
+    {
+      "id": "r02-cee5968b0830",
+      "category": "missing-unusable",
+      "result": "unverified",
+      "method": "none",
+      "reason": "No exact-flight/date verification",
+      "historicalCandidate": false
+    },
+    {
+      "id": "r02-f1a1fab2048f",
+      "category": "historical-180-365",
+      "result": "unverified",
+      "method": "none",
+      "reason": "No exact-flight/date verification",
+      "historicalCandidate": true
+    },
+    {
+      "id": "r02-3371418e3b52",
+      "category": "historical-over-365",
+      "result": "unverified",
+      "method": "none",
+      "reason": "No exact-flight/date verification",
+      "historicalCandidate": true
+    },
+    {
+      "id": "r02-2badbb7eaa54",
+      "category": "recent-0-180",
+      "result": "unverified",
+      "method": "none",
+      "reason": "No exact-flight/date verification",
+      "historicalCandidate": false
+    },
+    {
+      "id": "r02-833393fea5fc",
+      "category": "missing-unusable",
+      "result": "unverified",
+      "method": "none",
+      "reason": "No exact-flight/date verification",
+      "historicalCandidate": false
+    },
+    {
+      "id": "r02-13659fed15b4",
+      "category": "historical-180-365",
+      "result": "unverified",
+      "method": "none",
+      "reason": "No exact-flight/date verification",
+      "historicalCandidate": true
+    },
+    {
+      "id": "r02-4aee7106e2c2",
+      "category": "historical-over-365",
+      "result": "unverified",
+      "method": "none",
+      "reason": "No exact-flight/date verification",
+      "historicalCandidate": true
+    },
+    {
+      "id": "r02-70b45ad7dc07",
+      "category": "recent-0-180",
+      "result": "unverified",
+      "method": "none",
+      "reason": "No exact-flight/date verification",
+      "historicalCandidate": false
+    },
+    {
+      "id": "r02-de9bbace9c44",
+      "category": "historical-over-365",
+      "result": "unverified",
+      "method": "none",
+      "reason": "No exact-flight/date verification",
+      "historicalCandidate": true
+    },
+    {
+      "id": "r02-0075eb693280",
+      "category": "recent-0-180",
+      "result": "unverified",
+      "method": "none",
+      "reason": "No exact-flight/date verification",
+      "historicalCandidate": false
+    },
+    {
+      "id": "r02-2a4f12ceb57a",
+      "category": "recent-0-180",
+      "result": "unverified",
+      "method": "none",
+      "reason": "No exact-flight/date verification",
+      "historicalCandidate": false
+    },
+    {
+      "id": "r02-7fb99c408082",
+      "category": "recent-0-180",
+      "result": "unverified",
+      "method": "none",
+      "reason": "No exact-flight/date verification",
+      "historicalCandidate": false
+    },
+    {
+      "id": "r02-1cf282daa9e2",
+      "category": "recent-0-180",
+      "result": "unverified",
+      "method": "none",
+      "reason": "No exact-flight/date verification",
+      "historicalCandidate": false
+    }
+  ],
+  "conflicts": [],
+  "historicalCandidates": 7,
+  "historicalCorroborated": 0,
+  "historicalMismatches": 0,
+  "historicalUnresolved": 7,
+  "automaticallyCorroborated": 0,
+  "notes": [
+    "Unverified cases are not counted as accurate. Accuracy denominator contains only corroborated matches and confirmed mismatches.",
+    "A missing independent route is not a mismatch. Missing-source recoveries are separate from route-association accuracy.",
+    "The sample is opportunistic, not random or a household-wide success-rate estimate. No route-age policy is changed."
+  ]
+}

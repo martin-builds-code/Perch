@@ -162,7 +162,6 @@ export async function fetchHexdb(
   now = Date.now,
   timeoutMs = ENRICHMENT_POLICY.timeoutMs,
   observe?: (trace: ProviderTrace) => void,
-  research?: (value: unknown, trace: ProviderTrace) => void,
 ): Promise<Supplement | null> {
   validateLookup(kind, hex, callsign);
   const controller = new AbortController(),
@@ -175,7 +174,6 @@ export async function fetchHexdb(
     endpoint:
       kind === 'route' ? 'v2/routes/:callsign' : 'v2/aircraft/:hex',
   };
-  let researchValue: unknown = undefined;
   try {
     const path =
       kind === 'aircraft' ? `aircraft/${hex}` : `routes/${callsign}`;
@@ -191,7 +189,6 @@ export async function fetchHexdb(
     });
     trace.httpStatus = response.status;
     if (response.status === 404) {
-      researchValue = null;
       trace.outcome = 'negative';
       trace.reason = 'http-404';
       return null;
@@ -250,7 +247,6 @@ export async function fetchHexdb(
       throw new EnrichmentError('invalid-json');
     }
     if (kind === 'route' && object(value)) {
-      researchValue = value;
       const age =
         typeof value.updated_at === 'string'
           ? now() - Date.parse(value.updated_at)
@@ -318,6 +314,5 @@ export async function fetchHexdb(
     } catch {
       /* Diagnostics never change the lookup. */
     }
-    try { if (kind === 'route') research?.(researchValue, trace); } catch { /* Research cannot alter operations. */ }
   }
 }

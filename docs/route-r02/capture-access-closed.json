@@ -1,0 +1,31 @@
+{
+  "checkedAtMs": 1794426851453,
+  "expired": true,
+  "mainPinNeverBypassed": true,
+  "checks": [
+    {
+      "path": "/api/route-research",
+      "status": 404,
+      "noCookie": true,
+      "temporaryCapabilitySupplied": true
+    },
+    {
+      "path": "/api/session",
+      "status": 401,
+      "noCookie": true,
+      "temporaryCapabilitySupplied": true
+    },
+    {
+      "path": "/api/aircraft",
+      "status": 401,
+      "noCookie": true,
+      "temporaryCapabilitySupplied": true
+    },
+    {
+      "path": "/api/enrichment",
+      "status": 401,
+      "noCookie": true,
+      "temporaryCapabilitySupplied": true
+    }
+  ]
+}
