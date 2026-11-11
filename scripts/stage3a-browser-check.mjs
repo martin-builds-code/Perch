@@ -1,5 +1,5 @@
-// Local synthetic fixtures only. :5173 is Stage 3A; :5175 is unchanged main
-// 8031a76 with identical public feature flags and server providers disabled.
+// Local synthetic fixtures only. :5173 is the candidate; :5175 must run
+// approved Stage 3 baseline 3b87077 with identical public flags and providers off.
 import assert from 'node:assert/strict';
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
 const { chromium } = await import(
@@ -391,7 +391,7 @@ try {
   });
   await live.close();
 
-  // Preserve the accepted Stage 2D sleeping pixels and transition behaviour.
+  // Preserve the accepted Stage 3 PIN/sleep pixels and Stage 2D lifecycle behaviour.
   for (const viewport of sizes) {
     const p = await browser.newPage({ viewport });
     await p.clock.install({ time: new Date('2026-11-04T02:00:00Z') });
