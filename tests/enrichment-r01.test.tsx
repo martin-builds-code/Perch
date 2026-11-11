@@ -788,3 +788,54 @@ test('R01 wall clock adjustment cannot reopen a monotonic local-deferral deadlin
   assert.equal(h.attempts.length, 2);
   assert.equal(d.summary(T + 30000).deferrals[0].actualDelayMs, 30000);
 });
+
+test('R01 a slow error body cannot discard an already received longer provider Retry-After', async (t) => {
+  const h = harness(
+    t,
+    async (_a, init) =>
+      new Response(
+        new ReadableStream({
+          start(controller) {
+            init?.signal?.addEventListener('abort', () =>
+              controller.error(Error('body timeout')),
+            );
+          },
+        }),
+        {
+          status: 503,
+          headers: {
+            'Content-Type': 'application/json',
+            'Retry-After': '600',
+          },
+        },
+      ),
+  );
+  h.client.update(scene());
+  await settle();
+  h.timers[0].fn();
+  await settle();
+  assert.equal(h.budget.nextAllowed, 600000);
+});
+
+test('R01 a validated failure contract can only lengthen conservative backoff when its Retry-After header is missing', async (t) => {
+  const h = harness(
+    t,
+    async () =>
+      new Response(
+        JSON.stringify({
+          error: 'rate-limited',
+          failure: {
+            ...contract('rate-limited', 600000),
+            origin: 'hexdb',
+            category: 'upstream-failure',
+            upstreamRequestsStarted: 1,
+            upstreamResponses: 1,
+          },
+        }),
+        { status: 503, headers: { 'Content-Type': 'application/json' } },
+      ),
+  );
+  h.client.update(scene());
+  await settle();
+  assert.equal(h.budget.nextAllowed, 600000);
+});

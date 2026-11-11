@@ -57,7 +57,7 @@ observed delay. Four recent deferrals appear in the temporary dashboard; exports
 retain at most 1,024 records. Coordinates, complete positions, credentials, full
 hex/callsigns, registrations and browser identifiers are not exported.
 
-**Automated verification.** 254 tests, 19 compiled plain-Node HTTP cases,
+**Automated verification.** 256 tests, 19 compiled plain-Node HTTP cases,
 ESLint, TypeScript/server checks and default/all-feature Safari 15 builds pass.
 New cases cover the original 50 ms timing variation, malformed/contradictory
 contracts, numeric/date Retry-After, upstream rate/access/timeout/network/invalid
@@ -94,3 +94,5 @@ Only provider HTTP starts/responses confirmed through this observer's requests
 are counted; other clients' provider work is unknown. There is no paid service,
 new provider, wider radius, faster positional polling, permanent monitoring,
 credential change, merge or household Production deployment.
+
+An initial exploratory run on 8a5baf0 was stopped after 27.84 minutes when two additional red regression tests exposed a longer-provider-wait edge case. The final client retains Retry-After before reading the body, even on body timeout; a validated contract can only lengthen fallback protection if a header is missing. Both tests then passed. Partial evidence is retained separately and excluded from the final comparison; the final controlled observation uses the revised commit.

@@ -237,6 +237,7 @@ export function createEnricher(
     let apiStatus: number | null = null,
       diagnostic: EnrichmentDiagnostic | undefined;
     let failure: EnrichmentFailure | undefined;
+    let retryAfterMs = NaN;
     function applyWait(
       delay: number,
       local?: ReturnType<typeof verifiedLocalDeferral>,
@@ -300,13 +301,21 @@ export function createEnricher(
         },
       );
       if (stopped) return;
+      // Retain the authoritative header before reading a potentially slow or
+      // malformed body, including when the body subsequently times out.
+      const rawRetry = response.headers.get('retry-after');
+      const retrySeconds = rawRetry === null ? NaN : Number(rawRetry);
+      retryAfterMs = Number.isFinite(retrySeconds)
+        ? retrySeconds * 1000
+        : rawRetry
+          ? Date.parse(rawRetry) - env.now()
+          : NaN;
       if (request.signal.aborted) throw Error('request-aborted');
       apiStatus = response.status;
       if (!response.ok) {
         let error = 'api-http-error';
         const body = await readEnrichmentFailure(response);
         if (stopped) return;
-        if (request.signal.aborted) throw Error('request-aborted');
         if (body && typeof body === 'object') {
           const payload = body as {
             error?: unknown;
@@ -321,15 +330,17 @@ export function createEnricher(
           )
             error = payload.error;
         }
+        // Validated body metadata may lengthen protection, never shorten it.
+        retryAfterMs = Math.max(
+          Number.isFinite(retryAfterMs) ? retryAfterMs : 0,
+          failure?.retryAfterMs ?? 0,
+        );
+        if (request.signal.aborted) throw Error('request-aborted');
         const local = verifiedLocalDeferral(response, body);
-        const raw = response.headers.get('retry-after'),
-          seconds = raw === null ? NaN : Number(raw);
-        const delay = Number.isFinite(seconds)
-          ? seconds * 1000
-          : raw
-            ? Date.parse(raw) - env.now()
-            : NaN;
-        const scheduling = applyWait(local ? local.waitMs : delay, local);
+        const scheduling = applyWait(
+          local ? local.waitMs : retryAfterMs,
+          local,
+        );
         emit({
           type: 'response',
           atMs: env.now(),
@@ -395,7 +406,7 @@ export function createEnricher(
       publish();
     } catch {
       if (!stopped) {
-        const scheduling = applyWait(NaN);
+        const scheduling = applyWait(retryAfterMs);
         emit({
           type: 'response',
           atMs: env.now(),
