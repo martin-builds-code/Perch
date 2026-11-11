@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
 import { once } from 'node:events';
+import { readFileSync } from 'node:fs';
 import {
   canonical,
   draftKey,
@@ -34,6 +35,14 @@ const answer: ReviewAnswer = {
   revision: 1,
   updatedAtMs: reviewTime,
 };
+test('R02 hosted page has a narrow SPA route without rewriting live APIs or normal display', () => {
+  const config = JSON.parse(
+    readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'),
+  );
+  assert.deepEqual(config.rewrites, [
+    { source: '/route-review', destination: '/index.html' },
+  ]);
+});
 test('R02 frozen cases retain identities, UTC instants, exact provider timestamps and research groups', () => {
   const d = reviewFixture();
   assert.ok(parseReviewDataset(d));

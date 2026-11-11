@@ -1,9 +1,9 @@
 {
-  "checkedAt": "2026-11-11T20:08:25.906758+00:00",
+  "checkedAt": "2026-11-11T20:14:58.528204+00:00",
   "baseline": "465eb5cb483d681d2bbfb9c2d1cf6c40f4df6527",
   "r01Application": "903a1cf191ba648dbde001014b5c13eafb2ed9e0",
   "unitTests": {
-    "passed": 281,
+    "passed": 282,
     "failed": 0
   },
   "compiledHttp": {
@@ -88,6 +88,7 @@
   "notes": [
     "An initial restricted-sandbox run could not bind local test sockets; rerun with local network permission passed.",
     "A new test-script style lint error was corrected; final ESLint passed.",
-    "No mocked route count is represented as real provider accuracy."
+    "No mocked route count is represented as real provider accuracy.",
+    "Initial hosted review API passed but /route-review returned platform NOT_FOUND. A narrow SPA rewrite was added before changing the stable alias; all API paths remain separate. Hosted checks are repeated on the corrected commit."
   ]
 }

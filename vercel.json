@@ -2,6 +2,9 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/route-review", "destination": "/index.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
