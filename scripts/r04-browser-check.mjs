@@ -116,6 +116,15 @@ try {
     await page.waitForFunction(
       () => window.aeroPaneSkyDiagnostics?.summary().frames.length > 0,
     );
+    // The mocked handler is asynchronous. Advancing virtual time before its
+    // initial response arrives would manufacture a 5s timeout in the fixture.
+    let initialComplete=false;
+    for(let i=0;i<100;i++){
+      initialComplete=await page.evaluate(()=>window.aeroPaneSkyDiagnostics?.summary().events.some(e=>e.type==='response'&&e.kind==='route'&&e.ok));
+      if(initialComplete)break;
+      await page.waitForTimeout(20);
+    }
+    assert.equal(initialComplete,true,'initial provider fixture completed before advancing time');
     for (let i = 0; i < 2; i++) {
       await page.clock.fastForward(15000);
       await page.waitForTimeout(40);
