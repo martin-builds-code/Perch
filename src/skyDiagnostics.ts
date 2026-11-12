@@ -14,7 +14,8 @@ export function createSkyDiagnostics(until: number) {
     ids = new Map<string, string>(),
     flights = new Map<string, string>();
   const frames: unknown[] = [],
-    events: unknown[] = [];
+    events: unknown[] = [],
+    evaluations: unknown[] = [];
   let lastFrame = '',
     dropped = 0,
     stopped = false;
@@ -93,6 +94,13 @@ export function createSkyDiagnostics(until: number) {
   ) {
     if (stopped || now >= until) return;
     latest = current(s, snapshot, now, failed);
+    // Keep lightweight timer evaluations too: an unchanged snapshot/primary can
+    // still reset challenger confirmation as individual positions age.
+    bounded(
+      evaluations,
+      { atMs: now, snapshotTimeMs: snapshot?.fetchedAtMs ?? null, failed },
+      MAX_EVENTS,
+    );
     const key =
       String(snapshot?.fetchedAtMs) +
       ':' +
@@ -237,6 +245,7 @@ export function createSkyDiagnostics(until: number) {
       untilMs: until,
       frames: [...frames],
       events: [...events],
+      evaluations: [...evaluations],
       dropped,
       latest,
       queue,

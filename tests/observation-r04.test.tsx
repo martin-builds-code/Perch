@@ -299,6 +299,29 @@ test('R04 cached repetition of a rejected position jump cannot bypass the clear-
     'repeated/cached anomalous frame is still uncertain',
   );
 });
+test('R04 a120ms timestamp difference around30s cannot create a fleeting freshness takeover', () => {
+  const s = createAircraftSelector();
+  const primary = aircraft('aa0001', 11, 300, {
+    positionTimeMs: T - 29900,
+    trackDegrees: null,
+    groundSpeedKnots: 60,
+  });
+  const challenger = aircraft('bb0002', 3, 35000, {
+    positionTimeMs: T - 29780,
+  });
+  s.select(snapshot([primary]), T);
+  s.select(snapshot([primary, challenger]), T);
+  assert.equal(
+    s.select(snapshot([primary, challenger]), T + 100).primary?.id,
+    primary.id,
+  );
+  const recovered = { ...challenger, positionTimeMs: T + 101 };
+  assert.equal(
+    s.select(snapshot([primary, recovered], T + 101), T + 101).primary?.id,
+    challenger.id,
+    'a genuinely fresh observation still permits timely replacement',
+  );
+});
 test('R04 aircraft-category hints are bounded and never route inference', () => {
   assert.equal(aircraftCategory(fleet[0]), 'commercial-jet');
   assert.equal(
@@ -338,8 +361,14 @@ test('R04 diagnostic evidence is pseudonymous, bounded, fail-closed at trial end
     str,
     /aa0001|TEST1|"latitude"|"longitude"|PRIVATE|"secret"/,
   );
+  const result = createAircraftSelector().select(snap, T);
+  for (let i = 0; i < 1100; i++) d.selection(result, snap, T, false);
+  assert.equal(d.summary().evaluations.length, 1024);
+  assert.ok(d.summary().dropped > 0);
   d.stop();
   const count = d.summary().frames.length;
+  const evaluations = d.summary().evaluations.length;
   d.selection(createAircraftSelector().select(snap, T), snap, T, false);
   assert.equal(d.summary().frames.length, count);
+  assert.equal(d.summary().evaluations.length, evaluations);
 });

@@ -26,6 +26,7 @@ export const DEFAULT_SELECTION_POLICY = {
   clearSkyMargin: 30,
   clearSkyMaxAgeMs: 5000,
   fastTakeoverSeconds: 60,
+  freshnessTakeoverGapMs: 15_000,
   confirmations: 2,
   missingGraceMs: 30_000,
   historyWindowMs: 90_000,
@@ -482,6 +483,7 @@ export function createAircraftSelector(
       } else if (
         incumbent.ageMs >= CURRENT_AGE_MS &&
         best.ageMs < CURRENT_AGE_MS &&
+        incumbent.ageMs - best.ageMs >= policy.freshnessTakeoverGapMs &&
         margin >= 0
       ) {
         chosen = best;

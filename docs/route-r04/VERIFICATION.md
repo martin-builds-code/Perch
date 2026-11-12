@@ -2,7 +2,7 @@
 
 Baseline: c230231d262b345418680c900a397acf76c826a0. All tests use mocked APIs or frozen/synthetic observations unless explicitly listed in the eventual live report.
 
-- Application suite:348 passed,0 failed. Includes R01 local-vs-upstream backoff, R03 historical qualification, authentication/expiry, selectors, caches and lifecycle.
+- Application suite:349 passed,0 failed. Includes R01 local-vs-upstream backoff, R03 historical qualification, authentication/expiry, selectors, caches and lifecycle.
 - Plain Node compiled-server HTTP checks:20 passed; R02 review/auth boundary HTTP checks:9 passed. Derived bearing/relative height are tested in the emitted server graph.
 - ESLint, TypeScript project builds, default production build, and live/enrichment/diagnostics/appliance-enabled Safari15-targeted build passed. No Production deployment.
 - Current Stage3 layout suite:51 checks passed. Historical labels and stationary artwork passed at1024x768 and1024x624.
@@ -14,4 +14,6 @@ Baseline: c230231d262b345418680c900a397acf76c826a0. All tests use mocked APIs or
 
 Physical iPad Air2/iPadOS15.8.5 testing has not been performed by Codex. Chromium screenshots and Safari15 compilation establish synthetic layout and syntax checks, not actual Safari rendering or household relevance.
 
-A focused cached-position-jump regression failed against the initial R04 implementation: a repeated rejected sample could lose its discontinuity flag and activate the clear-sky exception. The final patch stores the flag with its bounded history sample until a new valid observation arrives. All348 application tests and29 HTTP scenarios pass after the correction. The existing seven model outputs are unchanged byte-for-byte; an eighth close-turboprop/two-jet budget scenario adds a documented limitation. The diagnostic frame signature also retains R03-only primary changes; the initial live trial uses the earlier capture signature and is reported with that timing limitation.
+A focused cached-position-jump regression failed against the initial R04 implementation: a repeated rejected sample could lose its discontinuity flag and activate the clear-sky exception. The final patch stores the flag with its bounded history sample until a new valid observation arrives. All349 application tests and29 HTTP scenarios pass after the correction. The existing seven model outputs are unchanged byte-for-byte; an eighth close-turboprop/two-jet budget scenario adds a documented limitation. The diagnostic frame signature also retains R03-only primary changes; the initial live trial uses the earlier capture signature and is reported with that timing limitation.
+
+Live evidence at11:57:09UTC also exposed a120ms freshness-boundary artifact: an incumbent at30s age handed over to a record only120ms newer, then switched back287ms later. The final policy requires a15s timestamp-age advantage for the special freshness handover. Delayed remains30s and expiry120s. Normal scoring/confirmed/urgent/expiry handovers remain available. A focused regression retains the primary across the120ms boundary and permits a genuinely fresh observation to take over. The full349-test suite and29 compiled-server checks pass; all eight model cases pass unchanged. Recorded-geometry replay removes the287ms selection, while explicitly reporting missing timer-evaluation limitations.
