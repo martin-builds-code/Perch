@@ -86,6 +86,9 @@ try {
         assert.equal(response.headers.get('vercel-cdn-cache-control'), 'no-store');
         assert.equal(body.aircraft.length, scenario === 'empty' ? 0 : 1);
         if (scenario === 'populated') {
+          assert.ok(Math.abs(body.aircraft[0].heightAboveObserverKm-(12000*.0003048-.031))<1e-8);
+          assert.equal(body.aircraft[0].heightReference,'barometric');
+          assert.equal(body.aircraft[0].bearingDegrees,0);
           assert.equal(body.aircraft[0].description, 'Boeing 737 MAX 8');
           assert.ok(Math.abs(body.aircraft[0].distanceKm-1.1119508)<0.000001);
           assert.ok(body.aircraft[0].validity.timestamp);
@@ -142,6 +145,7 @@ try {
         AERO_LIVE_ENABLED: scenario === 'disabled' ? 'false' : 'true',
         AERO_OBSERVATION_LATITUDE: '60',
         AERO_OBSERVATION_LONGITUDE: '25',
+        AERO_OBSERVATION_ELEVATION_M: '31',
         VERCEL_ENV: scenario === 'production' ? 'production' : 'preview',
       },
       stdio: 'inherit',

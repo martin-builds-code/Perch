@@ -148,9 +148,11 @@ try {
     const report = await page.evaluate(() =>
       window.aeroPaneRouteDiagnostics.summary(),
     );
+    // R04 spends the earlier opportunity on a route instead of optional identity.
+    // Keep the original local-deferral/backoff, interval and cleanup assertions.
     assert.deepEqual(
       calls.map((c) => (c.at - T) / 1000),
-      [0, 30, 60, 90, 120, 210, 300, 330],
+      [0, 30, 60, 90, 150, 240, 300, 330],
     );
     assert.equal(report.counters.verifiedLocalDeferrals, 3);
     assert.equal(report.counters.clientCooldownIncidents ?? 0, 0);
@@ -170,7 +172,7 @@ try {
       'abcdef',
       'primary refresh retains priority',
     );
-    assert.equal(calls[7].hex, '111111');
+    assert.equal(calls[7].hex, '222222');
     assert.deepEqual(errors, []);
     assert.equal(
       report.current.filter((r) => r.displayedRoute === 'MAN → AMS')

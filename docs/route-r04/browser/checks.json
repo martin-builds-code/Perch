@@ -1,0 +1,58 @@
+[
+  {
+    "height": 768,
+    "positions": 5,
+    "attempts": [
+      {
+        "atMs": 0,
+        "kind": "route",
+        "secondary": false
+      },
+      {
+        "atMs": 30000,
+        "kind": "aircraft",
+        "secondary": false
+      }
+    ],
+    "baselineCompared": true,
+    "geometrySupported": true,
+    "historicalVisible": true,
+    "illustration": {
+      "x": 42,
+      "y": 292,
+      "width": 640,
+      "height": 156
+    },
+    "trialExpiryToPin": true,
+    "cleanShutdown": true,
+    "networkProviders": 0
+  },
+  {
+    "height": 624,
+    "positions": 5,
+    "attempts": [
+      {
+        "atMs": 0,
+        "kind": "route",
+        "secondary": false
+      },
+      {
+        "atMs": 30000,
+        "kind": "aircraft",
+        "secondary": false
+      }
+    ],
+    "baselineCompared": true,
+    "geometrySupported": true,
+    "historicalVisible": true,
+    "illustration": {
+      "x": 106,
+      "y": 204,
+      "width": 590,
+      "height": 143.8125
+    },
+    "trialExpiryToPin": true,
+    "cleanShutdown": true,
+    "networkProviders": 0
+  }
+]

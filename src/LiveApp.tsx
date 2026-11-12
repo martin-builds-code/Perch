@@ -1,3 +1,5 @@
+import { createSkyDiagnostics } from './skyDiagnostics';
+import SkyTrialDisplay from './SkyTrialDisplay';
 import { createRouteDiagnostics } from './routeDiagnostics';
 import RouteTrialDisplay from './RouteTrialDisplay';
 import { useEffect, useRef, useState } from 'react';
@@ -11,6 +13,10 @@ import { DiagnosticExport } from './DiagnosticExport';
 import { diagnosticDuration } from './diagnosticExport';
 declare global {
   interface Window {
+    aeroPaneSkyDiagnostics?: {
+      summary: ReturnType<typeof createSkyDiagnostics>['summary'];
+      reference: ReturnType<typeof createSkyDiagnostics>['reference'];
+    };
     aeroPaneRouteDiagnostics?: {
       summary: () => ReturnType<
         ReturnType<typeof createRouteDiagnostics>['summary']
@@ -32,6 +38,11 @@ const enrichmentBudget: EnrichmentBudget = {
 export default function LiveApp({
   routeTrialUntil,
 }: { routeTrialUntil?: number } = {}) {
+  const [skyDiagnostics] = useState(() =>
+    routeTrialUntil && routeTrialUntil > Date.now()
+      ? createSkyDiagnostics(routeTrialUntil)
+      : undefined,
+  );
   const [routeDiagnostics] = useState(() =>
     routeTrialUntil && routeTrialUntil > Date.now()
       ? createRouteDiagnostics(Date.now(), routeTrialUntil)
@@ -56,6 +67,13 @@ export default function LiveApp({
         }
       : undefined;
     if (routeHandle) window.aeroPaneRouteDiagnostics = routeHandle;
+    const skyHandle = skyDiagnostics
+      ? {
+          summary: skyDiagnostics.summary,
+          reference: skyDiagnostics.reference,
+        }
+      : undefined;
+    if (skyHandle) window.aeroPaneSkyDiagnostics = skyHandle;
     const active = () =>
       document.visibilityState !== 'hidden' && navigator.onLine !== false;
     const observer =
@@ -87,13 +105,22 @@ export default function LiveApp({
     const enricher =
       import.meta.env.VITE_AERO_ENRICHMENT_ENABLED === 'true'
         ? createEnricher(
-            (scene, credited) => setDisplay({ scene, credited }),
+            (scene, credited) => {
+              skyDiagnostics?.scene(scene, Date.now());
+              skyDiagnostics?.plan(enricher?.plan() ?? []);
+              setDisplay({ scene, credited });
+            },
             {
               ...env,
               monotonicNow: () => performance.now(),
               budget: enrichmentBudget,
               ...(routeDiagnostics
-                ? { observe: routeDiagnostics.observe }
+                ? {
+                    observe: (e) => {
+                      routeDiagnostics.observe(e);
+                      skyDiagnostics?.enrichment(e);
+                    },
+                  }
                 : {}),
             },
           )
@@ -106,6 +133,9 @@ export default function LiveApp({
       {
         ...env,
         observer,
+        ...(skyDiagnostics
+          ? { onSelection: skyDiagnostics.selection }
+          : {}),
         ...(routeDiagnostics
           ? { onSnapshot: routeDiagnostics.snapshot }
           : {}),
@@ -136,6 +166,9 @@ export default function LiveApp({
     window.visualViewport?.addEventListener('resize', resize);
     return () => {
       enricher?.stop();
+      skyDiagnostics?.stop();
+      if (window.aeroPaneSkyDiagnostics === skyHandle)
+        delete window.aeroPaneSkyDiagnostics;
       routeDiagnostics?.stop(Date.now());
       if (window.aeroPaneRouteDiagnostics === routeHandle)
         delete window.aeroPaneRouteDiagnostics;
@@ -154,8 +187,23 @@ export default function LiveApp({
       window.removeEventListener('resize', resize);
       window.visualViewport?.removeEventListener('resize', resize);
     };
-  }, [duration, routeDiagnostics]);
-  if (routeDiagnostics && routeTrialUntil)
+  }, [duration, routeDiagnostics, skyDiagnostics]);
+  if (
+    skyDiagnostics &&
+    routeTrialUntil &&
+    new URLSearchParams(location.search).get('sky') === '1'
+  )
+    return (
+      <SkyTrialDisplay
+        diagnostics={skyDiagnostics}
+        until={routeTrialUntil}
+      />
+    );
+  if (
+    routeDiagnostics &&
+    routeTrialUntil &&
+    new URLSearchParams(location.search).get('view') !== 'normal'
+  )
     return (
       <RouteTrialDisplay
         diagnostics={routeDiagnostics}

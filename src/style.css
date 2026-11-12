@@ -125,3 +125,5 @@ footer{height:24px;flex-shrink:0;display:flex;justify-content:space-between;alig
 .historical-secondary{gap:0;padding-top:4px;padding-bottom:4px}
 .historical-secondary .secondary-route{font-size:60px}
 @media(max-height:650px){.historical-secondary .secondary-route{font-size:56px}}
+
+.sky-trial{position:fixed;inset:30px 0 0;background:#081925;color:#fff8ed;overflow:auto;padding:16px;font:16px/1.4 sans-serif}.sky-trial h1{font-size:26px;letter-spacing:0}.sky-trial p{margin:10px 0}.sky-trial a{color:#8ce7de}.sky-trial table{border-collapse:collapse;width:100%;font-size:15px}.sky-trial td,.sky-trial th{padding:8px;border:1px solid #476174;text-align:left}.sky-trial li{margin:8px 0}

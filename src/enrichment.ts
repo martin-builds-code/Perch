@@ -1,3 +1,5 @@
+import { urgencyFor, urgentPass, OBSERVATION_POLICY } from './observation';
+import { routeUtilityHint } from './routeUtility';
 import type { EnrichmentEvent, LookupRef } from './routeDiagnostics';
 import { parseEnrichmentDiagnostic } from './routeTraceTypes';
 import type { EnrichmentDiagnostic } from './routeTraceTypes';
@@ -85,8 +87,14 @@ function validResult(
     )
       return false;
   }
-  if (r.data.associationTimeMs !== undefined && r.data.associationTimeMs !== null &&
-    (!Number.isFinite(r.data.associationTimeMs) || r.data.associationTimeMs > now || now-r.data.associationTimeMs > P.maxRouteAgeMs)) return false;
+  if (
+    r.data.associationTimeMs !== undefined &&
+    r.data.associationTimeMs !== null &&
+    (!Number.isFinite(r.data.associationTimeMs) ||
+      r.data.associationTimeMs > now ||
+      now - r.data.associationTimeMs > P.maxRouteAgeMs)
+  )
+    return false;
   return true;
 }
 export function supplementAircraft(
@@ -115,7 +123,10 @@ export function supplementAircraft(
     }
   }
   if (route) {
-    next.routeHistorical = route.associationTimeMs == null ? undefined : now - route.associationTimeMs > P.recentRouteAgeMs;
+    next.routeHistorical =
+      route.associationTimeMs == null
+        ? undefined
+        : now - route.associationTimeMs > P.recentRouteAgeMs;
     if (!a.origin && route.origin) next.origin = route.origin;
     if (!a.destination && route.destination)
       next.destination = route.destination;
@@ -144,6 +155,7 @@ export function createEnricher(
   const cache = new Map<string, EnrichmentResult>();
   const budget = env.budget ?? { nextAllowed: 0, nextSecondaryAllowed: 0 };
   const secondaryAttempts = new Map<string, number>();
+  const secondarySeen = new Map<string, number>();
   let pending: LookupRef | null = null;
   function emit(event: EnrichmentEvent) {
     try {
@@ -192,8 +204,12 @@ export function createEnricher(
   }
   function prune() {
     for (const [key, value] of cache)
-      if (value.expiresAtMs <= env.now() || value.fetchedAtMs > env.now() ||
-        (value.data.associationTimeMs != null && env.now()-value.data.associationTimeMs>P.maxRouteAgeMs))
+      if (
+        value.expiresAtMs <= env.now() ||
+        value.fetchedAtMs > env.now() ||
+        (value.data.associationTimeMs != null &&
+          env.now() - value.data.associationTimeMs > P.maxRouteAgeMs)
+      )
         cache.delete(key);
   }
   function due(key: string) {
@@ -444,10 +460,16 @@ export function createEnricher(
     base = scene;
     publish();
     const present = new Set(
-      scene.secondary.map((a) =>
-        enrichmentKey('route', a.id, flightKey(a.callsign)),
+      [...scene.secondary, ...(scene.enrichmentCandidates ?? [])].map(
+        (a) => enrichmentKey('route', a.id, flightKey(a.callsign)),
       ),
     );
+    for (const key of present)
+      if (!secondarySeen.has(key)) secondarySeen.set(key, env.now());
+    for (const key of secondarySeen.keys())
+      if (!present.has(key)) secondarySeen.delete(key);
+    while (secondarySeen.size > P.clientCapacity)
+      secondarySeen.delete(secondarySeen.keys().next().value!);
     for (const key of secondaryAttempts.keys())
       if (!present.has(key)) secondaryAttempts.delete(key);
     const time = budgetNow();
@@ -460,40 +482,147 @@ export function createEnricher(
       time < budget.nextAllowed
     )
       return;
+    const plan = planLookup();
+    if (plan.length) {
+      const first = plan[0];
+      void lookup(first.kind, first.hex, first.callsign, first.secondary);
+    }
+  }
+  function planLookup() {
+    if (!base?.primary) return [];
+    const a = base.primary,
+      now = env.now();
     const primary = validHex(a.id) ? primaryCandidate(a) : null;
-    if (primary) {
-      void lookup(primary.kind, primary.hex, primary.callsign);
-      return;
-    }
-    if (
-      time < budget.nextSecondaryAllowed ||
-      !['available', 'delayed'].includes(scene.state)
-    )
-      return;
-    // Oldest attempt first; unattempted flights tie in selector/display order.
-    // Only current displayed flights participate; routes follow hex + callsign.
-    let candidate:
-      | { hex: string; callsign: string; last: number }
-      | undefined;
+    const requests: (LookupRef & { utility: number; reason: string })[] =
+      [];
+    const primarySky = urgencyFor(a.observation, now);
+    const primaryUtility = Math.max(
+      primarySky,
+      45 +
+        (25 * (a.observation?.elevationDegrees ?? 0)) / 90 +
+        15 / (1 + (a.distanceKm ?? 15)),
+    );
+    const missingModel =
+      a.model === null ||
+      a.model === 'Aircraft' ||
+      a.model.startsWith('Aircraft ·');
     const seen = new Set([a.id.toLowerCase()]);
-    for (const other of scene.secondary) {
-      const hex = other.id.toLowerCase(),
-        callsign = flightKey(other.callsign);
-      if (seen.has(hex) || !validHex(hex) || !callsign) continue;
-      seen.add(hex);
-      const key = enrichmentKey('route', hex, callsign);
-      const current = decorate(other).aircraft;
-      const complete =
-        [current.origin, current.destination].every(
-          (airport) => airport && /^[A-Z]{3,4}$/.test(airport.code),
-        ) && current.origin!.code !== current.destination!.code;
-      if (complete || !due(key)) continue;
-      const last = secondaryAttempts.get(key) ?? -Infinity;
-      if (!candidate || last < candidate.last)
-        candidate = { hex, callsign, last };
+    if (
+      budgetNow() >= budget.nextSecondaryAllowed &&
+      ['available', 'delayed'].includes(base.state)
+    ) {
+      const displayed = new Set(
+        base.secondary.map((a) => a.id.toLowerCase()),
+      );
+      for (const other of [
+        ...base.secondary,
+        ...(base.enrichmentCandidates ?? []),
+      ]) {
+        const hex = other.id.toLowerCase(),
+          callsign = flightKey(other.callsign);
+        if (seen.has(hex) || !validHex(hex) || !callsign) continue;
+        seen.add(hex);
+        const key = enrichmentKey('route', hex, callsign),
+          current = decorate(other).aircraft;
+        const complete =
+          [current.origin, current.destination].every(
+            (v) => v && /^[A-Z]{3,4}$/.test(v.code),
+          ) && current.origin!.code !== current.destination!.code;
+        if (complete || !due(key)) continue;
+        const urgency = urgencyFor(other.observation, now);
+        // Defer low-horizon secondary work briefly rather than spend the next
+        // 90-second opportunity on a flight with no predicted sky opportunity.
+        // This is not a category exclusion; residency or a useful approach releases it.
+        if (
+          other.observation?.elevationDegrees != null &&
+          other.observation.elevationDegrees <
+            OBSERVATION_POLICY.lowElevationDegrees &&
+          (other.distanceKm ?? 0) >
+            OBSERVATION_POLICY.peripheralDistanceKm &&
+          urgency === 0 &&
+          now - (secondarySeen.get(key) ?? now) <
+            OBSERVATION_POLICY.peripheralResidenceMs
+        )
+          continue;
+        if (!displayed.has(hex) && !urgentPass(other.observation, now))
+          continue;
+        if (
+          other.observation?.phase === 'departing' &&
+          (other.distanceKm ?? 15) > 3 &&
+          (other.observation.elevationDegrees ?? 90) < 20
+        )
+          continue;
+        requests.push({
+          kind: 'route',
+          hex,
+          callsign,
+          secondary: true,
+          utility:
+            (urgency > 0
+              ? urgency
+              : other.observation
+                ? 10 +
+                  (10 * (other.observation.elevationDegrees ?? 0)) / 90 +
+                  10 / (1 + (other.distanceKm ?? 15))
+                : 0) * routeUtilityHint(other),
+          reason:
+            urgency > 0
+              ? 'predicted opportunity × bounded information-value hint'
+              : 'displayed route; conservative unknown-trajectory fallback',
+        });
+      }
     }
-    if (candidate)
-      void lookup('route', candidate.hex, candidate.callsign, true);
+    requests.sort(
+      (x, y) =>
+        y.utility - x.utility ||
+        (secondaryAttempts.get(
+          enrichmentKey('route', x.hex, x.callsign),
+        ) ?? -Infinity) -
+          (secondaryAttempts.get(
+            enrichmentKey('route', y.hex, y.callsign),
+          ) ?? -Infinity),
+    );
+    if (primary) {
+      const urgent = requests.find((r) => {
+        const candidate = [
+          ...base!.secondary,
+          ...(base!.enrichmentCandidates ?? []),
+        ].find((a) => a.id.toLowerCase() === r.hex);
+        return (
+          candidate &&
+          urgentPass(candidate.observation, now) &&
+          r.utility > primaryUtility + OBSERVATION_POLICY.prefetchAdvantage
+        );
+      });
+      const protectedRoute =
+        primary.kind === 'route' &&
+        (urgentPass(a.observation, now) ||
+          ((a.observation?.elevationDegrees ?? 0) >= 60 &&
+            (a.distanceKm ?? 15) < 1) ||
+          a.observation?.phase === 'passing');
+      const requiredIdentity = primary.kind === 'aircraft' && missingModel;
+      const useSecondary =
+        !requiredIdentity &&
+        !protectedRoute &&
+        (primary.kind === 'aircraft'
+          ? a.observation !== undefined && requests.length > 0
+          : !!urgent);
+      const row = {
+        ...primary,
+        utility: primaryUtility,
+        reason: requiredIdentity
+          ? 'required primary identification'
+          : primary.kind === 'route'
+            ? 'current primary route'
+            : 'optional primary metadata',
+      };
+      if (useSecondary) {
+        const first = urgent ?? requests[0];
+        return [first, row, ...requests.filter((r) => r !== first)];
+      }
+      return [row, ...requests];
+    }
+    return requests;
   }
   function primaryCandidate(a: Aircraft): LookupRef | null {
     const hex = a.id.toLowerCase(),
@@ -512,6 +641,26 @@ export function createEnricher(
     ) {
       return { kind: 'route', hex, callsign, secondary: false };
     }
+    // Native type/registration are already useful. A known route miss or a
+    // fast peripheral pass is a poor reason to spend a slot on optional branding.
+    const cachedRoute = callsign
+      ? cache.get(enrichmentKey('route', hex, callsign))
+      : undefined;
+    const peripheral =
+      a.observation?.predictionQuality === 'supported' &&
+      (a.observation.speedKnots ?? 0) >= OBSERVATION_POLICY.fastKnots &&
+      ((a.observation.cpaDistanceKm ?? 0) >
+        OBSERVATION_POLICY.optionalIdentityMaxCpaKm ||
+        (a.observation.phase === 'departing' &&
+          (a.distanceKm ?? 0) >
+            OBSERVATION_POLICY.optionalIdentityMaxCpaKm));
+    if (
+      a.observation &&
+      !missingModel &&
+      a.registration &&
+      (cachedRoute?.status === 'not-found' || peripheral)
+    )
+      return null;
     if (
       (!a.operator ||
         !a.registration ||
@@ -526,6 +675,7 @@ export function createEnricher(
   }
   return {
     update,
+    plan: () => planLookup(),
     inspect: () => ({
       entries: cache.size,
       inFlight: inFlight ? 1 : 0,
@@ -537,6 +687,7 @@ export function createEnricher(
       if (timeout !== undefined) env.clearTimer(timeout);
       cache.clear();
       secondaryAttempts.clear();
+      secondarySeen.clear();
       base = null;
     },
   };

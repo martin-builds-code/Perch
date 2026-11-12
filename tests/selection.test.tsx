@@ -1,3 +1,7 @@
+import {
+  scoreAircraft as r03Score,
+  createAircraftSelector as createR03Selector,
+} from './baseline/selection-r03';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -84,11 +88,11 @@ test('distance is smooth and substantial, without a distance-only gate', () => {
     T,
   )!;
   assert.ok(
-    low.score > high.score,
-    'lower aircraft can outrank a closer high aircraft',
+    low.score < high.score,
+    'higher elevation and proximity now beat low-altitude preference',
   );
 });
-test('altitude supports preference, high aircraft remain eligible, unknown is neutral not zero', () => {
+test('estimated elevation replaces low-altitude preference; missing stays neutral', () => {
   const low = scoreAircraft(
     aircraft(A, 3, T, { barometricAltitudeFt: 2000 }),
     T,
@@ -97,25 +101,26 @@ test('altitude supports preference, high aircraft remain eligible, unknown is ne
     aircraft(B, 3, T, { barometricAltitudeFt: 18000 }),
     T,
   )!;
-  assert.ok(low.score > high.score);
+  assert.ok(low.score < high.score);
   assert.ok(high.score > 0);
   assert.equal(
-    scoreAircraft(aircraft(A, 3, T, { barometricAltitudeFt: null }), T)!.factors
-      .altitude,
-    10,
+    scoreAircraft(aircraft(A, 3, T, { barometricAltitudeFt: null }), T)!
+      .factors.altitude,
+    12,
   );
   assert.equal(
-    scoreAircraft(aircraft(A, 3, T, { barometricAltitudeFt: -150 }), T)!.factors
-      .altitude,
-    20,
+    scoreAircraft(aircraft(A, 3, T, { barometricAltitudeFt: -150 }), T)!
+      .factors.altitude,
+    0,
   );
   assert.equal(
-    scoreAircraft(aircraft(A, 3, T, { barometricAltitudeFt: NaN }), T)!.factors
-      .altitude,
-    10,
+    scoreAircraft(aircraft(A, 3, T, { barometricAltitudeFt: NaN }), T)!
+      .factors.altitude,
+    12,
   );
   assert.equal(
-    createAircraftSelector().select(snapshot([high.aircraft]), T).primary?.id,
+    createAircraftSelector().select(snapshot([high.aircraft]), T).primary
+      ?.id,
     B,
   );
 });
@@ -165,7 +170,11 @@ test('invalid positions, ground, future/expired and timestamp anomalies are inel
 });
 test('stale observations lose score and movement confidence without resetting age', () => {
   const current = scoreAircraft(aircraft(), T, motion('approaching'))!;
-  const delayed = scoreAircraft(aircraft(), T + 45000, motion('approaching'))!;
+  const delayed = scoreAircraft(
+    aircraft(),
+    T + 45000,
+    motion('approaching'),
+  )!;
   assert.ok(delayed.score < current.score);
   assert.equal(delayed.motion.state, 'unknown');
   assert.equal(delayed.ageMs, 45000);
@@ -174,7 +183,8 @@ test('stale observations lose score and movement confidence without resetting ag
 test('normalisation distinguishes explicit ground, numeric altitude and missing ground status', () => {
   const point = { latitude: 60, longitude: 25 };
   assert.equal(
-    normalise({ hex: 'abcdef', alt_baro: 'ground' }, T, T, point)!.onGround,
+    normalise({ hex: 'abcdef', alt_baro: 'ground' }, T, T, point)!
+      .onGround,
     true,
   );
   assert.equal(
@@ -204,32 +214,43 @@ for (const [label, distances, state] of [
 }
 test('movement requires sufficient history and a minimum span, not northbound heading', () => {
   assert.equal(assessMovement(samples([4]), T).state, 'unknown');
-  assert.equal(assessMovement(samples([4, 3.7]), T + 15000).state, 'unknown');
   assert.equal(
-    assessMovement(samples([4, 3.7, 3.4], [0, 1000, 2000]), T + 2000).state,
+    assessMovement(samples([4, 3.7]), T + 15000).state,
+    'unknown',
+  );
+  assert.equal(
+    assessMovement(samples([4, 3.7, 3.4], [0, 1000, 2000]), T + 2000)
+      .state,
     'unknown',
   );
   const selector = createAircraftSelector();
   const result = selector.select(
-    snapshot([aircraft(A, 4, T, { groundSpeedKnots: null, trackDegrees: 0 })]),
+    snapshot([
+      aircraft(A, 4, T, { groundSpeedKnots: null, trackDegrees: 0 }),
+    ]),
     T,
   );
   assert.equal(result.ranked[0].motion.state, 'unknown');
 });
 test('movement tolerates irregular intervals and missing intermediate observations', () => {
   assert.equal(
-    assessMovement(samples([5, 4.76, 4.2], [0, 12000, 40000]), T + 40000).state,
+    assessMovement(samples([5, 4.76, 4.2], [0, 12000, 40000]), T + 40000)
+      .state,
     'approaching',
   );
   assert.equal(
-    assessMovement(samples([5, 4.4, 3.8], [0, 30000, 60000]), T + 60000).state,
+    assessMovement(samples([5, 4.4, 3.8], [0, 30000, 60000]), T + 60000)
+      .state,
     'approaching',
   );
   assert.equal(
     assessMovement(samples([5, 4, 3], [0, 60000, 75000]), T + 75000).state,
     'unknown',
   );
-  assert.equal(assessMovement(samples([5, 4, 3]), T + 60000).state, 'unknown');
+  assert.equal(
+    assessMovement(samples([5, 4, 3]), T + 60000).state,
+    'unknown',
+  );
 });
 test('history derives motion despite absent speed/track and ignores duplicate/out-of-order position times', () => {
   const selector = createAircraftSelector();
@@ -266,7 +287,10 @@ test('implausible jumps reset movement history rather than claim approach', () =
   const selector = createAircraftSelector();
   selector.select(snapshot([aircraft(A, 10)]), T);
   const r = selector.select(
-    snapshot([aircraft(A, 1, T + 1000, { groundSpeedKnots: 20 })], T + 1000),
+    snapshot(
+      [aircraft(A, 1, T + 1000, { groundSpeedKnots: 20 })],
+      T + 1000,
+    ),
     T + 1000,
   );
   assert.equal(r.ranked[0].motion.state, 'unknown');
@@ -275,7 +299,10 @@ test('implausible jumps reset movement history rather than claim approach', () =
 test('reappearing aircraft restart movement after a long gap but tolerate a short omission', () => {
   const selector = createAircraftSelector();
   selector.select(snapshot([aircraft(A, 5)]), T);
-  selector.select(snapshot([aircraft(B, 10, T + 15000)], T + 15000), T + 15000);
+  selector.select(
+    snapshot([aircraft(B, 10, T + 15000)], T + 15000),
+    T + 15000,
+  );
   let r = selector.select(
     snapshot([aircraft(A, 4.4, T + 30000)], T + 30000),
     T + 30000,
@@ -305,7 +332,10 @@ test('small alternating score differences do not oscillate', () => {
     const now = T + i * 15000;
     const r = selector.select(
       snapshot(
-        [aircraft(A, i % 2 ? 3.1 : 3, now), aircraft(B, i % 2 ? 3 : 3.1, now)],
+        [
+          aircraft(A, i % 2 ? 3.1 : 3, now),
+          aircraft(B, i % 2 ? 3 : 3.1, now),
+        ],
         now,
       ),
       now,
@@ -350,7 +380,7 @@ test('single transient challenger and cached samples cannot bypass confirmation'
   r = selector.select(snapshot([aircraft(A, 5, now)], now), now);
   assert.equal(r.primary?.id, A);
 });
-test('substantially better candidate can interrupt the hold immediately', () => {
+test('clear overhead geometry can interrupt a weak distant incumbent immediately', () => {
   const selector = createAircraftSelector();
   selector.select(snapshot([aircraft(A, 10)]), T);
   const r = selector.select(
@@ -361,7 +391,7 @@ test('substantially better candidate can interrupt the hold immediately', () => 
     T + 15000,
   );
   assert.equal(r.primary?.id, B);
-  assert.equal(r.decision.reason, 'substantial-challenger');
+  assert.equal(r.decision.reason, 'clear-geometric-handover');
 });
 test('departing primary hands over to approaching challenger before minimum hold', () => {
   const selector = createAircraftSelector();
@@ -444,7 +474,10 @@ test('temporary missing primary has a finite grace and does not survive a succes
     selector.select(snapshot([], T + 31000), T + 31000).primary,
     null,
   );
-  selector.select(snapshot([aircraft(A, 3, T + 45000)], T + 45000), T + 45000);
+  selector.select(
+    snapshot([aircraft(A, 3, T + 45000)], T + 45000),
+    T + 45000,
+  );
   r = selector.select(
     snapshot([aircraft(B, 0.1, T + 60000, { onGround: true })], T + 60000),
     T + 60000,
@@ -452,7 +485,10 @@ test('temporary missing primary has a finite grace and does not survive a succes
   assert.equal(r.primary, null);
   assert.equal(
     liveScene(
-      snapshot([aircraft(B, 0.1, T + 60000, { onGround: true })], T + 60000),
+      snapshot(
+        [aircraft(B, 0.1, T + 60000, { onGround: true })],
+        T + 60000,
+      ),
       T + 60000,
       false,
       r,
@@ -473,7 +509,10 @@ test('brief failed feed retains selection; recovery continues history and handov
   assert.equal(r.decision.reason, 'feed-interruption');
   assert.equal(liveScene(s, T + 30000, true, r).state, 'delayed');
   r = selector.select(
-    snapshot([aircraft(A, 5, T + 45000), aircraft(B, 2, T + 45000)], T + 45000),
+    snapshot(
+      [aircraft(A, 5, T + 45000), aircraft(B, 2, T + 45000)],
+      T + 45000,
+    ),
     T + 45000,
   );
   assert.equal(r.primary?.id, B);
@@ -569,7 +608,10 @@ test('rendering uses existing hierarchy/capacity without movement labels or new 
   assert.match(html, /Also nearby/);
   assert.match(html, /Barometric altitude/);
   assert.match(html, /Horizontal distance/);
-  assert.doesNotMatch(html, /audible|Approaching|Departing|<button|<input/);
+  assert.doesNotMatch(
+    html,
+    /audible|Approaching|Departing|<button|<input/,
+  );
   assert.equal(DEFAULT_SELECTION_POLICY.minimumHoldMs, 36000);
 });
 
@@ -585,7 +627,9 @@ test('poller preserves selector between polls, adds no timers/requests and clear
     fetch: async () => {
       requests++;
       return new Response(
-        JSON.stringify(snapshot([aircraft(A, 5 - requests * 0.3, now)], now)),
+        JSON.stringify(
+          snapshot([aircraft(A, 5 - requests * 0.3, now)], now),
+        ),
       );
     },
     setTimer: (fn, ms) => {
@@ -644,7 +688,9 @@ test('missing grace is enforced by the existing expiry timer during a hung next 
       return new Response(
         JSON.stringify(
           snapshot(
-            calls === 1 ? [aircraft(A, 3, T - 1000)] : [aircraft(B, 6, now)],
+            calls === 1
+              ? [aircraft(A, 3, T - 1000)]
+              : [aircraft(B, 6, now)],
             now,
           ),
         ),
@@ -684,4 +730,60 @@ test('missing grace is enforced by the existing expiry timer during a hung next 
   poller.stop();
   await flush();
   assert.equal(timers.size, 0);
+});
+
+test('R03 baseline: distance is smooth and substantial, without a distance-only gate', () => {
+  assert.ok(
+    r03Score(aircraft(A, 2), T)!.score >
+      r03Score(aircraft(B, 5), T)!.score,
+  );
+  assert.ok(
+    Math.abs(
+      r03Score(aircraft(A, 1.99), T)!.score -
+        r03Score(aircraft(B, 2.01), T)!.score,
+    ) < 0.2,
+  );
+  const low = r03Score(
+    aircraft(A, 5, T, { barometricAltitudeFt: 2000 }),
+    T,
+  )!;
+  const high = r03Score(
+    aircraft(B, 3, T, { barometricAltitudeFt: 12000 }),
+    T,
+  )!;
+  assert.ok(
+    low.score > high.score,
+    'lower aircraft can outrank a closer high aircraft',
+  );
+});
+test('R03 baseline: altitude supports preference, high aircraft remain eligible, unknown is neutral not zero', () => {
+  const low = r03Score(
+    aircraft(A, 3, T, { barometricAltitudeFt: 2000 }),
+    T,
+  )!;
+  const high = r03Score(
+    aircraft(B, 3, T, { barometricAltitudeFt: 18000 }),
+    T,
+  )!;
+  assert.ok(low.score > high.score);
+  assert.ok(high.score > 0);
+  assert.equal(
+    r03Score(aircraft(A, 3, T, { barometricAltitudeFt: null }), T)!.factors
+      .altitude,
+    10,
+  );
+  assert.equal(
+    r03Score(aircraft(A, 3, T, { barometricAltitudeFt: -150 }), T)!.factors
+      .altitude,
+    20,
+  );
+  assert.equal(
+    r03Score(aircraft(A, 3, T, { barometricAltitudeFt: NaN }), T)!.factors
+      .altitude,
+    10,
+  );
+  assert.equal(
+    createR03Selector().select(snapshot([high.aircraft]), T).primary?.id,
+    B,
+  );
 });

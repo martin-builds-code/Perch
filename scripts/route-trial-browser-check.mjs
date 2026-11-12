@@ -178,11 +178,13 @@ try {
     );
     assert.equal(report.distinctAircraft, 5);
     assert.equal(report.distinctDisplayedFlights, 4);
-    assert.equal(report.counters.hexdbRequestsStarted, 4);
+    // R04 does not spend optional identity requests on a native-identified,
+    // registration-known primary with a cached route miss. All route states remain.
+    assert.equal(report.counters.hexdbRequestsStarted, 3);
     assert.equal(report.counters.routeRejectedResponses, 1);
     assert.equal(report.counters.routeNegativeResponses, 1);
     assert.equal(report.counters.routeCompleteResponses, 1);
-    assert.equal(attempts.length, 4);
+    assert.equal(attempts.length, 3);
     assert.ok(
       attempts.every((a, i) => !i || a.at - attempts[i - 1].at >= 30000),
     );

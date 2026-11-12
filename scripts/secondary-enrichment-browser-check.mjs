@@ -113,7 +113,7 @@ try {
       .locator('.airport-code')
       .filter({ hasText: 'DUB' })
       .waitFor();
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= 2; i++) {
       await page.clock.fastForward(15000);
       await page.waitForFunction(
         (n) => document.querySelectorAll('.nearby-aircraft').length === n,
@@ -121,11 +121,11 @@ try {
       );
       await page.waitForTimeout(30);
     }
+    // R04 spends the 30s opportunity on a missing secondary route before optional primary branding.
     assert.deepEqual(
       h.lookups.map((r) => [r.kind, r.hex]),
       [
         ['route', 'abcdef'],
-        ['aircraft', 'abcdef'],
         ['route', '111111'],
       ],
     );
@@ -173,7 +173,7 @@ try {
     assert.ok(
       h.positions.every((at, i) => !i || at - h.positions[i - 1] >= 15000),
     );
-    assert.equal(h.positions.length, 11);
+    assert.equal(h.positions.length, 9);
     await page.evaluate(() => document.fonts.ready);
     await page.addStyleTag({
       content:
