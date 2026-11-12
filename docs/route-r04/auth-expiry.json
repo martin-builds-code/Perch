@@ -1,0 +1,20 @@
+{
+  "checkedAtMs": 1794487299978,
+  "absoluteExpiryMs": 1794487295726,
+  "url": "https://perch-aero-pane-stage3a-f140b0kzw-mml3.vercel.app",
+  "checks": [
+    {
+      "path": "/api/session",
+      "status": 401
+    },
+    {
+      "path": "/api/aircraft",
+      "status": 401
+    },
+    {
+      "path": "/api/enrichment",
+      "status": 401
+    }
+  ],
+  "allRequireAuthentication": true
+}

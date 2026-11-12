@@ -1,0 +1,2730 @@
+{
+  "basis": "Offline replay of the same captured live snapshots/times. R04-final includes the meaningful freshness-gap and cached-discontinuity safeguards. Route scheduler/provider outcomes were not replayed or invented.",
+  "input": "docs/route-r04/live/observation.json",
+  "results": {
+    "R03": {
+      "frames": 118,
+      "evaluations": 118,
+      "capturedAgreementFrames": 112,
+      "transitions": 10,
+      "changes": [
+        {
+          "atMs": 1794484450514,
+          "ref": "000002",
+          "reason": "acquired",
+          "margin": 0,
+          "heldMs": 0
+        },
+        {
+          "atMs": 1794484600364,
+          "ref": "000001",
+          "reason": "departing-handover",
+          "margin": 12.594566671220498,
+          "heldMs": 149850
+        },
+        {
+          "atMs": 1794484629672,
+          "ref": "000002",
+          "reason": "fresher-challenger",
+          "margin": 5.882204125261772,
+          "heldMs": 29308
+        },
+        {
+          "atMs": 1794484629959,
+          "ref": "000001",
+          "reason": "departing-handover",
+          "margin": 17.97303042573951,
+          "heldMs": 287
+        },
+        {
+          "atMs": 1794484750230,
+          "ref": "000008",
+          "reason": "confirmed-challenger",
+          "margin": 12.934334501079292,
+          "heldMs": 120271
+        },
+        {
+          "atMs": 1794484810392,
+          "ref": "000009",
+          "reason": "primary-ineligible",
+          "margin": 0,
+          "heldMs": 0
+        },
+        {
+          "atMs": 1794484930337,
+          "ref": "000001",
+          "reason": "confirmed-challenger",
+          "margin": 14.989406002118528,
+          "heldMs": 119945
+        },
+        {
+          "atMs": 1794485065176,
+          "ref": "00000b",
+          "reason": "departing-handover",
+          "margin": 19.32573889937592,
+          "heldMs": 134839
+        },
+        {
+          "atMs": 1794485305412,
+          "ref": "00000f",
+          "reason": "confirmed-challenger",
+          "margin": 12.613655156632142,
+          "heldMs": 240236
+        },
+        {
+          "atMs": 1794485680274,
+          "ref": "000002",
+          "reason": "departing-handover",
+          "margin": 17.469299941589675,
+          "heldMs": 374862
+        },
+        {
+          "atMs": 1794486220532,
+          "ref": "000001",
+          "reason": "departing-handover",
+          "margin": 20.234488957037723,
+          "heldMs": 540258
+        },
+        {
+          "atMs": 1794486400262,
+          "ref": null,
+          "reason": "no-candidates",
+          "margin": 0,
+          "heldMs": 0
+        },
+        {
+          "atMs": 1794486445415,
+          "ref": "000016",
+          "reason": "acquired",
+          "margin": 0,
+          "heldMs": 0
+        },
+        {
+          "atMs": 1794486789981,
+          "ref": null,
+          "reason": "no-candidates",
+          "margin": 0,
+          "heldMs": 0
+        },
+        {
+          "atMs": 1794486805367,
+          "ref": "00001a",
+          "reason": "acquired",
+          "margin": 0,
+          "heldMs": 0
+        }
+      ],
+      "intervals": [
+        {
+          "atMs": 1794484450514,
+          "ref": "000002",
+          "reason": "acquired",
+          "margin": 0,
+          "heldMs": 0,
+          "durationMs": 149850
+        },
+        {
+          "atMs": 1794484600364,
+          "ref": "000001",
+          "reason": "departing-handover",
+          "margin": 12.594566671220498,
+          "heldMs": 149850,
+          "durationMs": 29308
+        },
+        {
+          "atMs": 1794484629672,
+          "ref": "000002",
+          "reason": "fresher-challenger",
+          "margin": 5.882204125261772,
+          "heldMs": 29308,
+          "durationMs": 287
+        },
+        {
+          "atMs": 1794484629959,
+          "ref": "000001",
+          "reason": "departing-handover",
+          "margin": 17.97303042573951,
+          "heldMs": 287,
+          "durationMs": 120271
+        },
+        {
+          "atMs": 1794484750230,
+          "ref": "000008",
+          "reason": "confirmed-challenger",
+          "margin": 12.934334501079292,
+          "heldMs": 120271,
+          "durationMs": 60162
+        },
+        {
+          "atMs": 1794484810392,
+          "ref": "000009",
+          "reason": "primary-ineligible",
+          "margin": 0,
+          "heldMs": 0,
+          "durationMs": 119945
+        },
+        {
+          "atMs": 1794484930337,
+          "ref": "000001",
+          "reason": "confirmed-challenger",
+          "margin": 14.989406002118528,
+          "heldMs": 119945,
+          "durationMs": 134839
+        },
+        {
+          "atMs": 1794485065176,
+          "ref": "00000b",
+          "reason": "departing-handover",
+          "margin": 19.32573889937592,
+          "heldMs": 134839,
+          "durationMs": 240236
+        },
+        {
+          "atMs": 1794485305412,
+          "ref": "00000f",
+          "reason": "confirmed-challenger",
+          "margin": 12.613655156632142,
+          "heldMs": 240236,
+          "durationMs": 374862
+        },
+        {
+          "atMs": 1794485680274,
+          "ref": "000002",
+          "reason": "departing-handover",
+          "margin": 17.469299941589675,
+          "heldMs": 374862,
+          "durationMs": 540258
+        },
+        {
+          "atMs": 1794486220532,
+          "ref": "000001",
+          "reason": "departing-handover",
+          "margin": 20.234488957037723,
+          "heldMs": 540258,
+          "durationMs": 179730
+        },
+        {
+          "atMs": 1794486445415,
+          "ref": "000016",
+          "reason": "acquired",
+          "margin": 0,
+          "heldMs": 0,
+          "durationMs": 344566
+        },
+        {
+          "atMs": 1794486805367,
+          "ref": "00001a",
+          "reason": "acquired",
+          "margin": 0,
+          "heldMs": 0,
+          "durationMs": 42177
+        }
+      ],
+      "completedSelectionsUnder1s": [
+        {
+          "atMs": 1794484629672,
+          "ref": "000002",
+          "reason": "fresher-challenger",
+          "margin": 5.882204125261772,
+          "heldMs": 29308,
+          "durationMs": 287
+        }
+      ],
+      "completedSelectionsUnder15s": [
+        {
+          "atMs": 1794484629672,
+          "ref": "000002",
+          "reason": "fresher-challenger",
+          "margin": 5.882204125261772,
+          "heldMs": 29308,
+          "durationMs": 287
+        }
+      ],
+      "minimumCompletedSelectionMs": 287,
+      "decisions": [
+        {
+          "atMs": 1794484450514,
+          "ref": "000002",
+          "reason": "acquired"
+        },
+        {
+          "atMs": 1794484465624,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484495378,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484524941,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484540362,
+          "ref": "000002",
+          "reason": "hysteresis"
+        },
+        {
+          "atMs": 1794484569457,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484570344,
+          "ref": "000002",
+          "reason": "hysteresis"
+        },
+        {
+          "atMs": 1794484600364,
+          "ref": "000001",
+          "reason": "departing-handover"
+        },
+        {
+          "atMs": 1794484629672,
+          "ref": "000002",
+          "reason": "fresher-challenger"
+        },
+        {
+          "atMs": 1794484629959,
+          "ref": "000001",
+          "reason": "departing-handover"
+        },
+        {
+          "atMs": 1794484660185,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484690300,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484705376,
+          "ref": "000001",
+          "reason": "hysteresis"
+        },
+        {
+          "atMs": 1794484735193,
+          "ref": "000001",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794484750230,
+          "ref": "000008",
+          "reason": "confirmed-challenger"
+        },
+        {
+          "atMs": 1794484765325,
+          "ref": "000008",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484780391,
+          "ref": "000008",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484810392,
+          "ref": "000009",
+          "reason": "primary-ineligible"
+        },
+        {
+          "atMs": 1794484825443,
+          "ref": "000009",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484854890,
+          "ref": "000009",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484885571,
+          "ref": "000009",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484915165,
+          "ref": "000009",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794484930337,
+          "ref": "000001",
+          "reason": "confirmed-challenger"
+        },
+        {
+          "atMs": 1794484945381,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484974872,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484990359,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485019873,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485035224,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485065176,
+          "ref": "00000b",
+          "reason": "departing-handover"
+        },
+        {
+          "atMs": 1794485094873,
+          "ref": "00000b",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485109940,
+          "ref": "00000b",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485125362,
+          "ref": "00000b",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485155214,
+          "ref": "00000b",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485170227,
+          "ref": "00000b",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485199904,
+          "ref": "00000b",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485215312,
+          "ref": "00000b",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485245127,
+          "ref": "00000b",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485260541,
+          "ref": "00000b",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485290241,
+          "ref": "00000b",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794485305412,
+          "ref": "00000f",
+          "reason": "confirmed-challenger"
+        },
+        {
+          "atMs": 1794485320340,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485349930,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485365356,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485395184,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485425010,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485440594,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485470288,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485500338,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485530275,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485559917,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485575371,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485605188,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485634894,
+          "ref": "00000f",
+          "reason": "hysteresis"
+        },
+        {
+          "atMs": 1794485649916,
+          "ref": "00000f",
+          "reason": "hysteresis"
+        },
+        {
+          "atMs": 1794485680274,
+          "ref": "000002",
+          "reason": "departing-handover"
+        },
+        {
+          "atMs": 1794485709713,
+          "ref": "000002",
+          "reason": "minimum-hold"
+        },
+        {
+          "atMs": 1794485710393,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485740249,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485770257,
+          "ref": "000002",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794485799929,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485814987,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485830274,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485859567,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485860213,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485875291,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485903729,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485904928,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485919928,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485935262,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485965220,
+          "ref": "000002",
+          "reason": "hysteresis"
+        },
+        {
+          "atMs": 1794485995331,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486024927,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486040394,
+          "ref": "000002",
+          "reason": "hysteresis"
+        },
+        {
+          "atMs": 1794486069747,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486070877,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486085300,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486100836,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486115200,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486115207,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486130363,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486130748,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486144912,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486160287,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486190238,
+          "ref": "000002",
+          "reason": "hysteresis"
+        },
+        {
+          "atMs": 1794486204886,
+          "ref": "000002",
+          "reason": "hysteresis"
+        },
+        {
+          "atMs": 1794486220532,
+          "ref": "000001",
+          "reason": "departing-handover"
+        },
+        {
+          "atMs": 1794486235542,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486265307,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486280012,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486294957,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486310435,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486325207,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486340390,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486355254,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486385271,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486400262,
+          "ref": null,
+          "reason": "no-candidates"
+        },
+        {
+          "atMs": 1794486414956,
+          "ref": null,
+          "reason": "no-candidates"
+        },
+        {
+          "atMs": 1794486430295,
+          "ref": null,
+          "reason": "no-candidates"
+        },
+        {
+          "atMs": 1794486445415,
+          "ref": "000016",
+          "reason": "acquired"
+        },
+        {
+          "atMs": 1794486475309,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486490230,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486504936,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486520245,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486535242,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486565224,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486580242,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486609925,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486625225,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486639997,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486655306,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486670313,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486699952,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486715299,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486744948,
+          "ref": "000016",
+          "reason": "hysteresis"
+        },
+        {
+          "atMs": 1794486760408,
+          "ref": "000016",
+          "reason": "hysteresis"
+        },
+        {
+          "atMs": 1794486789981,
+          "ref": null,
+          "reason": "no-candidates"
+        },
+        {
+          "atMs": 1794486805367,
+          "ref": "00001a",
+          "reason": "acquired"
+        },
+        {
+          "atMs": 1794486835489,
+          "ref": "00001a",
+          "reason": "retained-best"
+        }
+      ]
+    },
+    "R04-live": {
+      "frames": 118,
+      "evaluations": 118,
+      "capturedAgreementFrames": 116,
+      "transitions": 19,
+      "changes": [
+        {
+          "atMs": 1794484450514,
+          "ref": "000001",
+          "reason": "acquired",
+          "margin": 0,
+          "heldMs": 0
+        },
+        {
+          "atMs": 1794484524941,
+          "ref": "000005",
+          "reason": "substantial-challenger",
+          "margin": 24.154063465257472,
+          "heldMs": 74427
+        },
+        {
+          "atMs": 1794484600364,
+          "ref": "000001",
+          "reason": "primary-ineligible",
+          "margin": 0,
+          "heldMs": 0
+        },
+        {
+          "atMs": 1794484629672,
+          "ref": "000006",
+          "reason": "fresher-challenger",
+          "margin": 14.18997471107193,
+          "heldMs": 29308
+        },
+        {
+          "atMs": 1794484629959,
+          "ref": "000001",
+          "reason": "fresher-challenger",
+          "margin": 21.288167765257363,
+          "heldMs": 287
+        },
+        {
+          "atMs": 1794484825443,
+          "ref": "000009",
+          "reason": "substantial-challenger",
+          "margin": 35.1104669045599,
+          "heldMs": 195484
+        },
+        {
+          "atMs": 1794484945381,
+          "ref": "000001",
+          "reason": "departing-handover",
+          "margin": 16.69178005310268,
+          "heldMs": 119938
+        },
+        {
+          "atMs": 1794485094873,
+          "ref": "00000b",
+          "reason": "departing-handover",
+          "margin": 12.862502943102125,
+          "heldMs": 149492
+        },
+        {
+          "atMs": 1794485260541,
+          "ref": "00000d",
+          "reason": "substantial-challenger",
+          "margin": 26.604648555953826,
+          "heldMs": 165668
+        },
+        {
+          "atMs": 1794485290241,
+          "ref": "00000e",
+          "reason": "fresher-challenger",
+          "margin": 8.73548897400893,
+          "heldMs": 29700
+        },
+        {
+          "atMs": 1794485395184,
+          "ref": "00000f",
+          "reason": "fresher-challenger",
+          "margin": 3.2144683355992356,
+          "heldMs": 104943
+        },
+        {
+          "atMs": 1794485680274,
+          "ref": "000002",
+          "reason": "departing-handover",
+          "margin": 17.02643672356147,
+          "heldMs": 285090
+        },
+        {
+          "atMs": 1794485709713,
+          "ref": "000011",
+          "reason": "fresher-challenger",
+          "margin": 3.5092827874124346,
+          "heldMs": 29439
+        },
+        {
+          "atMs": 1794485859567,
+          "ref": "000002",
+          "reason": "departing-handover",
+          "margin": 9.597864684538816,
+          "heldMs": 149854
+        },
+        {
+          "atMs": 1794485903729,
+          "ref": "000001",
+          "reason": "fresher-challenger",
+          "margin": 11.348288841901098,
+          "heldMs": 44162
+        },
+        {
+          "atMs": 1794486069747,
+          "ref": "000013",
+          "reason": "departing-handover",
+          "margin": 12.930902650117677,
+          "heldMs": 166018
+        },
+        {
+          "atMs": 1794486115200,
+          "ref": "000001",
+          "reason": "primary-ineligible",
+          "margin": 0,
+          "heldMs": 0
+        },
+        {
+          "atMs": 1794486130748,
+          "ref": "000002",
+          "reason": "primary-ineligible",
+          "margin": 0,
+          "heldMs": 0
+        },
+        {
+          "atMs": 1794486204886,
+          "ref": "000001",
+          "reason": "substantial-challenger",
+          "margin": 29.511471229560552,
+          "heldMs": 74138
+        },
+        {
+          "atMs": 1794486400262,
+          "ref": null,
+          "reason": "no-candidates",
+          "margin": 0,
+          "heldMs": 0
+        },
+        {
+          "atMs": 1794486445415,
+          "ref": "000016",
+          "reason": "acquired",
+          "margin": 0,
+          "heldMs": 0
+        },
+        {
+          "atMs": 1794486760408,
+          "ref": "000019",
+          "reason": "confirmed-challenger",
+          "margin": 8.110616339220485,
+          "heldMs": 314993
+        },
+        {
+          "atMs": 1794486789981,
+          "ref": null,
+          "reason": "no-candidates",
+          "margin": 0,
+          "heldMs": 0
+        },
+        {
+          "atMs": 1794486805367,
+          "ref": "00001a",
+          "reason": "acquired",
+          "margin": 0,
+          "heldMs": 0
+        }
+      ],
+      "intervals": [
+        {
+          "atMs": 1794484450514,
+          "ref": "000001",
+          "reason": "acquired",
+          "margin": 0,
+          "heldMs": 0,
+          "durationMs": 74427
+        },
+        {
+          "atMs": 1794484524941,
+          "ref": "000005",
+          "reason": "substantial-challenger",
+          "margin": 24.154063465257472,
+          "heldMs": 74427,
+          "durationMs": 75423
+        },
+        {
+          "atMs": 1794484600364,
+          "ref": "000001",
+          "reason": "primary-ineligible",
+          "margin": 0,
+          "heldMs": 0,
+          "durationMs": 29308
+        },
+        {
+          "atMs": 1794484629672,
+          "ref": "000006",
+          "reason": "fresher-challenger",
+          "margin": 14.18997471107193,
+          "heldMs": 29308,
+          "durationMs": 287
+        },
+        {
+          "atMs": 1794484629959,
+          "ref": "000001",
+          "reason": "fresher-challenger",
+          "margin": 21.288167765257363,
+          "heldMs": 287,
+          "durationMs": 195484
+        },
+        {
+          "atMs": 1794484825443,
+          "ref": "000009",
+          "reason": "substantial-challenger",
+          "margin": 35.1104669045599,
+          "heldMs": 195484,
+          "durationMs": 119938
+        },
+        {
+          "atMs": 1794484945381,
+          "ref": "000001",
+          "reason": "departing-handover",
+          "margin": 16.69178005310268,
+          "heldMs": 119938,
+          "durationMs": 149492
+        },
+        {
+          "atMs": 1794485094873,
+          "ref": "00000b",
+          "reason": "departing-handover",
+          "margin": 12.862502943102125,
+          "heldMs": 149492,
+          "durationMs": 165668
+        },
+        {
+          "atMs": 1794485260541,
+          "ref": "00000d",
+          "reason": "substantial-challenger",
+          "margin": 26.604648555953826,
+          "heldMs": 165668,
+          "durationMs": 29700
+        },
+        {
+          "atMs": 1794485290241,
+          "ref": "00000e",
+          "reason": "fresher-challenger",
+          "margin": 8.73548897400893,
+          "heldMs": 29700,
+          "durationMs": 104943
+        },
+        {
+          "atMs": 1794485395184,
+          "ref": "00000f",
+          "reason": "fresher-challenger",
+          "margin": 3.2144683355992356,
+          "heldMs": 104943,
+          "durationMs": 285090
+        },
+        {
+          "atMs": 1794485680274,
+          "ref": "000002",
+          "reason": "departing-handover",
+          "margin": 17.02643672356147,
+          "heldMs": 285090,
+          "durationMs": 29439
+        },
+        {
+          "atMs": 1794485709713,
+          "ref": "000011",
+          "reason": "fresher-challenger",
+          "margin": 3.5092827874124346,
+          "heldMs": 29439,
+          "durationMs": 149854
+        },
+        {
+          "atMs": 1794485859567,
+          "ref": "000002",
+          "reason": "departing-handover",
+          "margin": 9.597864684538816,
+          "heldMs": 149854,
+          "durationMs": 44162
+        },
+        {
+          "atMs": 1794485903729,
+          "ref": "000001",
+          "reason": "fresher-challenger",
+          "margin": 11.348288841901098,
+          "heldMs": 44162,
+          "durationMs": 166018
+        },
+        {
+          "atMs": 1794486069747,
+          "ref": "000013",
+          "reason": "departing-handover",
+          "margin": 12.930902650117677,
+          "heldMs": 166018,
+          "durationMs": 45453
+        },
+        {
+          "atMs": 1794486115200,
+          "ref": "000001",
+          "reason": "primary-ineligible",
+          "margin": 0,
+          "heldMs": 0,
+          "durationMs": 15548
+        },
+        {
+          "atMs": 1794486130748,
+          "ref": "000002",
+          "reason": "primary-ineligible",
+          "margin": 0,
+          "heldMs": 0,
+          "durationMs": 74138
+        },
+        {
+          "atMs": 1794486204886,
+          "ref": "000001",
+          "reason": "substantial-challenger",
+          "margin": 29.511471229560552,
+          "heldMs": 74138,
+          "durationMs": 195376
+        },
+        {
+          "atMs": 1794486445415,
+          "ref": "000016",
+          "reason": "acquired",
+          "margin": 0,
+          "heldMs": 0,
+          "durationMs": 314993
+        },
+        {
+          "atMs": 1794486760408,
+          "ref": "000019",
+          "reason": "confirmed-challenger",
+          "margin": 8.110616339220485,
+          "heldMs": 314993,
+          "durationMs": 29573
+        },
+        {
+          "atMs": 1794486805367,
+          "ref": "00001a",
+          "reason": "acquired",
+          "margin": 0,
+          "heldMs": 0,
+          "durationMs": 42177
+        }
+      ],
+      "completedSelectionsUnder1s": [
+        {
+          "atMs": 1794484629672,
+          "ref": "000006",
+          "reason": "fresher-challenger",
+          "margin": 14.18997471107193,
+          "heldMs": 29308,
+          "durationMs": 287
+        }
+      ],
+      "completedSelectionsUnder15s": [
+        {
+          "atMs": 1794484629672,
+          "ref": "000006",
+          "reason": "fresher-challenger",
+          "margin": 14.18997471107193,
+          "heldMs": 29308,
+          "durationMs": 287
+        }
+      ],
+      "minimumCompletedSelectionMs": 287,
+      "decisions": [
+        {
+          "atMs": 1794484450514,
+          "ref": "000001",
+          "reason": "acquired"
+        },
+        {
+          "atMs": 1794484465624,
+          "ref": "000001",
+          "reason": "minimum-hold"
+        },
+        {
+          "atMs": 1794484495378,
+          "ref": "000001",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794484524941,
+          "ref": "000005",
+          "reason": "substantial-challenger"
+        },
+        {
+          "atMs": 1794484540362,
+          "ref": "000005",
+          "reason": "minimum-hold"
+        },
+        {
+          "atMs": 1794484569457,
+          "ref": "000005",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484570344,
+          "ref": "000005",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794484600364,
+          "ref": "000001",
+          "reason": "primary-ineligible"
+        },
+        {
+          "atMs": 1794484629672,
+          "ref": "000006",
+          "reason": "fresher-challenger"
+        },
+        {
+          "atMs": 1794484629959,
+          "ref": "000001",
+          "reason": "fresher-challenger"
+        },
+        {
+          "atMs": 1794484660185,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484690300,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484705376,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484735193,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484750230,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484765325,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484780391,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484810392,
+          "ref": "000001",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794484825443,
+          "ref": "000009",
+          "reason": "substantial-challenger"
+        },
+        {
+          "atMs": 1794484854890,
+          "ref": "000009",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484885571,
+          "ref": "000009",
+          "reason": "hysteresis"
+        },
+        {
+          "atMs": 1794484915165,
+          "ref": "000009",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484930337,
+          "ref": "000009",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794484945381,
+          "ref": "000001",
+          "reason": "departing-handover"
+        },
+        {
+          "atMs": 1794484974872,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484990359,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485019873,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485035224,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485065176,
+          "ref": "000001",
+          "reason": "hysteresis"
+        },
+        {
+          "atMs": 1794485094873,
+          "ref": "00000b",
+          "reason": "departing-handover"
+        },
+        {
+          "atMs": 1794485109940,
+          "ref": "00000b",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485125362,
+          "ref": "00000b",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485155214,
+          "ref": "00000b",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485170227,
+          "ref": "00000b",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485199904,
+          "ref": "00000b",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485215312,
+          "ref": "00000b",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485245127,
+          "ref": "00000b",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794485260541,
+          "ref": "00000d",
+          "reason": "substantial-challenger"
+        },
+        {
+          "atMs": 1794485290241,
+          "ref": "00000e",
+          "reason": "fresher-challenger"
+        },
+        {
+          "atMs": 1794485305412,
+          "ref": "00000e",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485320340,
+          "ref": "00000e",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485349930,
+          "ref": "00000e",
+          "reason": "hysteresis"
+        },
+        {
+          "atMs": 1794485365356,
+          "ref": "00000e",
+          "reason": "hysteresis"
+        },
+        {
+          "atMs": 1794485395184,
+          "ref": "00000f",
+          "reason": "fresher-challenger"
+        },
+        {
+          "atMs": 1794485425010,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485440594,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485470288,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485500338,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485530275,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485559917,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485575371,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485605188,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485634894,
+          "ref": "00000f",
+          "reason": "hysteresis"
+        },
+        {
+          "atMs": 1794485649916,
+          "ref": "00000f",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794485680274,
+          "ref": "000002",
+          "reason": "departing-handover"
+        },
+        {
+          "atMs": 1794485709713,
+          "ref": "000011",
+          "reason": "fresher-challenger"
+        },
+        {
+          "atMs": 1794485710393,
+          "ref": "000011",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485740249,
+          "ref": "000011",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485770257,
+          "ref": "000011",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485799929,
+          "ref": "000011",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485814987,
+          "ref": "000011",
+          "reason": "hysteresis"
+        },
+        {
+          "atMs": 1794485830274,
+          "ref": "000011",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794485859567,
+          "ref": "000002",
+          "reason": "departing-handover"
+        },
+        {
+          "atMs": 1794485860213,
+          "ref": "000002",
+          "reason": "minimum-hold"
+        },
+        {
+          "atMs": 1794485875291,
+          "ref": "000002",
+          "reason": "minimum-hold"
+        },
+        {
+          "atMs": 1794485903729,
+          "ref": "000001",
+          "reason": "fresher-challenger"
+        },
+        {
+          "atMs": 1794485904928,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485919928,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485935262,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485965220,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485995331,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486024927,
+          "ref": "000001",
+          "reason": "hysteresis"
+        },
+        {
+          "atMs": 1794486040394,
+          "ref": "000001",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794486069747,
+          "ref": "000013",
+          "reason": "departing-handover"
+        },
+        {
+          "atMs": 1794486070877,
+          "ref": "000013",
+          "reason": "minimum-hold"
+        },
+        {
+          "atMs": 1794486085300,
+          "ref": "000013",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486100836,
+          "ref": "000013",
+          "reason": "minimum-hold"
+        },
+        {
+          "atMs": 1794486115200,
+          "ref": "000001",
+          "reason": "primary-ineligible"
+        },
+        {
+          "atMs": 1794486115207,
+          "ref": "000001",
+          "reason": "minimum-hold"
+        },
+        {
+          "atMs": 1794486130363,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486130748,
+          "ref": "000002",
+          "reason": "primary-ineligible"
+        },
+        {
+          "atMs": 1794486144912,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486160287,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486190238,
+          "ref": "000002",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794486204886,
+          "ref": "000001",
+          "reason": "substantial-challenger"
+        },
+        {
+          "atMs": 1794486220532,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486235542,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486265307,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486280012,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486294957,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486310435,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486325207,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486340390,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486355254,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486385271,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486400262,
+          "ref": null,
+          "reason": "no-candidates"
+        },
+        {
+          "atMs": 1794486414956,
+          "ref": null,
+          "reason": "no-candidates"
+        },
+        {
+          "atMs": 1794486430295,
+          "ref": null,
+          "reason": "no-candidates"
+        },
+        {
+          "atMs": 1794486445415,
+          "ref": "000016",
+          "reason": "acquired"
+        },
+        {
+          "atMs": 1794486475309,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486490230,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486504936,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486520245,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486535242,
+          "ref": "000016",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794486565224,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486580242,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486609925,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486625225,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486639997,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486655306,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486670313,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486699952,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486715299,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486744948,
+          "ref": "000016",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794486760408,
+          "ref": "000019",
+          "reason": "confirmed-challenger"
+        },
+        {
+          "atMs": 1794486789981,
+          "ref": null,
+          "reason": "no-candidates"
+        },
+        {
+          "atMs": 1794486805367,
+          "ref": "00001a",
+          "reason": "acquired"
+        },
+        {
+          "atMs": 1794486835489,
+          "ref": "00001a",
+          "reason": "retained-best"
+        }
+      ]
+    },
+    "R04-final": {
+      "frames": 118,
+      "evaluations": 118,
+      "capturedAgreementFrames": 112,
+      "transitions": 17,
+      "changes": [
+        {
+          "atMs": 1794484450514,
+          "ref": "000001",
+          "reason": "acquired",
+          "margin": 0,
+          "heldMs": 0
+        },
+        {
+          "atMs": 1794484524941,
+          "ref": "000005",
+          "reason": "substantial-challenger",
+          "margin": 24.154063465257472,
+          "heldMs": 74427
+        },
+        {
+          "atMs": 1794484600364,
+          "ref": "000001",
+          "reason": "primary-ineligible",
+          "margin": 0,
+          "heldMs": 0
+        },
+        {
+          "atMs": 1794484825443,
+          "ref": "000009",
+          "reason": "substantial-challenger",
+          "margin": 35.1104669045599,
+          "heldMs": 225079
+        },
+        {
+          "atMs": 1794484945381,
+          "ref": "000001",
+          "reason": "departing-handover",
+          "margin": 16.69178005310268,
+          "heldMs": 119938
+        },
+        {
+          "atMs": 1794485094873,
+          "ref": "00000b",
+          "reason": "departing-handover",
+          "margin": 12.862502943102125,
+          "heldMs": 149492
+        },
+        {
+          "atMs": 1794485260541,
+          "ref": "00000d",
+          "reason": "substantial-challenger",
+          "margin": 26.604648555953826,
+          "heldMs": 165668
+        },
+        {
+          "atMs": 1794485290241,
+          "ref": "00000e",
+          "reason": "fresher-challenger",
+          "margin": 8.73548897400893,
+          "heldMs": 29700
+        },
+        {
+          "atMs": 1794485395184,
+          "ref": "00000f",
+          "reason": "fresher-challenger",
+          "margin": 3.2144683355992356,
+          "heldMs": 104943
+        },
+        {
+          "atMs": 1794485680274,
+          "ref": "000002",
+          "reason": "departing-handover",
+          "margin": 17.02643672356147,
+          "heldMs": 285090
+        },
+        {
+          "atMs": 1794485740249,
+          "ref": "000011",
+          "reason": "substantial-challenger",
+          "margin": 23.894876823894293,
+          "heldMs": 59975
+        },
+        {
+          "atMs": 1794485859567,
+          "ref": "000002",
+          "reason": "departing-handover",
+          "margin": 9.597864684538816,
+          "heldMs": 119318
+        },
+        {
+          "atMs": 1794485904928,
+          "ref": "000001",
+          "reason": "confirmed-challenger",
+          "margin": 8.127197710819104,
+          "heldMs": 45361
+        },
+        {
+          "atMs": 1794486069747,
+          "ref": "000013",
+          "reason": "departing-handover",
+          "margin": 12.930902650117677,
+          "heldMs": 164819
+        },
+        {
+          "atMs": 1794486115200,
+          "ref": "000001",
+          "reason": "primary-ineligible",
+          "margin": 0,
+          "heldMs": 0
+        },
+        {
+          "atMs": 1794486130748,
+          "ref": "000002",
+          "reason": "primary-ineligible",
+          "margin": 0,
+          "heldMs": 0
+        },
+        {
+          "atMs": 1794486204886,
+          "ref": "000001",
+          "reason": "substantial-challenger",
+          "margin": 29.511471229560552,
+          "heldMs": 74138
+        },
+        {
+          "atMs": 1794486400262,
+          "ref": null,
+          "reason": "no-candidates",
+          "margin": 0,
+          "heldMs": 0
+        },
+        {
+          "atMs": 1794486445415,
+          "ref": "000016",
+          "reason": "acquired",
+          "margin": 0,
+          "heldMs": 0
+        },
+        {
+          "atMs": 1794486760408,
+          "ref": "000019",
+          "reason": "confirmed-challenger",
+          "margin": 8.110616339220485,
+          "heldMs": 314993
+        },
+        {
+          "atMs": 1794486789981,
+          "ref": null,
+          "reason": "no-candidates",
+          "margin": 0,
+          "heldMs": 0
+        },
+        {
+          "atMs": 1794486805367,
+          "ref": "00001a",
+          "reason": "acquired",
+          "margin": 0,
+          "heldMs": 0
+        }
+      ],
+      "intervals": [
+        {
+          "atMs": 1794484450514,
+          "ref": "000001",
+          "reason": "acquired",
+          "margin": 0,
+          "heldMs": 0,
+          "durationMs": 74427
+        },
+        {
+          "atMs": 1794484524941,
+          "ref": "000005",
+          "reason": "substantial-challenger",
+          "margin": 24.154063465257472,
+          "heldMs": 74427,
+          "durationMs": 75423
+        },
+        {
+          "atMs": 1794484600364,
+          "ref": "000001",
+          "reason": "primary-ineligible",
+          "margin": 0,
+          "heldMs": 0,
+          "durationMs": 225079
+        },
+        {
+          "atMs": 1794484825443,
+          "ref": "000009",
+          "reason": "substantial-challenger",
+          "margin": 35.1104669045599,
+          "heldMs": 225079,
+          "durationMs": 119938
+        },
+        {
+          "atMs": 1794484945381,
+          "ref": "000001",
+          "reason": "departing-handover",
+          "margin": 16.69178005310268,
+          "heldMs": 119938,
+          "durationMs": 149492
+        },
+        {
+          "atMs": 1794485094873,
+          "ref": "00000b",
+          "reason": "departing-handover",
+          "margin": 12.862502943102125,
+          "heldMs": 149492,
+          "durationMs": 165668
+        },
+        {
+          "atMs": 1794485260541,
+          "ref": "00000d",
+          "reason": "substantial-challenger",
+          "margin": 26.604648555953826,
+          "heldMs": 165668,
+          "durationMs": 29700
+        },
+        {
+          "atMs": 1794485290241,
+          "ref": "00000e",
+          "reason": "fresher-challenger",
+          "margin": 8.73548897400893,
+          "heldMs": 29700,
+          "durationMs": 104943
+        },
+        {
+          "atMs": 1794485395184,
+          "ref": "00000f",
+          "reason": "fresher-challenger",
+          "margin": 3.2144683355992356,
+          "heldMs": 104943,
+          "durationMs": 285090
+        },
+        {
+          "atMs": 1794485680274,
+          "ref": "000002",
+          "reason": "departing-handover",
+          "margin": 17.02643672356147,
+          "heldMs": 285090,
+          "durationMs": 59975
+        },
+        {
+          "atMs": 1794485740249,
+          "ref": "000011",
+          "reason": "substantial-challenger",
+          "margin": 23.894876823894293,
+          "heldMs": 59975,
+          "durationMs": 119318
+        },
+        {
+          "atMs": 1794485859567,
+          "ref": "000002",
+          "reason": "departing-handover",
+          "margin": 9.597864684538816,
+          "heldMs": 119318,
+          "durationMs": 45361
+        },
+        {
+          "atMs": 1794485904928,
+          "ref": "000001",
+          "reason": "confirmed-challenger",
+          "margin": 8.127197710819104,
+          "heldMs": 45361,
+          "durationMs": 164819
+        },
+        {
+          "atMs": 1794486069747,
+          "ref": "000013",
+          "reason": "departing-handover",
+          "margin": 12.930902650117677,
+          "heldMs": 164819,
+          "durationMs": 45453
+        },
+        {
+          "atMs": 1794486115200,
+          "ref": "000001",
+          "reason": "primary-ineligible",
+          "margin": 0,
+          "heldMs": 0,
+          "durationMs": 15548
+        },
+        {
+          "atMs": 1794486130748,
+          "ref": "000002",
+          "reason": "primary-ineligible",
+          "margin": 0,
+          "heldMs": 0,
+          "durationMs": 74138
+        },
+        {
+          "atMs": 1794486204886,
+          "ref": "000001",
+          "reason": "substantial-challenger",
+          "margin": 29.511471229560552,
+          "heldMs": 74138,
+          "durationMs": 195376
+        },
+        {
+          "atMs": 1794486445415,
+          "ref": "000016",
+          "reason": "acquired",
+          "margin": 0,
+          "heldMs": 0,
+          "durationMs": 314993
+        },
+        {
+          "atMs": 1794486760408,
+          "ref": "000019",
+          "reason": "confirmed-challenger",
+          "margin": 8.110616339220485,
+          "heldMs": 314993,
+          "durationMs": 29573
+        },
+        {
+          "atMs": 1794486805367,
+          "ref": "00001a",
+          "reason": "acquired",
+          "margin": 0,
+          "heldMs": 0,
+          "durationMs": 42177
+        }
+      ],
+      "completedSelectionsUnder1s": [],
+      "completedSelectionsUnder15s": [],
+      "minimumCompletedSelectionMs": 15548,
+      "decisions": [
+        {
+          "atMs": 1794484450514,
+          "ref": "000001",
+          "reason": "acquired"
+        },
+        {
+          "atMs": 1794484465624,
+          "ref": "000001",
+          "reason": "minimum-hold"
+        },
+        {
+          "atMs": 1794484495378,
+          "ref": "000001",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794484524941,
+          "ref": "000005",
+          "reason": "substantial-challenger"
+        },
+        {
+          "atMs": 1794484540362,
+          "ref": "000005",
+          "reason": "minimum-hold"
+        },
+        {
+          "atMs": 1794484569457,
+          "ref": "000005",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484570344,
+          "ref": "000005",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794484600364,
+          "ref": "000001",
+          "reason": "primary-ineligible"
+        },
+        {
+          "atMs": 1794484629672,
+          "ref": "000001",
+          "reason": "minimum-hold"
+        },
+        {
+          "atMs": 1794484629959,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484660185,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484690300,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484705376,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484735193,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484750230,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484765325,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484780391,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484810392,
+          "ref": "000001",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794484825443,
+          "ref": "000009",
+          "reason": "substantial-challenger"
+        },
+        {
+          "atMs": 1794484854890,
+          "ref": "000009",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484885571,
+          "ref": "000009",
+          "reason": "hysteresis"
+        },
+        {
+          "atMs": 1794484915165,
+          "ref": "000009",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484930337,
+          "ref": "000009",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794484945381,
+          "ref": "000001",
+          "reason": "departing-handover"
+        },
+        {
+          "atMs": 1794484974872,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794484990359,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485019873,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485035224,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485065176,
+          "ref": "000001",
+          "reason": "hysteresis"
+        },
+        {
+          "atMs": 1794485094873,
+          "ref": "00000b",
+          "reason": "departing-handover"
+        },
+        {
+          "atMs": 1794485109940,
+          "ref": "00000b",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485125362,
+          "ref": "00000b",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485155214,
+          "ref": "00000b",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485170227,
+          "ref": "00000b",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485199904,
+          "ref": "00000b",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485215312,
+          "ref": "00000b",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485245127,
+          "ref": "00000b",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794485260541,
+          "ref": "00000d",
+          "reason": "substantial-challenger"
+        },
+        {
+          "atMs": 1794485290241,
+          "ref": "00000e",
+          "reason": "fresher-challenger"
+        },
+        {
+          "atMs": 1794485305412,
+          "ref": "00000e",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485320340,
+          "ref": "00000e",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485349930,
+          "ref": "00000e",
+          "reason": "hysteresis"
+        },
+        {
+          "atMs": 1794485365356,
+          "ref": "00000e",
+          "reason": "hysteresis"
+        },
+        {
+          "atMs": 1794485395184,
+          "ref": "00000f",
+          "reason": "fresher-challenger"
+        },
+        {
+          "atMs": 1794485425010,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485440594,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485470288,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485500338,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485530275,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485559917,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485575371,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485605188,
+          "ref": "00000f",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485634894,
+          "ref": "00000f",
+          "reason": "hysteresis"
+        },
+        {
+          "atMs": 1794485649916,
+          "ref": "00000f",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794485680274,
+          "ref": "000002",
+          "reason": "departing-handover"
+        },
+        {
+          "atMs": 1794485709713,
+          "ref": "000002",
+          "reason": "minimum-hold"
+        },
+        {
+          "atMs": 1794485710393,
+          "ref": "000002",
+          "reason": "minimum-hold"
+        },
+        {
+          "atMs": 1794485740249,
+          "ref": "000011",
+          "reason": "substantial-challenger"
+        },
+        {
+          "atMs": 1794485770257,
+          "ref": "000011",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485799929,
+          "ref": "000011",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485814987,
+          "ref": "000011",
+          "reason": "hysteresis"
+        },
+        {
+          "atMs": 1794485830274,
+          "ref": "000011",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794485859567,
+          "ref": "000002",
+          "reason": "departing-handover"
+        },
+        {
+          "atMs": 1794485860213,
+          "ref": "000002",
+          "reason": "minimum-hold"
+        },
+        {
+          "atMs": 1794485875291,
+          "ref": "000002",
+          "reason": "minimum-hold"
+        },
+        {
+          "atMs": 1794485903729,
+          "ref": "000002",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794485904928,
+          "ref": "000001",
+          "reason": "confirmed-challenger"
+        },
+        {
+          "atMs": 1794485919928,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485935262,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485965220,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794485995331,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486024927,
+          "ref": "000001",
+          "reason": "hysteresis"
+        },
+        {
+          "atMs": 1794486040394,
+          "ref": "000001",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794486069747,
+          "ref": "000013",
+          "reason": "departing-handover"
+        },
+        {
+          "atMs": 1794486070877,
+          "ref": "000013",
+          "reason": "minimum-hold"
+        },
+        {
+          "atMs": 1794486085300,
+          "ref": "000013",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486100836,
+          "ref": "000013",
+          "reason": "minimum-hold"
+        },
+        {
+          "atMs": 1794486115200,
+          "ref": "000001",
+          "reason": "primary-ineligible"
+        },
+        {
+          "atMs": 1794486115207,
+          "ref": "000001",
+          "reason": "minimum-hold"
+        },
+        {
+          "atMs": 1794486130363,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486130748,
+          "ref": "000002",
+          "reason": "primary-ineligible"
+        },
+        {
+          "atMs": 1794486144912,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486160287,
+          "ref": "000002",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486190238,
+          "ref": "000002",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794486204886,
+          "ref": "000001",
+          "reason": "substantial-challenger"
+        },
+        {
+          "atMs": 1794486220532,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486235542,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486265307,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486280012,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486294957,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486310435,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486325207,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486340390,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486355254,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486385271,
+          "ref": "000001",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486400262,
+          "ref": null,
+          "reason": "no-candidates"
+        },
+        {
+          "atMs": 1794486414956,
+          "ref": null,
+          "reason": "no-candidates"
+        },
+        {
+          "atMs": 1794486430295,
+          "ref": null,
+          "reason": "no-candidates"
+        },
+        {
+          "atMs": 1794486445415,
+          "ref": "000016",
+          "reason": "acquired"
+        },
+        {
+          "atMs": 1794486475309,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486490230,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486504936,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486520245,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486535242,
+          "ref": "000016",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794486565224,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486580242,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486609925,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486625225,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486639997,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486655306,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486670313,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486699952,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486715299,
+          "ref": "000016",
+          "reason": "retained-best"
+        },
+        {
+          "atMs": 1794486744948,
+          "ref": "000016",
+          "reason": "confirming"
+        },
+        {
+          "atMs": 1794486760408,
+          "ref": "000019",
+          "reason": "confirmed-challenger"
+        },
+        {
+          "atMs": 1794486789981,
+          "ref": null,
+          "reason": "no-candidates"
+        },
+        {
+          "atMs": 1794486805367,
+          "ref": "00001a",
+          "reason": "acquired"
+        },
+        {
+          "atMs": 1794486835489,
+          "ref": "00001a",
+          "reason": "retained-best"
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "Capture is bounded to32 aircraft per frame and240 frames; check evidence truncation.",
+    "Initial diagnostic capture may omit timer-only R03 changes; replay/captured agreement is reported.",
+    "Pseudonymous identifiers can alter exact score-tie ordering; no visibility/audibility ground truth.",
+    "Live route availability measures apply to the observed976210d app; final corrections have unit/browser and recorded-geometry replay evidence."
+  ]
+}

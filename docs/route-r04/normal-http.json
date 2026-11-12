@@ -1,0 +1,54 @@
+{
+  "atMs": 1794486792307,
+  "url": "https://perch-aero-pane-stage3a-9722tqll8-mml3.vercel.app",
+  "checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "sameHost": true,
+      "applicationError": null,
+      "frozenCases": null,
+      "hasTrialPolicy": false
+    },
+    {
+      "path": "/api/session",
+      "status": 401,
+      "sameHost": true,
+      "applicationError": "authentication-required",
+      "frozenCases": null,
+      "hasTrialPolicy": false
+    },
+    {
+      "path": "/api/aircraft",
+      "status": 401,
+      "sameHost": true,
+      "applicationError": "authentication-required",
+      "frozenCases": null,
+      "hasTrialPolicy": false
+    },
+    {
+      "path": "/api/enrichment",
+      "status": 401,
+      "sameHost": true,
+      "applicationError": "authentication-required",
+      "frozenCases": null,
+      "hasTrialPolicy": false
+    },
+    {
+      "path": "/api/route-review",
+      "status": 200,
+      "sameHost": true,
+      "applicationError": null,
+      "frozenCases": 16,
+      "hasTrialPolicy": false
+    },
+    {
+      "path": "/api/route-research",
+      "status": 404,
+      "sameHost": true,
+      "applicationError": "not-found",
+      "frozenCases": null,
+      "hasTrialPolicy": false
+    }
+  ]
+}

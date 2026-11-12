@@ -1,0 +1,20 @@
+{
+  "atMs": 1794487229145,
+  "url": "https://perch-aero-pane-stage3a.vercel.app",
+  "htmlMatchesVerifiedImmutable": true,
+  "htmlSha256": "d042187fee37d533c2370d324db38a576429dd4898a827e29b1b059cc7fef665",
+  "checks": [
+    {
+      "path": "/api/session",
+      "status": 401
+    },
+    {
+      "path": "/api/aircraft",
+      "status": 401
+    },
+    {
+      "path": "/api/enrichment",
+      "status": 401
+    }
+  ]
+}

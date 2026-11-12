@@ -1,0 +1,150 @@
+{
+  "checkedAtMs": 1794487859659,
+  "trialFlagEnabled": false,
+  "observationElevationPreviewOnly": [
+    "preview"
+  ],
+  "credentialRecordIdsUnchanged": true,
+  "records": [
+    {
+      "key": "AERO_OBSERVATION_ELEVATION_M",
+      "id": "sKgvm391gtrcZVV5",
+      "type": "sensitive",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1794483310776
+    },
+    {
+      "key": "AERO_ROUTE_RESEARCH",
+      "id": "ZBCOgEPd5fNb6HmI",
+      "type": "plain",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1794423853107
+    },
+    {
+      "key": "AERO_ROUTE_DIAGNOSTICS",
+      "id": "41oPclDE2v4YWApt",
+      "type": "plain",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1794484348866
+    },
+    {
+      "key": "AERO_PIN_PEPPER",
+      "id": "8xIzr1n50glLNbtW",
+      "type": "sensitive",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1793872365965
+    },
+    {
+      "key": "AERO_PIN_VERIFIER",
+      "id": "TfWwajxOS8tDhbFT",
+      "type": "sensitive",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1793872365965
+    },
+    {
+      "key": "AERO_SESSION_SECRET",
+      "id": "RZYyIg8vOXf8iqV1",
+      "type": "sensitive",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1793872365965
+    },
+    {
+      "key": "AERO_OBSERVATION_LATITUDE",
+      "id": "BsFTBupYNMW46jUq",
+      "type": "sensitive",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1793872365965
+    },
+    {
+      "key": "AERO_OBSERVATION_LONGITUDE",
+      "id": "XT2bhrLCXECahAaH",
+      "type": "sensitive",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1793872365965
+    },
+    {
+      "key": "AERO_LIVE_ENABLED",
+      "id": "ckYVCvjR8I1IA4S1",
+      "type": "plain",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1793872365965
+    },
+    {
+      "key": "AERO_ENRICHMENT_ENABLED",
+      "id": "AFZWClpK88DDZ0Pd",
+      "type": "plain",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1793872365965
+    },
+    {
+      "key": "AERO_POLL_INTERVAL_MS",
+      "id": "0KggsWezZvmGBIWM",
+      "type": "plain",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1793872365965
+    },
+    {
+      "key": "VITE_AERO_LIVE_ENABLED",
+      "id": "Eo2EiEJhEcF1PSLP",
+      "type": "plain",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1793872365965
+    },
+    {
+      "key": "VITE_AERO_ENRICHMENT_ENABLED",
+      "id": "qKbnVnXS6RuUficc",
+      "type": "plain",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1793872365965
+    },
+    {
+      "key": "VITE_AERO_APPLIANCE_ENABLED",
+      "id": "SYvgerSBHlgvfkpE",
+      "type": "plain",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1793872365965
+    },
+    {
+      "key": "VITE_AERO_DIAGNOSTICS_ENABLED",
+      "id": "BZ9Uk2yCIZuBLAtk",
+      "type": "plain",
+      "target": [
+        "preview"
+      ],
+      "updatedAt": 1793872365965
+    }
+  ],
+  "unchangedSincePredeploymentCheckExceptTrialToggle": true,
+  "authorisedChanges": [
+    "Added server-only observation elevation to Preview",
+    "Temporary diagnostic flag enabled for trial then disabled"
+  ]
+}

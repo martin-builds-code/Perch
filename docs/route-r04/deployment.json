@@ -1,0 +1,60 @@
+{
+  "team": "mml3",
+  "project": "perch-aero-pane-stage3a",
+  "projectId": "prj_QU4OICxi2QPrRtK0JS83ZTaLP9bW",
+  "baseline": "c230231d262b345418680c900a397acf76c826a0",
+  "acceptedR03": "f2c1b3b3f0d4ede916f57994fccae3551717fc01",
+  "trial": {
+    "deploymentId": "dpl_HC2peUqYW62kxdg3qvgsFKVZCqb7",
+    "sourceCommit": "976210d284fae705b5245fec5a01e75eb2afcfd8",
+    "url": "https://perch-aero-pane-stage3a-f140b0kzw-mml3.vercel.app",
+    "target": null,
+    "environment": "preview",
+    "verifiedSourceFiles": 91,
+    "lease": {
+      "enabled": true,
+      "startedAtMs": 1794484295726,
+      "expiresAtMs": 1794487295726
+    },
+    "disabledForFutureBuilds": true,
+    "collectorAutoStopMinutes": 40
+  },
+  "final": {
+    "deploymentId": "dpl_7M3TTFYhqCpQAoxvzXesEDEga93G",
+    "sourceCommit": "f558718c659b7e928617abc5266345b88919f9ab",
+    "url": "https://perch-aero-pane-stage3a-9722tqll8-mml3.vercel.app",
+    "target": null,
+    "environment": "preview",
+    "readyState": "READY",
+    "verifiedSourceFiles": 94,
+    "pinRequired": true,
+    "stableUrl": "https://perch-aero-pane-stage3a.vercel.app/?mode=live"
+  },
+  "rollback": {
+    "r03Deployment": "dpl_EaUA4ivFT47CmeTdqD7XFT1XMeBp",
+    "url": "https://perch-aero-pane-stage3a-ea6xgvpnm-mml3.vercel.app/?mode=live"
+  },
+  "householdProduction": [
+    {
+      "id": "dpl_2WX2Y9nNudmiJCtYMcAaMofp7Yzw",
+      "sha": "8031a76d0a24e1bb4ba88febd87d9a9c15ff2166",
+      "target": "production",
+      "created": 1793724032134
+    }
+  ],
+  "operationalChanges": {
+    "observationElevation": "User-provided31 metres, server-only Preview configuration",
+    "coordinatesChanged": false,
+    "credentialsChanged": false,
+    "gitIntegrationChanged": false,
+    "productionModified": false
+  },
+  "authCleanup": {
+    "flagDisabledForFutureBuilds": true,
+    "oldTrialExpiredAnd401Verified": true,
+    "absoluteExpiryMs": 1794487295726,
+    "verifiedAtMs": 1794487299978,
+    "collectorExitedNormally": true,
+    "normalPinBrowserVerified": true
+  }
+}
