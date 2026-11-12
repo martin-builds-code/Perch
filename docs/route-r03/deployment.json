@@ -1,0 +1,73 @@
+{
+  "sourceCommit": "f2c1b3b3f0d4ede916f57994fccae3551717fc01",
+  "branch": "stage-3a-display-redesign",
+  "deploymentId": "dpl_EaUA4ivFT47CmeTdqD7XFT1XMeBp",
+  "projectId": "prj_QU4OICxi2QPrRtK0JS83ZTaLP9bW",
+  "projectName": "perch-aero-pane-stage3a",
+  "team": "mml3",
+  "status": "READY",
+  "apiTarget": null,
+  "environment": "preview",
+  "previewProof": "Exact frozen review API runtime guard passed: project ID and VERCEL_ENV preview, target absent/preview.",
+  "sourceFilesVerified": 84,
+  "stableUrl": "https://perch-aero-pane-stage3a.vercel.app/?mode=live",
+  "immutableUrl": "https://perch-aero-pane-stage3a-ea6xgvpnm-mml3.vercel.app/?mode=live",
+  "priorDeploymentRetained": "dpl_D2ULPmHj4PxTnVKxztLQERsXtdhk",
+  "priorImmutableUrl": "https://perch-aero-pane-stage3a-kibned6ue-mml3.vercel.app/?mode=live",
+  "onlyReassignedAlias": "perch-aero-pane-stage3a.vercel.app",
+  "configurationMetadataUnchanged": true,
+  "pinRetained": true,
+  "bypassEnabled": false,
+  "liveObservation": {
+    "performed": false,
+    "reason": "No legitimate authenticated live session available; no new bypass authorized or activated.",
+    "aircraftDetected": null,
+    "primaryAircraft": null,
+    "providerRequestsObserved": null,
+    "routeDisplayTime": null
+  },
+  "hostedFixtures": {
+    "historicalAircraftPerScene": [
+      1,
+      3
+    ],
+    "viewports": [
+      "1024x768",
+      "1024x624"
+    ],
+    "realProviderRequests": 0,
+    "screenshotsSynthetic": true
+  },
+  "tests": {
+    "unit": 315,
+    "compiledHttp": 29,
+    "failures": 0,
+    "lint": "pass",
+    "typescript": "pass",
+    "standardBuild": "pass",
+    "allFeaturesSafari15Build": "pass",
+    "inheritedLayouts": 51,
+    "r01": "pass",
+    "secondary": "pass",
+    "diagnostics": "pass",
+    "r03Layouts": 6
+  },
+  "replay": {
+    "recent": 7,
+    "historical": 7,
+    "notFound": 2,
+    "qualifiedPairs": 14,
+    "total": 16,
+    "counterfactualOnly": true
+  },
+  "household": {
+    "unchanged": true,
+    "id": "dpl_2WX2Y9nNudmiJCtYMcAaMofp7Yzw",
+    "commit": "8031a76d0a24e1bb4ba88febd87d9a9c15ff2166"
+  },
+  "cleanup": {
+    "taskServersStopped": 3,
+    "baselineWorktreeRemoved": true,
+    "noCollectorStarted": true
+  }
+}

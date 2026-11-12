@@ -6,6 +6,9 @@ export interface LiveAircraft {
   description: string | null;
   typeCode: string | null;
   distanceKm: number | null;
+  bearingDegrees?: number | null;
+  heightAboveObserverKm?: number | null;
+  heightReference?: 'geometric' | 'barometric';
   barometricAltitudeFt: number | null;
   geometricAltitudeFt: number | null;
   onGround: boolean | null;

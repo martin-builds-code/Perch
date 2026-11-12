@@ -1,0 +1,46 @@
+ℹ tests 256
+ℹ pass 256
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+PASS emitted Node ESM HTTP handler: disabled
+PASS emitted Node ESM HTTP handler: production
+PASS emitted Node ESM HTTP handler: populated
+PASS emitted Node ESM HTTP handler: empty
+PASS emitted Node ESM HTTP handler: failure
+PASS emitted Node ESM HTTP handler: timing
+PASS emitted Node ESM HTTP handler: refresh-failure
+PASS emitted Node ESM enrichment HTTP handler: disabled
+PASS emitted Node ESM enrichment HTTP handler: production
+PASS emitted Node ESM enrichment HTTP handler: populated
+PASS emitted Node ESM enrichment HTTP handler: route
+PASS emitted Node ESM enrichment HTTP handler: empty
+PASS emitted Node ESM enrichment HTTP handler: failure
+PASS emitted Node ESM enrichment HTTP handler: local-gate
+PASS emitted Node ESM enrichment HTTP handler: in-flight
+PASS emitted Node ESM enrichment HTTP handler: rate-seconds
+PASS emitted Node ESM enrichment HTTP handler: rate-date
+PASS emitted Node ESM enrichment HTTP handler: coalesced-rate
+PASS emitted Node ESM enrichment HTTP handler: unexpected
+
+browser:
+PASS R01 real-browser mock: 30s deferrals, 90s secondary constraint, primary priority, shutdown and full upstream protection at both iPad viewports.
+
+lint:
+> aero-pane-prototype@0.1.0 lint
+> eslint .
+
+build:
+> aero-pane-prototype@0.1.0 build
+> tsc -b && npm run check:server && vite build
+> aero-pane-prototype@0.1.0 check:server
+> tsc -p tsconfig.server.json
+✓ built in 786ms
+
+feature-build:
+> aero-pane-prototype@0.1.0 build
+> tsc -b && npm run check:server && vite build
+> aero-pane-prototype@0.1.0 check:server
+> tsc -p tsconfig.server.json
+✓ built in 904ms

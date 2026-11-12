@@ -1,44 +1,470 @@
-import { useEffect, useState } from 'react';
-import type { ReactNode } from 'react';
-import type { Aircraft,Scene } from './simulation';
-import { altitude,distance,offsetFor,sceneAt,scenes } from './simulation';
-const stateLabels={available:'Demo data available',delayed:'Data delayed · last sample',unavailable:'Data unavailable',standby:'No aircraft reported'};
-function Airport({airport,label}:{airport:Aircraft['origin'];label:string}){
- return <div className="airport"><span className="eyebrow">{label}</span><div className="airport-code">{airport?.code??'—'}</div><div className="airport-name" title={airport?.name}>{airport?.name??'Not reported'}</div></div>;
+import { useEffect, useRef, useState } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
+import type { Aircraft, Scene } from './simulation';
+import { altitude, distance, offsetFor, sceneAt, scenes } from './simulation';
+import {
+  aircraftName,
+  artworkFor,
+  artworkManifest,
+  prominentRoute,
+  secondaryName,
+} from './artwork';
+import type { ArtworkManifest } from './artwork';
+import { AircraftArtwork } from './AircraftArtwork';
+
+const stateLabels = {
+  available: 'Demo data available',
+  delayed: 'Data delayed · last sample',
+  unavailable: 'Data unavailable',
+  standby: 'No aircraft reported',
+};
+function Brand() {
+  return (
+    <div className="brand" aria-label="Aero Pane">
+      <span className="brand-symbol" aria-hidden="true">
+        A<span>·</span>P
+      </span>
+      <span>Aero Pane</span>
+    </div>
+  );
 }
-function Primary({aircraft,delayed}:{aircraft:Aircraft;delayed:boolean}){
- return <article className={'primary '+(delayed?'is-delayed':'')} aria-label="Primary aircraft">
-  <div className="primary-top"><div className={"identity "+((aircraft.model?.length??0)>28?"extended-identity":"")}><div className="eyebrow accent">{delayed?'Last reported aircraft':'Featured aircraft'}</div><h1><span className="manufacturer">{aircraft.manufacturer??(aircraft.model?'':'Unidentified')}</span><span className={'model '+(aircraft.model===null?'unknown':aircraft.model.length>28?'very-long-model':aircraft.model.length>15?'long-model':'')}>{aircraft.model??'Aircraft'}</span></h1><div className="operator">{aircraft.operator??'Operator not reported'}</div></div>
-   <div className="measurements"><div className="metric altitude"><span className="eyebrow">Barometric altitude</span><div className={"metric-value "+(aircraft.altitudeFt===null?"missing-value":"")}>{altitude(aircraft.altitudeFt)}<span className="unit">{aircraft.altitudeFt===null?'':'ft'}</span></div></div><div className="metric"><span className="eyebrow">Horizontal distance</span><div className={"metric-value distance "+(aircraft.distanceKm===null?"missing-value":"")}>{distance(aircraft.distanceKm)}<span className="unit">{aircraft.distanceKm===null?'':'km'}</span></div></div></div>
-  </div>
-  <div className="primary-bottom"><div className="route"><Airport airport={aircraft.origin} label="From"/><div className="route-connection" aria-hidden="true"><span/><svg viewBox="0 0 24 24"><path d="m21 12-7-3V4.5a2 2 0 0 0-4 0V9l-7 3v2l7-1v5l-2 1v2l4-1 4 1v-2l-2-1v-5l7 1z"/></svg><span/></div><Airport airport={aircraft.destination} label="To"/></div>
-   <dl className="details"><div><dt>Callsign</dt><dd>{aircraft.callsign??'Not reported'}</dd></div><div><dt>Registration</dt><dd>{aircraft.registration??'Not reported'}</dd></div><div><dt>Direction</dt><dd>{aircraft.direction??'Not reported'}</dd></div></dl>
-  </div>
- </article>;
+function Route({
+  aircraft,
+  composed,
+}: {
+  aircraft: Aircraft;
+  composed: boolean;
+}) {
+  const route = prominentRoute(aircraft);
+  const element = useRef<HTMLDivElement>(null);
+  const from = route?.from,
+    to = route?.to;
+  useEffect(() => {
+    const root = element.current;
+    if (!composed || !root || !document.fonts) return;
+    let disposed = false;
+    // Fit only genuinely wide three-letter combinations, using the loaded font.
+    // No polling/render loop; route changes, font readiness and resize suffice.
+    const fitCodes = () => {
+      if (disposed) return;
+      const wanted = parseFloat(
+        getComputedStyle(root).getPropertyValue('--route-code-size'),
+      );
+      const ctx = document.createElement('canvas').getContext('2d');
+      if (!ctx || !Number.isFinite(wanted)) return;
+      ctx.font = `600 ${wanted}px "Barlow Condensed"`;
+      let size = wanted;
+      for (const code of root.querySelectorAll<HTMLElement>('.airport-code')) {
+        if (code.clientWidth <= 2) return; // Hidden/portrait: refit on resize.
+        const width = ctx.measureText(code.textContent || '').width + 3;
+        size = Math.min(size, (wanted * (code.clientWidth - 2)) / width);
+      }
+      root.style.setProperty('--route-fitted-size', `${Math.floor(size)}px`);
+    };
+    void document.fonts.ready.then(fitCodes);
+    window.addEventListener('resize', fitCodes);
+    return () => {
+      disposed = true;
+      window.removeEventListener('resize', fitCodes);
+      root.style.removeProperty('--route-fitted-size');
+    };
+  }, [composed, from, to]);
+  return route ? (
+    <div ref={element} className="route" aria-label="Reported route">
+      <div className="airport">
+        <span className="eyebrow">From</span>
+        <div className="airport-code">{route.from}</div>
+        <div className="airport-name" title={route.fromName}>
+          {route.fromName || ''}
+        </div>
+      </div>
+      <span className="route-connection" aria-hidden="true">
+        →
+      </span>
+      <div className="airport">
+        <span className="eyebrow">To</span>
+        <div className="airport-code">{route.to}</div>
+        <div className="airport-name" title={route.toName}>
+          {route.toName || ''}
+        </div>
+      </div>
+      {aircraft.routeHistorical && <span className="historical-route primary-history">Historical route</span>}
+    </div>
+  ) : null;
 }
-function Secondary({aircraft}:{aircraft:Aircraft}){
- return <article className="nearby-aircraft"><div className="nearby-identity"><h3>{[aircraft.manufacturer,aircraft.model].filter(Boolean).join(' ')||'Unidentified aircraft'}</h3><p>{aircraft.operator??'Operator not reported'}<span className="secondary-id">{aircraft.callsign??aircraft.registration??'Identifier not reported'}</span></p></div><div className={"nearby-value "+(aircraft.altitudeFt===null?"missing-value":"")}><span>{altitude(aircraft.altitudeFt)}<small> {aircraft.altitudeFt===null?'':'ft'}</small></span><small>Barometric</small></div><div className={"nearby-value nearby-distance "+(aircraft.distanceKm===null?"missing-value":"")}><span>{distance(aircraft.distanceKm)}<small> {aircraft.distanceKm===null?'':'km'}</small></span><small>Horizontal</small></div></article>;
+function Details({ aircraft }: { aircraft: Aircraft }) {
+  const operator = aircraft.operator?.trim() || null;
+  const entries = [
+    ['operator', 'Operator', operator],
+    ['direction', 'Direction', aircraft.direction],
+    ['callsign', 'Callsign', aircraft.callsign],
+  ].filter(([, , value]) => value);
+  const operatorLength = operator?.length ?? 0;
+  return entries.length ? (
+    <dl
+      className={
+        'details' +
+        (operatorLength ? ' has-operator' : '') +
+        (operatorLength > 22 ? ' long-operator' : '') +
+        (operatorLength > 45 ? ' extended-operator' : '')
+      }
+    >
+      {entries.map(([key, label, value]) => (
+        <div key={key} className={'detail-' + key}>
+          <dt>{label}</dt>
+          <dd title={value!}>{value}</dd>
+        </div>
+      ))}
+    </dl>
+  ) : null;
 }
-function Empty({unavailable,live=false}:{unavailable:boolean;live?:boolean}){
- return <section className="empty-state"><div className="empty-mark" aria-hidden="true">{unavailable?'—':'·'}</div><div className="eyebrow accent">{unavailable?(live?'Data interruption':'Simulated interruption'):'A quiet moment'}</div><h1>{unavailable?'Aircraft data unavailable':'Nothing nearby right now'}</h1><p>{unavailable?'Aircraft information is hidden until data returns.':(live?'No aircraft are currently reported within 15 km.':'No relevant aircraft are reported in this demonstration.')}<br/>{unavailable?(live?'The display will retry automatically.':'The demonstration will recover automatically.'):'The display will update automatically.'}</p></section>;
+function Measurements({ aircraft }: { aircraft: Aircraft }) {
+  return (
+    <aside className="measurements" aria-label="Aircraft measurements">
+      <div className="metric altitude">
+        <span className="eyebrow">Barometric altitude</span>
+        <div
+          className={
+            'metric-value ' +
+            (aircraft.altitudeFt === null ? 'missing-value' : '')
+          }
+        >
+          {aircraft.altitudeFt === null ? '—' : altitude(aircraft.altitudeFt)}
+          {aircraft.altitudeFt !== null ? (
+            <span className="unit">ft</span>
+          ) : null}
+        </div>
+        {aircraft.altitudeFt === null ? (
+          <span className="measurement-note">Not reported</span>
+        ) : null}
+      </div>
+      <div className="metric">
+        <span className="eyebrow">Horizontal distance</span>
+        <div
+          className={
+            'metric-value distance ' +
+            (aircraft.distanceKm === null ? 'missing-value' : '')
+          }
+        >
+          {aircraft.distanceKm === null ? '—' : distance(aircraft.distanceKm)}
+          {aircraft.distanceKm !== null ? (
+            <span className="unit">km</span>
+          ) : null}
+        </div>
+        {aircraft.distanceKm === null ? (
+          <span className="measurement-note">Not reported</span>
+        ) : null}
+      </div>
+    </aside>
+  );
 }
-export function Display({scene,index=0,live=false,enrichmentCredit=false,diagnosticControl}:{scene:Scene;index?:number;live?:boolean;enrichmentCredit?:boolean;diagnosticControl?:ReactNode}){
- return <><div className="portrait-note">Aero Pane<span>Please turn your iPad to landscape.</span><small>{live?'Live · adsb.fi':'DEMO — SIMULATED DATA'}</small></div><main className="display" data-scene={scene.id}>
-  <div className="content" key={scene.id}>{scene.primary?<Primary aircraft={scene.primary} delayed={scene.state==='delayed'}/>:<Empty unavailable={scene.state==='unavailable'} live={live}/>}
-   <section className="nearby" aria-label="Other nearby aircraft"><div className="section-heading"><h2>Also nearby</h2><span>{scene.secondary.length?`${scene.secondary.length} other aircraft`:'No other aircraft reported'}</span></div><div className="nearby-list">{scene.secondary.length?scene.secondary.map(aircraft=><Secondary key={aircraft.id} aircraft={aircraft}/>):<p className="nearby-empty">{scene.state==='unavailable'?'Nearby aircraft will appear when data returns.':(live?'No other current aircraft reported.':'Clear skies in this demo snapshot.')}</p>}</div></section>
-  </div>
-  <footer><div className={'status-line status-'+scene.state}><span className="status-dot"/><span>{live?`Live · ${scene.state==='available'?'Current aircraft information':stateLabels[scene.state]}`:scene.state==='available'?stateLabels[scene.state]:`Demo · ${stateLabels[scene.state]}`}</span></div>{live ? diagnosticControl : null}{live?<span className="provider-credit"><a className="provider-credit" href="https://adsb.fi/">Aircraft data: adsb.fi</a>{enrichmentCredit?<> · <a className="provider-credit" href="https://hexdb.io/">HexDB</a></>:null}</span>:<div className="scene-track" aria-label={'Demo scenario: '+scene.label}>{scenes.map((s,i)=><span key={s.id} className={i===index?'selected':''}/>)}<span className="scene-label">{scene.label}</span></div>}</footer>
- </main></>;
+function Primary({
+  aircraft,
+  delayed,
+  manifest,
+}: {
+  aircraft: Aircraft;
+  delayed: boolean;
+  manifest: ArtworkManifest;
+}) {
+  const name = aircraftName(aircraft);
+  const asset = artworkFor(aircraft, manifest);
+  const frame = asset?.frame ?? asset;
+  // One placement for each artwork/viewport, independent of secondary count,
+  // route availability, and the height of the expanded information region.
+  const composition = asset?.placement;
+  const placement =
+    composition && frame
+      ? ({
+          '--regular-art-width': `${composition.regular.width}px`,
+          '--regular-art-left': `${composition.regular.left}px`,
+          '--regular-art-top': `${composition.regular.top}px`,
+          '--compact-art-width': `${composition.compact.width}px`,
+          '--compact-art-left': `${composition.compact.left}px`,
+          '--compact-art-top': `${composition.compact.top}px`,
+          '--art-ratio': frame.height / frame.width,
+        } as CSSProperties)
+      : undefined;
+  return (
+    <section
+      className="primary-presentation"
+      key={aircraft.id}
+      data-aircraft-id={aircraft.id}
+    >
+      <header className="aircraft-header">
+        <h1
+          className={
+            name.length > 34
+              ? 'extended-name'
+              : name.length > 24
+                ? 'long-name'
+                : ''
+          }
+          title={name}
+        >
+          <span className="manufacturer">
+            {aircraft.manufacturer ? aircraft.manufacturer + ' ' : ''}
+          </span>
+          <span className="model">
+            {aircraft.model ||
+              (aircraft.manufacturer ? 'Aircraft' : 'Unidentified aircraft')}
+          </span>
+        </h1>
+        <Brand />
+      </header>
+      <article
+        className={'primary ' + (delayed ? 'is-delayed' : '')}
+        aria-label="Primary aircraft"
+      >
+        <div
+          className={
+            'aircraft-card ' +
+            (prominentRoute(aircraft) ? 'has-route' : 'no-route') +
+            (composition ? ' composed-artwork' : '')
+          }
+          style={placement}
+        >
+          <div className="flight-info">
+            <Route aircraft={aircraft} composed={!!composition} />
+          </div>
+          <AircraftArtwork asset={asset} />
+          <Details aircraft={aircraft} />
+        </div>
+        <Measurements aircraft={aircraft} />
+      </article>
+    </section>
+  );
 }
-export default function App(){
- const [offset]=useState(()=>offsetFor(new URLSearchParams(window.location.search).get('scene')));
- const [active,setActive]=useState(()=>sceneAt(offset));
- useEffect(()=>{
-  const start=performance.now();let timer:ReturnType<typeof setTimeout>|undefined;let disposed=false;
-  function update(){if(disposed)return;if(timer!==undefined)clearTimeout(timer);const next=sceneAt(offset+performance.now()-start);setActive(next);timer=setTimeout(update,Math.max(20,next.remaining));}
-  function resize(){document.documentElement.style.setProperty('--app-height',`${window.visualViewport?.height??window.innerHeight}px`);}
-  update();resize();window.addEventListener('resize',resize);window.visualViewport?.addEventListener('resize',resize);document.addEventListener('visibilitychange',update);
-  return()=>{disposed=true;if(timer!==undefined)clearTimeout(timer);window.removeEventListener('resize',resize);window.visualViewport?.removeEventListener('resize',resize);document.removeEventListener('visibilitychange',update);};
- },[offset]);
- return <Display scene={active.scene} index={active.index}/>;
+function Secondary({ aircraft }: { aircraft: Aircraft }) {
+  const fullName = aircraftName(aircraft);
+  const name = secondaryName(aircraft);
+  const route = prominentRoute(aircraft);
+  return (
+    <article
+      className={
+        'nearby-aircraft ' +
+        (route && aircraft.routeHistorical ? 'historical-secondary ' : '') +
+        (name.length > 24 ? 'long-secondary ' : '') +
+        (!route ? 'no-secondary-route' : '')
+      }
+    >
+      <div className="nearby-identity">
+        <h3 title={fullName}>{name}</h3>
+      </div>
+      {route ? (
+        <div className="secondary-route" aria-label="Reported route">
+          <span>{route.from}</span>
+          <span className="secondary-arrow" aria-hidden="true">
+            →
+          </span>
+          <span>{route.to}</span>
+          {aircraft.routeHistorical && <span className="historical-route secondary-history">Historical route</span>}
+        </div>
+      ) : null}
+      <div className="secondary-metrics">
+        <div
+          className={
+            'nearby-value ' +
+            (aircraft.altitudeFt === null ? 'missing-value' : '')
+          }
+        >
+          <span>
+            {aircraft.altitudeFt === null ? '—' : altitude(aircraft.altitudeFt)}
+            <small>{aircraft.altitudeFt === null ? '' : ' ft'}</small>
+          </span>
+        </div>
+        <div
+          className={
+            'nearby-value nearby-distance ' +
+            (aircraft.distanceKm === null ? 'missing-value' : '')
+          }
+        >
+          <span>
+            {aircraft.distanceKm === null ? '—' : distance(aircraft.distanceKm)}
+            <small>{aircraft.distanceKm === null ? '' : ' km'}</small>
+          </span>
+        </div>
+      </div>
+    </article>
+  );
+}
+function Empty({ unavailable }: { unavailable: boolean }) {
+  return unavailable ? (
+    <section className="empty-state unavailable-airspace" role="status">
+      <span className="outage-mark" aria-hidden="true">
+        —
+      </span>
+      <h1>Aircraft data unavailable</h1>
+      <p>The display will retry automatically.</p>
+    </section>
+  ) : (
+    <section
+      className="empty-state healthy-airspace"
+      role="status"
+      aria-label="No aircraft nearby"
+    >
+      <div className="radar" aria-hidden="true">
+        <span />
+      </div>
+      <span className="visually-hidden">
+        No aircraft nearby. Tracking remains active.
+      </span>
+    </section>
+  );
+}
+export function Display({
+  scene,
+  index = 0,
+  live = false,
+  enrichmentCredit = false,
+  diagnosticControl,
+  manifest = artworkManifest,
+}: {
+  scene: Scene;
+  index?: number;
+  live?: boolean;
+  enrichmentCredit?: boolean;
+  diagnosticControl?: ReactNode;
+  manifest?: ArtworkManifest;
+}) {
+  const secondaries = scene.primary
+    ? scene.secondary
+        .filter(
+          (a, i, all) =>
+            a.id !== scene.primary!.id &&
+            all.findIndex((x) => x.id === a.id) === i,
+        )
+        .slice(0, 3)
+    : [];
+  return (
+    <>
+      <div className="portrait-note">
+        Aero Pane<span>Please turn your iPad to landscape.</span>
+        <small>{live ? 'Live · adsb.fi' : 'DEMO — SIMULATED DATA'}</small>
+      </div>
+      <main
+        className={
+          'display ' +
+          (secondaries.length
+            ? 'has-nearby'
+            : scene.primary
+              ? 'single-aircraft'
+              : 'empty-airspace')
+        }
+        data-scene={scene.id}
+      >
+        <div className="content">
+          {scene.primary ? (
+            <Primary
+              key={scene.primary.id}
+              aircraft={scene.primary}
+              delayed={scene.state === 'delayed'}
+              manifest={manifest}
+            />
+          ) : (
+            <Empty
+              unavailable={
+                scene.state === 'unavailable' || scene.state === 'delayed'
+              }
+            />
+          )}
+          {secondaries.length ? (
+            <section className="nearby" aria-label="Other nearby aircraft">
+              <div className="section-heading">
+                <h2>Also nearby</h2>
+                <span>{secondaries.length} other aircraft</span>
+              </div>
+              <div
+                className="nearby-list"
+                style={
+                  { '--nearby-count': secondaries.length } as CSSProperties
+                }
+              >
+                {secondaries.map((aircraft) => (
+                  <Secondary key={aircraft.id} aircraft={aircraft} />
+                ))}
+              </div>
+            </section>
+          ) : null}
+        </div>
+        <footer>
+          <div className={'status-line status-' + scene.state}>
+            <span className="status-dot" />
+            <span>
+              {live
+                ? `Live · ${scene.state === 'available' ? 'Current aircraft information' : stateLabels[scene.state]}`
+                : scene.state === 'available'
+                  ? stateLabels[scene.state]
+                  : `Demo · ${stateLabels[scene.state]}`}
+            </span>
+          </div>
+          {live ? diagnosticControl : null}
+          {live ? (
+            <span className="provider-credit">
+              <a className="provider-credit" href="https://adsb.fi/">
+                Aircraft data: adsb.fi
+              </a>
+              {enrichmentCredit ? (
+                <>
+                  {' '}
+                  ·{' '}
+                  <a className="provider-credit" href="https://hexdb.io/">
+                    HexDB
+                  </a>
+                </>
+              ) : null}
+            </span>
+          ) : (
+            <div
+              className="scene-track"
+              aria-label={'Demo scenario: ' + scene.label}
+            >
+              {scenes.map((s, i) => (
+                <span key={s.id} className={i === index ? 'selected' : ''} />
+              ))}
+              <span className="scene-label">{scene.label}</span>
+            </div>
+          )}
+        </footer>
+      </main>
+    </>
+  );
+}
+
+export default function App() {
+  const [offset] = useState(() =>
+    offsetFor(new URLSearchParams(window.location.search).get('scene')),
+  );
+  const [active, setActive] = useState(() => sceneAt(offset));
+  useEffect(() => {
+    const start = performance.now();
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    let disposed = false;
+    function update() {
+      if (disposed) return;
+      if (timer !== undefined) clearTimeout(timer);
+      const next = sceneAt(offset + performance.now() - start);
+      setActive(next);
+      timer = setTimeout(update, Math.max(20, next.remaining));
+    }
+    function resize() {
+      document.documentElement.style.setProperty(
+        '--app-height',
+        `${window.visualViewport?.height ?? window.innerHeight}px`,
+      );
+    }
+    update();
+    resize();
+    window.addEventListener('resize', resize);
+    window.visualViewport?.addEventListener('resize', resize);
+    document.addEventListener('visibilitychange', update);
+    return () => {
+      disposed = true;
+      if (timer !== undefined) clearTimeout(timer);
+      window.removeEventListener('resize', resize);
+      window.visualViewport?.removeEventListener('resize', resize);
+      document.removeEventListener('visibilitychange', update);
+    };
+  }, [offset]);
+  return <Display scene={active.scene} index={active.index} />;
 }

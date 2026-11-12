@@ -1,0 +1,4559 @@
+{
+  "baseline": "451fec765bb1dd92bf9ae0d8ae254de5badedef1",
+  "alphaThreshold": 8,
+  "textGuardPx": 6,
+  "results": [
+    {
+      "variant": "A",
+      "scenario": "a380",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "passed": true,
+      "layout": {
+        "card": {
+          "x": 20,
+          "y": 100,
+          "width": 691.5625,
+          "height": 430
+        },
+        "fixed": {
+          ".aircraft-header": {
+            "x": 20,
+            "y": 12,
+            "width": 984,
+            "height": 76
+          },
+          ".primary": {
+            "x": 20,
+            "y": 100,
+            "width": 984,
+            "height": 430
+          },
+          ".details": {
+            "x": 20,
+            "y": 472.3125,
+            "width": 691.5625,
+            "height": 57.6875
+          },
+          ".measurements": {
+            "x": 723.5625,
+            "y": 100,
+            "width": 280.4375,
+            "height": 430
+          },
+          ".nearby": {
+            "x": 20,
+            "y": 550,
+            "width": 984,
+            "height": 184
+          },
+          "footer": {
+            "x": 20,
+            "y": 734,
+            "width": 984,
+            "height": 24
+          }
+        },
+        "layers": [
+          {
+            "class": "cloud-layer",
+            "source": "/aircraft/aeropane_cloud_strip_01.webp",
+            "rect": {
+              "x": 48,
+              "y": 410,
+              "width": 600,
+              "height": 62
+            },
+            "frame": {
+              "x": 81,
+              "y": 111,
+              "width": 1638,
+              "height": 172
+            },
+            "collisions": 0,
+            "hitText": []
+          },
+          {
+            "class": "aircraft-layer",
+            "source": "/aircraft/aeropane_a380_baseline.webp",
+            "rect": {
+              "x": 48,
+              "y": 212,
+              "width": 600,
+              "height": 296.421875
+            },
+            "frame": {
+              "x": 11,
+              "y": 16,
+              "width": 1763,
+              "height": 871
+            },
+            "collisions": 0,
+            "hitText": []
+          }
+        ],
+        "codeFonts": [
+          80,
+          80
+        ],
+        "airportFonts": [
+          17,
+          17
+        ],
+        "codeOverflow": false,
+        "metricOverflow": false,
+        "metricFonts": [
+          98,
+          98
+        ],
+        "scroll": false,
+        "text": [
+          {
+            "text": "From",
+            "left": 36,
+            "top": 104,
+            "right": 82.1875,
+            "bottom": 135
+          },
+          {
+            "text": "AMS",
+            "left": 36,
+            "top": 123,
+            "right": 165.25,
+            "bottom": 211
+          },
+          {
+            "text": "Amsterdam Schiphol",
+            "left": 36,
+            "top": 203,
+            "right": 140.375,
+            "bottom": 236
+          },
+          {
+            "text": "Amsterdam Schiphol",
+            "left": 36,
+            "top": 220.546875,
+            "right": 116.40625,
+            "bottom": 254.09375
+          },
+          {
+            "text": "→",
+            "left": 180,
+            "top": 145,
+            "right": 224,
+            "bottom": 189
+          },
+          {
+            "text": "To",
+            "left": 216,
+            "top": 104,
+            "right": 244,
+            "bottom": 135
+          },
+          {
+            "text": "MAN",
+            "left": 216,
+            "top": 123,
+            "right": 351.09375,
+            "bottom": 211
+          },
+          {
+            "text": "Manchester",
+            "left": 256.28125,
+            "top": 203,
+            "right": 360,
+            "bottom": 234.546875
+          },
+          {
+            "text": "Northline Air",
+            "left": 36,
+            "top": 250.09375,
+            "right": 173.078125,
+            "bottom": 285.09375
+          },
+          {
+            "text": "Callsign",
+            "left": 36,
+            "top": 474.3125,
+            "right": 90.390625,
+            "bottom": 501.3125
+          },
+          {
+            "text": "FIXTURE 01",
+            "left": 36,
+            "top": 491.3125,
+            "right": 145.03125,
+            "bottom": 522
+          },
+          {
+            "text": "Registration",
+            "left": 259.1875,
+            "top": 474.3125,
+            "right": 335.4375,
+            "bottom": 501.3125
+          },
+          {
+            "text": "DEMO-ART",
+            "left": 259.1875,
+            "top": 491.3125,
+            "right": 365.28125,
+            "bottom": 522
+          },
+          {
+            "text": "Direction",
+            "left": 482.375,
+            "top": 474.3125,
+            "right": 542.1875,
+            "bottom": 501.3125
+          },
+          {
+            "text": "North-east",
+            "left": 482.375,
+            "top": 491.3125,
+            "right": 583.609375,
+            "bottom": 522
+          }
+        ],
+        "bounds": {
+          "left": 20,
+          "top": 100,
+          "right": 711.5625,
+          "bottom": 530
+        }
+      }
+    },
+    {
+      "variant": "A",
+      "scenario": "wide-codes",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "passed": true,
+      "layout": {
+        "card": {
+          "x": 20,
+          "y": 100,
+          "width": 691.5625,
+          "height": 430
+        },
+        "fixed": {
+          ".aircraft-header": {
+            "x": 20,
+            "y": 12,
+            "width": 984,
+            "height": 76
+          },
+          ".primary": {
+            "x": 20,
+            "y": 100,
+            "width": 984,
+            "height": 430
+          },
+          ".details": {
+            "x": 20,
+            "y": 472.3125,
+            "width": 691.5625,
+            "height": 57.6875
+          },
+          ".measurements": {
+            "x": 723.5625,
+            "y": 100,
+            "width": 280.4375,
+            "height": 430
+          },
+          ".nearby": {
+            "x": 20,
+            "y": 550,
+            "width": 984,
+            "height": 184
+          },
+          "footer": {
+            "x": 20,
+            "y": 734,
+            "width": 984,
+            "height": 24
+          }
+        },
+        "layers": [
+          {
+            "class": "cloud-layer",
+            "source": "/aircraft/aeropane_cloud_strip_01.webp",
+            "rect": {
+              "x": 48,
+              "y": 410,
+              "width": 600,
+              "height": 62
+            },
+            "frame": {
+              "x": 81,
+              "y": 111,
+              "width": 1638,
+              "height": 172
+            },
+            "collisions": 0,
+            "hitText": []
+          },
+          {
+            "class": "aircraft-layer",
+            "source": "/aircraft/aeropane_a380_baseline.webp",
+            "rect": {
+              "x": 48,
+              "y": 212,
+              "width": 600,
+              "height": 296.421875
+            },
+            "frame": {
+              "x": 11,
+              "y": 16,
+              "width": 1763,
+              "height": 871
+            },
+            "collisions": 0,
+            "hitText": []
+          }
+        ],
+        "codeFonts": [
+          70,
+          70
+        ],
+        "airportFonts": [
+          17,
+          17
+        ],
+        "codeOverflow": false,
+        "metricOverflow": false,
+        "metricFonts": [
+          98,
+          98
+        ],
+        "scroll": false,
+        "text": [
+          {
+            "text": "From",
+            "left": 36,
+            "top": 104,
+            "right": 82.1875,
+            "bottom": 135
+          },
+          {
+            "text": "MMW",
+            "left": 36,
+            "top": 123,
+            "right": 172.875,
+            "bottom": 201.5
+          },
+          {
+            "text": "Wide-code origin fixture",
+            "left": 36,
+            "top": 193.5,
+            "right": 136.4375,
+            "bottom": 226.5
+          },
+          {
+            "text": "Wide-code origin fixture",
+            "left": 36,
+            "top": 211.046875,
+            "right": 149.734375,
+            "bottom": 244.59375
+          },
+          {
+            "text": "→",
+            "left": 180,
+            "top": 140.25,
+            "right": 224,
+            "bottom": 184.25
+          },
+          {
+            "text": "To",
+            "left": 216,
+            "top": 104,
+            "right": 244,
+            "bottom": 135
+          },
+          {
+            "text": "WWK",
+            "left": 216,
+            "top": 123,
+            "right": 357.5,
+            "bottom": 201.5
+          },
+          {
+            "text": "Wide-code destination fixture",
+            "left": 259.5625,
+            "top": 193.5,
+            "right": 360,
+            "bottom": 226.5
+          },
+          {
+            "text": "Wide-code destination fixture",
+            "left": 259.21875,
+            "top": 211.046875,
+            "right": 360,
+            "bottom": 244.59375
+          },
+          {
+            "text": "Wide-code destination fixture",
+            "left": 296.203125,
+            "top": 230.59375,
+            "right": 360,
+            "bottom": 244.59375
+          },
+          {
+            "text": "Northline Air",
+            "left": 36,
+            "top": 240.59375,
+            "right": 173.078125,
+            "bottom": 275.59375
+          },
+          {
+            "text": "Callsign",
+            "left": 36,
+            "top": 474.3125,
+            "right": 90.390625,
+            "bottom": 501.3125
+          },
+          {
+            "text": "FIXTURE 01",
+            "left": 36,
+            "top": 491.3125,
+            "right": 145.03125,
+            "bottom": 522
+          },
+          {
+            "text": "Registration",
+            "left": 259.1875,
+            "top": 474.3125,
+            "right": 335.4375,
+            "bottom": 501.3125
+          },
+          {
+            "text": "DEMO-ART",
+            "left": 259.1875,
+            "top": 491.3125,
+            "right": 365.28125,
+            "bottom": 522
+          },
+          {
+            "text": "Direction",
+            "left": 482.375,
+            "top": 474.3125,
+            "right": 542.1875,
+            "bottom": 501.3125
+          },
+          {
+            "text": "North-east",
+            "left": 482.375,
+            "top": 491.3125,
+            "right": 583.609375,
+            "bottom": 522
+          }
+        ],
+        "bounds": {
+          "left": 20,
+          "top": 100,
+          "right": 711.5625,
+          "bottom": 530
+        }
+      }
+    },
+    {
+      "variant": "A",
+      "scenario": "long-airports",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "passed": true,
+      "layout": {
+        "card": {
+          "x": 20,
+          "y": 100,
+          "width": 691.5625,
+          "height": 430
+        },
+        "fixed": {
+          ".aircraft-header": {
+            "x": 20,
+            "y": 12,
+            "width": 984,
+            "height": 76
+          },
+          ".primary": {
+            "x": 20,
+            "y": 100,
+            "width": 984,
+            "height": 430
+          },
+          ".details": {
+            "x": 20,
+            "y": 472.3125,
+            "width": 691.5625,
+            "height": 57.6875
+          },
+          ".measurements": {
+            "x": 723.5625,
+            "y": 100,
+            "width": 280.4375,
+            "height": 430
+          },
+          ".nearby": {
+            "x": 20,
+            "y": 550,
+            "width": 984,
+            "height": 184
+          },
+          "footer": {
+            "x": 20,
+            "y": 734,
+            "width": 984,
+            "height": 24
+          }
+        },
+        "layers": [
+          {
+            "class": "cloud-layer",
+            "source": "/aircraft/aeropane_cloud_strip_01.webp",
+            "rect": {
+              "x": 48,
+              "y": 410,
+              "width": 600,
+              "height": 62
+            },
+            "frame": {
+              "x": 81,
+              "y": 111,
+              "width": 1638,
+              "height": 172
+            },
+            "collisions": 0,
+            "hitText": []
+          },
+          {
+            "class": "aircraft-layer",
+            "source": "/aircraft/aeropane_a380_baseline.webp",
+            "rect": {
+              "x": 48,
+              "y": 212,
+              "width": 600,
+              "height": 296.421875
+            },
+            "frame": {
+              "x": 11,
+              "y": 16,
+              "width": 1763,
+              "height": 871
+            },
+            "collisions": 0,
+            "hitText": []
+          }
+        ],
+        "codeFonts": [
+          80,
+          80
+        ],
+        "airportFonts": [
+          17,
+          17
+        ],
+        "codeOverflow": false,
+        "metricOverflow": false,
+        "metricFonts": [
+          98,
+          98
+        ],
+        "scroll": false,
+        "text": [
+          {
+            "text": "From",
+            "left": 36,
+            "top": 104,
+            "right": 82.1875,
+            "bottom": 135
+          },
+          {
+            "text": "DUB",
+            "left": 36,
+            "top": 123,
+            "right": 163.25,
+            "bottom": 211
+          },
+          {
+            "text": "Dublin International Airport Passenger Terminal and Regional Hub",
+            "left": 36,
+            "top": 203,
+            "right": 100.703125,
+            "bottom": 236
+          },
+          {
+            "text": "Dublin International Airport Passenger Terminal and Regional Hub",
+            "left": 36,
+            "top": 220.546875,
+            "right": 149.859375,
+            "bottom": 254.09375
+          },
+          {
+            "text": "Dublin International Airport Passenger Terminal and Regional Hub",
+            "left": 36,
+            "top": 240.09375,
+            "right": 105.3125,
+            "bottom": 254.09375
+          },
+          {
+            "text": "→",
+            "left": 180,
+            "top": 145,
+            "right": 224,
+            "bottom": 189
+          },
+          {
+            "text": "To",
+            "left": 216,
+            "top": 104,
+            "right": 244,
+            "bottom": 135
+          },
+          {
+            "text": "MAN",
+            "left": 216,
+            "top": 123,
+            "right": 351.09375,
+            "bottom": 211
+          },
+          {
+            "text": "Manchester International Airport Passenger Terminal and Airfield",
+            "left": 256.28125,
+            "top": 203,
+            "right": 360,
+            "bottom": 236
+          },
+          {
+            "text": "Manchester International Airport Passenger Terminal and Airfield",
+            "left": 246.140625,
+            "top": 220.546875,
+            "right": 360,
+            "bottom": 254.09375
+          },
+          {
+            "text": "Manchester International Airport Passenger Terminal and Airfield",
+            "left": 290.6875,
+            "top": 240.09375,
+            "right": 360,
+            "bottom": 254.09375
+          },
+          {
+            "text": "Northline Air",
+            "left": 36,
+            "top": 250.09375,
+            "right": 173.078125,
+            "bottom": 285.09375
+          },
+          {
+            "text": "Callsign",
+            "left": 36,
+            "top": 474.3125,
+            "right": 90.390625,
+            "bottom": 501.3125
+          },
+          {
+            "text": "FIXTURE 01",
+            "left": 36,
+            "top": 491.3125,
+            "right": 145.03125,
+            "bottom": 522
+          },
+          {
+            "text": "Registration",
+            "left": 259.1875,
+            "top": 474.3125,
+            "right": 335.4375,
+            "bottom": 501.3125
+          },
+          {
+            "text": "DEMO-ART",
+            "left": 259.1875,
+            "top": 491.3125,
+            "right": 365.28125,
+            "bottom": 522
+          },
+          {
+            "text": "Direction",
+            "left": 482.375,
+            "top": 474.3125,
+            "right": 542.1875,
+            "bottom": 501.3125
+          },
+          {
+            "text": "North-east",
+            "left": 482.375,
+            "top": 491.3125,
+            "right": 583.609375,
+            "bottom": 522
+          }
+        ],
+        "bounds": {
+          "left": 20,
+          "top": 100,
+          "right": 711.5625,
+          "bottom": 530
+        }
+      }
+    },
+    {
+      "variant": "B",
+      "scenario": "a380",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "passed": true,
+      "layout": {
+        "card": {
+          "x": 20,
+          "y": 100,
+          "width": 691.5625,
+          "height": 430
+        },
+        "fixed": {
+          ".aircraft-header": {
+            "x": 20,
+            "y": 12,
+            "width": 984,
+            "height": 76
+          },
+          ".primary": {
+            "x": 20,
+            "y": 100,
+            "width": 984,
+            "height": 430
+          },
+          ".details": {
+            "x": 20,
+            "y": 472.3125,
+            "width": 691.5625,
+            "height": 57.6875
+          },
+          ".measurements": {
+            "x": 723.5625,
+            "y": 100,
+            "width": 280.4375,
+            "height": 430
+          },
+          ".nearby": {
+            "x": 20,
+            "y": 550,
+            "width": 984,
+            "height": 184
+          },
+          "footer": {
+            "x": 20,
+            "y": 734,
+            "width": 984,
+            "height": 24
+          }
+        },
+        "layers": [
+          {
+            "class": "cloud-layer",
+            "source": "/aircraft/aeropane_cloud_strip_01.webp",
+            "rect": {
+              "x": 28,
+              "y": 410,
+              "width": 640,
+              "height": 62
+            },
+            "frame": {
+              "x": 81,
+              "y": 111,
+              "width": 1638,
+              "height": 172
+            },
+            "collisions": 0,
+            "hitText": []
+          },
+          {
+            "class": "aircraft-layer",
+            "source": "/aircraft/aeropane_a380_baseline.webp",
+            "rect": {
+              "x": 28,
+              "y": 200,
+              "width": 640,
+              "height": 316.1875
+            },
+            "frame": {
+              "x": 11,
+              "y": 16,
+              "width": 1763,
+              "height": 871
+            },
+            "collisions": 0,
+            "hitText": []
+          }
+        ],
+        "codeFonts": [
+          76,
+          76
+        ],
+        "airportFonts": [
+          17,
+          17
+        ],
+        "codeOverflow": false,
+        "metricOverflow": false,
+        "metricFonts": [
+          98,
+          98
+        ],
+        "scroll": false,
+        "text": [
+          {
+            "text": "From",
+            "left": 36,
+            "top": 104,
+            "right": 82.1875,
+            "bottom": 135
+          },
+          {
+            "text": "AMS",
+            "left": 36,
+            "top": 123,
+            "right": 159.53125,
+            "bottom": 207.1875
+          },
+          {
+            "text": "Amsterdam Schiphol",
+            "left": 36,
+            "top": 199.1875,
+            "right": 140.375,
+            "bottom": 232.1875
+          },
+          {
+            "text": "Amsterdam Schiphol",
+            "left": 36,
+            "top": 216.734375,
+            "right": 116.40625,
+            "bottom": 250.28125
+          },
+          {
+            "text": "→",
+            "left": 176,
+            "top": 143.09375,
+            "right": 220,
+            "bottom": 187.09375
+          },
+          {
+            "text": "To",
+            "left": 212,
+            "top": 104,
+            "right": 240,
+            "bottom": 135
+          },
+          {
+            "text": "MAN",
+            "left": 212,
+            "top": 123,
+            "right": 341.078125,
+            "bottom": 207.1875
+          },
+          {
+            "text": "Manchester",
+            "left": 248.28125,
+            "top": 199.1875,
+            "right": 352,
+            "bottom": 230.734375
+          },
+          {
+            "text": "Northline Air",
+            "left": 36,
+            "top": 246.28125,
+            "right": 173.078125,
+            "bottom": 281.28125
+          },
+          {
+            "text": "Callsign",
+            "left": 36,
+            "top": 474.3125,
+            "right": 90.390625,
+            "bottom": 501.3125
+          },
+          {
+            "text": "FIXTURE 01",
+            "left": 36,
+            "top": 491.3125,
+            "right": 145.03125,
+            "bottom": 522
+          },
+          {
+            "text": "Registration",
+            "left": 259.1875,
+            "top": 474.3125,
+            "right": 335.4375,
+            "bottom": 501.3125
+          },
+          {
+            "text": "DEMO-ART",
+            "left": 259.1875,
+            "top": 491.3125,
+            "right": 365.28125,
+            "bottom": 522
+          },
+          {
+            "text": "Direction",
+            "left": 482.375,
+            "top": 474.3125,
+            "right": 542.1875,
+            "bottom": 501.3125
+          },
+          {
+            "text": "North-east",
+            "left": 482.375,
+            "top": 491.3125,
+            "right": 583.609375,
+            "bottom": 522
+          }
+        ],
+        "bounds": {
+          "left": 20,
+          "top": 100,
+          "right": 711.5625,
+          "bottom": 530
+        }
+      }
+    },
+    {
+      "variant": "B",
+      "scenario": "wide-codes",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "passed": true,
+      "layout": {
+        "card": {
+          "x": 20,
+          "y": 100,
+          "width": 691.5625,
+          "height": 430
+        },
+        "fixed": {
+          ".aircraft-header": {
+            "x": 20,
+            "y": 12,
+            "width": 984,
+            "height": 76
+          },
+          ".primary": {
+            "x": 20,
+            "y": 100,
+            "width": 984,
+            "height": 430
+          },
+          ".details": {
+            "x": 20,
+            "y": 472.3125,
+            "width": 691.5625,
+            "height": 57.6875
+          },
+          ".measurements": {
+            "x": 723.5625,
+            "y": 100,
+            "width": 280.4375,
+            "height": 430
+          },
+          ".nearby": {
+            "x": 20,
+            "y": 550,
+            "width": 984,
+            "height": 184
+          },
+          "footer": {
+            "x": 20,
+            "y": 734,
+            "width": 984,
+            "height": 24
+          }
+        },
+        "layers": [
+          {
+            "class": "cloud-layer",
+            "source": "/aircraft/aeropane_cloud_strip_01.webp",
+            "rect": {
+              "x": 28,
+              "y": 410,
+              "width": 640,
+              "height": 62
+            },
+            "frame": {
+              "x": 81,
+              "y": 111,
+              "width": 1638,
+              "height": 172
+            },
+            "collisions": 0,
+            "hitText": []
+          },
+          {
+            "class": "aircraft-layer",
+            "source": "/aircraft/aeropane_a380_baseline.webp",
+            "rect": {
+              "x": 28,
+              "y": 200,
+              "width": 640,
+              "height": 316.1875
+            },
+            "frame": {
+              "x": 11,
+              "y": 16,
+              "width": 1763,
+              "height": 871
+            },
+            "collisions": 0,
+            "hitText": []
+          }
+        ],
+        "codeFonts": [
+          68,
+          68
+        ],
+        "airportFonts": [
+          17,
+          17
+        ],
+        "codeOverflow": false,
+        "metricOverflow": false,
+        "metricFonts": [
+          98,
+          98
+        ],
+        "scroll": false,
+        "text": [
+          {
+            "text": "From",
+            "left": 36,
+            "top": 104,
+            "right": 82.1875,
+            "bottom": 135
+          },
+          {
+            "text": "MMW",
+            "left": 36,
+            "top": 123,
+            "right": 169.390625,
+            "bottom": 199.59375
+          },
+          {
+            "text": "Wide-code origin fixture",
+            "left": 36,
+            "top": 191.59375,
+            "right": 136.4375,
+            "bottom": 224.59375
+          },
+          {
+            "text": "Wide-code origin fixture",
+            "left": 36,
+            "top": 209.140625,
+            "right": 149.734375,
+            "bottom": 242.6875
+          },
+          {
+            "text": "→",
+            "left": 176,
+            "top": 139.296875,
+            "right": 220,
+            "bottom": 183.296875
+          },
+          {
+            "text": "To",
+            "left": 212,
+            "top": 104,
+            "right": 240,
+            "bottom": 135
+          },
+          {
+            "text": "WWK",
+            "left": 212,
+            "top": 123,
+            "right": 349.890625,
+            "bottom": 199.59375
+          },
+          {
+            "text": "Wide-code destination fixture",
+            "left": 251.5625,
+            "top": 191.59375,
+            "right": 352,
+            "bottom": 224.59375
+          },
+          {
+            "text": "Wide-code destination fixture",
+            "left": 251.21875,
+            "top": 209.140625,
+            "right": 352,
+            "bottom": 242.6875
+          },
+          {
+            "text": "Wide-code destination fixture",
+            "left": 288.203125,
+            "top": 228.6875,
+            "right": 352,
+            "bottom": 242.6875
+          },
+          {
+            "text": "Northline Air",
+            "left": 36,
+            "top": 238.6875,
+            "right": 173.078125,
+            "bottom": 273.6875
+          },
+          {
+            "text": "Callsign",
+            "left": 36,
+            "top": 474.3125,
+            "right": 90.390625,
+            "bottom": 501.3125
+          },
+          {
+            "text": "FIXTURE 01",
+            "left": 36,
+            "top": 491.3125,
+            "right": 145.03125,
+            "bottom": 522
+          },
+          {
+            "text": "Registration",
+            "left": 259.1875,
+            "top": 474.3125,
+            "right": 335.4375,
+            "bottom": 501.3125
+          },
+          {
+            "text": "DEMO-ART",
+            "left": 259.1875,
+            "top": 491.3125,
+            "right": 365.28125,
+            "bottom": 522
+          },
+          {
+            "text": "Direction",
+            "left": 482.375,
+            "top": 474.3125,
+            "right": 542.1875,
+            "bottom": 501.3125
+          },
+          {
+            "text": "North-east",
+            "left": 482.375,
+            "top": 491.3125,
+            "right": 583.609375,
+            "bottom": 522
+          }
+        ],
+        "bounds": {
+          "left": 20,
+          "top": 100,
+          "right": 711.5625,
+          "bottom": 530
+        }
+      }
+    },
+    {
+      "variant": "B",
+      "scenario": "long-airports",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "passed": true,
+      "layout": {
+        "card": {
+          "x": 20,
+          "y": 100,
+          "width": 691.5625,
+          "height": 430
+        },
+        "fixed": {
+          ".aircraft-header": {
+            "x": 20,
+            "y": 12,
+            "width": 984,
+            "height": 76
+          },
+          ".primary": {
+            "x": 20,
+            "y": 100,
+            "width": 984,
+            "height": 430
+          },
+          ".details": {
+            "x": 20,
+            "y": 472.3125,
+            "width": 691.5625,
+            "height": 57.6875
+          },
+          ".measurements": {
+            "x": 723.5625,
+            "y": 100,
+            "width": 280.4375,
+            "height": 430
+          },
+          ".nearby": {
+            "x": 20,
+            "y": 550,
+            "width": 984,
+            "height": 184
+          },
+          "footer": {
+            "x": 20,
+            "y": 734,
+            "width": 984,
+            "height": 24
+          }
+        },
+        "layers": [
+          {
+            "class": "cloud-layer",
+            "source": "/aircraft/aeropane_cloud_strip_01.webp",
+            "rect": {
+              "x": 28,
+              "y": 410,
+              "width": 640,
+              "height": 62
+            },
+            "frame": {
+              "x": 81,
+              "y": 111,
+              "width": 1638,
+              "height": 172
+            },
+            "collisions": 0,
+            "hitText": []
+          },
+          {
+            "class": "aircraft-layer",
+            "source": "/aircraft/aeropane_a380_baseline.webp",
+            "rect": {
+              "x": 28,
+              "y": 200,
+              "width": 640,
+              "height": 316.1875
+            },
+            "frame": {
+              "x": 11,
+              "y": 16,
+              "width": 1763,
+              "height": 871
+            },
+            "collisions": 0,
+            "hitText": []
+          }
+        ],
+        "codeFonts": [
+          76,
+          76
+        ],
+        "airportFonts": [
+          17,
+          17
+        ],
+        "codeOverflow": false,
+        "metricOverflow": false,
+        "metricFonts": [
+          98,
+          98
+        ],
+        "scroll": false,
+        "text": [
+          {
+            "text": "From",
+            "left": 36,
+            "top": 104,
+            "right": 82.1875,
+            "bottom": 135
+          },
+          {
+            "text": "DUB",
+            "left": 36,
+            "top": 123,
+            "right": 157.640625,
+            "bottom": 207.1875
+          },
+          {
+            "text": "Dublin International Airport Passenger Terminal and Regional Hub",
+            "left": 36,
+            "top": 199.1875,
+            "right": 100.703125,
+            "bottom": 232.1875
+          },
+          {
+            "text": "Dublin International Airport Passenger Terminal and Regional Hub",
+            "left": 36,
+            "top": 216.734375,
+            "right": 149.859375,
+            "bottom": 250.28125
+          },
+          {
+            "text": "Dublin International Airport Passenger Terminal and Regional Hub",
+            "left": 36,
+            "top": 236.28125,
+            "right": 105.3125,
+            "bottom": 250.28125
+          },
+          {
+            "text": "→",
+            "left": 176,
+            "top": 143.09375,
+            "right": 220,
+            "bottom": 187.09375
+          },
+          {
+            "text": "To",
+            "left": 212,
+            "top": 104,
+            "right": 240,
+            "bottom": 135
+          },
+          {
+            "text": "MAN",
+            "left": 212,
+            "top": 123,
+            "right": 341.078125,
+            "bottom": 207.1875
+          },
+          {
+            "text": "Manchester International Airport Passenger Terminal and Airfield",
+            "left": 248.28125,
+            "top": 199.1875,
+            "right": 352,
+            "bottom": 232.1875
+          },
+          {
+            "text": "Manchester International Airport Passenger Terminal and Airfield",
+            "left": 238.140625,
+            "top": 216.734375,
+            "right": 352,
+            "bottom": 250.28125
+          },
+          {
+            "text": "Manchester International Airport Passenger Terminal and Airfield",
+            "left": 282.6875,
+            "top": 236.28125,
+            "right": 352,
+            "bottom": 250.28125
+          },
+          {
+            "text": "Northline Air",
+            "left": 36,
+            "top": 246.28125,
+            "right": 173.078125,
+            "bottom": 281.28125
+          },
+          {
+            "text": "Callsign",
+            "left": 36,
+            "top": 474.3125,
+            "right": 90.390625,
+            "bottom": 501.3125
+          },
+          {
+            "text": "FIXTURE 01",
+            "left": 36,
+            "top": 491.3125,
+            "right": 145.03125,
+            "bottom": 522
+          },
+          {
+            "text": "Registration",
+            "left": 259.1875,
+            "top": 474.3125,
+            "right": 335.4375,
+            "bottom": 501.3125
+          },
+          {
+            "text": "DEMO-ART",
+            "left": 259.1875,
+            "top": 491.3125,
+            "right": 365.28125,
+            "bottom": 522
+          },
+          {
+            "text": "Direction",
+            "left": 482.375,
+            "top": 474.3125,
+            "right": 542.1875,
+            "bottom": 501.3125
+          },
+          {
+            "text": "North-east",
+            "left": 482.375,
+            "top": 491.3125,
+            "right": 583.609375,
+            "bottom": 522
+          }
+        ],
+        "bounds": {
+          "left": 20,
+          "top": 100,
+          "right": 711.5625,
+          "bottom": 530
+        }
+      }
+    },
+    {
+      "variant": "C",
+      "scenario": "a380",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "passed": true,
+      "layout": {
+        "card": {
+          "x": 20,
+          "y": 100,
+          "width": 691.5625,
+          "height": 430
+        },
+        "fixed": {
+          ".aircraft-header": {
+            "x": 20,
+            "y": 12,
+            "width": 984,
+            "height": 76
+          },
+          ".primary": {
+            "x": 20,
+            "y": 100,
+            "width": 984,
+            "height": 430
+          },
+          ".details": {
+            "x": 20,
+            "y": 472.3125,
+            "width": 691.5625,
+            "height": 57.6875
+          },
+          ".measurements": {
+            "x": 723.5625,
+            "y": 100,
+            "width": 280.4375,
+            "height": 430
+          },
+          ".nearby": {
+            "x": 20,
+            "y": 550,
+            "width": 984,
+            "height": 184
+          },
+          "footer": {
+            "x": 20,
+            "y": 734,
+            "width": 984,
+            "height": 24
+          }
+        },
+        "layers": [
+          {
+            "class": "cloud-layer",
+            "source": "/aircraft/aeropane_cloud_strip_01.webp",
+            "rect": {
+              "x": 70,
+              "y": 410,
+              "width": 536,
+              "height": 62
+            },
+            "frame": {
+              "x": 81,
+              "y": 111,
+              "width": 1638,
+              "height": 172
+            },
+            "collisions": 0,
+            "hitText": []
+          },
+          {
+            "class": "aircraft-layer",
+            "source": "/aircraft/aeropane_a380_baseline.webp",
+            "rect": {
+              "x": 70,
+              "y": 236,
+              "width": 536,
+              "height": 264.796875
+            },
+            "frame": {
+              "x": 11,
+              "y": 16,
+              "width": 1763,
+              "height": 871
+            },
+            "collisions": 0,
+            "hitText": []
+          }
+        ],
+        "codeFonts": [
+          94,
+          94
+        ],
+        "airportFonts": [
+          17,
+          17
+        ],
+        "codeOverflow": false,
+        "metricOverflow": false,
+        "metricFonts": [
+          98,
+          98
+        ],
+        "scroll": false,
+        "text": [
+          {
+            "text": "From",
+            "left": 36,
+            "top": 104,
+            "right": 82.1875,
+            "bottom": 135
+          },
+          {
+            "text": "AMS",
+            "left": 36,
+            "top": 123,
+            "right": 185.234375,
+            "bottom": 224.296875
+          },
+          {
+            "text": "Amsterdam Schiphol",
+            "left": 36,
+            "top": 216.296875,
+            "right": 140.375,
+            "bottom": 249.296875
+          },
+          {
+            "text": "Amsterdam Schiphol",
+            "left": 36,
+            "top": 233.84375,
+            "right": 116.40625,
+            "bottom": 267.390625
+          },
+          {
+            "text": "→",
+            "left": 198,
+            "top": 151.640625,
+            "right": 242,
+            "bottom": 195.640625
+          },
+          {
+            "text": "To",
+            "left": 234,
+            "top": 104,
+            "right": 262,
+            "bottom": 135
+          },
+          {
+            "text": "MAN",
+            "left": 234,
+            "top": 123,
+            "right": 390.109375,
+            "bottom": 224.296875
+          },
+          {
+            "text": "Manchester",
+            "left": 292.28125,
+            "top": 216.296875,
+            "right": 396,
+            "bottom": 247.84375
+          },
+          {
+            "text": "Northline Air",
+            "left": 36,
+            "top": 263.390625,
+            "right": 173.078125,
+            "bottom": 298.390625
+          },
+          {
+            "text": "Callsign",
+            "left": 36,
+            "top": 474.3125,
+            "right": 90.390625,
+            "bottom": 501.3125
+          },
+          {
+            "text": "FIXTURE 01",
+            "left": 36,
+            "top": 491.3125,
+            "right": 145.03125,
+            "bottom": 522
+          },
+          {
+            "text": "Registration",
+            "left": 259.1875,
+            "top": 474.3125,
+            "right": 335.4375,
+            "bottom": 501.3125
+          },
+          {
+            "text": "DEMO-ART",
+            "left": 259.1875,
+            "top": 491.3125,
+            "right": 365.28125,
+            "bottom": 522
+          },
+          {
+            "text": "Direction",
+            "left": 482.375,
+            "top": 474.3125,
+            "right": 542.1875,
+            "bottom": 501.3125
+          },
+          {
+            "text": "North-east",
+            "left": 482.375,
+            "top": 491.3125,
+            "right": 583.609375,
+            "bottom": 522
+          }
+        ],
+        "bounds": {
+          "left": 20,
+          "top": 100,
+          "right": 711.5625,
+          "bottom": 530
+        }
+      }
+    },
+    {
+      "variant": "C",
+      "scenario": "wide-codes",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "passed": true,
+      "layout": {
+        "card": {
+          "x": 20,
+          "y": 100,
+          "width": 691.5625,
+          "height": 430
+        },
+        "fixed": {
+          ".aircraft-header": {
+            "x": 20,
+            "y": 12,
+            "width": 984,
+            "height": 76
+          },
+          ".primary": {
+            "x": 20,
+            "y": 100,
+            "width": 984,
+            "height": 430
+          },
+          ".details": {
+            "x": 20,
+            "y": 472.3125,
+            "width": 691.5625,
+            "height": 57.6875
+          },
+          ".measurements": {
+            "x": 723.5625,
+            "y": 100,
+            "width": 280.4375,
+            "height": 430
+          },
+          ".nearby": {
+            "x": 20,
+            "y": 550,
+            "width": 984,
+            "height": 184
+          },
+          "footer": {
+            "x": 20,
+            "y": 734,
+            "width": 984,
+            "height": 24
+          }
+        },
+        "layers": [
+          {
+            "class": "cloud-layer",
+            "source": "/aircraft/aeropane_cloud_strip_01.webp",
+            "rect": {
+              "x": 70,
+              "y": 410,
+              "width": 536,
+              "height": 62
+            },
+            "frame": {
+              "x": 81,
+              "y": 111,
+              "width": 1638,
+              "height": 172
+            },
+            "collisions": 0,
+            "hitText": []
+          },
+          {
+            "class": "aircraft-layer",
+            "source": "/aircraft/aeropane_a380_baseline.webp",
+            "rect": {
+              "x": 70,
+              "y": 236,
+              "width": 536,
+              "height": 264.796875
+            },
+            "frame": {
+              "x": 11,
+              "y": 16,
+              "width": 1763,
+              "height": 871
+            },
+            "collisions": 0,
+            "hitText": []
+          }
+        ],
+        "codeFonts": [
+          80,
+          80
+        ],
+        "airportFonts": [
+          17,
+          17
+        ],
+        "codeOverflow": false,
+        "metricOverflow": false,
+        "metricFonts": [
+          98,
+          98
+        ],
+        "scroll": false,
+        "text": [
+          {
+            "text": "From",
+            "left": 36,
+            "top": 104,
+            "right": 82.1875,
+            "bottom": 135
+          },
+          {
+            "text": "MMW",
+            "left": 36,
+            "top": 123,
+            "right": 190.28125,
+            "bottom": 211
+          },
+          {
+            "text": "Wide-code origin fixture",
+            "left": 36,
+            "top": 203,
+            "right": 186.390625,
+            "bottom": 236
+          },
+          {
+            "text": "Wide-code origin fixture",
+            "left": 36,
+            "top": 220.546875,
+            "right": 99.796875,
+            "bottom": 254.09375
+          },
+          {
+            "text": "→",
+            "left": 198,
+            "top": 145,
+            "right": 242,
+            "bottom": 189
+          },
+          {
+            "text": "To",
+            "left": 234,
+            "top": 104,
+            "right": 262,
+            "bottom": 135
+          },
+          {
+            "text": "WWK",
+            "left": 234,
+            "top": 123,
+            "right": 393.5625,
+            "bottom": 211
+          },
+          {
+            "text": "Wide-code destination fixture",
+            "left": 295.5625,
+            "top": 203,
+            "right": 396,
+            "bottom": 236
+          },
+          {
+            "text": "Wide-code destination fixture",
+            "left": 238.828125,
+            "top": 220.546875,
+            "right": 396,
+            "bottom": 254.09375
+          },
+          {
+            "text": "Northline Air",
+            "left": 36,
+            "top": 250.09375,
+            "right": 173.078125,
+            "bottom": 285.09375
+          },
+          {
+            "text": "Callsign",
+            "left": 36,
+            "top": 474.3125,
+            "right": 90.390625,
+            "bottom": 501.3125
+          },
+          {
+            "text": "FIXTURE 01",
+            "left": 36,
+            "top": 491.3125,
+            "right": 145.03125,
+            "bottom": 522
+          },
+          {
+            "text": "Registration",
+            "left": 259.1875,
+            "top": 474.3125,
+            "right": 335.4375,
+            "bottom": 501.3125
+          },
+          {
+            "text": "DEMO-ART",
+            "left": 259.1875,
+            "top": 491.3125,
+            "right": 365.28125,
+            "bottom": 522
+          },
+          {
+            "text": "Direction",
+            "left": 482.375,
+            "top": 474.3125,
+            "right": 542.1875,
+            "bottom": 501.3125
+          },
+          {
+            "text": "North-east",
+            "left": 482.375,
+            "top": 491.3125,
+            "right": 583.609375,
+            "bottom": 522
+          }
+        ],
+        "bounds": {
+          "left": 20,
+          "top": 100,
+          "right": 711.5625,
+          "bottom": 530
+        }
+      }
+    },
+    {
+      "variant": "C",
+      "scenario": "long-airports",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "passed": true,
+      "layout": {
+        "card": {
+          "x": 20,
+          "y": 100,
+          "width": 691.5625,
+          "height": 430
+        },
+        "fixed": {
+          ".aircraft-header": {
+            "x": 20,
+            "y": 12,
+            "width": 984,
+            "height": 76
+          },
+          ".primary": {
+            "x": 20,
+            "y": 100,
+            "width": 984,
+            "height": 430
+          },
+          ".details": {
+            "x": 20,
+            "y": 472.3125,
+            "width": 691.5625,
+            "height": 57.6875
+          },
+          ".measurements": {
+            "x": 723.5625,
+            "y": 100,
+            "width": 280.4375,
+            "height": 430
+          },
+          ".nearby": {
+            "x": 20,
+            "y": 550,
+            "width": 984,
+            "height": 184
+          },
+          "footer": {
+            "x": 20,
+            "y": 734,
+            "width": 984,
+            "height": 24
+          }
+        },
+        "layers": [
+          {
+            "class": "cloud-layer",
+            "source": "/aircraft/aeropane_cloud_strip_01.webp",
+            "rect": {
+              "x": 70,
+              "y": 410,
+              "width": 536,
+              "height": 62
+            },
+            "frame": {
+              "x": 81,
+              "y": 111,
+              "width": 1638,
+              "height": 172
+            },
+            "collisions": 0,
+            "hitText": []
+          },
+          {
+            "class": "aircraft-layer",
+            "source": "/aircraft/aeropane_a380_baseline.webp",
+            "rect": {
+              "x": 70,
+              "y": 236,
+              "width": 536,
+              "height": 264.796875
+            },
+            "frame": {
+              "x": 11,
+              "y": 16,
+              "width": 1763,
+              "height": 871
+            },
+            "collisions": 0,
+            "hitText": []
+          }
+        ],
+        "codeFonts": [
+          94,
+          94
+        ],
+        "airportFonts": [
+          17,
+          17
+        ],
+        "codeOverflow": false,
+        "metricOverflow": false,
+        "metricFonts": [
+          98,
+          98
+        ],
+        "scroll": false,
+        "text": [
+          {
+            "text": "From",
+            "left": 36,
+            "top": 104,
+            "right": 82.1875,
+            "bottom": 135
+          },
+          {
+            "text": "DUB",
+            "left": 36,
+            "top": 123,
+            "right": 182.890625,
+            "bottom": 224.296875
+          },
+          {
+            "text": "Dublin International Airport Passenger Terminal and Regional Hub",
+            "left": 36,
+            "top": 216.296875,
+            "right": 100.703125,
+            "bottom": 249.296875
+          },
+          {
+            "text": "Dublin International Airport Passenger Terminal and Regional Hub",
+            "left": 36,
+            "top": 233.84375,
+            "right": 149.859375,
+            "bottom": 267.390625
+          },
+          {
+            "text": "Dublin International Airport Passenger Terminal and Regional Hub",
+            "left": 36,
+            "top": 253.390625,
+            "right": 191.8125,
+            "bottom": 267.390625
+          },
+          {
+            "text": "→",
+            "left": 198,
+            "top": 151.640625,
+            "right": 242,
+            "bottom": 195.640625
+          },
+          {
+            "text": "To",
+            "left": 234,
+            "top": 104,
+            "right": 262,
+            "bottom": 135
+          },
+          {
+            "text": "MAN",
+            "left": 234,
+            "top": 123,
+            "right": 390.109375,
+            "bottom": 224.296875
+          },
+          {
+            "text": "Manchester International Airport Passenger Terminal and Airfield",
+            "left": 292.28125,
+            "top": 216.296875,
+            "right": 396,
+            "bottom": 249.296875
+          },
+          {
+            "text": "Manchester International Airport Passenger Terminal and Airfield",
+            "left": 282.140625,
+            "top": 233.84375,
+            "right": 396,
+            "bottom": 267.390625
+          },
+          {
+            "text": "Manchester International Airport Passenger Terminal and Airfield",
+            "left": 240.1875,
+            "top": 253.390625,
+            "right": 396,
+            "bottom": 267.390625
+          },
+          {
+            "text": "Northline Air",
+            "left": 36,
+            "top": 263.390625,
+            "right": 173.078125,
+            "bottom": 298.390625
+          },
+          {
+            "text": "Callsign",
+            "left": 36,
+            "top": 474.3125,
+            "right": 90.390625,
+            "bottom": 501.3125
+          },
+          {
+            "text": "FIXTURE 01",
+            "left": 36,
+            "top": 491.3125,
+            "right": 145.03125,
+            "bottom": 522
+          },
+          {
+            "text": "Registration",
+            "left": 259.1875,
+            "top": 474.3125,
+            "right": 335.4375,
+            "bottom": 501.3125
+          },
+          {
+            "text": "DEMO-ART",
+            "left": 259.1875,
+            "top": 491.3125,
+            "right": 365.28125,
+            "bottom": 522
+          },
+          {
+            "text": "Direction",
+            "left": 482.375,
+            "top": 474.3125,
+            "right": 542.1875,
+            "bottom": 501.3125
+          },
+          {
+            "text": "North-east",
+            "left": 482.375,
+            "top": 491.3125,
+            "right": 583.609375,
+            "bottom": 522
+          }
+        ],
+        "bounds": {
+          "left": 20,
+          "top": 100,
+          "right": 711.5625,
+          "bottom": 530
+        }
+      }
+    },
+    {
+      "variant": "A",
+      "scenario": "single",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "B",
+      "scenario": "single",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "C",
+      "scenario": "single",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "A",
+      "scenario": "empty",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "B",
+      "scenario": "empty",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "C",
+      "scenario": "empty",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "A",
+      "scenario": "unavailable",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "B",
+      "scenario": "unavailable",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "C",
+      "scenario": "unavailable",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "A",
+      "scenario": "missing-route",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "B",
+      "scenario": "missing-route",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "C",
+      "scenario": "missing-route",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "A",
+      "scenario": "icao-only",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "B",
+      "scenario": "icao-only",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "C",
+      "scenario": "icao-only",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "A",
+      "scenario": "a320",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "B",
+      "scenario": "a320",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "C",
+      "scenario": "a320",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "A",
+      "scenario": "challenger",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "B",
+      "scenario": "challenger",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "C",
+      "scenario": "challenger",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "A",
+      "scenario": "a380",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "passed": true,
+      "layout": {
+        "card": {
+          "x": 16,
+          "y": 88,
+          "width": 697.28125,
+          "height": 326
+        },
+        "fixed": {
+          ".aircraft-header": {
+            "x": 16,
+            "y": 10,
+            "width": 992,
+            "height": 66
+          },
+          ".primary": {
+            "x": 16,
+            "y": 88,
+            "width": 992,
+            "height": 326
+          },
+          ".details": {
+            "x": 16,
+            "y": 363.40625,
+            "width": 697.28125,
+            "height": 50.59375
+          },
+          ".measurements": {
+            "x": 725.28125,
+            "y": 88,
+            "width": 282.71875,
+            "height": 326
+          },
+          ".nearby": {
+            "x": 16,
+            "y": 428,
+            "width": 992,
+            "height": 164
+          },
+          "footer": {
+            "x": 16,
+            "y": 592,
+            "width": 992,
+            "height": 24
+          }
+        },
+        "layers": [
+          {
+            "class": "cloud-layer",
+            "source": "/aircraft/aeropane_cloud_strip_01.webp",
+            "rect": {
+              "x": 253,
+              "y": 313,
+              "width": 448,
+              "height": 50
+            },
+            "frame": {
+              "x": 81,
+              "y": 111,
+              "width": 1638,
+              "height": 172
+            },
+            "collisions": 0,
+            "hitText": []
+          },
+          {
+            "class": "aircraft-layer",
+            "source": "/aircraft/aeropane_a380_baseline.webp",
+            "rect": {
+              "x": 253,
+              "y": 128,
+              "width": 448,
+              "height": 221.328125
+            },
+            "frame": {
+              "x": 11,
+              "y": 16,
+              "width": 1763,
+              "height": 871
+            },
+            "collisions": 0,
+            "hitText": []
+          }
+        ],
+        "codeFonts": [
+          76,
+          76
+        ],
+        "airportFonts": [
+          15,
+          15
+        ],
+        "codeOverflow": false,
+        "metricOverflow": false,
+        "metricFonts": [
+          88,
+          88
+        ],
+        "scroll": false,
+        "text": [
+          {
+            "text": "From",
+            "left": 28,
+            "top": 90,
+            "right": 74.1875,
+            "bottom": 121
+          },
+          {
+            "text": "AMS",
+            "left": 28,
+            "top": 109,
+            "right": 151.53125,
+            "bottom": 193.1875
+          },
+          {
+            "text": "Amsterdam Schiphol",
+            "left": 28,
+            "top": 185.1875,
+            "right": 121.5,
+            "bottom": 215.1875
+          },
+          {
+            "text": "Amsterdam Schiphol",
+            "left": 28,
+            "top": 200.4375,
+            "right": 100.359375,
+            "bottom": 231.6875
+          },
+          {
+            "text": "→",
+            "left": 166,
+            "top": 129.09375,
+            "right": 210,
+            "bottom": 173.09375
+          },
+          {
+            "text": "To",
+            "left": 200,
+            "top": 90,
+            "right": 228,
+            "bottom": 121
+          },
+          {
+            "text": "MAN",
+            "left": 200,
+            "top": 109,
+            "right": 329.078125,
+            "bottom": 193.1875
+          },
+          {
+            "text": "Manchester",
+            "left": 247.0625,
+            "top": 185.1875,
+            "right": 340,
+            "bottom": 214.4375
+          },
+          {
+            "text": "Northline Air",
+            "left": 28,
+            "top": 225.6875,
+            "right": 146.328125,
+            "bottom": 257.234375
+          },
+          {
+            "text": "Callsign",
+            "left": 28,
+            "top": 363.40625,
+            "right": 82.390625,
+            "bottom": 390.40625
+          },
+          {
+            "text": "FIXTURE 01",
+            "left": 28,
+            "top": 380.40625,
+            "right": 131.3125,
+            "bottom": 410
+          },
+          {
+            "text": "Registration",
+            "left": 255.75,
+            "top": 363.40625,
+            "right": 332,
+            "bottom": 390.40625
+          },
+          {
+            "text": "DEMO-ART",
+            "left": 255.75,
+            "top": 380.40625,
+            "right": 356.3125,
+            "bottom": 410
+          },
+          {
+            "text": "Direction",
+            "left": 483.515625,
+            "top": 363.40625,
+            "right": 543.328125,
+            "bottom": 390.40625
+          },
+          {
+            "text": "North-east",
+            "left": 483.515625,
+            "top": 380.40625,
+            "right": 579.5,
+            "bottom": 410
+          }
+        ],
+        "bounds": {
+          "left": 16,
+          "top": 88,
+          "right": 713.28125,
+          "bottom": 414
+        }
+      }
+    },
+    {
+      "variant": "A",
+      "scenario": "wide-codes",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "passed": true,
+      "layout": {
+        "card": {
+          "x": 16,
+          "y": 88,
+          "width": 697.28125,
+          "height": 326
+        },
+        "fixed": {
+          ".aircraft-header": {
+            "x": 16,
+            "y": 10,
+            "width": 992,
+            "height": 66
+          },
+          ".primary": {
+            "x": 16,
+            "y": 88,
+            "width": 992,
+            "height": 326
+          },
+          ".details": {
+            "x": 16,
+            "y": 363.40625,
+            "width": 697.28125,
+            "height": 50.59375
+          },
+          ".measurements": {
+            "x": 725.28125,
+            "y": 88,
+            "width": 282.71875,
+            "height": 326
+          },
+          ".nearby": {
+            "x": 16,
+            "y": 428,
+            "width": 992,
+            "height": 164
+          },
+          "footer": {
+            "x": 16,
+            "y": 592,
+            "width": 992,
+            "height": 24
+          }
+        },
+        "layers": [
+          {
+            "class": "cloud-layer",
+            "source": "/aircraft/aeropane_cloud_strip_01.webp",
+            "rect": {
+              "x": 253,
+              "y": 313,
+              "width": 448,
+              "height": 50
+            },
+            "frame": {
+              "x": 81,
+              "y": 111,
+              "width": 1638,
+              "height": 172
+            },
+            "collisions": 0,
+            "hitText": []
+          },
+          {
+            "class": "aircraft-layer",
+            "source": "/aircraft/aeropane_a380_baseline.webp",
+            "rect": {
+              "x": 253,
+              "y": 128,
+              "width": 448,
+              "height": 221.328125
+            },
+            "frame": {
+              "x": 11,
+              "y": 16,
+              "width": 1763,
+              "height": 871
+            },
+            "collisions": 0,
+            "hitText": []
+          }
+        ],
+        "codeFonts": [
+          68,
+          68
+        ],
+        "airportFonts": [
+          15,
+          15
+        ],
+        "codeOverflow": false,
+        "metricOverflow": false,
+        "metricFonts": [
+          88,
+          88
+        ],
+        "scroll": false,
+        "text": [
+          {
+            "text": "From",
+            "left": 28,
+            "top": 90,
+            "right": 74.1875,
+            "bottom": 121
+          },
+          {
+            "text": "MMW",
+            "left": 28,
+            "top": 109,
+            "right": 161.390625,
+            "bottom": 185.59375
+          },
+          {
+            "text": "Wide-code origin fixture",
+            "left": 28,
+            "top": 177.59375,
+            "right": 162.109375,
+            "bottom": 207.59375
+          },
+          {
+            "text": "Wide-code origin fixture",
+            "left": 28,
+            "top": 192.84375,
+            "right": 85.703125,
+            "bottom": 224.09375
+          },
+          {
+            "text": "→",
+            "left": 166,
+            "top": 125.296875,
+            "right": 210,
+            "bottom": 169.296875
+          },
+          {
+            "text": "To",
+            "left": 200,
+            "top": 90,
+            "right": 228,
+            "bottom": 121
+          },
+          {
+            "text": "WWK",
+            "left": 200,
+            "top": 109,
+            "right": 337.890625,
+            "bottom": 185.59375
+          },
+          {
+            "text": "Wide-code destination fixture",
+            "left": 249.96875,
+            "top": 177.59375,
+            "right": 340,
+            "bottom": 207.59375
+          },
+          {
+            "text": "Wide-code destination fixture",
+            "left": 249.65625,
+            "top": 192.84375,
+            "right": 340,
+            "bottom": 224.09375
+          },
+          {
+            "text": "Wide-code destination fixture",
+            "left": 282.296875,
+            "top": 210.09375,
+            "right": 340,
+            "bottom": 224.09375
+          },
+          {
+            "text": "Northline Air",
+            "left": 28,
+            "top": 218.09375,
+            "right": 146.328125,
+            "bottom": 249.640625
+          },
+          {
+            "text": "Callsign",
+            "left": 28,
+            "top": 363.40625,
+            "right": 82.390625,
+            "bottom": 390.40625
+          },
+          {
+            "text": "FIXTURE 01",
+            "left": 28,
+            "top": 380.40625,
+            "right": 131.3125,
+            "bottom": 410
+          },
+          {
+            "text": "Registration",
+            "left": 255.75,
+            "top": 363.40625,
+            "right": 332,
+            "bottom": 390.40625
+          },
+          {
+            "text": "DEMO-ART",
+            "left": 255.75,
+            "top": 380.40625,
+            "right": 356.3125,
+            "bottom": 410
+          },
+          {
+            "text": "Direction",
+            "left": 483.515625,
+            "top": 363.40625,
+            "right": 543.328125,
+            "bottom": 390.40625
+          },
+          {
+            "text": "North-east",
+            "left": 483.515625,
+            "top": 380.40625,
+            "right": 579.5,
+            "bottom": 410
+          }
+        ],
+        "bounds": {
+          "left": 16,
+          "top": 88,
+          "right": 713.28125,
+          "bottom": 414
+        }
+      }
+    },
+    {
+      "variant": "A",
+      "scenario": "long-airports",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "passed": true,
+      "layout": {
+        "card": {
+          "x": 16,
+          "y": 88,
+          "width": 697.28125,
+          "height": 326
+        },
+        "fixed": {
+          ".aircraft-header": {
+            "x": 16,
+            "y": 10,
+            "width": 992,
+            "height": 66
+          },
+          ".primary": {
+            "x": 16,
+            "y": 88,
+            "width": 992,
+            "height": 326
+          },
+          ".details": {
+            "x": 16,
+            "y": 363.40625,
+            "width": 697.28125,
+            "height": 50.59375
+          },
+          ".measurements": {
+            "x": 725.28125,
+            "y": 88,
+            "width": 282.71875,
+            "height": 326
+          },
+          ".nearby": {
+            "x": 16,
+            "y": 428,
+            "width": 992,
+            "height": 164
+          },
+          "footer": {
+            "x": 16,
+            "y": 592,
+            "width": 992,
+            "height": 24
+          }
+        },
+        "layers": [
+          {
+            "class": "cloud-layer",
+            "source": "/aircraft/aeropane_cloud_strip_01.webp",
+            "rect": {
+              "x": 253,
+              "y": 313,
+              "width": 448,
+              "height": 50
+            },
+            "frame": {
+              "x": 81,
+              "y": 111,
+              "width": 1638,
+              "height": 172
+            },
+            "collisions": 0,
+            "hitText": []
+          },
+          {
+            "class": "aircraft-layer",
+            "source": "/aircraft/aeropane_a380_baseline.webp",
+            "rect": {
+              "x": 253,
+              "y": 128,
+              "width": 448,
+              "height": 221.328125
+            },
+            "frame": {
+              "x": 11,
+              "y": 16,
+              "width": 1763,
+              "height": 871
+            },
+            "collisions": 0,
+            "hitText": []
+          }
+        ],
+        "codeFonts": [
+          76,
+          76
+        ],
+        "airportFonts": [
+          15,
+          15
+        ],
+        "codeOverflow": false,
+        "metricOverflow": false,
+        "metricFonts": [
+          88,
+          88
+        ],
+        "scroll": false,
+        "text": [
+          {
+            "text": "From",
+            "left": 28,
+            "top": 90,
+            "right": 74.1875,
+            "bottom": 121
+          },
+          {
+            "text": "DUB",
+            "left": 28,
+            "top": 109,
+            "right": 149.640625,
+            "bottom": 193.1875
+          },
+          {
+            "text": "Dublin International Airport Passenger Terminal and Regional Hub",
+            "left": 28,
+            "top": 185.1875,
+            "right": 86.515625,
+            "bottom": 215.1875
+          },
+          {
+            "text": "Dublin International Airport Passenger Terminal and Regional Hub",
+            "left": 28,
+            "top": 200.4375,
+            "right": 129.875,
+            "bottom": 231.6875
+          },
+          {
+            "text": "Dublin International Airport Passenger Terminal and Regional Hub",
+            "left": 28,
+            "top": 217.6875,
+            "right": 166.890625,
+            "bottom": 231.6875
+          },
+          {
+            "text": "→",
+            "left": 166,
+            "top": 129.09375,
+            "right": 210,
+            "bottom": 173.09375
+          },
+          {
+            "text": "To",
+            "left": 200,
+            "top": 90,
+            "right": 228,
+            "bottom": 121
+          },
+          {
+            "text": "MAN",
+            "left": 200,
+            "top": 109,
+            "right": 329.078125,
+            "bottom": 193.1875
+          },
+          {
+            "text": "Manchester International Airport Passenger Terminal and Airfield",
+            "left": 247.0625,
+            "top": 185.1875,
+            "right": 340,
+            "bottom": 215.1875
+          },
+          {
+            "text": "Manchester International Airport Passenger Terminal and Airfield",
+            "left": 238.125,
+            "top": 200.4375,
+            "right": 340,
+            "bottom": 231.6875
+          },
+          {
+            "text": "Manchester International Airport Passenger Terminal and Airfield",
+            "left": 201.109375,
+            "top": 217.6875,
+            "right": 340,
+            "bottom": 231.6875
+          },
+          {
+            "text": "Northline Air",
+            "left": 28,
+            "top": 225.6875,
+            "right": 146.328125,
+            "bottom": 257.234375
+          },
+          {
+            "text": "Callsign",
+            "left": 28,
+            "top": 363.40625,
+            "right": 82.390625,
+            "bottom": 390.40625
+          },
+          {
+            "text": "FIXTURE 01",
+            "left": 28,
+            "top": 380.40625,
+            "right": 131.3125,
+            "bottom": 410
+          },
+          {
+            "text": "Registration",
+            "left": 255.75,
+            "top": 363.40625,
+            "right": 332,
+            "bottom": 390.40625
+          },
+          {
+            "text": "DEMO-ART",
+            "left": 255.75,
+            "top": 380.40625,
+            "right": 356.3125,
+            "bottom": 410
+          },
+          {
+            "text": "Direction",
+            "left": 483.515625,
+            "top": 363.40625,
+            "right": 543.328125,
+            "bottom": 390.40625
+          },
+          {
+            "text": "North-east",
+            "left": 483.515625,
+            "top": 380.40625,
+            "right": 579.5,
+            "bottom": 410
+          }
+        ],
+        "bounds": {
+          "left": 16,
+          "top": 88,
+          "right": 713.28125,
+          "bottom": 414
+        }
+      }
+    },
+    {
+      "variant": "B",
+      "scenario": "a380",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "passed": true,
+      "layout": {
+        "card": {
+          "x": 16,
+          "y": 88,
+          "width": 697.28125,
+          "height": 326
+        },
+        "fixed": {
+          ".aircraft-header": {
+            "x": 16,
+            "y": 10,
+            "width": 992,
+            "height": 66
+          },
+          ".primary": {
+            "x": 16,
+            "y": 88,
+            "width": 992,
+            "height": 326
+          },
+          ".details": {
+            "x": 16,
+            "y": 363.40625,
+            "width": 697.28125,
+            "height": 50.59375
+          },
+          ".measurements": {
+            "x": 725.28125,
+            "y": 88,
+            "width": 282.71875,
+            "height": 326
+          },
+          ".nearby": {
+            "x": 16,
+            "y": 428,
+            "width": 992,
+            "height": 164
+          },
+          "footer": {
+            "x": 16,
+            "y": 592,
+            "width": 992,
+            "height": 24
+          }
+        },
+        "layers": [
+          {
+            "class": "cloud-layer",
+            "source": "/aircraft/aeropane_cloud_strip_01.webp",
+            "rect": {
+              "x": 221,
+              "y": 313,
+              "width": 480,
+              "height": 50
+            },
+            "frame": {
+              "x": 81,
+              "y": 111,
+              "width": 1638,
+              "height": 172
+            },
+            "collisions": 0,
+            "hitText": []
+          },
+          {
+            "class": "aircraft-layer",
+            "source": "/aircraft/aeropane_a380_baseline.webp",
+            "rect": {
+              "x": 221,
+              "y": 120,
+              "width": 480,
+              "height": 237.140625
+            },
+            "frame": {
+              "x": 11,
+              "y": 16,
+              "width": 1763,
+              "height": 871
+            },
+            "collisions": 0,
+            "hitText": []
+          }
+        ],
+        "codeFonts": [
+          72,
+          72
+        ],
+        "airportFonts": [
+          15,
+          15
+        ],
+        "codeOverflow": false,
+        "metricOverflow": false,
+        "metricFonts": [
+          88,
+          88
+        ],
+        "scroll": false,
+        "text": [
+          {
+            "text": "From",
+            "left": 28,
+            "top": 90,
+            "right": 74.1875,
+            "bottom": 121
+          },
+          {
+            "text": "AMS",
+            "left": 28,
+            "top": 109,
+            "right": 145.828125,
+            "bottom": 189.390625
+          },
+          {
+            "text": "Amsterdam Schiphol",
+            "left": 28,
+            "top": 181.390625,
+            "right": 121.5,
+            "bottom": 211.390625
+          },
+          {
+            "text": "Amsterdam Schiphol",
+            "left": 28,
+            "top": 196.640625,
+            "right": 100.359375,
+            "bottom": 227.890625
+          },
+          {
+            "text": "→",
+            "left": 158,
+            "top": 127.1875,
+            "right": 202,
+            "bottom": 171.1875
+          },
+          {
+            "text": "To",
+            "left": 190,
+            "top": 90,
+            "right": 218,
+            "bottom": 121
+          },
+          {
+            "text": "MAN",
+            "left": 190,
+            "top": 109,
+            "right": 313.078125,
+            "bottom": 189.390625
+          },
+          {
+            "text": "Manchester",
+            "left": 231.0625,
+            "top": 181.390625,
+            "right": 324,
+            "bottom": 210.640625
+          },
+          {
+            "text": "Northline Air",
+            "left": 28,
+            "top": 221.890625,
+            "right": 146.328125,
+            "bottom": 253.4375
+          },
+          {
+            "text": "Callsign",
+            "left": 28,
+            "top": 363.40625,
+            "right": 82.390625,
+            "bottom": 390.40625
+          },
+          {
+            "text": "FIXTURE 01",
+            "left": 28,
+            "top": 380.40625,
+            "right": 131.3125,
+            "bottom": 410
+          },
+          {
+            "text": "Registration",
+            "left": 255.75,
+            "top": 363.40625,
+            "right": 332,
+            "bottom": 390.40625
+          },
+          {
+            "text": "DEMO-ART",
+            "left": 255.75,
+            "top": 380.40625,
+            "right": 356.3125,
+            "bottom": 410
+          },
+          {
+            "text": "Direction",
+            "left": 483.515625,
+            "top": 363.40625,
+            "right": 543.328125,
+            "bottom": 390.40625
+          },
+          {
+            "text": "North-east",
+            "left": 483.515625,
+            "top": 380.40625,
+            "right": 579.5,
+            "bottom": 410
+          }
+        ],
+        "bounds": {
+          "left": 16,
+          "top": 88,
+          "right": 713.28125,
+          "bottom": 414
+        }
+      }
+    },
+    {
+      "variant": "B",
+      "scenario": "wide-codes",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "passed": true,
+      "layout": {
+        "card": {
+          "x": 16,
+          "y": 88,
+          "width": 697.28125,
+          "height": 326
+        },
+        "fixed": {
+          ".aircraft-header": {
+            "x": 16,
+            "y": 10,
+            "width": 992,
+            "height": 66
+          },
+          ".primary": {
+            "x": 16,
+            "y": 88,
+            "width": 992,
+            "height": 326
+          },
+          ".details": {
+            "x": 16,
+            "y": 363.40625,
+            "width": 697.28125,
+            "height": 50.59375
+          },
+          ".measurements": {
+            "x": 725.28125,
+            "y": 88,
+            "width": 282.71875,
+            "height": 326
+          },
+          ".nearby": {
+            "x": 16,
+            "y": 428,
+            "width": 992,
+            "height": 164
+          },
+          "footer": {
+            "x": 16,
+            "y": 592,
+            "width": 992,
+            "height": 24
+          }
+        },
+        "layers": [
+          {
+            "class": "cloud-layer",
+            "source": "/aircraft/aeropane_cloud_strip_01.webp",
+            "rect": {
+              "x": 221,
+              "y": 313,
+              "width": 480,
+              "height": 50
+            },
+            "frame": {
+              "x": 81,
+              "y": 111,
+              "width": 1638,
+              "height": 172
+            },
+            "collisions": 0,
+            "hitText": []
+          },
+          {
+            "class": "aircraft-layer",
+            "source": "/aircraft/aeropane_a380_baseline.webp",
+            "rect": {
+              "x": 221,
+              "y": 120,
+              "width": 480,
+              "height": 237.140625
+            },
+            "frame": {
+              "x": 11,
+              "y": 16,
+              "width": 1763,
+              "height": 871
+            },
+            "collisions": 0,
+            "hitText": []
+          }
+        ],
+        "codeFonts": [
+          64,
+          64
+        ],
+        "airportFonts": [
+          15,
+          15
+        ],
+        "codeOverflow": false,
+        "metricOverflow": false,
+        "metricFonts": [
+          88,
+          88
+        ],
+        "scroll": false,
+        "text": [
+          {
+            "text": "From",
+            "left": 28,
+            "top": 90,
+            "right": 74.1875,
+            "bottom": 121
+          },
+          {
+            "text": "MMW",
+            "left": 28,
+            "top": 109,
+            "right": 154.4375,
+            "bottom": 181.796875
+          },
+          {
+            "text": "Wide-code origin fixture",
+            "left": 28,
+            "top": 173.796875,
+            "right": 118.03125,
+            "bottom": 203.796875
+          },
+          {
+            "text": "Wide-code origin fixture",
+            "left": 28,
+            "top": 189.046875,
+            "right": 129.765625,
+            "bottom": 220.296875
+          },
+          {
+            "text": "→",
+            "left": 158,
+            "top": 123.390625,
+            "right": 202,
+            "bottom": 167.390625
+          },
+          {
+            "text": "To",
+            "left": 190,
+            "top": 90,
+            "right": 218,
+            "bottom": 121
+          },
+          {
+            "text": "WWK",
+            "left": 190,
+            "top": 109,
+            "right": 320.65625,
+            "bottom": 181.796875
+          },
+          {
+            "text": "Wide-code destination fixture",
+            "left": 233.96875,
+            "top": 173.796875,
+            "right": 324,
+            "bottom": 203.796875
+          },
+          {
+            "text": "Wide-code destination fixture",
+            "left": 233.65625,
+            "top": 189.046875,
+            "right": 324,
+            "bottom": 220.296875
+          },
+          {
+            "text": "Wide-code destination fixture",
+            "left": 266.296875,
+            "top": 206.296875,
+            "right": 324,
+            "bottom": 220.296875
+          },
+          {
+            "text": "Northline Air",
+            "left": 28,
+            "top": 214.296875,
+            "right": 146.328125,
+            "bottom": 245.84375
+          },
+          {
+            "text": "Callsign",
+            "left": 28,
+            "top": 363.40625,
+            "right": 82.390625,
+            "bottom": 390.40625
+          },
+          {
+            "text": "FIXTURE 01",
+            "left": 28,
+            "top": 380.40625,
+            "right": 131.3125,
+            "bottom": 410
+          },
+          {
+            "text": "Registration",
+            "left": 255.75,
+            "top": 363.40625,
+            "right": 332,
+            "bottom": 390.40625
+          },
+          {
+            "text": "DEMO-ART",
+            "left": 255.75,
+            "top": 380.40625,
+            "right": 356.3125,
+            "bottom": 410
+          },
+          {
+            "text": "Direction",
+            "left": 483.515625,
+            "top": 363.40625,
+            "right": 543.328125,
+            "bottom": 390.40625
+          },
+          {
+            "text": "North-east",
+            "left": 483.515625,
+            "top": 380.40625,
+            "right": 579.5,
+            "bottom": 410
+          }
+        ],
+        "bounds": {
+          "left": 16,
+          "top": 88,
+          "right": 713.28125,
+          "bottom": 414
+        }
+      }
+    },
+    {
+      "variant": "B",
+      "scenario": "long-airports",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "passed": true,
+      "layout": {
+        "card": {
+          "x": 16,
+          "y": 88,
+          "width": 697.28125,
+          "height": 326
+        },
+        "fixed": {
+          ".aircraft-header": {
+            "x": 16,
+            "y": 10,
+            "width": 992,
+            "height": 66
+          },
+          ".primary": {
+            "x": 16,
+            "y": 88,
+            "width": 992,
+            "height": 326
+          },
+          ".details": {
+            "x": 16,
+            "y": 363.40625,
+            "width": 697.28125,
+            "height": 50.59375
+          },
+          ".measurements": {
+            "x": 725.28125,
+            "y": 88,
+            "width": 282.71875,
+            "height": 326
+          },
+          ".nearby": {
+            "x": 16,
+            "y": 428,
+            "width": 992,
+            "height": 164
+          },
+          "footer": {
+            "x": 16,
+            "y": 592,
+            "width": 992,
+            "height": 24
+          }
+        },
+        "layers": [
+          {
+            "class": "cloud-layer",
+            "source": "/aircraft/aeropane_cloud_strip_01.webp",
+            "rect": {
+              "x": 221,
+              "y": 313,
+              "width": 480,
+              "height": 50
+            },
+            "frame": {
+              "x": 81,
+              "y": 111,
+              "width": 1638,
+              "height": 172
+            },
+            "collisions": 0,
+            "hitText": []
+          },
+          {
+            "class": "aircraft-layer",
+            "source": "/aircraft/aeropane_a380_baseline.webp",
+            "rect": {
+              "x": 221,
+              "y": 120,
+              "width": 480,
+              "height": 237.140625
+            },
+            "frame": {
+              "x": 11,
+              "y": 16,
+              "width": 1763,
+              "height": 871
+            },
+            "collisions": 0,
+            "hitText": []
+          }
+        ],
+        "codeFonts": [
+          72,
+          72
+        ],
+        "airportFonts": [
+          15,
+          15
+        ],
+        "codeOverflow": false,
+        "metricOverflow": false,
+        "metricFonts": [
+          88,
+          88
+        ],
+        "scroll": false,
+        "text": [
+          {
+            "text": "From",
+            "left": 28,
+            "top": 90,
+            "right": 74.1875,
+            "bottom": 121
+          },
+          {
+            "text": "DUB",
+            "left": 28,
+            "top": 109,
+            "right": 144.03125,
+            "bottom": 189.390625
+          },
+          {
+            "text": "Dublin International Airport Passenger Terminal and Regional Hub",
+            "left": 28,
+            "top": 181.390625,
+            "right": 86.515625,
+            "bottom": 211.390625
+          },
+          {
+            "text": "Dublin International Airport Passenger Terminal and Regional Hub",
+            "left": 28,
+            "top": 196.640625,
+            "right": 129.875,
+            "bottom": 227.890625
+          },
+          {
+            "text": "Dublin International Airport Passenger Terminal and Regional Hub",
+            "left": 28,
+            "top": 213.890625,
+            "right": 90.578125,
+            "bottom": 227.890625
+          },
+          {
+            "text": "→",
+            "left": 158,
+            "top": 127.1875,
+            "right": 202,
+            "bottom": 171.1875
+          },
+          {
+            "text": "To",
+            "left": 190,
+            "top": 90,
+            "right": 218,
+            "bottom": 121
+          },
+          {
+            "text": "MAN",
+            "left": 190,
+            "top": 109,
+            "right": 313.078125,
+            "bottom": 189.390625
+          },
+          {
+            "text": "Manchester International Airport Passenger Terminal and Airfield",
+            "left": 231.0625,
+            "top": 181.390625,
+            "right": 324,
+            "bottom": 211.390625
+          },
+          {
+            "text": "Manchester International Airport Passenger Terminal and Airfield",
+            "left": 222.125,
+            "top": 196.640625,
+            "right": 324,
+            "bottom": 227.890625
+          },
+          {
+            "text": "Manchester International Airport Passenger Terminal and Airfield",
+            "left": 261.421875,
+            "top": 213.890625,
+            "right": 324,
+            "bottom": 227.890625
+          },
+          {
+            "text": "Northline Air",
+            "left": 28,
+            "top": 221.890625,
+            "right": 146.328125,
+            "bottom": 253.4375
+          },
+          {
+            "text": "Callsign",
+            "left": 28,
+            "top": 363.40625,
+            "right": 82.390625,
+            "bottom": 390.40625
+          },
+          {
+            "text": "FIXTURE 01",
+            "left": 28,
+            "top": 380.40625,
+            "right": 131.3125,
+            "bottom": 410
+          },
+          {
+            "text": "Registration",
+            "left": 255.75,
+            "top": 363.40625,
+            "right": 332,
+            "bottom": 390.40625
+          },
+          {
+            "text": "DEMO-ART",
+            "left": 255.75,
+            "top": 380.40625,
+            "right": 356.3125,
+            "bottom": 410
+          },
+          {
+            "text": "Direction",
+            "left": 483.515625,
+            "top": 363.40625,
+            "right": 543.328125,
+            "bottom": 390.40625
+          },
+          {
+            "text": "North-east",
+            "left": 483.515625,
+            "top": 380.40625,
+            "right": 579.5,
+            "bottom": 410
+          }
+        ],
+        "bounds": {
+          "left": 16,
+          "top": 88,
+          "right": 713.28125,
+          "bottom": 414
+        }
+      }
+    },
+    {
+      "variant": "C",
+      "scenario": "a380",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "passed": true,
+      "layout": {
+        "card": {
+          "x": 16,
+          "y": 88,
+          "width": 697.28125,
+          "height": 326
+        },
+        "fixed": {
+          ".aircraft-header": {
+            "x": 16,
+            "y": 10,
+            "width": 992,
+            "height": 66
+          },
+          ".primary": {
+            "x": 16,
+            "y": 88,
+            "width": 992,
+            "height": 326
+          },
+          ".details": {
+            "x": 16,
+            "y": 363.40625,
+            "width": 697.28125,
+            "height": 50.59375
+          },
+          ".measurements": {
+            "x": 725.28125,
+            "y": 88,
+            "width": 282.71875,
+            "height": 326
+          },
+          ".nearby": {
+            "x": 16,
+            "y": 428,
+            "width": 992,
+            "height": 164
+          },
+          "footer": {
+            "x": 16,
+            "y": 592,
+            "width": 992,
+            "height": 24
+          }
+        },
+        "layers": [
+          {
+            "class": "cloud-layer",
+            "source": "/aircraft/aeropane_cloud_strip_01.webp",
+            "rect": {
+              "x": 285,
+              "y": 313,
+              "width": 420,
+              "height": 50
+            },
+            "frame": {
+              "x": 81,
+              "y": 111,
+              "width": 1638,
+              "height": 172
+            },
+            "collisions": 0,
+            "hitText": []
+          },
+          {
+            "class": "aircraft-layer",
+            "source": "/aircraft/aeropane_a380_baseline.webp",
+            "rect": {
+              "x": 285,
+              "y": 152,
+              "width": 420,
+              "height": 207.484375
+            },
+            "frame": {
+              "x": 11,
+              "y": 16,
+              "width": 1763,
+              "height": 871
+            },
+            "collisions": 0,
+            "hitText": []
+          }
+        ],
+        "codeFonts": [
+          88,
+          88
+        ],
+        "airportFonts": [
+          15,
+          15
+        ],
+        "codeOverflow": false,
+        "metricOverflow": false,
+        "metricFonts": [
+          88,
+          88
+        ],
+        "scroll": false,
+        "text": [
+          {
+            "text": "From",
+            "left": 28,
+            "top": 90,
+            "right": 74.1875,
+            "bottom": 121
+          },
+          {
+            "text": "AMS",
+            "left": 28,
+            "top": 109,
+            "right": 168.671875,
+            "bottom": 204.59375
+          },
+          {
+            "text": "Amsterdam Schiphol",
+            "left": 28,
+            "top": 196.59375,
+            "right": 121.5,
+            "bottom": 226.59375
+          },
+          {
+            "text": "Amsterdam Schiphol",
+            "left": 28,
+            "top": 211.84375,
+            "right": 100.359375,
+            "bottom": 243.09375
+          },
+          {
+            "text": "→",
+            "left": 184,
+            "top": 134.796875,
+            "right": 228,
+            "bottom": 178.796875
+          },
+          {
+            "text": "To",
+            "left": 220,
+            "top": 90,
+            "right": 248,
+            "bottom": 121
+          },
+          {
+            "text": "MAN",
+            "left": 220,
+            "top": 109,
+            "right": 367.09375,
+            "bottom": 204.59375
+          },
+          {
+            "text": "Manchester",
+            "left": 283.0625,
+            "top": 196.59375,
+            "right": 376,
+            "bottom": 225.84375
+          },
+          {
+            "text": "Northline Air",
+            "left": 28,
+            "top": 237.09375,
+            "right": 146.328125,
+            "bottom": 268.640625
+          },
+          {
+            "text": "Callsign",
+            "left": 28,
+            "top": 363.40625,
+            "right": 82.390625,
+            "bottom": 390.40625
+          },
+          {
+            "text": "FIXTURE 01",
+            "left": 28,
+            "top": 380.40625,
+            "right": 131.3125,
+            "bottom": 410
+          },
+          {
+            "text": "Registration",
+            "left": 255.75,
+            "top": 363.40625,
+            "right": 332,
+            "bottom": 390.40625
+          },
+          {
+            "text": "DEMO-ART",
+            "left": 255.75,
+            "top": 380.40625,
+            "right": 356.3125,
+            "bottom": 410
+          },
+          {
+            "text": "Direction",
+            "left": 483.515625,
+            "top": 363.40625,
+            "right": 543.328125,
+            "bottom": 390.40625
+          },
+          {
+            "text": "North-east",
+            "left": 483.515625,
+            "top": 380.40625,
+            "right": 579.5,
+            "bottom": 410
+          }
+        ],
+        "bounds": {
+          "left": 16,
+          "top": 88,
+          "right": 713.28125,
+          "bottom": 414
+        }
+      }
+    },
+    {
+      "variant": "C",
+      "scenario": "wide-codes",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "passed": true,
+      "layout": {
+        "card": {
+          "x": 16,
+          "y": 88,
+          "width": 697.28125,
+          "height": 326
+        },
+        "fixed": {
+          ".aircraft-header": {
+            "x": 16,
+            "y": 10,
+            "width": 992,
+            "height": 66
+          },
+          ".primary": {
+            "x": 16,
+            "y": 88,
+            "width": 992,
+            "height": 326
+          },
+          ".details": {
+            "x": 16,
+            "y": 363.40625,
+            "width": 697.28125,
+            "height": 50.59375
+          },
+          ".measurements": {
+            "x": 725.28125,
+            "y": 88,
+            "width": 282.71875,
+            "height": 326
+          },
+          ".nearby": {
+            "x": 16,
+            "y": 428,
+            "width": 992,
+            "height": 164
+          },
+          "footer": {
+            "x": 16,
+            "y": 592,
+            "width": 992,
+            "height": 24
+          }
+        },
+        "layers": [
+          {
+            "class": "cloud-layer",
+            "source": "/aircraft/aeropane_cloud_strip_01.webp",
+            "rect": {
+              "x": 285,
+              "y": 313,
+              "width": 420,
+              "height": 50
+            },
+            "frame": {
+              "x": 81,
+              "y": 111,
+              "width": 1638,
+              "height": 172
+            },
+            "collisions": 0,
+            "hitText": []
+          },
+          {
+            "class": "aircraft-layer",
+            "source": "/aircraft/aeropane_a380_baseline.webp",
+            "rect": {
+              "x": 285,
+              "y": 152,
+              "width": 420,
+              "height": 207.484375
+            },
+            "frame": {
+              "x": 11,
+              "y": 16,
+              "width": 1763,
+              "height": 871
+            },
+            "collisions": 0,
+            "hitText": []
+          }
+        ],
+        "codeFonts": [
+          77,
+          77
+        ],
+        "airportFonts": [
+          15,
+          15
+        ],
+        "codeOverflow": false,
+        "metricOverflow": false,
+        "metricFonts": [
+          88,
+          88
+        ],
+        "scroll": false,
+        "text": [
+          {
+            "text": "From",
+            "left": 28,
+            "top": 90,
+            "right": 74.1875,
+            "bottom": 121
+          },
+          {
+            "text": "MMW",
+            "left": 28,
+            "top": 109,
+            "right": 177.0625,
+            "bottom": 194.140625
+          },
+          {
+            "text": "Wide-code origin fixture",
+            "left": 28,
+            "top": 186.140625,
+            "right": 162.109375,
+            "bottom": 216.140625
+          },
+          {
+            "text": "Wide-code origin fixture",
+            "left": 28,
+            "top": 201.390625,
+            "right": 85.703125,
+            "bottom": 232.640625
+          },
+          {
+            "text": "→",
+            "left": 184,
+            "top": 129.5625,
+            "right": 228,
+            "bottom": 173.5625
+          },
+          {
+            "text": "To",
+            "left": 220,
+            "top": 90,
+            "right": 248,
+            "bottom": 121
+          },
+          {
+            "text": "WWK",
+            "left": 220,
+            "top": 109,
+            "right": 374.140625,
+            "bottom": 194.140625
+          },
+          {
+            "text": "Wide-code destination fixture",
+            "left": 285.96875,
+            "top": 186.140625,
+            "right": 376,
+            "bottom": 216.140625
+          },
+          {
+            "text": "Wide-code destination fixture",
+            "left": 235.90625,
+            "top": 201.390625,
+            "right": 376,
+            "bottom": 232.640625
+          },
+          {
+            "text": "Northline Air",
+            "left": 28,
+            "top": 226.640625,
+            "right": 146.328125,
+            "bottom": 258.1875
+          },
+          {
+            "text": "Callsign",
+            "left": 28,
+            "top": 363.40625,
+            "right": 82.390625,
+            "bottom": 390.40625
+          },
+          {
+            "text": "FIXTURE 01",
+            "left": 28,
+            "top": 380.40625,
+            "right": 131.3125,
+            "bottom": 410
+          },
+          {
+            "text": "Registration",
+            "left": 255.75,
+            "top": 363.40625,
+            "right": 332,
+            "bottom": 390.40625
+          },
+          {
+            "text": "DEMO-ART",
+            "left": 255.75,
+            "top": 380.40625,
+            "right": 356.3125,
+            "bottom": 410
+          },
+          {
+            "text": "Direction",
+            "left": 483.515625,
+            "top": 363.40625,
+            "right": 543.328125,
+            "bottom": 390.40625
+          },
+          {
+            "text": "North-east",
+            "left": 483.515625,
+            "top": 380.40625,
+            "right": 579.5,
+            "bottom": 410
+          }
+        ],
+        "bounds": {
+          "left": 16,
+          "top": 88,
+          "right": 713.28125,
+          "bottom": 414
+        }
+      }
+    },
+    {
+      "variant": "C",
+      "scenario": "long-airports",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "passed": true,
+      "layout": {
+        "card": {
+          "x": 16,
+          "y": 88,
+          "width": 697.28125,
+          "height": 326
+        },
+        "fixed": {
+          ".aircraft-header": {
+            "x": 16,
+            "y": 10,
+            "width": 992,
+            "height": 66
+          },
+          ".primary": {
+            "x": 16,
+            "y": 88,
+            "width": 992,
+            "height": 326
+          },
+          ".details": {
+            "x": 16,
+            "y": 363.40625,
+            "width": 697.28125,
+            "height": 50.59375
+          },
+          ".measurements": {
+            "x": 725.28125,
+            "y": 88,
+            "width": 282.71875,
+            "height": 326
+          },
+          ".nearby": {
+            "x": 16,
+            "y": 428,
+            "width": 992,
+            "height": 164
+          },
+          "footer": {
+            "x": 16,
+            "y": 592,
+            "width": 992,
+            "height": 24
+          }
+        },
+        "layers": [
+          {
+            "class": "cloud-layer",
+            "source": "/aircraft/aeropane_cloud_strip_01.webp",
+            "rect": {
+              "x": 285,
+              "y": 313,
+              "width": 420,
+              "height": 50
+            },
+            "frame": {
+              "x": 81,
+              "y": 111,
+              "width": 1638,
+              "height": 172
+            },
+            "collisions": 0,
+            "hitText": []
+          },
+          {
+            "class": "aircraft-layer",
+            "source": "/aircraft/aeropane_a380_baseline.webp",
+            "rect": {
+              "x": 285,
+              "y": 152,
+              "width": 420,
+              "height": 207.484375
+            },
+            "frame": {
+              "x": 11,
+              "y": 16,
+              "width": 1763,
+              "height": 871
+            },
+            "collisions": 0,
+            "hitText": []
+          }
+        ],
+        "codeFonts": [
+          88,
+          88
+        ],
+        "airportFonts": [
+          15,
+          15
+        ],
+        "codeOverflow": false,
+        "metricOverflow": false,
+        "metricFonts": [
+          88,
+          88
+        ],
+        "scroll": false,
+        "text": [
+          {
+            "text": "From",
+            "left": 28,
+            "top": 90,
+            "right": 74.1875,
+            "bottom": 121
+          },
+          {
+            "text": "DUB",
+            "left": 28,
+            "top": 109,
+            "right": 166.46875,
+            "bottom": 204.59375
+          },
+          {
+            "text": "Dublin International Airport Passenger Terminal and Regional Hub",
+            "left": 28,
+            "top": 196.59375,
+            "right": 180.4375,
+            "bottom": 226.59375
+          },
+          {
+            "text": "Dublin International Airport Passenger Terminal and Regional Hub",
+            "left": 28,
+            "top": 211.84375,
+            "right": 166.890625,
+            "bottom": 243.09375
+          },
+          {
+            "text": "Dublin International Airport Passenger Terminal and Regional Hub",
+            "left": 28,
+            "top": 229.09375,
+            "right": 130.953125,
+            "bottom": 243.09375
+          },
+          {
+            "text": "→",
+            "left": 184,
+            "top": 134.796875,
+            "right": 228,
+            "bottom": 178.796875
+          },
+          {
+            "text": "To",
+            "left": 220,
+            "top": 90,
+            "right": 248,
+            "bottom": 121
+          },
+          {
+            "text": "MAN",
+            "left": 220,
+            "top": 109,
+            "right": 367.09375,
+            "bottom": 204.59375
+          },
+          {
+            "text": "Manchester International Airport Passenger Terminal and Airfield",
+            "left": 283.0625,
+            "top": 196.59375,
+            "right": 376,
+            "bottom": 226.59375
+          },
+          {
+            "text": "Manchester International Airport Passenger Terminal and Airfield",
+            "left": 274.125,
+            "top": 211.84375,
+            "right": 376,
+            "bottom": 243.09375
+          },
+          {
+            "text": "Manchester International Airport Passenger Terminal and Airfield",
+            "left": 237.109375,
+            "top": 229.09375,
+            "right": 376,
+            "bottom": 243.09375
+          },
+          {
+            "text": "Northline Air",
+            "left": 28,
+            "top": 237.09375,
+            "right": 146.328125,
+            "bottom": 268.640625
+          },
+          {
+            "text": "Callsign",
+            "left": 28,
+            "top": 363.40625,
+            "right": 82.390625,
+            "bottom": 390.40625
+          },
+          {
+            "text": "FIXTURE 01",
+            "left": 28,
+            "top": 380.40625,
+            "right": 131.3125,
+            "bottom": 410
+          },
+          {
+            "text": "Registration",
+            "left": 255.75,
+            "top": 363.40625,
+            "right": 332,
+            "bottom": 390.40625
+          },
+          {
+            "text": "DEMO-ART",
+            "left": 255.75,
+            "top": 380.40625,
+            "right": 356.3125,
+            "bottom": 410
+          },
+          {
+            "text": "Direction",
+            "left": 483.515625,
+            "top": 363.40625,
+            "right": 543.328125,
+            "bottom": 390.40625
+          },
+          {
+            "text": "North-east",
+            "left": 483.515625,
+            "top": 380.40625,
+            "right": 579.5,
+            "bottom": 410
+          }
+        ],
+        "bounds": {
+          "left": 16,
+          "top": 88,
+          "right": 713.28125,
+          "bottom": 414
+        }
+      }
+    },
+    {
+      "variant": "A",
+      "scenario": "single",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "B",
+      "scenario": "single",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "C",
+      "scenario": "single",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "A",
+      "scenario": "empty",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "B",
+      "scenario": "empty",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "C",
+      "scenario": "empty",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "A",
+      "scenario": "unavailable",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "B",
+      "scenario": "unavailable",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "C",
+      "scenario": "unavailable",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "A",
+      "scenario": "missing-route",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "B",
+      "scenario": "missing-route",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "C",
+      "scenario": "missing-route",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "A",
+      "scenario": "icao-only",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "B",
+      "scenario": "icao-only",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "C",
+      "scenario": "icao-only",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "A",
+      "scenario": "a320",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "B",
+      "scenario": "a320",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "C",
+      "scenario": "a320",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "A",
+      "scenario": "challenger",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "B",
+      "scenario": "challenger",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "pixelIdentical": true
+    },
+    {
+      "variant": "C",
+      "scenario": "challenger",
+      "viewport": {
+        "width": 1024,
+        "height": 624
+      },
+      "pixelIdentical": true
+    }
+  ]
+}

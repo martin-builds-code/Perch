@@ -1,0 +1,49 @@
+{
+  "base": "https://perch-aero-pane-stage3a-ea6xgvpnm-mml3.vercel.app",
+  "checkedAt": "2026-11-11T22:36:17.316Z",
+  "realUnauthenticatedApiStatuses": [
+    401,
+    401,
+    401,
+    404
+  ],
+  "realPinScreen": true,
+  "realFrozenReviewCases": 16,
+  "fixtureChecks": [
+    {
+      "height": 768,
+      "syntheticAircraft": 1,
+      "historicalLabels": 1,
+      "stationaryArtwork": true,
+      "fixtureApiCalls": 2,
+      "actualProviderCalls": 0
+    },
+    {
+      "height": 768,
+      "syntheticAircraft": 3,
+      "historicalLabels": 3,
+      "stationaryArtwork": true,
+      "fixtureApiCalls": 4,
+      "actualProviderCalls": 0
+    },
+    {
+      "height": 624,
+      "syntheticAircraft": 1,
+      "historicalLabels": 1,
+      "stationaryArtwork": true,
+      "fixtureApiCalls": 2,
+      "actualProviderCalls": 0
+    },
+    {
+      "height": 624,
+      "syntheticAircraft": 3,
+      "historicalLabels": 3,
+      "stationaryArtwork": true,
+      "fixtureApiCalls": 4,
+      "actualProviderCalls": 0
+    }
+  ],
+  "liveAuthenticatedObservation": false,
+  "serverBypassEnabled": false,
+  "warning": "Hosted rendering uses intercepted synthetic API responses, not live aircraft. Backend PIN protection is unchanged."
+}

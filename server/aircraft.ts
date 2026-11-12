@@ -2,6 +2,7 @@ import type { LiveAircraft } from '../src/liveTypes.js';
 export interface Position {
   latitude: number;
   longitude: number;
+  elevationM?: number;
 }
 export interface ObservedAircraft extends LiveAircraft {
   latitude: number | null;
@@ -18,7 +19,10 @@ export function validPosition(p: unknown): p is Position {
     Math.abs(longitude) <= 180
   );
 }
-export function horizontalDistanceKm(a: unknown, b: unknown): number | null {
+export function horizontalDistanceKm(
+  a: unknown,
+  b: unknown,
+): number | null {
   if (!validPosition(a) || !validPosition(b)) return null;
   const rad = Math.PI / 180,
     dl = (b.latitude - a.latitude) * rad,
@@ -29,6 +33,24 @@ export function horizontalDistanceKm(a: unknown, b: unknown): number | null {
       Math.cos(b.latitude * rad) *
       Math.sin(dg / 2) ** 2;
   return 6371.0088 * 2 * Math.asin(Math.sqrt(Math.min(1, Math.max(0, h))));
+}
+export function relativeBearingDegrees(
+  a: unknown,
+  b: unknown,
+): number | null {
+  if (!validPosition(a) || !validPosition(b)) return null;
+  if (a.latitude === b.latitude && a.longitude === b.longitude)
+    return null;
+  const r = Math.PI / 180,
+    delta = (b.longitude - a.longitude) * r;
+  const angle = Math.atan2(
+    Math.sin(delta) * Math.cos(b.latitude * r),
+    Math.cos(a.latitude * r) * Math.sin(b.latitude * r) -
+      Math.sin(a.latitude * r) *
+        Math.cos(b.latitude * r) *
+        Math.cos(delta),
+  );
+  return (angle / r + 360) % 360;
 }
 const number = (v: unknown): number | null =>
   typeof v === 'number' && Number.isFinite(v) ? v : null;
@@ -70,6 +92,19 @@ export function normalise(
     age !== null && age >= 0 && anomalies.length === 0
       ? providerTimeMs - age * 1000
       : null;
+  const geometric = number(r.alt_geom),
+    barometric = number(r.alt_baro);
+  const usableAltitude = (v: number | null) =>
+    v !== null && v >= -1500 && v <= 60000;
+  const altitude = usableAltitude(geometric)
+    ? geometric
+    : usableAltitude(barometric)
+      ? barometric
+      : null;
+  const elevationKnown =
+    Number.isFinite(point.elevationM) &&
+    point.elevationM! >= -500 &&
+    point.elevationM! <= 9000;
   const rawDescription = text(r.desc),
     track = number(r.track);
   return {
@@ -81,6 +116,20 @@ export function normalise(
     typeCode: text(r.t),
     latitude,
     longitude,
+    bearingDegrees: position
+      ? relativeBearingDegrees(point, { latitude, longitude })
+      : null,
+    heightAboveObserverKm:
+      elevationKnown && altitude !== null
+        ? altitude * 0.0003048 - point.elevationM! / 1000
+        : null,
+    ...(altitude !== null
+      ? {
+          heightReference: usableAltitude(geometric)
+            ? ('geometric' as const)
+            : ('barometric' as const),
+        }
+      : {}),
     distanceKm: position
       ? horizontalDistanceKm(point, { latitude, longitude })
       : null,
@@ -94,7 +143,8 @@ export function normalise(
           : null,
     groundSpeedKnots:
       typeof r.gs === 'number' && r.gs >= 0 ? number(r.gs) : null,
-    trackDegrees: track !== null && track >= 0 && track < 360 ? track : null,
+    trackDegrees:
+      track !== null && track >= 0 && track < 360 ? track : null,
     positionTimeMs,
     source: 'adsb.fi',
     validity: { position, timestamp: positionTimeMs !== null, anomalies },
@@ -108,6 +158,9 @@ export function publicAircraft(a: ObservedAircraft): LiveAircraft {
     description: a.description,
     typeCode: a.typeCode,
     distanceKm: a.distanceKm,
+    bearingDegrees: a.bearingDegrees,
+    heightAboveObserverKm: a.heightAboveObserverKm,
+    heightReference: a.heightReference,
     barometricAltitudeFt: a.barometricAltitudeFt,
     geometricAltitudeFt: a.geometricAltitudeFt,
     onGround: a.onGround,

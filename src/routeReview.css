@@ -1,0 +1,276 @@
+html.route-review-page,
+.route-review-page body {
+  height: auto;
+  min-height: 100%;
+  overflow: auto;
+}
+.route-review-page #root {
+  height: auto;
+  min-height: 100%;
+}
+.route-review {
+  box-sizing: border-box;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 24px 18px 48px;
+  color: #f4f8fb;
+  font-family: 'Nunito Variable', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+}
+.route-review * {
+  box-sizing: border-box;
+}
+.route-review h1 {
+  font-size: 30px;
+  line-height: 1.2;
+  margin: 8px 0 16px;
+  letter-spacing: -0.5px;
+}
+.route-review h2 {
+  font-size: 25px;
+  line-height: 1.2;
+}
+.route-review h3 {
+  font-size: 21px;
+  margin: 20px 0 10px;
+}
+.route-review p {
+  margin: 10px 0;
+  overflow-wrap: break-word;
+}
+.review-kicker,
+.review-band {
+  color: #a9c9db;
+  font-weight: 800;
+}
+.review-progress {
+  font-weight: 800;
+  font-size: 20px;
+}
+.review-save {
+  font-size: 16px;
+  color: #d3e2ea;
+}
+.review-case,
+.review-results {
+  background: #162e3e;
+  border: 1px solid #496575;
+  border-radius: 14px;
+  padding: 18px;
+  margin-top: 16px;
+}
+.review-case h2 {
+  font-size: 34px;
+  letter-spacing: 0.03em;
+  margin: 6px 0;
+}
+.review-aircraft {
+  font-size: 23px;
+  font-weight: 800;
+}
+.route-review .review-registration {
+  font-size: 16px;
+}
+.review-observation {
+  margin: 18px 0;
+}
+.review-observation dt {
+  font-weight: 700;
+}
+.review-observation dd {
+  margin: 0;
+}
+.review-proposal {
+  padding: 14px;
+  background: #0c2232;
+  border-left: 4px solid #f9ca3b;
+  border-radius: 4px;
+}
+.review-route {
+  font-size: 38px;
+  line-height: 1.3;
+  font-weight: 800;
+  word-spacing: 4px;
+}
+.review-route span {
+  color: #68c6dc;
+}
+.review-missing {
+  font-size: 21px;
+  font-weight: 800;
+}
+.route-review button,
+.review-link-button {
+  font: inherit;
+  font-weight: 800;
+  font-size: 17px;
+  min-height: 48px;
+  padding: 10px 14px;
+  border: 1px solid #8cafc2;
+  border-radius: 8px;
+  background: #e5f0f5;
+  color: #071925;
+  cursor: pointer;
+  text-align: center;
+}
+.route-review button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.route-review button[aria-pressed='true'] {
+  background: #81e4d9;
+  box-shadow: 0 0 0 3px #081925;
+}
+.route-review a {
+  color: #9fe9fa;
+}
+.route-review .review-link-button {
+  display: inline-block;
+  text-decoration: none;
+  color: #071925;
+}
+.route-review input,
+.route-review textarea {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  padding: 9px 10px;
+  font: inherit;
+  font-size: 18px;
+  background: #fff;
+  color: #081925;
+  border: 1px solid #7894a6;
+  border-radius: 6px;
+}
+.route-review textarea {
+  resize: vertical;
+}
+.route-review label {
+  display: block;
+}
+.review-copy {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.review-copy input {
+  min-width: 0;
+  max-width: 220px;
+}
+.review-verdicts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.review-verdicts small {
+  display: block;
+  font-size: 13px;
+  line-height: 1.25;
+  font-weight: 600;
+  margin-top: 5px;
+}
+.route-review fieldset {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 20px 0;
+  padding: 12px;
+  border: 1px solid #7396ab;
+  border-radius: 8px;
+}
+.route-review fieldset p {
+  grid-column: 1/-1;
+}
+.route-review legend {
+  font-weight: 800;
+  padding: 0 6px;
+}
+.route-review .review-radio {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  min-height: 48px;
+  margin: 5px 0;
+  cursor: pointer;
+}
+.route-review .review-radio input {
+  width: 24px;
+  min-height: 24px;
+  height: 24px;
+  flex: none;
+}
+.review-airports {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 18px;
+}
+.review-airports p {
+  grid-column: 1/-1;
+}
+.review-notes {
+  margin: 18px 0;
+}
+.review-navigation {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 10px 0;
+  background: #081925;
+  z-index: 2;
+}
+.review-results button {
+  margin: 6px 8px 6px 0;
+}
+.review-import {
+  margin-top: 20px;
+}
+.review-import input {
+  margin-top: 8px;
+}
+.review-notice {
+  padding: 12px;
+  border: 1px solid #f9ca3b;
+  background: #182b35;
+  border-radius: 6px;
+}
+.review-status {
+  font-weight: 800;
+  color: #a4eee2;
+}
+.route-review details {
+  margin: 14px 0;
+}
+.route-review summary {
+  cursor: pointer;
+  min-height: 44px;
+}
+.route-review :focus-visible {
+  outline: 3px solid #ffcf4a;
+  outline-offset: 3px;
+}
+@media (max-width: 380px) {
+  .route-review {
+    padding: 16px 12px 36px;
+    font-size: 17px;
+  }
+  .review-case,
+  .review-results {
+    padding: 14px;
+  }
+  .review-route {
+    font-size: 34px;
+  }
+  .review-navigation button {
+    font-size: 16px;
+    padding: 8px 10px;
+  }
+  .review-copy {
+    flex-wrap: wrap;
+  }
+}

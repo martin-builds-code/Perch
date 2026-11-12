@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Aero Pane readability review</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #081925;
+        color: #fff8ed;
+        font:
+          18px/1.4 system-ui,
+          sans-serif;
+      }
+      header,
+      footer {
+        padding: 20px;
+      }
+      h1 {
+        font-size: 28px;
+        margin: 0 0 8px;
+      }
+      p {
+        max-width: 900px;
+      }
+      a {
+        color: #aac5d9;
+      }
+      section {
+        padding: 16px;
+      }
+      h2 {
+        font-size: 22px;
+        margin: 0 0 12px;
+      }
+      .comparison {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+      figure {
+        margin: 0;
+      }
+      figcaption {
+        margin: 0 0 8px;
+        font-size: 18px;
+        font-weight: 700;
+      }
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Aero Pane — readability review</h1>
+      <p>
+        Identical synthetic data and viewport on each side. All fields are real
+        interface text; artwork is unchanged. Tap an image for its
+        full-resolution file.
+        <a href="README.md">Report, evidence and route-timing investigation</a>.
+      </p>
+    </header>
+    <section id="multiple-768">
+      <h2>Multiple aircraft · 1024 × 768</h2>
+      <div class="comparison">
+        <figure>
+          <figcaption>Previous Stage 3A</figcaption>
+          <a href="before-readability-multiple-1024x768.png"
+            ><img
+              src="before-readability-multiple-1024x768.png"
+              width="1024"
+              height="768"
+              alt="Previous multiple layout"
+          /></a>
+        </figure>
+        <figure>
+          <figcaption>Readability revision</figcaption>
+          <a href="readability-multiple-1024x768.png"
+            ><img
+              src="readability-multiple-1024x768.png"
+              width="1024"
+              height="768"
+              alt="Revised multiple layout"
+          /></a>
+        </figure>
+      </div>
+    </section>
+    <section id="multiple-624">
+      <h2>Multiple aircraft · 1024 × 624</h2>
+      <div class="comparison">
+        <figure>
+          <figcaption>Previous Stage 3A</figcaption>
+          <a href="before-readability-multiple-1024x624.png"
+            ><img
+              src="before-readability-multiple-1024x624.png"
+              width="1024"
+              height="624"
+              alt="Previous multiple layout"
+          /></a>
+        </figure>
+        <figure>
+          <figcaption>Readability revision</figcaption>
+          <a href="readability-multiple-1024x624.png"
+            ><img
+              src="readability-multiple-1024x624.png"
+              width="1024"
+              height="624"
+              alt="Revised multiple layout"
+          /></a>
+        </figure>
+      </div>
+    </section>
+    <section id="single-768">
+      <h2>Single aircraft · 1024 × 768</h2>
+      <div class="comparison">
+        <figure>
+          <figcaption>Previous Stage 3A</figcaption>
+          <a href="before-readability-single-1024x768.png"
+            ><img
+              src="before-readability-single-1024x768.png"
+              width="1024"
+              height="768"
+              alt="Previous single layout"
+          /></a>
+        </figure>
+        <figure>
+          <figcaption>Readability revision</figcaption>
+          <a href="readability-single-1024x768.png"
+            ><img
+              src="readability-single-1024x768.png"
+              width="1024"
+              height="768"
+              alt="Revised single layout"
+          /></a>
+        </figure>
+      </div>
+    </section>
+    <section id="single-624">
+      <h2>Single aircraft · 1024 × 624</h2>
+      <div class="comparison">
+        <figure>
+          <figcaption>Previous Stage 3A</figcaption>
+          <a href="before-readability-single-1024x624.png"
+            ><img
+              src="before-readability-single-1024x624.png"
+              width="1024"
+              height="624"
+              alt="Previous single layout"
+          /></a>
+        </figure>
+        <figure>
+          <figcaption>Readability revision</figcaption>
+          <a href="readability-single-1024x624.png"
+            ><img
+              src="readability-single-1024x624.png"
+              width="1024"
+              height="624"
+              alt="Revised single layout"
+          /></a>
+        </figure>
+      </div>
+    </section>
+    <footer>
+      Review artifacts only. No merge or deployment. Physical iPad approval
+      remains outstanding.
+    </footer>
+  </body>
+</html>

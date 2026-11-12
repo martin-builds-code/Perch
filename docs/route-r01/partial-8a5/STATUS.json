@@ -1,0 +1,12 @@
+{
+  "sourceCommit": "8a5baf08b2f398fcb5a3333f4cc516cb38f6a699",
+  "lastEvidenceAtMs": 1794403975045,
+  "minutesOfSavedEvidence": 27.835366666666665,
+  "aircraft": 17,
+  "localDeferrals": 0,
+  "providerFailureBackoffs": 0,
+  "operatorStopped": true,
+  "observerProcessGone": true,
+  "reason": "Additional automated regression found longer provider waits could be lost during a slow body/missing header; restart final-source comparison.",
+  "excludedFromFinalComparison": true
+}

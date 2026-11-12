@@ -1,0 +1,795 @@
+{
+  "basis": "Actual bounded deployed R04 observation. R03 selections are a no-network shadow on the same snapshots; R03 route lookups/outcomes were not executed and are not inferred.",
+  "input": "docs/route-r04/live/observation.json",
+  "startedAtMs": 1794484447172,
+  "observedUntilMs": 1794486847544,
+  "actualObservationMinutes": 40.0062,
+  "evidenceBounds": {
+    "frames": 118,
+    "events": 395,
+    "dropped": 0,
+    "routeCollectorTruncated": false,
+    "largestSnapshotAircraft": 5,
+    "rowLimit": 32
+  },
+  "detectedAircraft": 26,
+  "distinctValidFlightReferences": 26,
+  "detectedWithoutAnyRouteAttempt": 5,
+  "stillPresentAtEndWithoutRouteAttempt": 0,
+  "byCategory": {
+    "commercial-jet": {
+      "detectedAircraft": 12,
+      "primaryAircraft": 7,
+      "routeAttempts": 10,
+      "actualRouteProviderStarts": 10,
+      "completeResponses": 9,
+      "providerCompleteResponses": 9,
+      "historicalResponses": 4,
+      "providerHistoricalResponses": 4,
+      "recentResponses": 5,
+      "unclassifiedAgeCompleteResponses": 0,
+      "genuineProviderMisses": 0,
+      "cachedNegativeResponses": 0,
+      "rejectedResponses": 1,
+      "partialResponses": 0,
+      "lookupErrors": 0,
+      "serverCacheHits": 0,
+      "notObservedAtEndBeforeAnyRouteAttempt": 2
+    },
+    "regional": {
+      "detectedAircraft": 1,
+      "primaryAircraft": 1,
+      "routeAttempts": 2,
+      "actualRouteProviderStarts": 2,
+      "completeResponses": 2,
+      "providerCompleteResponses": 2,
+      "historicalResponses": 2,
+      "providerHistoricalResponses": 2,
+      "recentResponses": 0,
+      "unclassifiedAgeCompleteResponses": 0,
+      "genuineProviderMisses": 0,
+      "cachedNegativeResponses": 0,
+      "rejectedResponses": 0,
+      "partialResponses": 0,
+      "lookupErrors": 0,
+      "serverCacheHits": 0,
+      "notObservedAtEndBeforeAnyRouteAttempt": 0
+    },
+    "general-aviation": {
+      "detectedAircraft": 4,
+      "primaryAircraft": 2,
+      "routeAttempts": 4,
+      "actualRouteProviderStarts": 4,
+      "completeResponses": 0,
+      "providerCompleteResponses": 0,
+      "historicalResponses": 0,
+      "providerHistoricalResponses": 0,
+      "recentResponses": 0,
+      "unclassifiedAgeCompleteResponses": 0,
+      "genuineProviderMisses": 4,
+      "cachedNegativeResponses": 0,
+      "rejectedResponses": 0,
+      "partialResponses": 0,
+      "lookupErrors": 0,
+      "serverCacheHits": 0,
+      "notObservedAtEndBeforeAnyRouteAttempt": 2
+    },
+    "helicopter": {
+      "detectedAircraft": 0,
+      "primaryAircraft": 0,
+      "routeAttempts": 0,
+      "actualRouteProviderStarts": 0,
+      "completeResponses": 0,
+      "providerCompleteResponses": 0,
+      "historicalResponses": 0,
+      "providerHistoricalResponses": 0,
+      "recentResponses": 0,
+      "unclassifiedAgeCompleteResponses": 0,
+      "genuineProviderMisses": 0,
+      "cachedNegativeResponses": 0,
+      "rejectedResponses": 0,
+      "partialResponses": 0,
+      "lookupErrors": 0,
+      "serverCacheHits": 0,
+      "notObservedAtEndBeforeAnyRouteAttempt": 0
+    },
+    "unknown": {
+      "detectedAircraft": 9,
+      "primaryAircraft": 4,
+      "routeAttempts": 12,
+      "actualRouteProviderStarts": 12,
+      "completeResponses": 4,
+      "providerCompleteResponses": 4,
+      "historicalResponses": 3,
+      "providerHistoricalResponses": 3,
+      "recentResponses": 1,
+      "unclassifiedAgeCompleteResponses": 0,
+      "genuineProviderMisses": 8,
+      "cachedNegativeResponses": 0,
+      "rejectedResponses": 0,
+      "partialResponses": 0,
+      "lookupErrors": 0,
+      "serverCacheHits": 0,
+      "notObservedAtEndBeforeAnyRouteAttempt": 1
+    }
+  },
+  "network": {
+    "positionRequests": 160,
+    "enrichmentRequests": 34,
+    "sessionDenials": 0,
+    "networkFailures": 0,
+    "positionSources": {
+      "provider": 110,
+      "cache": 50,
+      "coalesced": 0,
+      "blocked": 0,
+      "unknown": 0
+    },
+    "positionStatuses": {
+      "200": 160
+    }
+  },
+  "rateCompliance": {
+    "applicationEnrichmentAttempts": 34,
+    "secondaryAttempts": 14,
+    "actualHexdbRequests": 34,
+    "actualRouteHexdbRequests": 28,
+    "minimumApplicationGapMs": 30016,
+    "minimumSecondaryGapMs": 90567,
+    "below30sBeyond1msClockRounding": 0,
+    "below90sBeyond1msClockRounding": 0,
+    "requestsPerHour": 50.99209622508511,
+    "secondaryRequestsPerHour": 20.99674550444681
+  },
+  "selectionComparison": {
+    "r03": {
+      "primaryAircraft": 10,
+      "transitions": 15,
+      "intervals": [
+        {
+          "ref": "000002",
+          "startMs": 1794484450514,
+          "endMs": 1794484600364,
+          "seconds": 149.85
+        },
+        {
+          "ref": "000001",
+          "startMs": 1794484600364,
+          "endMs": 1794484629672,
+          "seconds": 29.308
+        },
+        {
+          "ref": "000002",
+          "startMs": 1794484629672,
+          "endMs": 1794484629959,
+          "seconds": 0.287
+        },
+        {
+          "ref": "000001",
+          "startMs": 1794484629959,
+          "endMs": 1794484750230,
+          "seconds": 120.271
+        },
+        {
+          "ref": "000008",
+          "startMs": 1794484750230,
+          "endMs": 1794484810392,
+          "seconds": 60.162
+        },
+        {
+          "ref": "000009",
+          "startMs": 1794484810392,
+          "endMs": 1794484930337,
+          "seconds": 119.945
+        },
+        {
+          "ref": "000001",
+          "startMs": 1794484930337,
+          "endMs": 1794485065176,
+          "seconds": 134.839
+        },
+        {
+          "ref": "00000b",
+          "startMs": 1794485065176,
+          "endMs": 1794485305412,
+          "seconds": 240.236
+        },
+        {
+          "ref": "00000f",
+          "startMs": 1794485305412,
+          "endMs": 1794485680274,
+          "seconds": 374.862
+        },
+        {
+          "ref": "000002",
+          "startMs": 1794485680274,
+          "endMs": 1794485799929,
+          "seconds": 119.655
+        },
+        {
+          "ref": "000011",
+          "startMs": 1794485799929,
+          "endMs": 1794485814987,
+          "seconds": 15.058
+        },
+        {
+          "ref": "000002",
+          "startMs": 1794485814987,
+          "endMs": 1794485995331,
+          "seconds": 180.344
+        },
+        {
+          "ref": "000001",
+          "startMs": 1794485995331,
+          "endMs": 1794486040394,
+          "seconds": 45.063
+        },
+        {
+          "ref": "000013",
+          "startMs": 1794486040394,
+          "endMs": 1794486085300,
+          "seconds": 44.906
+        },
+        {
+          "ref": "000002",
+          "startMs": 1794486085300,
+          "endMs": 1794486220532,
+          "seconds": 135.232
+        },
+        {
+          "ref": "000001",
+          "startMs": 1794486220532,
+          "endMs": 1794486400262,
+          "seconds": 179.73
+        },
+        {
+          "ref": "000016",
+          "startMs": 1794486445415,
+          "endMs": 1794486789981,
+          "seconds": 344.566
+        },
+        {
+          "ref": "00001a",
+          "startMs": 1794486805367,
+          "endMs": 1794486847544,
+          "seconds": 42.177
+        }
+      ],
+      "firstAcquisitions": [
+        {
+          "ref": "000002",
+          "atMs": 1794484450514,
+          "estimatedElevationDegrees": 3.5249812775257205,
+          "estimatedSecondsBeforeCpa": null,
+          "distanceKm": 6.300297220794741
+        },
+        {
+          "ref": "000001",
+          "atMs": 1794484600364,
+          "estimatedElevationDegrees": 17.519742611578376,
+          "estimatedSecondsBeforeCpa": 67.74922095200434,
+          "distanceKm": 9.412386074313831
+        },
+        {
+          "ref": "000008",
+          "atMs": 1794484750230,
+          "estimatedElevationDegrees": 2.0563679467845546,
+          "estimatedSecondsBeforeCpa": null,
+          "distanceKm": 14.416608492386336
+        },
+        {
+          "ref": "000009",
+          "atMs": 1794484810392,
+          "estimatedElevationDegrees": 42.507443356210445,
+          "estimatedSecondsBeforeCpa": 60.29274123901185,
+          "distanceKm": 12.453208779559066
+        },
+        {
+          "ref": "00000b",
+          "atMs": 1794485065176,
+          "estimatedElevationDegrees": 1.4012921217061984,
+          "estimatedSecondsBeforeCpa": null,
+          "distanceKm": 13.061871171706256
+        },
+        {
+          "ref": "00000f",
+          "atMs": 1794485305412,
+          "estimatedElevationDegrees": 1.5903403143281671,
+          "estimatedSecondsBeforeCpa": null,
+          "distanceKm": 14.253089522927956
+        },
+        {
+          "ref": "000011",
+          "atMs": 1794485799929,
+          "estimatedElevationDegrees": 47.56987610571436,
+          "estimatedSecondsBeforeCpa": null,
+          "distanceKm": 4.262328931098827
+        },
+        {
+          "ref": "000013",
+          "atMs": 1794486040394,
+          "estimatedElevationDegrees": 16.173859813593445,
+          "estimatedSecondsBeforeCpa": null,
+          "distanceKm": 11.926124835145032
+        },
+        {
+          "ref": "000016",
+          "atMs": 1794486445415,
+          "estimatedElevationDegrees": 8.638522468173289,
+          "estimatedSecondsBeforeCpa": 152.98280722708532,
+          "distanceKm": 14.642362323518368
+        },
+        {
+          "ref": "00001a",
+          "atMs": 1794486805367,
+          "estimatedElevationDegrees": 36.20949585925578,
+          "estimatedSecondsBeforeCpa": 47.77552319728865,
+          "distanceKm": 13.123512945915314
+        }
+      ],
+      "definedGeometricallyRelevantAircraft": 11,
+      "neverPrimaryDespiteDefinedGeometricRelevance": [
+        "000005",
+        "000006",
+        "000007",
+        "00000a",
+        "00000e",
+        "000017",
+        "000018"
+      ],
+      "holdSeconds": {
+        "count": 18,
+        "medianSeconds": 120.271,
+        "maxSeconds": 374.862
+      }
+    },
+    "r04": {
+      "primaryAircraft": 14,
+      "transitions": 19,
+      "intervals": [
+        {
+          "ref": "000001",
+          "startMs": 1794484450514,
+          "endMs": 1794484569457,
+          "seconds": 118.943
+        },
+        {
+          "ref": "000005",
+          "startMs": 1794484569457,
+          "endMs": 1794484600364,
+          "seconds": 30.907
+        },
+        {
+          "ref": "000001",
+          "startMs": 1794484600364,
+          "endMs": 1794484629672,
+          "seconds": 29.308
+        },
+        {
+          "ref": "000006",
+          "startMs": 1794484629672,
+          "endMs": 1794484629959,
+          "seconds": 0.287
+        },
+        {
+          "ref": "000001",
+          "startMs": 1794484629959,
+          "endMs": 1794484825443,
+          "seconds": 195.484
+        },
+        {
+          "ref": "000009",
+          "startMs": 1794484825443,
+          "endMs": 1794484945381,
+          "seconds": 119.938
+        },
+        {
+          "ref": "000001",
+          "startMs": 1794484945381,
+          "endMs": 1794485094873,
+          "seconds": 149.492
+        },
+        {
+          "ref": "00000b",
+          "startMs": 1794485094873,
+          "endMs": 1794485260541,
+          "seconds": 165.668
+        },
+        {
+          "ref": "00000d",
+          "startMs": 1794485260541,
+          "endMs": 1794485290241,
+          "seconds": 29.7
+        },
+        {
+          "ref": "00000e",
+          "startMs": 1794485290241,
+          "endMs": 1794485395184,
+          "seconds": 104.943
+        },
+        {
+          "ref": "00000f",
+          "startMs": 1794485395184,
+          "endMs": 1794485680274,
+          "seconds": 285.09
+        },
+        {
+          "ref": "000002",
+          "startMs": 1794485680274,
+          "endMs": 1794485709713,
+          "seconds": 29.439
+        },
+        {
+          "ref": "000011",
+          "startMs": 1794485709713,
+          "endMs": 1794485859567,
+          "seconds": 149.854
+        },
+        {
+          "ref": "000002",
+          "startMs": 1794485859567,
+          "endMs": 1794485903729,
+          "seconds": 44.162
+        },
+        {
+          "ref": "000001",
+          "startMs": 1794485903729,
+          "endMs": 1794486069747,
+          "seconds": 166.018
+        },
+        {
+          "ref": "000013",
+          "startMs": 1794486069747,
+          "endMs": 1794486115200,
+          "seconds": 45.453
+        },
+        {
+          "ref": "000001",
+          "startMs": 1794486115200,
+          "endMs": 1794486130748,
+          "seconds": 15.548
+        },
+        {
+          "ref": "000002",
+          "startMs": 1794486130748,
+          "endMs": 1794486204886,
+          "seconds": 74.138
+        },
+        {
+          "ref": "000001",
+          "startMs": 1794486204886,
+          "endMs": 1794486400262,
+          "seconds": 195.376
+        },
+        {
+          "ref": "000016",
+          "startMs": 1794486445415,
+          "endMs": 1794486760408,
+          "seconds": 314.993
+        },
+        {
+          "ref": "000019",
+          "startMs": 1794486760408,
+          "endMs": 1794486789981,
+          "seconds": 29.573
+        },
+        {
+          "ref": "00001a",
+          "startMs": 1794486805367,
+          "endMs": 1794486847544,
+          "seconds": 42.177
+        }
+      ],
+      "firstAcquisitions": [
+        {
+          "ref": "000001",
+          "atMs": 1794484450514,
+          "estimatedElevationDegrees": 33.77539398165146,
+          "estimatedSecondsBeforeCpa": null,
+          "distanceKm": 4.431177876649919
+        },
+        {
+          "ref": "000005",
+          "atMs": 1794484569457,
+          "estimatedElevationDegrees": 48.33449524836829,
+          "estimatedSecondsBeforeCpa": null,
+          "distanceKm": 9.601358639202983
+        },
+        {
+          "ref": "000006",
+          "atMs": 1794484629672,
+          "estimatedElevationDegrees": 44.04577528830595,
+          "estimatedSecondsBeforeCpa": null,
+          "distanceKm": 11.296708605989402
+        },
+        {
+          "ref": "000009",
+          "atMs": 1794484825443,
+          "estimatedElevationDegrees": 49.74632380475035,
+          "estimatedSecondsBeforeCpa": 45.32625262977718,
+          "distanceKm": 9.664124711947057
+        },
+        {
+          "ref": "00000b",
+          "atMs": 1794485094873,
+          "estimatedElevationDegrees": 1.5779390121117574,
+          "estimatedSecondsBeforeCpa": 101.52408113521822,
+          "distanceKm": 12.152235008685576
+        },
+        {
+          "ref": "00000d",
+          "atMs": 1794485260541,
+          "estimatedElevationDegrees": 39.88708832836742,
+          "estimatedSecondsBeforeCpa": null,
+          "distanceKm": 13.283709739731085
+        },
+        {
+          "ref": "00000e",
+          "atMs": 1794485290241,
+          "estimatedElevationDegrees": 36.96529395207976,
+          "estimatedSecondsBeforeCpa": 47.33582881245867,
+          "distanceKm": 14.751195062525856
+        },
+        {
+          "ref": "00000f",
+          "atMs": 1794485395184,
+          "estimatedElevationDegrees": 2.0602244422515534,
+          "estimatedSecondsBeforeCpa": null,
+          "distanceKm": 11.000409854825683
+        },
+        {
+          "ref": "000002",
+          "atMs": 1794485680274,
+          "estimatedElevationDegrees": 1.7119072447008086,
+          "estimatedSecondsBeforeCpa": null,
+          "distanceKm": 12.985443409977776
+        },
+        {
+          "ref": "000011",
+          "atMs": 1794485709713,
+          "estimatedElevationDegrees": 12.620959877271805,
+          "estimatedSecondsBeforeCpa": null,
+          "distanceKm": 13.26993833266192
+        },
+        {
+          "ref": "000013",
+          "atMs": 1794486069747,
+          "estimatedElevationDegrees": 16.173859813593445,
+          "estimatedSecondsBeforeCpa": null,
+          "distanceKm": 11.926124835145032
+        },
+        {
+          "ref": "000016",
+          "atMs": 1794486445415,
+          "estimatedElevationDegrees": 8.638522468173289,
+          "estimatedSecondsBeforeCpa": 152.98280722708532,
+          "distanceKm": 14.642362323518368
+        },
+        {
+          "ref": "000019",
+          "atMs": 1794486760408,
+          "estimatedElevationDegrees": 37.60656894156989,
+          "estimatedSecondsBeforeCpa": null,
+          "distanceKm": 14.432373437149417
+        },
+        {
+          "ref": "00001a",
+          "atMs": 1794486805367,
+          "estimatedElevationDegrees": 36.20949585925578,
+          "estimatedSecondsBeforeCpa": 47.77552319728865,
+          "distanceKm": 13.123512945915314
+        }
+      ],
+      "definedGeometricallyRelevantAircraft": 11,
+      "neverPrimaryDespiteDefinedGeometricRelevance": [
+        "000007",
+        "00000a",
+        "000017",
+        "000018"
+      ],
+      "holdSeconds": {
+        "count": 22,
+        "medianSeconds": 104.943,
+        "maxSeconds": 314.993
+      }
+    },
+    "comparedMinutes": 39.9505,
+    "differentChoiceMinutes": 12.5192,
+    "differentChoicePercent": 31.33677926433962,
+    "geometricConvention": "Elevation>=45 degrees or distance<1km at an observed frame, never-primary count over whole session; not a human-observation accuracy label. Partial passes/session boundaries may censor comparisons."
+  },
+  "routeReadiness": {
+    "primaryAircraft": 14,
+    "primaryAircraftWithCompleteRoutes": 9,
+    "secondaryAircraft": 25,
+    "secondaryAircraftWithCompleteRoutes": 12,
+    "primaryMs": 2336489,
+    "primaryCompleteMs": 789184,
+    "primaryHistoricalMs": 580017,
+    "primaryCompletePercent": 33.77649113691526,
+    "primaryHistoricalPercent": 24.824298338233135,
+    "secondaryCompletePercent": 14.829575996081497,
+    "routeReadyAtFirstPrimary": 3,
+    "firstPrimary": [
+      {
+        "ref": "000001",
+        "atMs": 1794484450516,
+        "routeReady": false,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 4,
+        "firstUsableAfterDetectionMs": null,
+        "routeReadyBeforeFirstPrimaryMs": null
+      },
+      {
+        "ref": "000005",
+        "atMs": 1794484569457,
+        "routeReady": false,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 74080,
+        "firstUsableAfterDetectionMs": 74832,
+        "routeReadyBeforeFirstPrimaryMs": -753
+      },
+      {
+        "ref": "000006",
+        "atMs": 1794484629672,
+        "routeReady": true,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 59181,
+        "firstUsableAfterDetectionMs": 60050,
+        "routeReadyBeforeFirstPrimaryMs": 29260
+      },
+      {
+        "ref": "000009",
+        "atMs": 1794484825443,
+        "routeReady": false,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 29459,
+        "firstUsableAfterDetectionMs": 30258,
+        "routeReadyBeforeFirstPrimaryMs": -15207
+      },
+      {
+        "ref": "00000b",
+        "atMs": 1794485094873,
+        "routeReady": false,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 29945,
+        "firstUsableAfterDetectionMs": null,
+        "routeReadyBeforeFirstPrimaryMs": null
+      },
+      {
+        "ref": "00000d",
+        "atMs": 1794485260541,
+        "routeReady": true,
+        "historical": true,
+        "firstLookupAfterDetectionMs": 0,
+        "firstUsableAfterDetectionMs": 717,
+        "routeReadyBeforeFirstPrimaryMs": 14697
+      },
+      {
+        "ref": "00000e",
+        "atMs": 1794485290241,
+        "routeReady": false,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 30099,
+        "firstUsableAfterDetectionMs": 30949,
+        "routeReadyBeforeFirstPrimaryMs": -30949
+      },
+      {
+        "ref": "00000f",
+        "atMs": 1794485395184,
+        "routeReady": false,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 100285,
+        "firstUsableAfterDetectionMs": null,
+        "routeReadyBeforeFirstPrimaryMs": null
+      },
+      {
+        "ref": "000002",
+        "atMs": 1794485680274,
+        "routeReady": false,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 1229760,
+        "firstUsableAfterDetectionMs": null,
+        "routeReadyBeforeFirstPrimaryMs": null
+      },
+      {
+        "ref": "000011",
+        "atMs": 1794485709713,
+        "routeReady": false,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 30120,
+        "firstUsableAfterDetectionMs": 30986,
+        "routeReadyBeforeFirstPrimaryMs": -1547
+      },
+      {
+        "ref": "000013",
+        "atMs": 1794486069747,
+        "routeReady": true,
+        "historical": true,
+        "firstLookupAfterDetectionMs": 88947,
+        "firstUsableAfterDetectionMs": 89259,
+        "routeReadyBeforeFirstPrimaryMs": 75560
+      },
+      {
+        "ref": "000016",
+        "atMs": 1794486445415,
+        "routeReady": false,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 0,
+        "firstUsableAfterDetectionMs": 350,
+        "routeReadyBeforeFirstPrimaryMs": -350
+      },
+      {
+        "ref": "000019",
+        "atMs": 1794486760408,
+        "routeReady": false,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 15461,
+        "firstUsableAfterDetectionMs": null,
+        "routeReadyBeforeFirstPrimaryMs": null
+      },
+      {
+        "ref": "00001a",
+        "atMs": 1794486805367,
+        "routeReady": false,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 1,
+        "firstUsableAfterDetectionMs": 264,
+        "routeReadyBeforeFirstPrimaryMs": -264
+      }
+    ],
+    "firstDetectionToLookup": {
+      "count": 21,
+      "medianSeconds": 30.12,
+      "maxSeconds": 1229.76
+    },
+    "firstDetectionToUsableRoute": {
+      "count": 14,
+      "medianSeconds": 40.108,
+      "maxSeconds": 89.259
+    }
+  },
+  "counters": {
+    "positionalSnapshots": 160,
+    "primaryAttempts": 20,
+    "applicationAttempts": 34,
+    "routeLookupAttempts": 28,
+    "primaryRouteLookupAttempts": 14,
+    "primaryResponses": 20,
+    "applicationResponses": 34,
+    "hexdbRequestsStarted": 34,
+    "hexdbResponsesReceived": 34,
+    "primaryHexdbRequestsStarted": 20,
+    "routeHexdbRequestsStarted": 28,
+    "hexdbRouteNegativeResponses": 12,
+    "routeNegativeResponses": 12,
+    "primaryRouteNegativeResponses": 6,
+    "clientNegativeCacheSceneUses": 311,
+    "secondaryAttempts": 14,
+    "secondaryRouteLookupAttempts": 14,
+    "secondaryResponses": 14,
+    "secondaryHexdbRequestsStarted": 14,
+    "hexdbRouteCompleteResponses": 15,
+    "routeCompleteResponses": 15,
+    "secondaryRouteCompleteResponses": 8,
+    "clientPositiveCacheSceneUses": 173,
+    "disappearedBeforeLookup": 8,
+    "secondaryDisappearedBeforeLookup": 8,
+    "primaryRouteCompleteResponses": 7,
+    "identityLookupAttempts": 6,
+    "aircraftHexdbRequestsStarted": 6,
+    "secondaryRouteNegativeResponses": 6,
+    "hexdbRouteRejectedResponses": 1,
+    "routeRejectedResponses": 1,
+    "primaryRouteRejectedResponses": 1
+  },
+  "deferrals": [],
+  "pageErrorCount": 0,
+  "limitations": [
+    "No independently verified visibility, audibility or flight plan ground truth.",
+    "Calls/aircraft references are trial-local pseudonyms; category is a bounded type heuristic.",
+    "Provider-not-found counts include cached API responses unless the upstream start count is separately used.",
+    "Last scene is integrated to the saved observation endpoint; no post-close exposure.",
+    "Counterfactual R03 scheduler route readiness is unknowable for unqueried flights; only modelled comparisons have both sets of outcomes."
+  ]
+}

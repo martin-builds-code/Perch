@@ -425,7 +425,7 @@ test('live rendering: primary model, deterministic secondary, unavailable routes
   );
   assert.match(html, /737 MAX 8/);
   assert.match(html, /Other nearby aircraft/);
-  assert.match(html, /Not reported/);
+  assert.doesNotMatch(html, /class="route"|Operator not reported/);
   assert.ok(html.indexOf('737 MAX 8') < html.indexOf('TEST1'));
   assert.match(html, /href="https:\/\/adsb.fi\/"/);
   assert.doesNotMatch(html, /Demo|SIMULATED/);
@@ -438,7 +438,8 @@ test('live rendering: primary model, deterministic secondary, unavailable routes
   const empty = renderToStaticMarkup(
     <Display scene={liveScene(snapshot([]), now, false)} live />,
   );
-  assert.match(empty, /15 km/);
+  assert.match(empty, /No aircraft nearby/);
+  assert.doesNotMatch(empty, /class="aircraft-header"|class="measurements"/);
   assert.doesNotMatch(empty, /demonstration/);
   assert.equal(
     selectAircraft([{ ...first, positionTimeMs: now + 1 }], now).length,

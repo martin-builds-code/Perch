@@ -1,0 +1,14 @@
+{
+  "stopRequestedAtMs": 1794426334414,
+  "reason": "sufficient-representative-sample",
+  "cases": 16,
+  "allFourCategories": true,
+  "lastCompletedRequestAtMs": 1794426265783,
+  "stopSignal": "SIGINT",
+  "betweenRequests": true,
+  "observerStopped": true,
+  "observerExitCode": 130,
+  "intentionalStop": true,
+  "collectorDefaultStopReason": "time-limit",
+  "note": "The sampler was deliberately interrupted between requests after sufficient cases. This status supersedes its default time-limit label; no measurements were changed."
+}

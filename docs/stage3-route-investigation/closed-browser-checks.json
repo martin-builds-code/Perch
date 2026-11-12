@@ -1,0 +1,38 @@
+[
+  {
+    "name": "stable",
+    "height": 768,
+    "pinVisible": true,
+    "noTrackingRequests": true,
+    "noDiagnosticHandle": true,
+    "pageErrors": 0,
+    "vercelDeveloperLogin": false
+  },
+  {
+    "name": "stable",
+    "height": 624,
+    "pinVisible": true,
+    "noTrackingRequests": true,
+    "noDiagnosticHandle": true,
+    "pageErrors": 0,
+    "vercelDeveloperLogin": false
+  },
+  {
+    "name": "diagnostic",
+    "height": 768,
+    "pinVisible": true,
+    "noTrackingRequests": true,
+    "noDiagnosticHandle": true,
+    "pageErrors": 0,
+    "vercelDeveloperLogin": false
+  },
+  {
+    "name": "diagnostic",
+    "height": 624,
+    "pinVisible": true,
+    "noTrackingRequests": true,
+    "noDiagnosticHandle": true,
+    "pageErrors": 0,
+    "vercelDeveloperLogin": false
+  }
+]

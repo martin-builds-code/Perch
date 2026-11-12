@@ -1,0 +1,265 @@
+{
+  "baselineCommit": "39eab343311ffbb46f1cdc84d8d0973de378cc58",
+  "durationHoursPerPattern": 18,
+  "synthetic": true,
+  "networkRequests": 0,
+  "assumptions": [
+    "Identical 15s scenes; deterministic visible ordering by simulated pass age, no selector changes.",
+    "Quiet: 3 arrivals per 20 minutes; moderate: one per 120s; busy: one per 45s. Flights enter and leave; maximum 4 displayed.",
+    "Every 4th model unknown, every 3rd operator missing, every 17th callsign absent, every 5th route missing.",
+    "Mock provider resolves within the same simulation tick; no transport errors, latency or cross-instance contention modelled.",
+    "Route/display cache reuse counts publications with complete cached routes; not independent provider cache hits.",
+    "No acoustic, route-accuracy, household performance or provider coverage success rate is inferred."
+  ],
+  "results": [
+    {
+      "pattern": "quiet",
+      "baseline": {
+        "pattern": "quiet",
+        "hours": 18,
+        "displayedFlights": 162,
+        "successfulRouteIdentifications": 122,
+        "distinctSecondaryFlights": 162,
+        "secondaryFlightsReceivingRoutes": 81,
+        "secondaryRouteCoveragePercent": 50,
+        "secondaryDisplaySamplesWithRoutePercent": 33.4,
+        "firstDetectionToRouteSeconds": {
+          "median": 210,
+          "p95": 240
+        },
+        "firstDetectionToSecondaryRouteSeconds": {
+          "median": 300,
+          "p95": 300
+        },
+        "primaryFirstSelectionToRouteSeconds": {
+          "median": 0,
+          "p95": 30
+        },
+        "totalRequests": 313,
+        "routeRequests": 232,
+        "identityRequests": 81,
+        "secondaryRequests": 0,
+        "unsuccessfulRouteLookups": 39,
+        "unnecessaryUnexpiredRouteLookups": 0,
+        "cachedRouteDisplayOpportunities": 1082,
+        "clientRouteReusePerRouteRequest": 4.66,
+        "requestsPerHour": 17.39,
+        "secondaryRequestsPerHour": 0,
+        "minimumGlobalGapSeconds": 30,
+        "minimumSecondaryGapSeconds": null,
+        "maximumConcurrency": 1
+      },
+      "proposed": {
+        "pattern": "quiet",
+        "hours": 18,
+        "displayedFlights": 162,
+        "successfulRouteIdentifications": 122,
+        "distinctSecondaryFlights": 162,
+        "secondaryFlightsReceivingRoutes": 122,
+        "secondaryRouteCoveragePercent": 75.3,
+        "secondaryDisplaySamplesWithRoutePercent": 75,
+        "firstDetectionToRouteSeconds": {
+          "median": 0,
+          "p95": 30
+        },
+        "firstDetectionToSecondaryRouteSeconds": {
+          "median": 0,
+          "p95": 300
+        },
+        "primaryFirstSelectionToRouteSeconds": {
+          "median": 0,
+          "p95": 30
+        },
+        "totalRequests": 387,
+        "routeRequests": 306,
+        "identityRequests": 81,
+        "secondaryRequests": 134,
+        "unsuccessfulRouteLookups": 62,
+        "unnecessaryUnexpiredRouteLookups": 0,
+        "cachedRouteDisplayOpportunities": 2430,
+        "clientRouteReusePerRouteRequest": 7.94,
+        "requestsPerHour": 21.5,
+        "secondaryRequestsPerHour": 7.44,
+        "minimumGlobalGapSeconds": 30,
+        "minimumSecondaryGapSeconds": 90,
+        "maximumConcurrency": 1
+      },
+      "primaryComparison": {
+        "pairedAircraft": 122,
+        "medianAdditionalDelaySeconds": 0,
+        "p95AdditionalDelaySeconds": 0,
+        "maximumAdditionalDelaySeconds": 0,
+        "aircraftDelayed": 0,
+        "aircraftImproved": 20,
+        "baselinePrimaryFlightsWithoutRoute": 40,
+        "proposedPrimaryFlightsWithoutRoute": 40
+      }
+    },
+    {
+      "pattern": "moderate",
+      "baseline": {
+        "pattern": "moderate",
+        "hours": 18,
+        "displayedFlights": 540,
+        "successfulRouteIdentifications": 407,
+        "distinctSecondaryFlights": 540,
+        "secondaryFlightsReceivingRoutes": 406,
+        "secondaryRouteCoveragePercent": 75.2,
+        "secondaryDisplaySamplesWithRoutePercent": 37.7,
+        "firstDetectionToRouteSeconds": {
+          "median": 180,
+          "p95": 210
+        },
+        "firstDetectionToSecondaryRouteSeconds": {
+          "median": 300,
+          "p95": 300
+        },
+        "primaryFirstSelectionToRouteSeconds": {
+          "median": 0,
+          "p95": 30
+        },
+        "totalRequests": 779,
+        "routeRequests": 509,
+        "identityRequests": 270,
+        "secondaryRequests": 0,
+        "unsuccessfulRouteLookups": 101,
+        "unnecessaryUnexpiredRouteLookups": 0,
+        "cachedRouteDisplayOpportunities": 4862,
+        "clientRouteReusePerRouteRequest": 9.55,
+        "requestsPerHour": 43.28,
+        "secondaryRequestsPerHour": 0,
+        "minimumGlobalGapSeconds": 30,
+        "minimumSecondaryGapSeconds": null,
+        "maximumConcurrency": 1
+      },
+      "proposed": {
+        "pattern": "moderate",
+        "hours": 18,
+        "displayedFlights": 540,
+        "successfulRouteIdentifications": 407,
+        "distinctSecondaryFlights": 540,
+        "secondaryFlightsReceivingRoutes": 407,
+        "secondaryRouteCoveragePercent": 75.4,
+        "secondaryDisplaySamplesWithRoutePercent": 47.6,
+        "firstDetectionToRouteSeconds": {
+          "median": 90,
+          "p95": 180
+        },
+        "firstDetectionToSecondaryRouteSeconds": {
+          "median": 90,
+          "p95": 300
+        },
+        "primaryFirstSelectionToRouteSeconds": {
+          "median": 0,
+          "p95": 0
+        },
+        "totalRequests": 1004,
+        "routeRequests": 734,
+        "identityRequests": 270,
+        "secondaryRequests": 661,
+        "unsuccessfulRouteLookups": 141,
+        "unnecessaryUnexpiredRouteLookups": 0,
+        "cachedRouteDisplayOpportunities": 6146,
+        "clientRouteReusePerRouteRequest": 8.37,
+        "requestsPerHour": 55.78,
+        "secondaryRequestsPerHour": 36.72,
+        "minimumGlobalGapSeconds": 30,
+        "minimumSecondaryGapSeconds": 90,
+        "maximumConcurrency": 1
+      },
+      "primaryComparison": {
+        "pairedAircraft": 407,
+        "medianAdditionalDelaySeconds": 0,
+        "p95AdditionalDelaySeconds": 0,
+        "maximumAdditionalDelaySeconds": 0,
+        "aircraftDelayed": 0,
+        "aircraftImproved": 102,
+        "baselinePrimaryFlightsWithoutRoute": 132,
+        "proposedPrimaryFlightsWithoutRoute": 132
+      }
+    },
+    {
+      "pattern": "busy",
+      "baseline": {
+        "pattern": "busy",
+        "hours": 18,
+        "displayedFlights": 1437,
+        "successfulRouteIdentifications": 996,
+        "distinctSecondaryFlights": 1437,
+        "secondaryFlightsReceivingRoutes": 996,
+        "secondaryRouteCoveragePercent": 69.3,
+        "secondaryDisplaySamplesWithRoutePercent": 38.5,
+        "firstDetectionToRouteSeconds": {
+          "median": 60,
+          "p95": 90
+        },
+        "firstDetectionToSecondaryRouteSeconds": {
+          "median": 105,
+          "p95": 105
+        },
+        "primaryFirstSelectionToRouteSeconds": {
+          "median": 0,
+          "p95": 30
+        },
+        "totalRequests": 1858,
+        "routeRequests": 1245,
+        "identityRequests": 613,
+        "secondaryRequests": 0,
+        "unsuccessfulRouteLookups": 249,
+        "unnecessaryUnexpiredRouteLookups": 0,
+        "cachedRouteDisplayOpportunities": 4977,
+        "clientRouteReusePerRouteRequest": 4,
+        "requestsPerHour": 103.22,
+        "secondaryRequestsPerHour": 0,
+        "minimumGlobalGapSeconds": 30,
+        "minimumSecondaryGapSeconds": null,
+        "maximumConcurrency": 1
+      },
+      "proposed": {
+        "pattern": "busy",
+        "hours": 18,
+        "displayedFlights": 1437,
+        "successfulRouteIdentifications": 1036,
+        "distinctSecondaryFlights": 1437,
+        "secondaryFlightsReceivingRoutes": 1036,
+        "secondaryRouteCoveragePercent": 72.1,
+        "secondaryDisplaySamplesWithRoutePercent": 43.3,
+        "firstDetectionToRouteSeconds": {
+          "median": 60,
+          "p95": 90
+        },
+        "firstDetectionToSecondaryRouteSeconds": {
+          "median": 105,
+          "p95": 105
+        },
+        "primaryFirstSelectionToRouteSeconds": {
+          "median": 0,
+          "p95": 30
+        },
+        "totalRequests": 1978,
+        "routeRequests": 1299,
+        "identityRequests": 679,
+        "secondaryRequests": 420,
+        "unsuccessfulRouteLookups": 262,
+        "unnecessaryUnexpiredRouteLookups": 0,
+        "cachedRouteDisplayOpportunities": 5599,
+        "clientRouteReusePerRouteRequest": 4.31,
+        "requestsPerHour": 109.89,
+        "secondaryRequestsPerHour": 23.33,
+        "minimumGlobalGapSeconds": 30,
+        "minimumSecondaryGapSeconds": 90,
+        "maximumConcurrency": 1
+      },
+      "primaryComparison": {
+        "pairedAircraft": 996,
+        "medianAdditionalDelaySeconds": 0,
+        "p95AdditionalDelaySeconds": 15,
+        "maximumAdditionalDelaySeconds": 15,
+        "aircraftDelayed": 78,
+        "aircraftImproved": 278,
+        "baselinePrimaryFlightsWithoutRoute": 439,
+        "proposedPrimaryFlightsWithoutRoute": 409
+      }
+    }
+  ]
+}

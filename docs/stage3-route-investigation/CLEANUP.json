@@ -1,0 +1,100 @@
+{
+  "project": {
+    "name": "perch-aero-pane-stage3a",
+    "id": "prj_QU4OICxi2QPrRtK0JS83ZTaLP9bW",
+    "team": "mml3",
+    "environment": "preview"
+  },
+  "diagnosticDeployment": {
+    "id": "dpl_2HsAJZcjzbLSr7uop8motbDq6WLV",
+    "url": "https://perch-aero-pane-stage3a-o006y9x8r-mml3.vercel.app/?mode=live",
+    "commit": "beb028f09b604f0c2de5ed86938cf3408b95a433",
+    "state": "READY",
+    "runtimeFilesVerified": 67
+  },
+  "lease": {
+    "startedAt": "2026-11-11T11:12:22.537Z",
+    "expiredAt": "2026-11-11T11:57:22.537Z",
+    "noBypassCookieMinted": true,
+    "productionAndOtherProjectDenialTested": true
+  },
+  "configuration": {
+    "existingVariablesUnchanged": true,
+    "newFlagDisabled": true,
+    "flagPreviewOnly": true
+  },
+  "stableAlias": {
+    "alias": "perch-aero-pane-stage3a.vercel.app",
+    "projectId": "prj_QU4OICxi2QPrRtK0JS83ZTaLP9bW",
+    "deploymentId": "dpl_9tmsCijuHXUiXrvu1egEbCv7ctht"
+  },
+  "restoredSource": "3b87077eab07a1d861c910fdaf385e3d32f49c6f",
+  "http": {
+    "checkedAt": "2026-11-11T11:57:30.665603+00:00",
+    "leaseExpired": true,
+    "checks": [
+      {
+        "site": "stable",
+        "path": "/api/session",
+        "status": 401,
+        "contentType": "application/json",
+        "setCookie": false,
+        "authenticationRequired": true
+      },
+      {
+        "site": "stable",
+        "path": "/api/aircraft",
+        "status": 401,
+        "contentType": "application/json",
+        "setCookie": false,
+        "authenticationRequired": true
+      },
+      {
+        "site": "stable",
+        "path": "/api/enrichment",
+        "status": 401,
+        "contentType": "application/json",
+        "setCookie": false,
+        "authenticationRequired": true
+      },
+      {
+        "site": "diagnostic",
+        "path": "/api/session",
+        "status": 401,
+        "contentType": "application/json",
+        "setCookie": false,
+        "authenticationRequired": true
+      },
+      {
+        "site": "diagnostic",
+        "path": "/api/aircraft",
+        "status": 401,
+        "contentType": "application/json",
+        "setCookie": false,
+        "authenticationRequired": true
+      },
+      {
+        "site": "diagnostic",
+        "path": "/api/enrichment",
+        "status": 401,
+        "contentType": "application/json",
+        "setCookie": false,
+        "authenticationRequired": true
+      }
+    ]
+  },
+  "observer": {
+    "stopped": true,
+    "exitCode": 0,
+    "actualDurationSeconds": 2400,
+    "unattended18HourRun": false
+  },
+  "householdProduction": {
+    "deploymentId": "dpl_2WX2Y9nNudmiJCtYMcAaMofp7Yzw",
+    "commit": "8031a76d0a24e1bb4ba88febd87d9a9c15ff2166",
+    "unchanged": true
+  },
+  "noMerge": true,
+  "noGitIntegrationChange": true,
+  "noCredentialOrCoordinateChange": true
+}

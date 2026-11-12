@@ -1,0 +1,74 @@
+[
+  {
+    "atMs": 1794484569457,
+    "r03": "000002",
+    "r04": "000005",
+    "decision": "departing-handover",
+    "aircraft": [
+      {
+        "ref": "000002",
+        "model": "Cessna 172 Skyhawk",
+        "distanceKm": 7.986104877672389,
+        "elevationDegrees": 2.8367467038481924,
+        "motion": "unknown",
+        "secondsToCpa": null
+      },
+      {
+        "ref": "000005",
+        "model": "Boeing 737-800",
+        "distanceKm": 9.601358639202983,
+        "elevationDegrees": 48.33449524836829,
+        "motion": "approaching",
+        "secondsToCpa": null
+      }
+    ]
+  },
+  {
+    "atMs": 1794485349930,
+    "r03": "00000f",
+    "r04": "00000e",
+    "decision": "hysteresis",
+    "aircraft": [
+      {
+        "ref": "00000f",
+        "model": "PIPER PA-28-140/150/160/180",
+        "distanceKm": 12.422953789639221,
+        "elevationDegrees": 1.8244792925963416,
+        "motion": "approaching",
+        "secondsToCpa": null
+      },
+      {
+        "ref": "00000e",
+        "model": "Airbus A220-300",
+        "distanceKm": 9.631624355235077,
+        "elevationDegrees": 49.0560191061179,
+        "motion": "departing",
+        "secondsToCpa": null
+      }
+    ]
+  },
+  {
+    "atMs": 1794485770257,
+    "r03": "000002",
+    "r04": "000011",
+    "decision": "retained-best",
+    "aircraft": [
+      {
+        "ref": "000002",
+        "model": "Cessna 172 Skyhawk",
+        "distanceKm": 9.780338420707956,
+        "elevationDegrees": 2.3169674226461994,
+        "motion": "approaching",
+        "secondsToCpa": null
+      },
+      {
+        "ref": "000011",
+        "model": "Airbus A-320",
+        "distanceKm": 1.9089441835419334,
+        "elevationDegrees": 66.67264497503652,
+        "motion": "passing",
+        "secondsToCpa": 2.373493596496394
+      }
+    ]
+  }
+]

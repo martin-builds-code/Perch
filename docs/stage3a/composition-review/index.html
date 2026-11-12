@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aero Pane — composition alternatives</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #081925;
+        color: #fff8ed;
+        font:
+          17px/1.4 system-ui,
+          sans-serif;
+      }
+      header {
+        padding: 24px;
+        max-width: 1000px;
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-size: 26px;
+      }
+      p {
+        margin: 8px 0;
+      }
+      a {
+        color: #aac5d9;
+      }
+      .comparison {
+        padding: 16px;
+        background: #081925;
+      }
+      h2 {
+        margin: 0 0 12px;
+        font-size: 22px;
+      }
+      .columns {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+      figure {
+        margin: 0;
+        min-width: 0;
+      }
+      figcaption {
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: 600;
+      }
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      footer {
+        padding: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Aero Pane — three composition alternatives</h1>
+      <p>
+        Historical comparison: same A380, route, data, artwork and viewport.
+        Composition B has subsequently been approved and implemented in the
+        application.
+      </p>
+      <p>
+        Tap a screenshot to see its original size.
+        <a href="README.md">Comparison, checks and reproduction instructions</a
+        >.
+      </p>
+    </header>
+    <section class="comparison" id="native">
+      <h2>1024 × 768 — iPad landscape</h2>
+      <div class="columns">
+        <figure>
+          <figcaption>A — Balanced · 600px aircraft / 80px codes</figcaption>
+          <a href="A-1024x768.png"
+            ><img
+              src="A-1024x768.png"
+              width="1024"
+              height="768"
+              alt="Balanced composition at 1024 by 768"
+          /></a>
+        </figure>
+        <figure>
+          <figcaption>
+            B — Aircraft-led · 640px aircraft / 76px codes
+          </figcaption>
+          <a href="B-1024x768.png"
+            ><img
+              src="B-1024x768.png"
+              width="1024"
+              height="768"
+              alt="Aircraft-led composition at 1024 by 768"
+          /></a>
+        </figure>
+        <figure>
+          <figcaption>C — Route-led · 536px aircraft / 94px codes</figcaption>
+          <a href="C-1024x768.png"
+            ><img
+              src="C-1024x768.png"
+              width="1024"
+              height="768"
+              alt="Route-led composition at 1024 by 768"
+          /></a>
+        </figure>
+      </div>
+    </section>
+    <section class="comparison" id="compact">
+      <h2>1024 × 624 — compact landscape</h2>
+      <div class="columns">
+        <figure>
+          <figcaption>A — Balanced · 448px aircraft / 76px codes</figcaption>
+          <a href="A-1024x624.png"
+            ><img
+              src="A-1024x624.png"
+              width="1024"
+              height="624"
+              alt="Balanced composition at 1024 by 624"
+          /></a>
+        </figure>
+        <figure>
+          <figcaption>
+            B — Aircraft-led · 480px aircraft / 72px codes
+          </figcaption>
+          <a href="B-1024x624.png"
+            ><img
+              src="B-1024x624.png"
+              width="1024"
+              height="624"
+              alt="Aircraft-led composition at 1024 by 624"
+          /></a>
+        </figure>
+        <figure>
+          <figcaption>C — Route-led · 420px aircraft / 88px codes</figcaption>
+          <a href="C-1024x624.png"
+            ><img
+              src="C-1024x624.png"
+              width="1024"
+              height="624"
+              alt="Route-led composition at 1024 by 624"
+          /></a>
+        </figure>
+      </div>
+    </section>
+    <footer>
+      <p>
+        <a href="baseline-1024x768.png">Previous 1024 × 768 composition</a> ·
+        <a href="baseline-1024x624.png">Previous compact composition</a>. B is
+        the engineering recommendation; final artistic selection remains with
+        the user.
+      </p>
+    </footer>
+  </body>
+</html>

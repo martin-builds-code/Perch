@@ -1,8 +1,11 @@
+import type {ObservationEstimate} from './observation';
 export interface Aircraft {
-  id:string; manufacturer:string|null; model:string|null; operator:string|null;
-  altitudeFt:number|null; distanceKm:number|null; origin:{code:string;name:string}|null;
-  destination:{code:string;name:string}|null; callsign:string|null; registration:string|null;
+  id:string; manufacturer:string|null; model:string|null; operator:string|null; typeCode?:string|null;
+  altitudeFt:number|null; distanceKm:number|null; origin:{code:string;name:string;iata?:string|null;icao?:string|null}|null;
+  destination:{code:string;name:string;iata?:string|null;icao?:string|null}|null; callsign:string|null; registration:string|null;
   direction:string|null;
+  routeHistorical?:boolean;
+  observation?:ObservationEstimate;
 }
 // All entities and identifiers below are fictional; no geographic observation point.
 export const fleet:Aircraft[]=[
@@ -14,7 +17,7 @@ export const fleet:Aircraft[]=[
  {id:'demo-6',manufacturer:null,model:null,operator:null,altitudeFt:2700,distanceKm:2.1,origin:null,destination:null,callsign:'DEMO 06',registration:null,direction:null}
 ];
 export type State='available'|'delayed'|'unavailable'|'standby';
-export interface Scene {id:string;label:string;duration:number;state:State;primary:Aircraft|null;secondary:Aircraft[];}
+export interface Scene {id:string;label:string;duration:number;state:State;primary:Aircraft|null;secondary:Aircraft[]; enrichmentCandidates?:Aircraft[];}
 const [airbus,boeing,embraer,atr,jet,unknown]=fleet;
 export const scenes:Scene[]=[
  {id:'single',label:'Single aircraft',duration:20000,state:'available',primary:airbus,secondary:[]},

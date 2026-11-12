@@ -1,3 +1,4 @@
+import { routeTrial } from '../server/routeTrial.js';
 import type { IncomingMessage, ServerResponse } from "node:http";
 import {
   authorised,
@@ -18,7 +19,10 @@ export default async function handler(
   res.setHeader("Vercel-CDN-Cache-Control", "no-store");
   res.setHeader("Content-Type", "application/json");
   if (req.method === "GET") {
-    if (authorised(req, res)) res.end('{"authenticated":true}');
+    if (authorised(req, res)) {
+      const trial = routeTrial();
+      res.end(JSON.stringify({ authenticated: true, ...(trial ? { routeDiagnosticTrial: trial } : {}) }));
+    }
     return;
   }
   if (

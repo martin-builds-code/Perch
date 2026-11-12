@@ -1,12 +1,16 @@
+import { observation, urgentPass, consistentVector } from './observation';
+import type { ObservationEstimate } from './observation';
 import type { LiveAircraft, Snapshot } from './liveTypes';
 import { CURRENT_AGE_MS, EXPIRE_AGE_MS } from './liveTypes';
 
 // Starting heuristics, not statistically fitted audibility probabilities.
 export const DEFAULT_SELECTION_POLICY = {
-  proximityWeight: 50,
+  proximityWeight: 32,
+  spatialWeight: 8,
+  spatialScaleKm: 5,
+  immediacyWeight: 6,
   distanceScaleKm: 3,
-  altitudeWeight: 20,
-  altitudeScaleFt: 8000,
+  altitudeWeight: 24,
   movementWeight: 20,
   passingFactor: 0.6,
   neutralFactor: 0.5,
@@ -15,6 +19,14 @@ export const DEFAULT_SELECTION_POLICY = {
   minimumHoldMs: 36_000,
   takeoverMargin: 8,
   substantialMargin: 22,
+  clearSkyAngle: 60,
+  clearSkyDistanceKm: 1,
+  weakSkyAngle: 15,
+  weakSkyDistanceKm: 8,
+  clearSkyMargin: 30,
+  clearSkyMaxAgeMs: 5000,
+  fastTakeoverSeconds: 60,
+  freshnessTakeoverGapMs: 15_000,
   confirmations: 2,
   missingGraceMs: 30_000,
   historyWindowMs: 90_000,
@@ -37,6 +49,8 @@ export interface Sample {
   timeMs: number;
   distanceKm: number;
   speedKnots: number | null;
+  bearingDegrees?: number | null;
+  discontinuous?: boolean;
 }
 export interface Motion {
   state: Movement;
@@ -48,12 +62,15 @@ export interface RankedAircraft {
   score: number;
   motion: Motion;
   ageMs: number;
+  observation: ObservationEstimate;
   factors: {
     proximity: number;
     altitude: number;
     movement: number;
     quality: number;
     freshness: number;
+    spatial: number;
+    immediacy: number;
   };
 }
 export type DecisionReason =
@@ -69,7 +86,9 @@ export type DecisionReason =
   | 'substantial-challenger'
   | 'departing-handover'
   | 'fresher-challenger'
-  | 'confirmed-challenger';
+  | 'confirmed-challenger'
+  | 'fast-pass-handover'
+  | 'clear-geometric-handover';
 export interface SelectionResult {
   primary: LiveAircraft | null;
   secondary: LiveAircraft[];
@@ -114,7 +133,9 @@ export function assessMovement(
   policy = DEFAULT_SELECTION_POLICY,
 ): Motion {
   const recent = samples
-    .filter((s) => now >= s.timeMs && now - s.timeMs <= policy.historyWindowMs)
+    .filter(
+      (s) => now >= s.timeMs && now - s.timeMs <= policy.historyWindowMs,
+    )
     .slice(-policy.minimumSamples);
   if (
     recent.length < Math.max(3, policy.minimumSamples) ||
@@ -159,7 +180,8 @@ export function assessMovement(
   }
   const slope = numerator / denominator;
   if (
-    Math.abs(last.distanceKm - first.distanceKm) < policy.minimumMovementKm ||
+    Math.abs(last.distanceKm - first.distanceKm) <
+      policy.minimumMovementKm ||
     Math.abs(slope) < policy.radialThresholdKmPerSecond
   )
     return unknownMotion(recent.length);
@@ -175,19 +197,40 @@ export function scoreAircraft(
   now: number,
   motion = unknownMotion(),
   policy = DEFAULT_SELECTION_POLICY,
+  trajectoryConsistent = true,
 ): RankedAircraft | null {
   if (!eligibleAircraft(a, now)) return null;
   const ageMs = now - a.positionTimeMs!;
-  const altitude = a.barometricAltitudeFt;
+  const sky = observation(a, now, motion.samples, trajectoryConsistent);
   if (ageMs >= CURRENT_AGE_MS) motion = unknownMotion(motion.samples);
+  else if (
+    sky.predictionQuality === 'supported' &&
+    sky.phase !== 'unknown'
+  )
+    motion = {
+      ...motion,
+      state: sky.phase,
+      radialKmPerSecond: sky.radialKmPerSecond,
+    };
   const factors = {
     proximity:
-      policy.proximityWeight / (1 + a.distanceKm! / policy.distanceScaleKm),
+      policy.proximityWeight /
+      (1 + a.distanceKm! / policy.distanceScaleKm),
     altitude:
-      altitude !== null && Number.isFinite(altitude)
-        ? policy.altitudeWeight /
-          (1 + Math.max(0, altitude) / policy.altitudeScaleFt)
-        : policy.altitudeWeight * policy.neutralFactor,
+      policy.altitudeWeight *
+      (sky.elevationDegrees === null
+        ? policy.neutralFactor
+        : Math.sin((sky.elevationDegrees * Math.PI) / 180)),
+    spatial:
+      sky.slantKm === null
+        ? policy.spatialWeight * policy.neutralFactor
+        : policy.spatialWeight / (1 + sky.slantKm / policy.spatialScaleKm),
+    immediacy:
+      policy.immediacyWeight *
+      (sky.phase === 'approaching' && sky.secondsToCpa !== null
+        ? (sky.predictionQuality === 'supported' ? 1 : 0.5) /
+          (1 + sky.secondsToCpa / 60)
+        : 0),
     movement:
       policy.movementWeight *
       (motion.state === 'approaching'
@@ -204,10 +247,13 @@ export function scoreAircraft(
     aircraft: a,
     ageMs,
     motion,
+    observation: sky,
     factors,
     score:
       (factors.proximity +
         factors.altitude +
+        factors.spatial +
+        factors.immediacy +
         factors.movement +
         factors.quality) *
       factors.freshness,
@@ -260,6 +306,7 @@ export function createAircraftSelector(
       now >= snapshot.fetchedAtMs &&
       now - snapshot.fetchedAtMs < EXPIRE_AGE_MS;
     const records = new Map<string, LiveAircraft>();
+    const suspectIds = new Set<string>();
     // Duplicate IDs prefer the newest position. Equal timestamp: closest valid distance.
     for (const a of snapshotValid ? snapshot.aircraft : []) {
       const previous = records.get(a.id);
@@ -288,15 +335,32 @@ export function createAircraftSelector(
             (v): v is number => v !== null && Number.isFinite(v) && v >= 0,
           );
           const limit = speeds.length
-            ? Math.max(...speeds) * 0.000514444 * policy.speedToleranceFactor +
+            ? Math.max(...speeds) *
+                0.000514444 *
+                policy.speedToleranceFactor +
               policy.speedToleranceKmPerSecond
             : policy.unknownSpeedLimitKmPerSecond;
           if (
             seconds * 1000 > policy.maximumHistoryGapMs ||
             Math.abs(a.distanceKm! - previous.distanceKm) >
-              limit * seconds + policy.jitterKm
-          )
+              limit * seconds + policy.jitterKm ||
+            (a.bearingDegrees != null &&
+              previous.bearingDegrees != null &&
+              Math.hypot(
+                a.distanceKm! *
+                  Math.sin((a.bearingDegrees * Math.PI) / 180) -
+                  previous.distanceKm *
+                    Math.sin((previous.bearingDegrees * Math.PI) / 180),
+                a.distanceKm! *
+                  Math.cos((a.bearingDegrees * Math.PI) / 180) -
+                  previous.distanceKm *
+                    Math.cos((previous.bearingDegrees * Math.PI) / 180),
+              ) >
+                limit * seconds + policy.jitterKm)
+          ) {
             samples = [];
+            suspectIds.add(a.id);
+          }
         }
         samples = [
           ...samples,
@@ -304,6 +368,8 @@ export function createAircraftSelector(
             timeMs: a.positionTimeMs!,
             distanceKm: a.distanceKm!,
             speedKnots: a.groundSpeedKnots,
+            bearingDegrees: a.bearingDegrees,
+            discontinuous: suspectIds.has(a.id),
           },
         ].slice(-policy.samplesPerAircraft);
         history.delete(a.id); // Refresh insertion order only for a newer valid position.
@@ -341,6 +407,7 @@ export function createAircraftSelector(
         now,
         assessMovement(history.get(a.id) ?? [], now, policy),
         policy,
+        consistentVector(a, history.get(a.id) ?? []),
       );
       if (score) ranked.push(score);
     }
@@ -350,6 +417,10 @@ export function createAircraftSelector(
       : undefined;
     const best = ranked[0];
     const heldMs = current ? now - selectedAt : 0;
+    const supported =
+      !best ||
+      best.aircraft.bearingDegrees == null ||
+      (history.get(best.aircraft.id)?.length ?? 0) >= 2;
     let reason: DecisionReason = 'retained-best',
       margin = 0;
     let chosen = incumbent;
@@ -379,12 +450,32 @@ export function createAircraftSelector(
         lastConfirmationTime = best.aircraft.positionTimeMs!;
       }
       if (failed) reason = 'feed-interruption';
-      else if (margin >= policy.substantialMargin) {
+      else if (
+        margin >= policy.clearSkyMargin &&
+        best.ageMs < policy.clearSkyMaxAgeMs &&
+        !suspectIds.has(best.aircraft.id) &&
+        !history.get(best.aircraft.id)?.slice(-1)[0]?.discontinuous &&
+        (best.observation.elevationDegrees ?? 0) >= policy.clearSkyAngle &&
+        best.aircraft.distanceKm! <= policy.clearSkyDistanceKm &&
+        (incumbent.observation.elevationDegrees ?? 90) <=
+          policy.weakSkyAngle &&
+        incumbent.aircraft.distanceKm! >= policy.weakSkyDistanceKm
+      ) {
+        chosen = best;
+        reason = 'clear-geometric-handover';
+      } else if (
+        margin >= policy.substantialMargin &&
+        confirmations >= policy.confirmations &&
+        supported
+      ) {
         chosen = best;
         reason = 'substantial-challenger';
       } else if (
         incumbent.motion.state === 'departing' &&
         best.motion.state === 'approaching' &&
+        (confirmations >= policy.confirmations ||
+          (best.motion.samples >= 3 && incumbent.motion.samples >= 3)) &&
+        supported &&
         margin >= policy.takeoverMargin
       ) {
         chosen = best;
@@ -392,15 +483,26 @@ export function createAircraftSelector(
       } else if (
         incumbent.ageMs >= CURRENT_AGE_MS &&
         best.ageMs < CURRENT_AGE_MS &&
+        incumbent.ageMs - best.ageMs >= policy.freshnessTakeoverGapMs &&
         margin >= 0
       ) {
         chosen = best;
         reason = 'fresher-challenger';
+      } else if (
+        urgentPass(best.observation, now) &&
+        best.observation.secondsToCpa! <= policy.fastTakeoverSeconds &&
+        margin >= policy.takeoverMargin &&
+        confirmations >= policy.confirmations &&
+        supported
+      ) {
+        chosen = best;
+        reason = 'fast-pass-handover';
       } else if (heldMs < policy.minimumHoldMs) reason = 'minimum-hold';
       else if (margin < policy.takeoverMargin) {
         reason = 'hysteresis';
         resetChallenge();
-      } else if (confirmations < policy.confirmations) reason = 'confirming';
+      } else if (confirmations < policy.confirmations || !supported)
+        reason = 'confirming';
       else {
         chosen = best;
         reason = 'confirmed-challenger';
@@ -430,7 +532,9 @@ export function createAircraftSelector(
     return {
       primary: current,
       reevaluateAtMs:
-        retainedMissing && current ? lastSeenAt + policy.missingGraceMs : null,
+        retainedMissing && current
+          ? lastSeenAt + policy.missingGraceMs
+          : null,
       secondary: ranked
         .filter((a) => a.aircraft.id !== current?.id)
         .slice(0, 3)

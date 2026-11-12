@@ -400,14 +400,18 @@ test('native identity/flight/registration remain authoritative, optional fields 
       enrichmentCredit
     />,
   );
-  for (const value of [
-    'A320neo',
-    'easyJet',
-    'DUB',
-    'Dublin Airport',
-    'https://hexdb.io/',
-  ])
+  for (const value of ['A320neo', 'easyJet', 'https://hexdb.io/'])
     assert.ok(html.includes(value));
+  assert.doesNotMatch(
+    html,
+    /class="route"/,
+    'incomplete route must not become a prominent block',
+  );
+  assert.equal(
+    result.aircraft.origin?.code,
+    'DUB',
+    'partial enrichment remains available in the data',
+  );
 });
 test('primary renders before enrichment, switching is independent, late route does not attach to another callsign', async () => {
   let now = T,
@@ -592,4 +596,137 @@ test('positive current-primary cache refresh is bounded and retains valid fields
   const fresh = await service.get('aircraft', hex, null);
   assert.equal(calls, 2);
   assert.ok(fresh.result.expiresAtMs > initial.result.expiresAtMs);
+});
+
+test('late route publishes immediately to the matching secondary and survives position/role changes without extra lookups', async () => {
+  let now = T,
+    calls = 0,
+    resolve!: (r: Response) => void;
+  const published: Scene[] = [];
+  const a = {
+    ...base.primary!,
+    registration: 'NATIVE',
+    operator: 'Native operator',
+  };
+  const other = {
+    ...a,
+    id: '123456',
+    callsign: null,
+    origin: { code: 'AMS', name: 'Amsterdam' },
+    destination: { code: 'MAN', name: 'Manchester' },
+  };
+  const client = createEnricher((s) => published.push(s), {
+    now: () => now,
+    active: () => true,
+    fetch: async () => {
+      calls++;
+      return new Promise((r) => (resolve = r));
+    },
+    setTimer: (fn, ms) => setTimeout(fn, ms),
+    clearTimer: (t) => clearTimeout(t),
+  });
+  try {
+    client.update({ ...base, primary: a });
+    assert.equal(published[0].primary!.origin, null);
+    assert.equal(calls, 1);
+    client.update({ ...base, primary: other, secondary: [a] });
+    resolve(
+      response(
+        data('route', normaliseHexdb('route', hex, 'EIN17A', route, T)!),
+      ),
+    );
+    await new Promise((r) => setImmediate(r));
+    const decorated = published[published.length - 1]!;
+    assert.equal(decorated.secondary[0].origin?.code, 'DUB');
+    const html = renderToStaticMarkup(<Display scene={decorated} />);
+    assert.match(html, /secondary-route/);
+    assert.match(html, /DUB/);
+    assert.match(html, /LHR/);
+    now += 15000;
+    client.update({
+      ...base,
+      primary: other,
+      secondary: [{ ...a, distanceKm: 2.3 }],
+    });
+    assert.equal(
+      published[published.length - 1]!.secondary[0].destination?.code,
+      'LHR',
+    );
+    assert.equal(calls, 1);
+    client.update({ ...base, primary: a, secondary: [other] });
+    assert.equal(published[published.length - 1]!.primary!.origin?.code, 'DUB');
+    assert.equal(calls, 1);
+    client.update({
+      ...base,
+      primary: other,
+      secondary: [{ ...a, callsign: 'EIN17B' }],
+    });
+    assert.equal(published[published.length - 1]!.secondary[0].origin, null);
+    now = T + P.routeTtlMs;
+    client.update({ ...base, primary: other, secondary: [a] });
+    assert.equal(published[published.length - 1]!.secondary[0].origin, null);
+    assert.equal(calls, 2, 'expired secondary route may now use an idle slot');
+  } finally {
+    client.stop();
+  }
+});
+test('complete secondary routes create no enrichment traffic; unknown-model sequencing retains the existing 30s gate', async () => {
+  let now = T;
+  const kinds: string[] = [];
+  const publications: Scene[] = [];
+  const client = createEnricher((s) => publications.push(s), {
+    now: () => now,
+    active: () => true,
+    fetch: async (url) => {
+      const kind = new URL(
+        String(url),
+        'https://local.invalid',
+      ).searchParams.get('kind')!;
+      kinds.push(kind);
+      return response(
+        data(
+          kind as EnrichmentKind,
+          kind === 'aircraft'
+            ? { description: 'Airbus A320neo' }
+            : normaliseHexdb('route', hex, 'EIN17A', route, T)!,
+          kind === 'route' ? 'EIN17A' : null,
+          now,
+        ),
+      );
+    },
+    setTimer: (fn, ms) => setTimeout(fn, ms),
+    clearTimer: (t) => clearTimeout(t),
+  });
+  try {
+    const complete = {
+      ...base.primary!,
+      operator: 'Native',
+      registration: 'NATIVE',
+      origin: { code: 'AMS', name: 'Amsterdam' },
+      destination: { code: 'MAN', name: 'Manchester' },
+    };
+    client.update({
+      ...base,
+      primary: complete,
+      secondary: [{ ...complete, id: '123456' }],
+    });
+    assert.equal(kinds.length, 0);
+    const unknown = { ...base.primary!, model: 'Aircraft' };
+    client.update({ ...base, primary: unknown });
+    await new Promise((r) => setImmediate(r));
+    assert.deepEqual(kinds, ['aircraft']);
+    now += 15000;
+    client.update({ ...base, primary: unknown });
+    assert.equal(kinds.length, 1);
+    now += 15000;
+    client.update({ ...base, primary: unknown });
+    await new Promise((r) => setImmediate(r));
+    assert.deepEqual(kinds, ['aircraft', 'route']);
+    assert.equal(
+      publications[publications.length - 1]!.primary!.origin?.code,
+      'DUB',
+    );
+  } finally {
+    client.stop();
+  }
 });

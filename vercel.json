@@ -2,6 +2,9 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/route-review", "destination": "/index.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -23,6 +26,7 @@
   ],
   "git": {
     "deploymentEnabled": {
+      "stage-3a-display-redesign": false,
       "stage-2a-live-data": false,
       "stage-2b-aircraft-selection": false,
       "stage-2c-aircraft-enrichment": false,
@@ -30,6 +34,7 @@
     }
   },
   "functions": {
+    "api/route-research.ts": { "maxDuration": 10 },
     "api/aircraft.ts": {
       "maxDuration": 10
     },

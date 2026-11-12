@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-11-11T18:06:05.322Z",
+  "projectId": "prj_QU4OICxi2QPrRtK0JS83ZTaLP9bW",
+  "codeCommit": "903a1cf191ba648dbde001014b5c13eafb2ed9e0",
+  "deploymentId": "dpl_V6WySMt7yY2eJ4pHXWQtp7pW2DUo",
+  "authenticationRestored": true,
+  "restoredBy": "Server-enforced absolute expiry; no bypass cookie",
+  "expiry": "2026-11-11T18:03:30.191Z",
+  "futureBuildFlagDisabled": true,
+  "environment": {
+    "flagDisabled": true,
+    "onlyPreview": true,
+    "otherConfigurationUnchanged": true,
+    "leaseExpired": true
+  },
+  "observerStopped": true,
+  "observerExitCode": 0,
+  "remainingObservationProcesses": 0,
+  "remainingLocalDevServers": 0,
+  "httpChecks": "closed-http-checks.json",
+  "browserChecks": "closed-browser-checks.json",
+  "apiChecksRejectedBeforeProviderPath": 9,
+  "cleanupBrowsersGeneratedTrackingRequests": 0,
+  "stableAlias": {
+    "alias": "perch-aero-pane-stage3a.vercel.app",
+    "projectId": "prj_QU4OICxi2QPrRtK0JS83ZTaLP9bW",
+    "deploymentId": "dpl_V6WySMt7yY2eJ4pHXWQtp7pW2DUo"
+  },
+  "sourceFilesVerified": 69,
+  "previousImmutablePreviewPreserved": true,
+  "supersededDiagnosticAccessAlsoClosed": true,
+  "householdBefore": {
+    "id": "dpl_2WX2Y9nNudmiJCtYMcAaMofp7Yzw",
+    "commit": "8031a76d0a24e1bb4ba88febd87d9a9c15ff2166",
+    "target": "production"
+  },
+  "householdAfter": {
+    "id": "dpl_2WX2Y9nNudmiJCtYMcAaMofp7Yzw",
+    "commit": "8031a76d0a24e1bb4ba88febd87d9a9c15ff2166",
+    "target": "production"
+  },
+  "householdProductionUnchanged": true,
+  "project": {
+    "id": "prj_QU4OICxi2QPrRtK0JS83ZTaLP9bW",
+    "name": "perch-aero-pane-stage3a",
+    "accountId": "team_6o9otZhHTRBY09BmbO8Ci5aK",
+    "gitLinked": false,
+    "platformProtectionUnchanged": true
+  },
+  "mainUnchanged": "8031a76d0a24e1bb4ba88febd87d9a9c15ff2166",
+  "merged": false
+}

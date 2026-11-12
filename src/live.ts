@@ -1,3 +1,5 @@
+import { OBSERVATION_POLICY } from './observation';
+import type { ObservationEstimate } from './observation';
 import type { Snapshot, LiveAircraft } from './liveTypes';
 import { CURRENT_AGE_MS, EXPIRE_AGE_MS } from './liveTypes';
 import type { Aircraft, Scene } from './simulation';
@@ -9,7 +11,10 @@ import type {
   DiagnosticState,
 } from './dataDiagnostics';
 
-function presentation(a: LiveAircraft): Aircraft {
+function presentation(
+  a: LiveAircraft,
+  sky?: ObservationEstimate,
+): Aircraft {
   const match = a.description?.match(
     /^(Airbus|Boeing|Embraer|Cessna|ATR)\s+(.+)$/,
   );
@@ -25,6 +30,8 @@ function presentation(a: LiveAircraft): Aircraft {
   ];
   return {
     id: a.id,
+    observation: sky,
+    typeCode: a.typeCode,
     manufacturer: match ? match[1] : a.description ? null : 'Unidentified',
     model: match
       ? match[2]
@@ -49,7 +56,8 @@ export function selectAircraft(aircraft: LiveAircraft[], now: number) {
     .map((a) => scoreAircraft(a, now))
     .filter((a) => a !== null)
     .sort(
-      (a, b) => b.score - a.score || a.aircraft.id.localeCompare(b.aircraft.id),
+      (a, b) =>
+        b.score - a.score || a.aircraft.id.localeCompare(b.aircraft.id),
     )
     .map((a) => a.aircraft);
 }
@@ -91,12 +99,36 @@ export function liveScene(
     failed ||
     snapshot.anomalies.length > 0 ||
     now - snapshot.fetchedAtMs >= CURRENT_AGE_MS ||
-    eligible.slice(0, 4).some((a) => now - a.positionTimeMs! >= CURRENT_AGE_MS);
+    eligible
+      .slice(0, 4)
+      .some((a) => now - a.positionTimeMs! >= CURRENT_AGE_MS);
   return {
     ...base,
     state: delayed ? 'delayed' : 'available',
-    primary: presentation(eligible[0]),
-    secondary: eligible.slice(1, 4).map(presentation),
+    primary: presentation(
+      eligible[0],
+      selection.ranked.find((r) => r.aircraft.id === eligible[0].id)
+        ?.observation,
+    ),
+    secondary: eligible
+      .slice(1, 4)
+      .map((a) =>
+        presentation(
+          a,
+          selection.ranked.find((r) => r.aircraft.id === a.id)
+            ?.observation,
+        ),
+      ),
+    enrichmentCandidates: selection.ranked
+      .filter((r) => r.aircraft.id !== eligible[0].id)
+      .sort(
+        (a, b) =>
+          (b.observation?.urgency ?? 0) - (a.observation?.urgency ?? 0) ||
+          b.score - a.score ||
+          a.aircraft.id.localeCompare(b.aircraft.id),
+      )
+      .slice(0, OBSERVATION_POLICY.maximumCandidates)
+      .map((r) => presentation(r.aircraft, r.observation)),
   };
 }
 function validSnapshot(value: unknown): value is Snapshot {
@@ -130,6 +162,18 @@ function validSnapshot(value: unknown): value is Snapshot {
           a.groundSpeedKnots,
           a.trackDegrees,
         ].every((v) => v === null || Number.isFinite(v)) &&
+        (a.bearingDegrees === undefined ||
+          a.bearingDegrees === null ||
+          (Number.isFinite(a.bearingDegrees) &&
+            a.bearingDegrees >= 0 &&
+            a.bearingDegrees < 360)) &&
+        (a.heightAboveObserverKm === undefined ||
+          a.heightAboveObserverKm === null ||
+          (Number.isFinite(a.heightAboveObserverKm) &&
+            a.heightAboveObserverKm >= -1 &&
+            a.heightAboveObserverKm <= 20)) &&
+        (a.heightReference === undefined ||
+          ['geometric', 'barometric'].includes(a.heightReference)) &&
         a.source === 'adsb.fi' &&
         (a.onGround === null || typeof a.onGround === 'boolean') &&
         Array.isArray(a.validity.anomalies),
@@ -137,6 +181,13 @@ function validSnapshot(value: unknown): value is Snapshot {
   );
 }
 export interface PollEnvironment {
+  onSnapshot?: (snapshot: Snapshot) => void;
+  onSelection?: (
+    selection: SelectionResult,
+    snapshot: Snapshot | null,
+    now: number,
+    failed: boolean,
+  ) => void;
   observer?: DataDiagnostics;
   context?: () => DiagnosticContext;
   fetch: typeof fetch;
@@ -172,6 +223,11 @@ export function createPoller(
     if (stopped) return;
     const now = env.now();
     selection = selector.select(snapshot, now, failed);
+    try {
+      env.onSelection?.(selection, snapshot, now, failed);
+    } catch {
+      /* Diagnostic failure cannot change selection. */
+    }
     const scene = liveScene(snapshot, now, failed, selection);
     if (env.observer) {
       const primary = selection.primary;
@@ -187,7 +243,9 @@ export function createPoller(
           ? null
           : now - primary.positionTimeMs;
       const secondaryAges = selection.secondary
-        .map((a) => (a.positionTimeMs === null ? null : now - a.positionTimeMs))
+        .map((a) =>
+          a.positionTimeMs === null ? null : now - a.positionTimeMs,
+        )
         .filter((v): v is number => v !== null);
       const snapshotAge = snapshot ? now - snapshot.fetchedAtMs : null,
         providerAge = snapshot ? now - snapshot.providerTimeMs : null;
@@ -210,8 +268,9 @@ export function createPoller(
         primaryChanged: changed,
         retainedMissing: selection.decision.retainedMissing,
         clockAnomaly:
-          [age, snapshotAge, providerAge].some((v) => v !== null && v < 0) ||
-          !!snapshot?.anomalies.includes('provider-clock'),
+          [age, snapshotAge, providerAge].some(
+            (v) => v !== null && v < 0,
+          ) || !!snapshot?.anomalies.includes('provider-clock'),
       };
       env.observer.observe(lastDiagnosticState, now);
       observedPrimaryId = primary?.id ?? null;
@@ -249,7 +308,11 @@ export function createPoller(
         () => {
           void poll();
         },
-        Math.max(0, lastStart + interval - env.now(), notBefore - env.now()),
+        Math.max(
+          0,
+          lastStart + interval - env.now(),
+          notBefore - env.now(),
+        ),
       );
   }
   async function poll() {
@@ -279,7 +342,8 @@ export function createPoller(
       status = response.status;
       const cacheHeader = response.headers.get('x-vercel-cache');
       cache =
-        cacheHeader && ['HIT', 'MISS', 'STALE', 'BYPASS'].includes(cacheHeader)
+        cacheHeader &&
+        ['HIT', 'MISS', 'STALE', 'BYPASS'].includes(cacheHeader)
           ? cacheHeader
           : null;
       const rawAge = response.headers.get('age');
@@ -326,6 +390,11 @@ export function createPoller(
       const value: unknown = await response.json();
       if (!validSnapshot(value)) throw Error('invalid-response');
       if (!stopped && !thisRequest.signal.aborted) {
+        try {
+          env.onSnapshot?.(value);
+        } catch {
+          /* Temporary observation cannot affect polling. */
+        }
         snapshot = value;
         interval = value.pollIntervalMs;
         failed = false;

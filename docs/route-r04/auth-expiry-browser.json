@@ -1,0 +1,54 @@
+{
+  "url": "https://perch-aero-pane-stage3a-f140b0kzw-mml3.vercel.app/",
+  "checks": [
+    {
+      "height": 768,
+      "browserInterceptedFixtures": true,
+      "positions": 3,
+      "lookups": 2,
+      "providerRequests": 0,
+      "normalPinIndependentlyObserved": true,
+      "diagnosticsAbsentWithoutLease": true,
+      "historicalVisible": true,
+      "secondaryRoutePublished": true,
+      "stationaryArtwork": {
+        "x": 38,
+        "y": 194,
+        "width": 600,
+        "height": 296.421875
+      },
+      "noOverflow": true,
+      "header": {
+        "x": 20,
+        "y": 12,
+        "width": 984,
+        "height": 76
+      }
+    },
+    {
+      "height": 624,
+      "browserInterceptedFixtures": true,
+      "positions": 3,
+      "lookups": 2,
+      "providerRequests": 0,
+      "normalPinIndependentlyObserved": true,
+      "diagnosticsAbsentWithoutLease": true,
+      "historicalVisible": true,
+      "secondaryRoutePublished": true,
+      "stationaryArtwork": {
+        "x": 221,
+        "y": 121,
+        "width": 480,
+        "height": 237.140625
+      },
+      "noOverflow": true,
+      "header": {
+        "x": 16,
+        "y": 10,
+        "width": 992,
+        "height": 66
+      }
+    }
+  ],
+  "limitations": "Browser-intercepted synthetic API data; not authenticated live tracking. The unmodified hosted PIN screen and HTTP API protection were separately checked."
+}

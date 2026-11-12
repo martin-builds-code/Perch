@@ -1,3 +1,4 @@
+import type { EnrichmentDiagnostic, ProviderTrace } from './routeTraceTypes.js';
 export type EnrichmentKind = 'aircraft' | 'route';
 export interface EnrichedAirport {
   code: string;
@@ -22,9 +23,12 @@ export interface EnrichmentResult {
   data: Supplement;
   fetchedAtMs: number;
   expiresAtMs: number;
+  diagnostic?: EnrichmentDiagnostic;
+  providerTrace?: ProviderTrace;
 }
 export const ENRICHMENT_POLICY = {
   intervalMs: 30_000,
+  secondaryIntervalMs: 90_000,
   refreshLeadMs: 30_000,
   identityTtlMs: 1_800_000,
   routeTtlMs: 300_000,
@@ -35,7 +39,8 @@ export const ENRICHMENT_POLICY = {
   timeoutMs: 2500,
   clientTimeoutMs: 5000,
   maxBytes: 65536,
-  maxRouteAgeMs: 180 * 86400000,
+  recentRouteAgeMs: 180 * 86400000,
+  maxRouteAgeMs: 730 * 86400000,
 };
 export function validHex(value: string) {
   return /^[0-9A-F]{6}$/i.test(value);

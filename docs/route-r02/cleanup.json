@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-11-11T20:23:21.100158+00:00",
+  "taskDevServerPidsStopped": [
+    23249,
+    24481,
+    25352
+  ],
+  "privateSamplerCapabilityFilesRemoved": [
+    "perch-r02-capture-token",
+    "perch-r02-capture-digest"
+  ],
+  "collectorIntentionallyStopped": true,
+  "newSamplerFlagEnabled": false,
+  "samplerLeaseExpired": true,
+  "finalSamplerEndpoint": "permanent 404 tombstone",
+  "mainPinNeverBypassed": true,
+  "originalPreviewConfigMetadataUnchanged": true,
+  "noRemoteTelemetryOrBackgroundCollector": true,
+  "disposableBaselineWorktreeRemoved": true
+}

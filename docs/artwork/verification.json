@@ -1,0 +1,86 @@
+[
+  {
+    "file": "aeropane_a380_baseline.png",
+    "size": [
+      1774,
+      887
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "transparentPixels": 1053906,
+    "bytes": 935164,
+    "sha256": "ad1375ba5ed5b4a911afd6e0a90bef8d69c69e01a9ad515377a958e0b5ea227b"
+  },
+  {
+    "file": "aeropane_a380_baseline.webp",
+    "size": [
+      1774,
+      887
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "transparentPixels": 1053906,
+    "bytes": 157666,
+    "sha256": "8b1b0d33763ff489fc850a6a681579e9a562b61e517226a69ebb01e201bb3f0f"
+  },
+  {
+    "file": "aeropane_generic_narrowbody.png",
+    "size": [
+      1600,
+      800
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "transparentPixels": 1007703,
+    "bytes": 504571,
+    "sha256": "16f00af11ec21c7af690aeaabc1b87a1eababbee662a463f62789b74629ca201"
+  },
+  {
+    "file": "aeropane_generic_narrowbody.webp",
+    "size": [
+      1600,
+      800
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "transparentPixels": 1007703,
+    "bytes": 88932,
+    "sha256": "6d7a30d86ea4c282a1e5db741d1233ebfb51f6f0df6c8fc0f47e329c93b8d7b2"
+  },
+  {
+    "file": "aeropane_cloud_strip_01.png",
+    "size": [
+      1800,
+      330
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "transparentPixels": 437900,
+    "bytes": 246822,
+    "sha256": "cb893af59dfe3dc1b2246fcd667d509b26b864fac85cd5f1ef6eee4a0a7c9405"
+  },
+  {
+    "file": "aeropane_cloud_strip_01.webp",
+    "size": [
+      1800,
+      330
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "transparentPixels": 437900,
+    "bytes": 51078,
+    "sha256": "1534d3e66d0c8372a498d6679a3e433c1f07bbd2746712863a7f81ee79fc76ee"
+  }
+]
