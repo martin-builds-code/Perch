@@ -7593,6 +7593,464 @@
           }
         ]
       }
+    },
+    {
+      "name": "two-jets-30-seconds-apart",
+      "seconds": 360,
+      "r03": {
+        "primaryTransitions": 0,
+        "primaryIntervals": [
+          {
+            "id": "000001",
+            "startMs": 1794477600000,
+            "endMs": 1794477960000
+          }
+        ],
+        "modelServerRequests": 5,
+        "modelUpstreamRequests": 5,
+        "cacheAssumption": "No server-side cache; one model upstream start per application request. Client cache is real policy code.",
+        "primarySeconds": 360,
+        "secondsWithRoute": 359,
+        "primaryTimeWithRoutePercent": 99.72222222222223,
+        "firstPrimaryAcquisitions": [
+          {
+            "id": "000001",
+            "seconds": 0,
+            "secondsBeforeCpa": 120,
+            "routeReady": false
+          }
+        ],
+        "routeReadyAtFirstPrimary": 0,
+        "primaryAircraft": 1,
+        "transparentGeometricRelevantPasses": 3,
+        "missedDefinedRelevantPasses": [
+          "000002",
+          "000003"
+        ],
+        "requests": 5,
+        "routeRequests": 4,
+        "secondaryRequests": 2,
+        "successfulRouteRequests": 4,
+        "negativeRouteRequests": 0,
+        "detectedWithoutRouteAttempt": 0,
+        "cachePublications": 29,
+        "requestsPerHour": 50,
+        "requestsByFlight": [
+          {
+            "id": "000001",
+            "kind": "AT76",
+            "detectedAtMs": 1794477600000,
+            "lookupAfterDetectionMs": 0,
+            "firstUsableAfterDetectionMs": 1000,
+            "routeOutcome": "historical",
+            "routeAttempts": 2
+          },
+          {
+            "id": "000002",
+            "kind": "B738",
+            "detectedAtMs": 1794477660000,
+            "lookupAfterDetectionMs": 0,
+            "firstUsableAfterDetectionMs": 1000,
+            "routeOutcome": "recent",
+            "routeAttempts": 1
+          },
+          {
+            "id": "000003",
+            "kind": "B738",
+            "detectedAtMs": 1794477690000,
+            "lookupAfterDetectionMs": 60000,
+            "firstUsableAfterDetectionMs": 61000,
+            "routeOutcome": "recent",
+            "routeAttempts": 1
+          }
+        ],
+        "attempts": [
+          {
+            "atMs": 1794477600000,
+            "kind": "route",
+            "hex": "000001",
+            "secondary": false
+          },
+          {
+            "atMs": 1794477630000,
+            "kind": "aircraft",
+            "hex": "000001",
+            "secondary": false
+          },
+          {
+            "atMs": 1794477660000,
+            "kind": "route",
+            "hex": "000002",
+            "secondary": true
+          },
+          {
+            "atMs": 1794477750000,
+            "kind": "route",
+            "hex": "000003",
+            "secondary": true
+          },
+          {
+            "atMs": 1794477885000,
+            "kind": "route",
+            "hex": "000001",
+            "secondary": false
+          }
+        ],
+        "selections": [
+          {
+            "atMs": 1794477600000,
+            "primary": "000001",
+            "reason": "acquired"
+          },
+          {
+            "atMs": 1794477615000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477630000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477645000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477660000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477675000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477690000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477705000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477720000,
+            "primary": "000001",
+            "reason": "hysteresis"
+          },
+          {
+            "atMs": 1794477735000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477750000,
+            "primary": "000001",
+            "reason": "hysteresis"
+          },
+          {
+            "atMs": 1794477765000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477780000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477795000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477810000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477825000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477840000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477855000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477870000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477885000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477900000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477915000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477930000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477945000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477960000,
+            "primary": "000001",
+            "reason": "retained-best"
+          }
+        ]
+      },
+      "r04": {
+        "primaryTransitions": 0,
+        "primaryIntervals": [
+          {
+            "id": "000001",
+            "startMs": 1794477600000,
+            "endMs": 1794477960000
+          }
+        ],
+        "modelServerRequests": 5,
+        "modelUpstreamRequests": 5,
+        "cacheAssumption": "No server-side cache; one model upstream start per application request. Client cache is real policy code.",
+        "primarySeconds": 360,
+        "secondsWithRoute": 359,
+        "primaryTimeWithRoutePercent": 99.72222222222223,
+        "firstPrimaryAcquisitions": [
+          {
+            "id": "000001",
+            "seconds": 0,
+            "secondsBeforeCpa": 120,
+            "routeReady": false
+          }
+        ],
+        "routeReadyAtFirstPrimary": 0,
+        "primaryAircraft": 1,
+        "transparentGeometricRelevantPasses": 3,
+        "missedDefinedRelevantPasses": [
+          "000002",
+          "000003"
+        ],
+        "requests": 5,
+        "routeRequests": 4,
+        "secondaryRequests": 2,
+        "successfulRouteRequests": 4,
+        "negativeRouteRequests": 0,
+        "detectedWithoutRouteAttempt": 0,
+        "cachePublications": 29,
+        "requestsPerHour": 50,
+        "requestsByFlight": [
+          {
+            "id": "000001",
+            "kind": "AT76",
+            "detectedAtMs": 1794477600000,
+            "lookupAfterDetectionMs": 0,
+            "firstUsableAfterDetectionMs": 1000,
+            "routeOutcome": "historical",
+            "routeAttempts": 2
+          },
+          {
+            "id": "000002",
+            "kind": "B738",
+            "detectedAtMs": 1794477660000,
+            "lookupAfterDetectionMs": 0,
+            "firstUsableAfterDetectionMs": 1000,
+            "routeOutcome": "recent",
+            "routeAttempts": 1
+          },
+          {
+            "id": "000003",
+            "kind": "B738",
+            "detectedAtMs": 1794477690000,
+            "lookupAfterDetectionMs": 60000,
+            "firstUsableAfterDetectionMs": 61000,
+            "routeOutcome": "recent",
+            "routeAttempts": 1
+          }
+        ],
+        "attempts": [
+          {
+            "atMs": 1794477600000,
+            "kind": "route",
+            "hex": "000001",
+            "secondary": false
+          },
+          {
+            "atMs": 1794477630000,
+            "kind": "aircraft",
+            "hex": "000001",
+            "secondary": false
+          },
+          {
+            "atMs": 1794477660000,
+            "kind": "route",
+            "hex": "000002",
+            "secondary": true
+          },
+          {
+            "atMs": 1794477750000,
+            "kind": "route",
+            "hex": "000003",
+            "secondary": true
+          },
+          {
+            "atMs": 1794477885000,
+            "kind": "route",
+            "hex": "000001",
+            "secondary": false
+          }
+        ],
+        "selections": [
+          {
+            "atMs": 1794477600000,
+            "primary": "000001",
+            "reason": "acquired"
+          },
+          {
+            "atMs": 1794477615000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477630000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477645000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477660000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477675000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477690000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477705000,
+            "primary": "000001",
+            "reason": "hysteresis"
+          },
+          {
+            "atMs": 1794477720000,
+            "primary": "000001",
+            "reason": "hysteresis"
+          },
+          {
+            "atMs": 1794477735000,
+            "primary": "000001",
+            "reason": "hysteresis"
+          },
+          {
+            "atMs": 1794477750000,
+            "primary": "000001",
+            "reason": "hysteresis"
+          },
+          {
+            "atMs": 1794477765000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477780000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477795000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477810000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477825000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477840000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477855000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477870000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477885000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477900000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477915000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477930000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477945000,
+            "primary": "000001",
+            "reason": "retained-best"
+          },
+          {
+            "atMs": 1794477960000,
+            "primary": "000001",
+            "reason": "retained-best"
+          }
+        ]
+      }
     }
   ]
 }

@@ -144,7 +144,7 @@ try {
         (e) =>
           e.type === 'response' &&
           e.kind === 'route' &&
-          e.diagnostic.outcome === 'complete',
+          e.diagnostic?.outcome === 'complete',
       ),
     );
     const screen = await page.evaluate(() => ({

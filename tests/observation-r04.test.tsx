@@ -268,6 +268,37 @@ test('R04 vector disagreement, positional discontinuity, repeated frames and fre
   assert.equal(r.ranked[0].observation.predictionQuality, 'provisional');
   assert.equal(urgencyFor(r.ranked[0].observation, T + 15000), 0);
 });
+test('R04 cached repetition of a rejected position jump cannot bypass the clear-sky exception', () => {
+  const s = createAircraftSelector();
+  const heli = aircraft('aa0001', 11, 300, {
+    groundSpeedKnots: 60,
+    trackDegrees: null,
+  });
+  const jet = aircraft('bb0002', 14, 300, { groundSpeedKnots: 400 });
+  s.select(snapshot([heli]), T);
+  s.select(snapshot([heli, jet]), T);
+  const now = T + 35000;
+  const bad = snapshot(
+    [
+      { ...heli, positionTimeMs: now },
+      {
+        ...jet,
+        distanceKm: 0.2,
+        barometricAltitudeFt: 6500,
+        geometricAltitudeFt: 6500,
+        heightAboveObserverKm: 6500 * 0.0003048 - 0.031,
+        positionTimeMs: now,
+      },
+    ],
+    now,
+  );
+  assert.equal(s.select(bad, now).primary?.id, heli.id);
+  assert.equal(
+    s.select(bad, now + 1).primary?.id,
+    heli.id,
+    'repeated/cached anomalous frame is still uncertain',
+  );
+});
 test('R04 aircraft-category hints are bounded and never route inference', () => {
   assert.equal(aircraftCategory(fleet[0]), 'commercial-jet');
   assert.equal(

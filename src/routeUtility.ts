@@ -48,6 +48,14 @@ export const ROUTE_UTILITY_HINT = {
 } as const;
 export function routeUtilityHint(a: Aircraft) {
   // No probability/success-rate claim. Small modifiers cannot exclude a category.
-  const sameAsRegistration=a.registration && a.callsign && a.registration.replace(/[^A-Z0-9]/gi,'').toUpperCase()===a.callsign.replace(/[^A-Z0-9]/gi,'').toUpperCase();
-  return Math.max(.85, ROUTE_UTILITY_HINT[aircraftCategory(a)]*(sameAsRegistration?.9:1));
+  const sameAsRegistration =
+    a.registration &&
+    a.callsign &&
+    a.registration.replace(/[^A-Z0-9]/gi, '').toUpperCase() ===
+      a.callsign.replace(/[^A-Z0-9]/gi, '').toUpperCase();
+  return Math.max(
+    0.85,
+    ROUTE_UTILITY_HINT[aircraftCategory(a)] *
+      (sameAsRegistration ? 0.9 : 1),
+  );
 }

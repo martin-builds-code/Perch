@@ -140,6 +140,15 @@ export const SCENARIOS: {
     seconds: 360,
     tracks: [turbo('000001'), jet('000002', 180)],
   },
+  {
+    name: 'two-jets-30-seconds-apart',
+    seconds: 360,
+    tracks: [
+      turbo('000001', { orbit: 0.8, offset: 0.8, speed: 65, end: 360 }),
+      jet('000002', 120, { begin: 45 }),
+      jet('000003', 150, { begin: 45 }),
+    ],
+  },
 ];
 export function traffic(
   scene: (typeof SCENARIOS)[number],

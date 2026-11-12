@@ -21,6 +21,12 @@ export const OBSERVATION_POLICY = {
   closeCpaKm: 2.5,
   prefetchAdvantage: 15,
   maximumCandidates: 6,
+  urgencyProximityWeight: 35,
+  urgencyDistanceScaleKm: 3,
+  urgencyElevationWeight: 30,
+  urgencyImmediacyWeight: 20,
+  urgencyTimeScaleSeconds: 90,
+  urgencySpeedWeight: 15,
 };
 export interface ObservationEstimate {
   computedAtMs: number;
@@ -208,10 +214,13 @@ export function observation(
             : 0
           : Math.max(0, h) / Math.hypot(h, cpa);
     estimate.urgency =
-      (35 / (1 + cpa / 3) +
-        30 * futureElevation +
-        20 / (1 + Math.min(time, estimate.secondsToCone ?? time) / 90) +
-        15 * Math.min(1, speed / p.fastKnots)) *
+      (p.urgencyProximityWeight / (1 + cpa / p.urgencyDistanceScaleKm) +
+        p.urgencyElevationWeight * futureElevation +
+        p.urgencyImmediacyWeight /
+          (1 +
+            Math.min(time, estimate.secondsToCone ?? time) /
+              p.urgencyTimeScaleSeconds) +
+        p.urgencySpeedWeight * Math.min(1, speed / p.fastKnots)) *
       (samples >= 2 ? 1 : 0.5);
   }
   return estimate;

@@ -7,6 +7,7 @@ import { CURRENT_AGE_MS, EXPIRE_AGE_MS } from './liveTypes';
 export const DEFAULT_SELECTION_POLICY = {
   proximityWeight: 32,
   spatialWeight: 8,
+  spatialScaleKm: 5,
   immediacyWeight: 6,
   distanceScaleKm: 3,
   altitudeWeight: 24,
@@ -24,6 +25,7 @@ export const DEFAULT_SELECTION_POLICY = {
   weakSkyDistanceKm: 8,
   clearSkyMargin: 30,
   clearSkyMaxAgeMs: 5000,
+  fastTakeoverSeconds: 60,
   confirmations: 2,
   missingGraceMs: 30_000,
   historyWindowMs: 90_000,
@@ -47,6 +49,7 @@ export interface Sample {
   distanceKm: number;
   speedKnots: number | null;
   bearingDegrees?: number | null;
+  discontinuous?: boolean;
 }
 export interface Motion {
   state: Movement;
@@ -220,7 +223,7 @@ export function scoreAircraft(
     spatial:
       sky.slantKm === null
         ? policy.spatialWeight * policy.neutralFactor
-        : policy.spatialWeight / (1 + sky.slantKm / 5),
+        : policy.spatialWeight / (1 + sky.slantKm / policy.spatialScaleKm),
     immediacy:
       policy.immediacyWeight *
       (sky.phase === 'approaching' && sky.secondsToCpa !== null
@@ -365,6 +368,7 @@ export function createAircraftSelector(
             distanceKm: a.distanceKm!,
             speedKnots: a.groundSpeedKnots,
             bearingDegrees: a.bearingDegrees,
+            discontinuous: suspectIds.has(a.id),
           },
         ].slice(-policy.samplesPerAircraft);
         history.delete(a.id); // Refresh insertion order only for a newer valid position.
@@ -449,6 +453,7 @@ export function createAircraftSelector(
         margin >= policy.clearSkyMargin &&
         best.ageMs < policy.clearSkyMaxAgeMs &&
         !suspectIds.has(best.aircraft.id) &&
+        !history.get(best.aircraft.id)?.slice(-1)[0]?.discontinuous &&
         (best.observation.elevationDegrees ?? 0) >= policy.clearSkyAngle &&
         best.aircraft.distanceKm! <= policy.clearSkyDistanceKm &&
         (incumbent.observation.elevationDegrees ?? 90) <=
@@ -483,7 +488,7 @@ export function createAircraftSelector(
         reason = 'fresher-challenger';
       } else if (
         urgentPass(best.observation, now) &&
-        best.observation.secondsToCpa! <= 60 &&
+        best.observation.secondsToCpa! <= policy.fastTakeoverSeconds &&
         margin >= policy.takeoverMargin &&
         confirmations >= policy.confirmations &&
         supported

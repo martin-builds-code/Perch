@@ -98,7 +98,9 @@ export function createSkyDiagnostics(until: number) {
       ':' +
       String(failed) +
       ':' +
-      String(s.primary?.id);
+      String(s.primary?.id) +
+      ':' +
+      String(latest.baselinePrimary);
     if (!snapshot || key === lastFrame) return;
     lastFrame = key;
     const safe: Snapshot = {
