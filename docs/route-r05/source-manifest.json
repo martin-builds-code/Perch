@@ -1,0 +1,372 @@
+[
+  {
+    "file": ".gitignore",
+    "sha": "510667c9c75279c13882e0ab1ae2ec1ddcf33879",
+    "size": 70
+  },
+  {
+    "file": "api/aircraft.ts",
+    "sha": "ee453611507c82ec711b8ff04393424aa1889b9e",
+    "size": 1551
+  },
+  {
+    "file": "api/enrichment.ts",
+    "sha": "7fa505d515f11ab34a46683e1cf3d70d2a6be02b",
+    "size": 545
+  },
+  {
+    "file": "api/r05-observe.ts",
+    "sha": "a4acba1f36ee03d0147752b1162e2a7ae77c8299",
+    "size": 2320
+  },
+  {
+    "file": "api/route-research.ts",
+    "sha": "47d211037acbe138cb59dd287d179a370a036a9f",
+    "size": 397
+  },
+  {
+    "file": "api/route-review.ts",
+    "sha": "74c4ae94c48151f3659f1e83966cf7a8ff94ed77",
+    "size": 1280
+  },
+  {
+    "file": "api/session.ts",
+    "sha": "4eb653f4ad03cbd4ab49887c3694d515621e669a",
+    "size": 1842
+  },
+  {
+    "file": "eslint.config.js",
+    "sha": "3cdcba69443dbeb85fc22c7eabe2ec4e7bd14972",
+    "size": 297
+  },
+  {
+    "file": "index.html",
+    "sha": "01f29497d3f94a080820b9db46e92fdf232c9ab5",
+    "size": 655
+  },
+  {
+    "file": "package-lock.json",
+    "sha": "d001bf248ca550dde9024f5d5aac2e91d98eb7ba",
+    "size": 147542
+  },
+  {
+    "file": "package.json",
+    "sha": "838dea502a86176805e5bb742d7f387737802a33",
+    "size": 1258
+  },
+  {
+    "file": "public/OFL-Nunito.txt",
+    "sha": "a33131941c985a976a4f7c3b2421f2db548d7396",
+    "size": 4491
+  },
+  {
+    "file": "public/aircraft/aeropane_a380_baseline.png",
+    "sha": "48688a2347ee3c90e629ca105deb825020303c92",
+    "size": 935164
+  },
+  {
+    "file": "public/aircraft/aeropane_a380_baseline.webp",
+    "sha": "95fa71e9ff8b18700f4915f7c072f73e9c7c7ce5",
+    "size": 157666
+  },
+  {
+    "file": "public/aircraft/aeropane_cloud_strip_01.png",
+    "sha": "98a91e55e5faca66ac6454d893f97ebe1d6c156d",
+    "size": 246822
+  },
+  {
+    "file": "public/aircraft/aeropane_cloud_strip_01.webp",
+    "sha": "df28d47692f44c5253878259861a8c7ab596d55a",
+    "size": 51078
+  },
+  {
+    "file": "public/aircraft/aeropane_generic_narrowbody.png",
+    "sha": "3387e315f02186963613702a6eca673fb7478ced",
+    "size": 504571
+  },
+  {
+    "file": "public/aircraft/aeropane_generic_narrowbody.webp",
+    "sha": "adf16cd636a36c82dedc023ae1a750a439a6560e",
+    "size": 88932
+  },
+  {
+    "file": "public/fonts/OFL-BarlowCondensed.txt",
+    "sha": "12beb2906b258db6fdf88f2021bd0b87689ba855",
+    "size": 4376
+  },
+  {
+    "file": "public/fonts/barlow-condensed-600-latin.woff",
+    "sha": "3885689789013b8a9b776125d91f0ffcceaed0b4",
+    "size": 23356
+  },
+  {
+    "file": "server/adaptiveCoordinator.ts",
+    "sha": "230e7107086f3efdb215f8f86ee7ff783e01d18e",
+    "size": 5996
+  },
+  {
+    "file": "server/adaptiveEnrichmentService.ts",
+    "sha": "3d37097e8b2906209eab012626487b2d86507bc0",
+    "size": 8326
+  },
+  {
+    "file": "server/aircraft.ts",
+    "sha": "2a7b2b70de5dc77fac344ccc30f4a01046432654",
+    "size": 5499
+  },
+  {
+    "file": "server/auth.ts",
+    "sha": "d4b52ce381e9cd532b4b67cabf9cfcdf1dab94ca",
+    "size": 4663
+  },
+  {
+    "file": "server/enrichmentHandler.ts",
+    "sha": "e0e95f5c7627ffbd2d28bd788f0a1209bdf8ba56",
+    "size": 7785
+  },
+  {
+    "file": "server/enrichmentService.ts",
+    "sha": "1881bce1f7452bc25156715712eb9ffcf826ca4a",
+    "size": 4345
+  },
+  {
+    "file": "server/hexdb.ts",
+    "sha": "9ea3f327a3af1b29f5b0322f41b0879c7be7b503",
+    "size": 10268
+  },
+  {
+    "file": "server/previewIdentity.ts",
+    "sha": "a7464857019f641083d28faab7dbdb2697666895",
+    "size": 417
+  },
+  {
+    "file": "server/provider.ts",
+    "sha": "ad0f1d53c36be929f0d1c82fcc40cc2f6b13dcf8",
+    "size": 4033
+  },
+  {
+    "file": "server/r05Coordinator.sql",
+    "sha": "8f40c7e62bcf9f9e9ec95dbf7d50eefae3728a51",
+    "size": 5100
+  },
+  {
+    "file": "server/r05TestAccess.ts",
+    "sha": "7324762e5e8d0b4a8009935df19580c7c7f0ee56",
+    "size": 1719
+  },
+  {
+    "file": "server/routeResearchCapture.ts",
+    "sha": "32c5afadc4a59ae96a11e80641d87672953ff1ed",
+    "size": 4398
+  },
+  {
+    "file": "server/routeReviewCases.ts",
+    "sha": "6d5d05ddf51f9841a7ab6a20fb4acfd741a9cf54",
+    "size": 27448
+  },
+  {
+    "file": "server/routeTrial.ts",
+    "sha": "52256eba879c04a842eef7bd3bad1a639136d11b",
+    "size": 1232
+  },
+  {
+    "file": "server/service.ts",
+    "sha": "86dbdde085c5c38a926cb879de803063994ea37e",
+    "size": 3794
+  },
+  {
+    "file": "src/AircraftArtwork.tsx",
+    "sha": "c47a1e03670ddbfa319580f4566daf926f6ba2e6",
+    "size": 1613
+  },
+  {
+    "file": "src/App.tsx",
+    "sha": "56a8b915ef29b71718e516308a1f887bba3dea8f",
+    "size": 15202
+  },
+  {
+    "file": "src/Appliance.tsx",
+    "sha": "f25cf3ec58e45a8c840c0faf99c641b4979747aa",
+    "size": 8840
+  },
+  {
+    "file": "src/DiagnosticExport.tsx",
+    "sha": "dba79bc196c94e21dac88649e783e7312e4a8e47",
+    "size": 6376
+  },
+  {
+    "file": "src/LiveApp.tsx",
+    "sha": "b8cebec8b4379ead1db9e7ed51b4f579b3041277",
+    "size": 8475
+  },
+  {
+    "file": "src/RouteReview.tsx",
+    "sha": "f7888bb7e6913bb94339ac209572449c41b85f68",
+    "size": 24454
+  },
+  {
+    "file": "src/RouteTrialDisplay.tsx",
+    "sha": "4e3a52a6535b2fcf404d200d98c114106c995c52",
+    "size": 7859
+  },
+  {
+    "file": "src/SkyTrialDisplay.tsx",
+    "sha": "84c9559edbde6496dd71396e94b9385b0b86cd36",
+    "size": 4414
+  },
+  {
+    "file": "src/adaptiveBudget.ts",
+    "sha": "30194895b5105f9f700e0be4525df9aa36a58c10",
+    "size": 11486
+  },
+  {
+    "file": "src/adaptiveFailure.ts",
+    "sha": "1eaa164a651ef262b2ee883568598179df9da9ba",
+    "size": 3077
+  },
+  {
+    "file": "src/artwork.ts",
+    "sha": "f348097a4c349a507bc13a5f34d866754a1ce04d",
+    "size": 3323
+  },
+  {
+    "file": "src/artwork/manifest.json",
+    "sha": "ab1f09c62100ecf26dbf33c00a0d75b3aa8cc03a",
+    "size": 1663
+  },
+  {
+    "file": "src/dataDiagnostics.ts",
+    "sha": "12752a2a04f2a035f5eed930c008a52c68136391",
+    "size": 7562
+  },
+  {
+    "file": "src/diagnosticExport.ts",
+    "sha": "4acafaf78754b4b406ae0b25f5c325076c38272f",
+    "size": 1091
+  },
+  {
+    "file": "src/enrichment.ts",
+    "sha": "983ed890c83005b3a7c93f350daa4412a98ea82b",
+    "size": 30288
+  },
+  {
+    "file": "src/enrichmentFailure.ts",
+    "sha": "d4518aee9d2ffd1eaab1934b339b3540d1605e77",
+    "size": 6177
+  },
+  {
+    "file": "src/enrichmentTypes.ts",
+    "sha": "5b4b6d494a433207be228484ecc7fcf5370b824f",
+    "size": 1594
+  },
+  {
+    "file": "src/live.ts",
+    "sha": "eaa3ef4a244d257c28d7013d89f0474d1f091b4c",
+    "size": 14494
+  },
+  {
+    "file": "src/liveTypes.ts",
+    "sha": "eb350aa06f1c5e6be580c28d916fbf64eb4a712c",
+    "size": 960
+  },
+  {
+    "file": "src/main.tsx",
+    "sha": "aeba94f33c3b8b7c6bea448650b60c788d77142b",
+    "size": 835
+  },
+  {
+    "file": "src/mode.ts",
+    "sha": "778dace19007cf70655e32991f1d70a4fe1b75cd",
+    "size": 170
+  },
+  {
+    "file": "src/observation.ts",
+    "sha": "2bcac2d7435cae850a3616a94d5d4998c3140a6c",
+    "size": 9187
+  },
+  {
+    "file": "src/qa.tsx",
+    "sha": "de742c93ccde40688ca19e81ce15836ab5e1f879",
+    "size": 762
+  },
+  {
+    "file": "src/quietHours.ts",
+    "sha": "8e2ffb17b1d81c2649f851bb2de687eb0ecda04c",
+    "size": 1324
+  },
+  {
+    "file": "src/routeDiagnostics.ts",
+    "sha": "16cd42b8292a23922ee2f96728c1abb083be2cfe",
+    "size": 27199
+  },
+  {
+    "file": "src/routeReview.css",
+    "sha": "37239106a1b9f4edfeef9ce4a047399f997d6325",
+    "size": 4736
+  },
+  {
+    "file": "src/routeReviewAnalysis.ts",
+    "sha": "f220e0e69be9b1f5447704b863e9dd791117661d",
+    "size": 5701
+  },
+  {
+    "file": "src/routeReviewModel.ts",
+    "sha": "20659eee2015be33b807a8c8cff62e861384dd28",
+    "size": 13663
+  },
+  {
+    "file": "src/routeTraceTypes.ts",
+    "sha": "0dd05db9edf6391ffed499eb0c56a8d5780fe557",
+    "size": 3089
+  },
+  {
+    "file": "src/routeUtility.ts",
+    "sha": "a18fc724a8f6fd3e7abcd7bc7f4443703e6deb61",
+    "size": 1830
+  },
+  {
+    "file": "src/selection.ts",
+    "sha": "04ad5859f6f889eef5074cb4edbc4ea5f05d8010",
+    "size": 17800
+  },
+  {
+    "file": "src/selectionR03.ts",
+    "sha": "75e42d3b0773d37e4d278ba6e632c0f1ff8cd220",
+    "size": 14289
+  },
+  {
+    "file": "src/simulation.ts",
+    "sha": "e80db3c7ccc9ad569386ddf618f26b41872129a0",
+    "size": 4198
+  },
+  {
+    "file": "src/skyDiagnostics.ts",
+    "sha": "02de4e646eab8f3800a3669a70108a275201f147",
+    "size": 7639
+  },
+  {
+    "file": "src/style.css",
+    "sha": "146ac9ca7e68607c8810213fb82f68b861f0328a",
+    "size": 17786
+  },
+  {
+    "file": "tsconfig.json",
+    "sha": "95f133b6e03b0dacab9fcac6f657ab97c51701a4",
+    "size": 524
+  },
+  {
+    "file": "tsconfig.server.json",
+    "sha": "2536afdadf0ab833c30e2d8622f6d85b40549d0e",
+    "size": 240
+  },
+  {
+    "file": "vercel.json",
+    "sha": "d9cbbb8125c0cec550a123cff3db6d3ecb4448c3",
+    "size": 1308
+  },
+  {
+    "file": "vite.config.ts",
+    "sha": "afa47121a6ea090bbb399aa8cfbf51b374a985b4",
+    "size": 1333
+  }
+]

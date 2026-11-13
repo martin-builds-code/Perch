@@ -26,6 +26,19 @@ const ds = await dataset(
       new URL('../route-r04/live/observation.json', import.meta.url),
     ),
 );
+// Count a full contiguous primary stint, not the gap between two scene
+// publications (route updates may split a long stint into short intervals).
+let stintRef = null,
+  stintStart = ds.start;
+for (const scene of [...ds.scenes, { atMs: ds.end, primary: null }]) {
+  const ref = scene.primary?.ref ?? null;
+  if (ref !== stintRef) {
+    if (stintRef && scene.atMs - stintStart >= 15000)
+      ds.significant.add(stintRef);
+    stintRef = ref;
+    stintStart = scene.atMs;
+  }
+}
 const median = (xs) => {
   const a = [...xs].sort((a, b) => a - b),
     m = Math.floor(a.length / 2);

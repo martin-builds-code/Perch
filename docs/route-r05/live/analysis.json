@@ -1,0 +1,555 @@
+{
+  "basis": "Measured bounded R05 live Preview trial; source provider outcomes, not simulated flights. R04 historical observation differs in date, traffic and aircraft mix.",
+  "input": "docs/route-r05/live/observation.json",
+  "startedAtMs": 1794602752128,
+  "observedUntilMs": 1794606352324,
+  "actualObservationMinutes": 60.00326666666667,
+  "requestedMinutes": 60,
+  "stopReason": "duration-limit",
+  "detectedAircraft": 25,
+  "distinctValidFlightReferences": 25,
+  "detectedWithoutAnyRouteAttempt": 0,
+  "evidenceBounds": {
+    "frames": 154,
+    "events": 522,
+    "dropped": 0,
+    "routeCollectorTruncated": false,
+    "largestSnapshotAircraft": 4,
+    "rowLimit": 32
+  },
+  "network": {
+    "positionRequests": 240,
+    "enrichmentRequests": 45,
+    "sessionDenials": 0,
+    "networkFailures": 0,
+    "positionSources": {
+      "provider": 149,
+      "cache": 91,
+      "coalesced": 0,
+      "blocked": 0,
+      "unknown": 0
+    },
+    "positionStatuses": {
+      "200": 240
+    }
+  },
+  "pageErrorCount": 0,
+  "routeReadiness": {
+    "primaryAircraft": 20,
+    "primaryAircraftWithCompleteRoutes": 19,
+    "secondaryAircraft": 18,
+    "secondaryAircraftWithCompleteRoutes": 14,
+    "primaryMs": 2384309,
+    "primaryCompleteMs": 2165167,
+    "primaryHistoricalMs": 475723,
+    "primaryCompletePercent": 90.80899329742915,
+    "primaryHistoricalPercent": 19.952237734286957,
+    "secondaryCompletePercent": 75.55252895078438,
+    "routeReadyAtFirstPrimary": 7,
+    "firstPrimary": [
+      {
+        "ref": "000001",
+        "atMs": 1794602755123,
+        "routeReady": false,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 2,
+        "firstUsableAfterDetectionMs": 2260,
+        "routeReadyBeforeFirstPrimaryMs": -2259
+      },
+      {
+        "ref": "000003",
+        "atMs": 1794602800129,
+        "routeReady": false,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 9533,
+        "firstUsableAfterDetectionMs": 11684,
+        "routeReadyBeforeFirstPrimaryMs": -11684
+      },
+      {
+        "ref": "000004",
+        "atMs": 1794603115362,
+        "routeReady": false,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 1,
+        "firstUsableAfterDetectionMs": 2559,
+        "routeReadyBeforeFirstPrimaryMs": -2559
+      },
+      {
+        "ref": "000005",
+        "atMs": 1794603190167,
+        "routeReady": false,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 1,
+        "firstUsableAfterDetectionMs": null,
+        "routeReadyBeforeFirstPrimaryMs": null
+      },
+      {
+        "ref": "000007",
+        "atMs": 1794603369801,
+        "routeReady": true,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 0,
+        "firstUsableAfterDetectionMs": 2124,
+        "routeReadyBeforeFirstPrimaryMs": 27454
+      },
+      {
+        "ref": "000008",
+        "atMs": 1794603910407,
+        "routeReady": false,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 0,
+        "firstUsableAfterDetectionMs": 2339,
+        "routeReadyBeforeFirstPrimaryMs": -2339
+      },
+      {
+        "ref": "000009",
+        "atMs": 1794604030217,
+        "routeReady": true,
+        "historical": true,
+        "firstLookupAfterDetectionMs": 1,
+        "firstUsableAfterDetectionMs": 2223,
+        "routeReadyBeforeFirstPrimaryMs": 27729
+      },
+      {
+        "ref": "00000b",
+        "atMs": 1794604180182,
+        "routeReady": false,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 1,
+        "firstUsableAfterDetectionMs": 2183,
+        "routeReadyBeforeFirstPrimaryMs": -2183
+      },
+      {
+        "ref": "00000c",
+        "atMs": 1794604285165,
+        "routeReady": true,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 16468,
+        "firstUsableAfterDetectionMs": 18669,
+        "routeReadyBeforeFirstPrimaryMs": 71315
+      },
+      {
+        "ref": "00000d",
+        "atMs": 1794604570207,
+        "routeReady": true,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 0,
+        "firstUsableAfterDetectionMs": 2087,
+        "routeReadyBeforeFirstPrimaryMs": 27877
+      },
+      {
+        "ref": "00000e",
+        "atMs": 1794604675197,
+        "routeReady": true,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 1,
+        "firstUsableAfterDetectionMs": 1921,
+        "routeReadyBeforeFirstPrimaryMs": 58061
+      },
+      {
+        "ref": "000011",
+        "atMs": 1794604780368,
+        "routeReady": false,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 0,
+        "firstUsableAfterDetectionMs": 2100,
+        "routeReadyBeforeFirstPrimaryMs": -2100
+      },
+      {
+        "ref": "000012",
+        "atMs": 1794604915028,
+        "routeReady": true,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 29943,
+        "firstUsableAfterDetectionMs": 32317,
+        "routeReadyBeforeFirstPrimaryMs": 12612
+      },
+      {
+        "ref": "000013",
+        "atMs": 1794605290237,
+        "routeReady": false,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 0,
+        "firstUsableAfterDetectionMs": 2522,
+        "routeReadyBeforeFirstPrimaryMs": -2522
+      },
+      {
+        "ref": "000014",
+        "atMs": 1794605410109,
+        "routeReady": false,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 0,
+        "firstUsableAfterDetectionMs": 2064,
+        "routeReadyBeforeFirstPrimaryMs": -2064
+      },
+      {
+        "ref": "000015",
+        "atMs": 1794605545418,
+        "routeReady": false,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 0,
+        "firstUsableAfterDetectionMs": 2211,
+        "routeReadyBeforeFirstPrimaryMs": -2211
+      },
+      {
+        "ref": "000016",
+        "atMs": 1794605680203,
+        "routeReady": false,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 0,
+        "firstUsableAfterDetectionMs": 2638,
+        "routeReadyBeforeFirstPrimaryMs": -2638
+      },
+      {
+        "ref": "000017",
+        "atMs": 1794605755120,
+        "routeReady": true,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 1692,
+        "firstUsableAfterDetectionMs": 3703,
+        "routeReadyBeforeFirstPrimaryMs": 41118
+      },
+      {
+        "ref": "000018",
+        "atMs": 1794605815241,
+        "routeReady": false,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 393,
+        "firstUsableAfterDetectionMs": 2557,
+        "routeReadyBeforeFirstPrimaryMs": -2164
+      },
+      {
+        "ref": "000019",
+        "atMs": 1794606055348,
+        "routeReady": false,
+        "historical": false,
+        "firstLookupAfterDetectionMs": 0,
+        "firstUsableAfterDetectionMs": 2125,
+        "routeReadyBeforeFirstPrimaryMs": -2125
+      }
+    ],
+    "firstDetectionToLookup": {
+      "count": 25,
+      "medianSeconds": 0.001,
+      "maxSeconds": 29.943
+    },
+    "firstDetectionToUsableRoute": {
+      "count": 22,
+      "medianSeconds": 2.339,
+      "maxSeconds": 32.317
+    },
+    "allPrimaryAcquisitions": 21,
+    "allPrimaryAcquisitionsReady": 7,
+    "acquisitions": [
+      {
+        "ref": "000001",
+        "atMs": 1794602755123,
+        "ready": false,
+        "historical": false
+      },
+      {
+        "ref": "000003",
+        "atMs": 1794602800129,
+        "ready": false,
+        "historical": false
+      },
+      {
+        "ref": "000004",
+        "atMs": 1794603115362,
+        "ready": false,
+        "historical": false
+      },
+      {
+        "ref": "000005",
+        "atMs": 1794603190167,
+        "ready": false,
+        "historical": false
+      },
+      {
+        "ref": "000007",
+        "atMs": 1794603369801,
+        "ready": true,
+        "historical": false
+      },
+      {
+        "ref": "000008",
+        "atMs": 1794603910407,
+        "ready": false,
+        "historical": false
+      },
+      {
+        "ref": "000009",
+        "atMs": 1794604030217,
+        "ready": true,
+        "historical": true
+      },
+      {
+        "ref": "00000b",
+        "atMs": 1794604180182,
+        "ready": false,
+        "historical": false
+      },
+      {
+        "ref": "00000c",
+        "atMs": 1794604285165,
+        "ready": true,
+        "historical": false
+      },
+      {
+        "ref": "00000c",
+        "atMs": 1794604525042,
+        "ready": false,
+        "historical": false
+      },
+      {
+        "ref": "00000d",
+        "atMs": 1794604570207,
+        "ready": true,
+        "historical": false
+      },
+      {
+        "ref": "00000e",
+        "atMs": 1794604675197,
+        "ready": true,
+        "historical": false
+      },
+      {
+        "ref": "000011",
+        "atMs": 1794604780368,
+        "ready": false,
+        "historical": false
+      },
+      {
+        "ref": "000012",
+        "atMs": 1794604915028,
+        "ready": true,
+        "historical": false
+      },
+      {
+        "ref": "000013",
+        "atMs": 1794605290237,
+        "ready": false,
+        "historical": false
+      },
+      {
+        "ref": "000014",
+        "atMs": 1794605410109,
+        "ready": false,
+        "historical": false
+      },
+      {
+        "ref": "000015",
+        "atMs": 1794605545418,
+        "ready": false,
+        "historical": false
+      },
+      {
+        "ref": "000016",
+        "atMs": 1794605680203,
+        "ready": false,
+        "historical": false
+      },
+      {
+        "ref": "000017",
+        "atMs": 1794605755120,
+        "ready": true,
+        "historical": false
+      },
+      {
+        "ref": "000018",
+        "atMs": 1794605815241,
+        "ready": false,
+        "historical": false
+      },
+      {
+        "ref": "000019",
+        "atMs": 1794606055348,
+        "ready": false,
+        "historical": false
+      }
+    ]
+  },
+  "rateCompliance": {
+    "applicationEnrichmentAttempts": 45,
+    "observedUpstreamStarts": 45,
+    "startsWithTiming": 45,
+    "diagnosticCounterStarts": 45,
+    "requestsPerHour": 44.99755013338163,
+    "minimumProviderStartGapMs": 11990,
+    "peakRolling30s": 2,
+    "peakRollingOneMinute": 4,
+    "peakRollingFiveMinutes": 9,
+    "below10sBeyond1msRounding": 0,
+    "fiveMinuteCeilingViolated": false,
+    "minimumObservedTokens": 0.8396999999999998,
+    "maximumObservedRollingFive": 9,
+    "maximumObservedRollingDay": 45,
+    "localDeferralIncidents": {},
+    "requestsNeverObservedSignificantlyRelevant": 4,
+    "serverCacheHits": 0,
+    "localDeferralsAmplifiedToFiveMinutes": 0,
+    "provider429": 0,
+    "provider403": 0,
+    "providerErrors": 0,
+    "sharedCounters": {
+      "reserved": 45,
+      "confirmedStarts": 45,
+      "upstreamResponses": 45,
+      "complete": 23,
+      "historical": 6,
+      "notFound": 4,
+      "rejected": 0,
+      "failures": 0,
+      "uncertain": 0
+    }
+  },
+  "byCategory": {
+    "commercial-jet": {
+      "detectedAircraft": 19,
+      "primaryAircraft": 16,
+      "routeAttempts": 20,
+      "actualRouteProviderStarts": 20,
+      "completeResponses": 20,
+      "providerCompleteResponses": 20,
+      "historicalResponses": 4,
+      "providerHistoricalResponses": 4,
+      "recentResponses": 16,
+      "unclassifiedAgeCompleteResponses": 0,
+      "genuineProviderMisses": 0,
+      "cachedNegativeResponses": 0,
+      "rejectedResponses": 0,
+      "partialResponses": 0,
+      "lookupErrors": 0,
+      "serverCacheHits": 0,
+      "notObservedAtEndBeforeAnyRouteAttempt": 0
+    },
+    "regional": {
+      "detectedAircraft": 1,
+      "primaryAircraft": 1,
+      "routeAttempts": 1,
+      "actualRouteProviderStarts": 1,
+      "completeResponses": 1,
+      "providerCompleteResponses": 1,
+      "historicalResponses": 1,
+      "providerHistoricalResponses": 1,
+      "recentResponses": 0,
+      "unclassifiedAgeCompleteResponses": 0,
+      "genuineProviderMisses": 0,
+      "cachedNegativeResponses": 0,
+      "rejectedResponses": 0,
+      "partialResponses": 0,
+      "lookupErrors": 0,
+      "serverCacheHits": 0,
+      "notObservedAtEndBeforeAnyRouteAttempt": 0
+    },
+    "general-aviation": {
+      "detectedAircraft": 0,
+      "primaryAircraft": 0,
+      "routeAttempts": 0,
+      "actualRouteProviderStarts": 0,
+      "completeResponses": 0,
+      "providerCompleteResponses": 0,
+      "historicalResponses": 0,
+      "providerHistoricalResponses": 0,
+      "recentResponses": 0,
+      "unclassifiedAgeCompleteResponses": 0,
+      "genuineProviderMisses": 0,
+      "cachedNegativeResponses": 0,
+      "rejectedResponses": 0,
+      "partialResponses": 0,
+      "lookupErrors": 0,
+      "serverCacheHits": 0,
+      "notObservedAtEndBeforeAnyRouteAttempt": 0
+    },
+    "helicopter": {
+      "detectedAircraft": 0,
+      "primaryAircraft": 0,
+      "routeAttempts": 0,
+      "actualRouteProviderStarts": 0,
+      "completeResponses": 0,
+      "providerCompleteResponses": 0,
+      "historicalResponses": 0,
+      "providerHistoricalResponses": 0,
+      "recentResponses": 0,
+      "unclassifiedAgeCompleteResponses": 0,
+      "genuineProviderMisses": 0,
+      "cachedNegativeResponses": 0,
+      "rejectedResponses": 0,
+      "partialResponses": 0,
+      "lookupErrors": 0,
+      "serverCacheHits": 0,
+      "notObservedAtEndBeforeAnyRouteAttempt": 0
+    },
+    "unknown": {
+      "detectedAircraft": 5,
+      "primaryAircraft": 3,
+      "routeAttempts": 5,
+      "actualRouteProviderStarts": 5,
+      "completeResponses": 2,
+      "providerCompleteResponses": 2,
+      "historicalResponses": 1,
+      "providerHistoricalResponses": 1,
+      "recentResponses": 1,
+      "unclassifiedAgeCompleteResponses": 0,
+      "genuineProviderMisses": 3,
+      "cachedNegativeResponses": 0,
+      "rejectedResponses": 0,
+      "partialResponses": 0,
+      "lookupErrors": 0,
+      "serverCacheHits": 0,
+      "notObservedAtEndBeforeAnyRouteAttempt": 0
+    }
+  },
+  "counters": {
+    "positionalSnapshots": 240,
+    "primaryAttempts": 32,
+    "applicationAttempts": 45,
+    "routeLookupAttempts": 26,
+    "primaryRouteLookupAttempts": 13,
+    "primaryResponses": 32,
+    "applicationResponses": 45,
+    "hexdbRequestsStarted": 45,
+    "hexdbResponsesReceived": 45,
+    "primaryHexdbRequestsStarted": 32,
+    "routeHexdbRequestsStarted": 26,
+    "hexdbRouteCompleteResponses": 23,
+    "routeCompleteResponses": 23,
+    "primaryRouteCompleteResponses": 13,
+    "clientPositiveCacheSceneUses": 466,
+    "secondaryAttempts": 13,
+    "secondaryRouteLookupAttempts": 13,
+    "secondaryResponses": 13,
+    "secondaryHexdbRequestsStarted": 13,
+    "hexdbRouteNegativeResponses": 3,
+    "routeNegativeResponses": 3,
+    "secondaryRouteNegativeResponses": 3,
+    "clientNegativeCacheSceneUses": 61,
+    "identityLookupAttempts": 19,
+    "aircraftHexdbRequestsStarted": 19,
+    "secondaryRouteCompleteResponses": 10
+  },
+  "historicalR04Context": {
+    "minutes": 40.0062,
+    "detected": 26,
+    "requests": 34,
+    "routeReadyAtFirstPrimary": 3,
+    "firstPrimaryCount": 14,
+    "primaryCompletePercent": 33.77649113691526,
+    "routeLookupDelay": {
+      "count": 21,
+      "medianSeconds": 30.12,
+      "maxSeconds": 1229.76
+    }
+  },
+  "primaryWithoutRouteCoincidingWithSecondaryMs": 2124,
+  "limitations": [
+    "Actual upstream starts are those reported at fetch dispatch by the deployed server; a killed worker/response loss can leave an uncertain charged reservation. Compare shared before/after counters separately.",
+    "Rolling start times use function-instance clocks; DB admission uses the authoritative writer clock and conservative completion bounds. Timing measurements do not establish cloud-wide clock accuracy.",
+    "Only R05 participates in its shared ceiling. Existing R04 and household Production do not.",
+    "Historical R04 and this R05 observation are different traffic populations, not a randomized controlled trial.",
+    "No FR24 or independent current flight-plan verification; complete routes may be qualified historical associations.",
+    "Significant relevance is only a research convention: observed elevation >=45 degrees, horizontal distance <1km, or primary stint >=15s. Marginal requests are not thereby proved useless.",
+    "Aircraft without a route attempt can include missing/invalid callsigns and deliberately peripheral traffic. Their count is not entirely attributable to the budget.",
+    "Primary readiness at observation boundaries may be censored. Category is a bounded aircraft-type heuristic, not a measured coverage probability."
+  ]
+}

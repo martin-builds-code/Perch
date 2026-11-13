@@ -1,0 +1,46 @@
+{
+  "verifiedAtMs": 1794606716728,
+  "absoluteExpiryMs": 1794606655016,
+  "oldAndFinalMachineAccessExpired": true,
+  "normalPinRetained": true,
+  "futureMachineConfigurationDisabled": true,
+  "checks": [
+    {
+      "url": "https://perch-aero-pane-stage3a-a3ecine9j-mml3.vercel.app/api/r05-observe?resource=session",
+      "status": 401,
+      "error": "authentication-required",
+      "setCookie": false
+    },
+    {
+      "url": "https://perch-aero-pane-stage3a-a3ecine9j-mml3.vercel.app/api/session",
+      "status": 401,
+      "error": "authentication-required",
+      "setCookie": false
+    },
+    {
+      "url": "https://perch-aero-pane-stage3a-a3ecine9j-mml3.vercel.app/api/aircraft",
+      "status": 401,
+      "error": "authentication-required",
+      "setCookie": false
+    },
+    {
+      "url": "https://perch-aero-pane-stage3a-4wgfc8612-mml3.vercel.app/api/r05-observe?resource=session",
+      "status": 401,
+      "error": "authentication-required",
+      "setCookie": false
+    },
+    {
+      "url": "https://perch-aero-pane-stage3a-4wgfc8612-mml3.vercel.app/api/session",
+      "status": 401,
+      "error": "authentication-required",
+      "setCookie": false
+    },
+    {
+      "url": "https://perch-aero-pane-stage3a-4wgfc8612-mml3.vercel.app/api/aircraft",
+      "status": 401,
+      "error": "authentication-required",
+      "setCookie": false
+    }
+  ],
+  "aviationProviderRequests": 0
+}

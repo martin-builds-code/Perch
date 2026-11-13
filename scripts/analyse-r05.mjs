@@ -47,6 +47,35 @@ const categories = y.byCategory;
 const paired = JSON.parse(
   await readFile('docs/route-r04/live/analysis.json', 'utf8'),
 );
+const acquisitions = [];
+let previousPrimary = null;
+for (const e of x.sky?.events ?? [])
+  if (e.type === 'scene') {
+    const current = e.primary?.ref ?? null;
+    if (current !== previousPrimary && current)
+      acquisitions.push({
+        ref: current,
+        atMs: e.atMs,
+        ready: !!e.primary.complete,
+        historical: !!e.primary.historical,
+      });
+    previousPrimary = current;
+  }
+const significant = new Set();
+for (const f of x.sky?.frames ?? [])
+  for (const r of f.result.ranked)
+    if (
+      (r.observation?.elevationDegrees ?? 0) >= 45 ||
+      (r.distanceKm ?? Infinity) < 1
+    )
+      significant.add(r.ref);
+for (const i of y.selectionComparison.r04.intervals)
+  if (i.seconds >= 15) significant.add(i.ref);
+y.routeReadiness.allPrimaryAcquisitions = acquisitions.length;
+y.routeReadiness.allPrimaryAcquisitionsReady = acquisitions.filter(
+  (a) => a.ready,
+).length;
+y.routeReadiness.acquisitions = acquisitions;
 const report = {
   basis:
     'Measured bounded R05 live Preview trial; source provider outcomes, not simulated flights. R04 historical observation differs in date, traffic and aircraft mix.',
@@ -86,6 +115,9 @@ const report = {
       ? Math.max(...budgetRows.map((b) => b.rollingDay))
       : null,
     localDeferralIncidents: states,
+    requestsNeverObservedSignificantlyRelevant: attempts.filter(
+      (a) => !significant.has(a.ref),
+    ).length,
     serverCacheHits: x.apiSamples.filter(
       (s) => s.diagnostic?.serverCache === 'hit',
     ).length,
@@ -122,6 +154,8 @@ const report = {
     'Only R05 participates in its shared ceiling. Existing R04 and household Production do not.',
     'Historical R04 and this R05 observation are different traffic populations, not a randomized controlled trial.',
     'No FR24 or independent current flight-plan verification; complete routes may be qualified historical associations.',
+    'Significant relevance is only a research convention: observed elevation >=45 degrees, horizontal distance <1km, or primary stint >=15s. Marginal requests are not thereby proved useless.',
+    'Aircraft without a route attempt can include missing/invalid callsigns and deliberately peripheral traffic. Their count is not entirely attributable to the budget.',
     'Primary readiness at observation boundaries may be censored. Category is a bounded aircraft-type heuristic, not a measured coverage probability.',
   ],
 };

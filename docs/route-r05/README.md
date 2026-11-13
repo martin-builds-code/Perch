@@ -7,4 +7,4 @@
 - [Actual-planner conditional replay](implemented-replay.json), produced by `node --import tsx docs/route-r05/implemented-replay.mjs` without network access.
 - [Shared PostgreSQL verification](shared-store-verification.json): twelve concurrent clients, encrypted cache, access denial, no aviation-provider requests.
 - [Browser evidence](browser/): inherited display checks and the adaptive browser client, using synthetic providers.
-- Live evidence and deployment identifiers are added after the bounded trial. Simulated and observed results are kept separate.
+- [Completed live trial](live/analysis.json) and deployment/authentication evidence are now retained. The trial stopped automatically after60minutes. Simulated and observed results are kept separate.

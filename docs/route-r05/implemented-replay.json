@@ -37,7 +37,7 @@
         "maximumMs": 1229760
       },
       "recordedGoneWithoutAttempt": 5,
-      "requestsNeverSignificantlyRelevant": 6,
+      "requestsNeverSignificantlyRelevant": 3,
       "cacheCandidateReads": 2581,
       "cacheBackedReads": 1141,
       "knownCompleteResponses": 15,
@@ -765,7 +765,7 @@
         "maximumMs": 118943
       },
       "recordedGoneWithoutAttempt": 3,
-      "requestsNeverSignificantlyRelevant": 8,
+      "requestsNeverSignificantlyRelevant": 5,
       "cacheCandidateReads": 4018,
       "cacheBackedReads": 2019,
       "knownCompleteResponses": 15,
@@ -1544,7 +1544,7 @@
         "maximumMs": 118943
       },
       "recordedGoneWithoutAttempt": 5,
-      "requestsNeverSignificantlyRelevant": 6,
+      "requestsNeverSignificantlyRelevant": 5,
       "cacheCandidateReads": 3976,
       "cacheBackedReads": 1691,
       "knownCompleteResponses": 13,
@@ -2221,7 +2221,7 @@
         "maximumMs": 1229760
       },
       "recordedGoneWithoutAttempt": 13,
-      "requestsNeverSignificantlyRelevant": 3,
+      "requestsNeverSignificantlyRelevant": 0,
       "cacheCandidateReads": 3796,
       "cacheBackedReads": 1351,
       "knownCompleteResponses": 9,

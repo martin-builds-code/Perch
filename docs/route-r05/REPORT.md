@@ -1,3 +1,5 @@
+> **13 November2026 update:** This document preserves the earlier investigation. The owner subsequently resolved the provider-policy decision and authorised implementation. The completed scheduler, separate protected Preview and60-minute live evidence are reported in [IMPLEMENTATION.md](IMPLEMENTATION.md). Earlier recommendations below to seek provider permission or wait for implementation authorisation are superseded.
+
 # R05 — adaptive enrichment budgeting investigation
 
 **12 November 2026. Investigation only; no R05 application implementation or deployment.**
