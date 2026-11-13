@@ -55,6 +55,8 @@ function harness(
     negative?: boolean;
     delay?: number;
     unavailable?: boolean;
+    gateMs?: number;
+    tokens?: number;
   } = {},
 ) {
   let now = T,
@@ -72,6 +74,8 @@ function harness(
     }[] = [],
     apiCalls: number[] = [],
     published: Scene[] = [];
+  if (options.gateMs) state.nextStartMs = T + options.gateMs;
+  if (options.tokens !== undefined) state.tokens = options.tokens;
   const store: Coordinator = {
     key: (v) => createHash('sha256').update(v).digest('hex'),
     read: async (key) => {
@@ -253,6 +257,34 @@ test('R05 drains primary and secondary work without a 90s bottleneck or new posi
       (a) => a.routeHistorical === true,
     ),
   );
+});
+test('R05 honours the whole Retry-After second even when a local gate has only 50 ms left', async (t) => {
+  const h = harness(t, { gateMs: 50 });
+  h.client.update(scene(plane()));
+  await h.at(999);
+  assert.equal(
+    h.apiCalls.length,
+    1,
+    'a short budget view must not shorten Retry-After: 1',
+  );
+  assert.equal(h.providerCalls.length, 0);
+  await h.at(1100);
+  assert.equal(h.apiCalls[1], T + 1000);
+  assert.equal(h.providerCalls.length, 1);
+});
+test('a marginal reserve deferral leaves an actually eligible urgent primary opportunity available', async (t) => {
+  const h = harness(t, { tokens: 1.2 });
+  const secondary = plane('111111', 'SECOND1');
+  h.client.update(scene({ ...plane(), ...pair }, [secondary]));
+  await h.at(100);
+  assert.equal(h.apiCalls.length, 1);
+  assert.equal(h.providerCalls.length, 0);
+  await h.at(500);
+  h.client.update(scene(plane('222222', 'PRIMARY2'), [secondary]));
+  await h.at(600);
+  assert.equal(h.providerCalls.length, 1);
+  assert.equal(h.providerCalls[0].hex, '222222');
+  assert.equal(h.providerCalls[0].at, T + 500);
 });
 test('R05 retains R04 urgent-secondary priority and essential primary identification protection', async (t) => {
   const h = harness(t),

@@ -371,12 +371,23 @@ export function createEnricher(
           const at = budgetNow(),
             wall = env.now();
           lastAdaptiveView = adaptive.budget;
-          budget.nextAllowed = Math.max(
-            priorDeadline,
-            at + (adaptive.budget?.protectedWaitMs ?? adaptive.waitMs),
-          );
+          // Retry-After rounds up to whole seconds. A shorter millisecond
+          // budget snapshot must not shorten that deadline. Only the explicitly
+          // marginal reserve gate may leave a different protected job eligible.
+          const reserveOnly =
+            normal &&
+            adaptive.failure.reason === 'reserved-capacity' &&
+            !!adaptive.budget;
+          const sharedWait = reserveOnly
+            ? adaptive.budget!.protectedWaitMs
+            : Math.max(
+                adaptive.waitMs,
+                adaptive.budget?.protectedWaitMs ?? 0,
+              );
+          budget.nextAllowed = Math.max(priorDeadline, at + sharedWait);
           budget.nextMarginalAllowed = Math.max(
             budget.nextAllowed,
+            at + adaptive.waitMs,
             at + (adaptive.budget?.normalWaitMs ?? adaptive.waitMs),
           );
           emit({

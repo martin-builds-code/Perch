@@ -34,13 +34,13 @@ The guarantee covers **participating R05 calls only**, across its viewers and ov
 
 ## Provider failures and local deferrals
 
-Typed v2 application deferrals distinguish in-flight, spacing, tokens/reserve, rolling caps, provider backoff and coordination unavailability. They include zero upstream starts, consistent Retry-After and validated safe budget metadata. Ambiguous/generic503 responses retain failure protection. R01's v1 contract continues to work for R04. Short local waits do not become five-minute provider pauses.
+Typed v2 application deferrals distinguish in-flight, spacing, tokens/reserve, rolling caps, provider backoff and coordination unavailability. They include zero upstream starts, consistent Retry-After and validated safe budget metadata. Ambiguous/generic503 responses retain failure protection. R01's v1 contract continues to work for R04. Short local waits do not become five-minute provider pauses. A focused regression also reproduces a50ms gate with HTTP `Retry-After: 1`: the client now honours the full second, while an explicitly marginal reserve deferral still permits a different eligible protected primary request. Contradictory gate reasons/budget snapshots fail safely. These client guards were verified offline during the live session; the session has not encountered a local deferral, so it does not provide live evidence for that edge case.
 
 Actual upstream failures remain charged. Shared repeated429/server failures escalate5/15/60min; a longer valid numeric/date Retry-After wins, as do existing access-denied protections. Cache hits remain useful during backoff. No provider stress test or quota discovery is performed.
 
 ## Offline and browser verification
 
-All386 unit tests pass, including37 new R05 cases for burst/refill/rolling boundaries, daily guard,20 simultaneous modeled clients, leases/crashes, cache encryption, exact callsigns, negative results, R01 errors, lifecycle and machine-access isolation. Plain Node ESM HTTP checks cover inherited handlers, the frozen route review and the new actual R05 server graph. ESLint, TypeScript, standard production build and the full live/enrichment/diagnostics/appliance/R05-enabled Safari15 build are run before deployment.
+All388 unit tests pass, including39 new R05 cases for burst/refill/rolling boundaries, daily guard,20 simultaneous modeled clients, leases/crashes, cache encryption, exact callsigns, negative results, R01 errors, lifecycle and machine-access isolation. Plain Node ESM HTTP checks cover inherited handlers, the frozen route review and the new actual R05 server graph. ESLint, TypeScript, standard production build and the full live/enrichment/diagnostics/appliance/R05-enabled Safari15 build are run before deployment.
 
 The real shared-store test used12 concurrent clients: exactly one reservation won; no RPC failed. Median RPC time564ms, maximum748ms in this execution environment. It verified stale-revision rejection, shared encrypted cache and missing-secret/private-table denial without making an aviation-provider call or changing the live budget.
 

@@ -60,7 +60,7 @@ export default function RouteTrialDisplay({
         cache hits: {report.counters.serverCacheHits ?? 0}
       </p>
       <p>
-        Global wait: {Math.ceil(report.globalWaitMs / 1000)} s · Secondary
+        Global wait: {Math.ceil(report.globalWaitMs / 1000)} s · Secondary{' '}
         {adaptive ? 'reserve wait' : 'wait'}:{' '}
         {Math.ceil(
           (adaptive && report.adaptiveBudget

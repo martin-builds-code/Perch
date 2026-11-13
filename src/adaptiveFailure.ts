@@ -85,6 +85,21 @@ export function verifiedAdaptiveDeferral(
     return;
   const budget = parseAdaptiveView(b.adaptiveBudget);
   if ('adaptiveBudget' in b && !budget) return;
+  if (!budget && f.reason !== 'coordination-unavailable') return;
+  if (
+    budget &&
+    ((f.reason === 'in-flight' && !budget.inFlight) ||
+      (f.reason === 'tokens' && budget.tokens >= 1) ||
+      (f.reason === 'reserved-capacity' && budget.tokens >= 2) ||
+      (f.reason === 'rolling-five' && budget.rollingFive < 10) ||
+      (f.reason === 'rolling-day' &&
+        budget.rollingDay < budget.dailyLimit) ||
+      (f.reason === 'reserved-capacity'
+        ? budget.normalWaitMs === 0
+        : f.reason !== 'coordination-unavailable' &&
+          budget.protectedWaitMs === 0))
+  )
+    return;
   if (
     budget &&
     (f.reason === 'reserved-capacity'

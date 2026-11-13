@@ -1,5 +1,5 @@
 {
-  "basis": "Conditional offline replay through actual createEnricher.plan and shared R05 admission transitions; frozen captured selection; six identity demands fixed; unknown outcomes charged/censored without route credit.",
+  "basis": "Conditional offline replay through actual createEnricher.plan and shared R05 admission transitions; frozen captured selection; recorded identity demands fixed; unknown outcomes charged/censored without route credit.",
   "limits": [
     "Not a bit-exact React/poller replay; original timer omissions and identity redaction persist.",
     "No claim that a recorded later HexDB response would have been identical earlier.",

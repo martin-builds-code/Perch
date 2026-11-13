@@ -489,6 +489,16 @@ test('strict R05 local-deferral contract shortens only verified local waits', ()
       adaptiveBudget: { ...body.adaptiveBudget, rollingFive: 11 },
     },
     { ...body, extra: true },
+    { ...body, adaptiveBudget: undefined },
+    { ...body, failure: { ...body.failure, reason: 'in-flight' } },
+    { ...body, failure: { ...body.failure, reason: 'tokens' } },
+    { ...body, failure: { ...body.failure, reason: 'reserved-capacity' } },
+    { ...body, failure: { ...body.failure, reason: 'rolling-five' } },
+    { ...body, failure: { ...body.failure, reason: 'rolling-day' } },
+    {
+      ...body,
+      adaptiveBudget: { ...body.adaptiveBudget, protectedWaitMs: 0 },
+    },
   ])
     assert.equal(verifiedAdaptiveDeferral(response, invalid), undefined);
   assert.equal(

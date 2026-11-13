@@ -114,9 +114,28 @@ try {
           q.get('callsign'),
           q.get('priority') === 'normal',
         );
+        const { providerTrace: trace, ...payload } = x.result;
         await r.fulfill({
           contentType: 'application/json',
-          body: JSON.stringify({ ...x.result, adaptiveBudget: x.budget }),
+          body: JSON.stringify({
+            ...payload,
+            adaptiveBudget: x.budget,
+            diagnostic: {
+              origin: 'hexdb',
+              serverCache: x.cache,
+              upstreamRequestsStarted:
+                x.cache === 'miss' && trace?.requestStarted ? 1 : 0,
+              upstreamResponses:
+                x.cache === 'miss' && trace?.httpStatus ? 1 : 0,
+              outcome: trace?.outcome,
+              reason: trace?.reason,
+              httpStatus: trace?.httpStatus,
+              durationMs: 1,
+              ...(x.cache === 'miss'
+                ? { upstreamStartedAtMs: trace?.requestStartedAtMs }
+                : {}),
+            },
+          }),
         });
       } catch (e) {
         if (!(e instanceof AdaptiveDeferral)) throw e;
@@ -196,17 +215,32 @@ try {
     );
     assert.ok(noScroll);
     assert.deepEqual(errors, []);
-    await p.evaluate(() => history.replaceState(null, '', '?mode=live&observe=2&sky=1'));
+    await p.evaluate(() =>
+      history.replaceState(null, '', '?mode=live&observe=2&sky=1'),
+    );
     await p.clock.fastForward(15000);
-    await p.getByText('Protected R05 diagnostics.', { exact: false }).waitFor();
-    assert.equal(await p.getByText('secondary ≥90 s', { exact: false }).count(),0);
-    await p.screenshot({path:`${output}/adaptive-geometry-diagnostics-${height}.png`});
-    await p.evaluate(() => history.replaceState(null, '', '?mode=live&observe=2'));
+    await p
+      .getByText('Protected R05 diagnostics.', { exact: false })
+      .waitFor();
+    assert.equal(
+      await p.getByText('secondary ≥90 s', { exact: false }).count(),
+      0,
+    );
+    await p.screenshot({
+      path: `${output}/adaptive-geometry-diagnostics-${height}.png`,
+    });
+    await p.evaluate(() =>
+      history.replaceState(null, '', '?mode=live&observe=2'),
+    );
     await p.clock.fastForward(15000);
-    await p.getByRole('heading',{name:'Experimental route investigation'}).waitFor();
-    await p.getByText('start gap ≥10 s', { exact:false }).waitFor();
+    await p
+      .getByRole('heading', { name: 'Experimental route investigation' })
+      .waitFor();
+    await p.getByText('start gap ≥10 s', { exact: false }).waitFor();
     await p.getByLabel('Shared adaptive budget').waitFor();
-    await p.screenshot({path:`${output}/adaptive-budget-diagnostics-${height}.png`});
+    await p.screenshot({
+      path: `${output}/adaptive-budget-diagnostics-${height}.png`,
+    });
     const before = attempts.length;
     await p.evaluate(() => {
       Object.defineProperty(document, 'visibilityState', {
