@@ -1,0 +1,20 @@
+{
+  "testedAt": "2026-11-13T20:24:08.284Z",
+  "projectId": "jjtkwqscfukioutgnxgc",
+  "scope": "verification",
+  "simultaneousClients": 12,
+  "winners": 1,
+  "failedRpcCalls": 0,
+  "sharedEncryptedCache": true,
+  "staleRevisionRejected": true,
+  "missingServerSecretDenied": true,
+  "privateTablesDenied": true,
+  "liveBudgetUnchanged": true,
+  "aviationProviderRequests": 0,
+  "rpcLatencyMs": {
+    "count": 21,
+    "median": 564.2099749999998,
+    "max": 747.5476360000002
+  },
+  "limitation": "Exercises real shared PostgreSQL CAS and cache operations; does not load-test HexDB or prove provider failover guarantees."
+}

@@ -1,0 +1,30 @@
+✔ C10 hard rolling ceiling under sustained offered demand (1.105952ms)
+✔ C10 quiet accumulation is bounded and burst recovers (0.129924ms)
+✔ C10 reserve is retained for an urgent job (0.17415ms)
+✔ C20 hard rolling ceiling under sustained offered demand (0.332847ms)
+✔ C20 quiet accumulation is bounded and burst recovers (0.098607ms)
+✔ C20 reserve is retained for an urgent job (0.072809ms)
+✔ C30 hard rolling ceiling under sustained offered demand (0.565514ms)
+✔ C30 quiet accumulation is bounded and burst recovers (0.07379ms)
+✔ C30 reserve is retained for an urgent job (0.097466ms)
+✔ C50 hard rolling ceiling under sustained offered demand (1.413951ms)
+✔ C50 quiet accumulation is bounded and burst recovers (0.075763ms)
+✔ C50 reserve is retained for an urgent job (0.070866ms)
+✔ half-open rolling window handles exact five-minute boundary (0.211265ms)
+✔ token bucket alone would exceed a rolling ceiling: hard log still blocks (0.126358ms)
+✔ provider backoff and longer Retry-After override stored tokens (0.139549ms)
+✔ invalid/backwards clock never reopens budget (0.319217ms)
+✔ only secondary route requests consume the legacy90s allowance (0.17397ms)
+✔ independent browser buckets cannot establish a global hard ceiling (0.346077ms)
+✔ atomic shared model denies concurrent clients and unavailable state (0.26775ms)
+✔ unknown outcomes are not represented as known HexDB misses or successes (29.546939ms)
+✔ cache timing, flight keys and fixed reference agree on aggregate evidence (10.417225ms)
+✔ live result file has no invented known outcomes (4.839386ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 227.680389

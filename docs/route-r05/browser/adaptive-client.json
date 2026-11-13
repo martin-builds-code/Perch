@@ -1,0 +1,78 @@
+[
+  {
+    "height": 768,
+    "initialArt": {
+      "x": 42,
+      "y": 292,
+      "width": 640,
+      "height": 156
+    },
+    "snapshotTime": 1794477685000,
+    "providerStarts": [
+      {
+        "atMs": 1794477645000,
+        "kind": "route",
+        "hex": "000001",
+        "callsign": "R000001"
+      },
+      {
+        "atMs": 1794477655000,
+        "kind": "aircraft",
+        "hex": "000001",
+        "callsign": null
+      },
+      {
+        "atMs": 1794477675000,
+        "kind": "route",
+        "hex": "000002",
+        "callsign": "R000002"
+      }
+    ],
+    "positions": [
+      1794477645000,
+      1794477665000,
+      1794477685000
+    ],
+    "noScroll": true,
+    "hiddenStops": true,
+    "errors": []
+  },
+  {
+    "height": 624,
+    "initialArt": {
+      "x": 106,
+      "y": 204,
+      "width": 590,
+      "height": 143.8125
+    },
+    "snapshotTime": 1794477685000,
+    "providerStarts": [
+      {
+        "atMs": 1794477645000,
+        "kind": "route",
+        "hex": "000001",
+        "callsign": "R000001"
+      },
+      {
+        "atMs": 1794477655000,
+        "kind": "aircraft",
+        "hex": "000001",
+        "callsign": null
+      },
+      {
+        "atMs": 1794477675000,
+        "kind": "route",
+        "hex": "000002",
+        "callsign": "R000002"
+      }
+    ],
+    "positions": [
+      1794477645000,
+      1794477665000,
+      1794477685000
+    ],
+    "noScroll": true,
+    "hiddenStops": true,
+    "errors": []
+  }
+]

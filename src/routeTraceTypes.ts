@@ -11,6 +11,7 @@ export interface ProviderTrace {
   reason: string;
   httpStatus: number | null;
   requestStarted: boolean;
+  requestStartedAtMs?: number;
   endpoint: 'v2/routes/:callsign' | 'v2/aircraft/:hex';
   summary?: {
     callsignMatches: boolean;
@@ -30,6 +31,7 @@ export interface EnrichmentDiagnostic {
   httpStatus: number | null;
   retryAfterMs?: number;
   durationMs: number;
+  upstreamStartedAtMs?: number;
   summary?: ProviderTrace['summary'];
 }
 export function parseEnrichmentDiagnostic(
@@ -60,7 +62,11 @@ export function parseEnrichmentDiagnostic(
     ) ||
     !Number.isFinite(d.durationMs) ||
     d.durationMs < 0 ||
-    d.durationMs > 3600000
+    d.durationMs > 3600000 ||
+    (d.upstreamStartedAtMs !== undefined &&
+      (d.upstreamRequestsStarted !== 1 ||
+        !Number.isSafeInteger(d.upstreamStartedAtMs) ||
+        d.upstreamStartedAtMs < 0))
   )
     return undefined;
   const s = d.summary;
@@ -88,6 +94,9 @@ export function parseEnrichmentDiagnostic(
     reason: d.reason,
     httpStatus: d.httpStatus,
     durationMs: d.durationMs,
+    ...(d.upstreamStartedAtMs !== undefined
+      ? { upstreamStartedAtMs: d.upstreamStartedAtMs }
+      : {}),
     ...(Number.isFinite(d.retryAfterMs) && d.retryAfterMs! >= 0
       ? { retryAfterMs: d.retryAfterMs }
       : {}),

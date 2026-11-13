@@ -1,5 +1,8 @@
 import { urgencyFor, urgentPass, OBSERVATION_POLICY } from './observation';
 import { routeUtilityHint } from './routeUtility';
+import { ADAPTIVE_POLICY as A, parseAdaptiveView } from './adaptiveBudget';
+import type { AdaptiveView } from './adaptiveBudget';
+import { verifiedAdaptiveDeferral } from './adaptiveFailure';
 import type { EnrichmentEvent, LookupRef } from './routeDiagnostics';
 import { parseEnrichmentDiagnostic } from './routeTraceTypes';
 import type { EnrichmentDiagnostic } from './routeTraceTypes';
@@ -27,8 +30,13 @@ import {
 export interface EnrichmentBudget {
   nextAllowed: number;
   nextSecondaryAllowed: number;
+  nextMarginalAllowed?: number;
 }
 export interface EnrichmentEnvironment {
+  adaptive?: boolean;
+  // Injectable bounded cache for offline replay; normal live operation creates
+  // its own temporary cache. No persistence or provider response is implied.
+  cache?: Map<string, EnrichmentResult>;
   fetch: typeof fetch;
   now: () => number;
   // Wall time still validates provider timestamps; elapsed time budgets requests.
@@ -152,7 +160,11 @@ export function createEnricher(
     budgetTime = 0,
     controller: AbortController | null = null;
   let timeout: ReturnType<typeof setTimeout> | undefined;
-  const cache = new Map<string, EnrichmentResult>();
+  let wakeTimer: ReturnType<typeof setTimeout> | undefined;
+  let sceneAtMs = 0,
+    cancelledForLifecycle = false;
+  let lastAdaptiveView: AdaptiveView | undefined;
+  const cache = env.cache ?? new Map<string, EnrichmentResult>();
   const budget = env.budget ?? { nextAllowed: 0, nextSecondaryAllowed: 0 };
   const secondaryAttempts = new Map<string, number>();
   const secondarySeen = new Map<string, number>();
@@ -177,7 +189,10 @@ export function createEnricher(
       atMs: env.now(),
       scene: current,
       globalWaitMs: Math.max(0, budget.nextAllowed - t),
-      secondaryWaitMs: Math.max(0, budget.nextSecondaryAllowed - t),
+      secondaryWaitMs: env.adaptive
+        ? 0
+        : Math.max(0, budget.nextSecondaryAllowed - t),
+      ...(lastAdaptiveView ? { adaptiveBudget: lastAdaptiveView } : {}),
       active: env.active(),
       pending,
       primaryEligible: !!(
@@ -250,11 +265,14 @@ export function createEnricher(
     hex: string,
     callsign: string | null,
     secondary = false,
+    normal = false,
   ) {
     inFlight = true;
     const started = budgetNow(),
       wallStarted = env.now();
     const lookupRef: LookupRef = { kind, hex, callsign, secondary };
+    const priorDeadline = budget.nextAllowed;
+    cancelledForLifecycle = false;
     pending = lookupRef;
     let errorCode = 'network-or-timeout';
     let apiStatus: number | null = null,
@@ -304,19 +322,26 @@ export function createEnricher(
       elapsedMs: started,
       lookup: lookupRef,
     });
-    budget.nextAllowed = started + P.intervalMs;
+    budget.nextAllowed =
+      started + (env.adaptive ? A.spacingMs : P.intervalMs);
     if (secondary) {
-      budget.nextSecondaryAllowed = started + P.secondaryIntervalMs;
+      if (!env.adaptive)
+        budget.nextSecondaryAllowed = started + P.secondaryIntervalMs;
       secondaryAttempts.set(enrichmentKey(kind, hex, callsign), started);
       if (secondaryAttempts.size > P.clientCapacity)
         secondaryAttempts.delete(secondaryAttempts.keys().next().value!);
     }
     controller = new AbortController();
     const request = controller;
-    timeout = env.setTimer(() => request.abort(), P.clientTimeoutMs);
+    timeout = env.setTimer(
+      () => request.abort(),
+      env.adaptive ? A.clientTimeoutMs : P.clientTimeoutMs,
+    );
     try {
       const query = new URLSearchParams({ kind, hex });
       if (callsign) query.set('callsign', callsign);
+      if (env.adaptive)
+        query.set('priority', normal ? 'normal' : 'protected');
       const response = await env.fetch(
         '/api/enrichment?' + query.toString(),
         {
@@ -339,6 +364,50 @@ export function createEnricher(
         let error = 'api-http-error';
         const body = await readEnrichmentFailure(response);
         if (stopped) return;
+        const adaptive = env.adaptive
+          ? verifiedAdaptiveDeferral(response, body)
+          : undefined;
+        if (adaptive) {
+          const at = budgetNow(),
+            wall = env.now();
+          lastAdaptiveView = adaptive.budget;
+          budget.nextAllowed = Math.max(
+            priorDeadline,
+            at + (adaptive.budget?.protectedWaitMs ?? adaptive.waitMs),
+          );
+          budget.nextMarginalAllowed = Math.max(
+            budget.nextAllowed,
+            at + (adaptive.budget?.normalWaitMs ?? adaptive.waitMs),
+          );
+          emit({
+            type: 'response',
+            atMs: wall,
+            lookup: lookupRef,
+            ok: false,
+            apiStatus,
+            durationMs: at - started,
+            startedElapsedMs: started,
+            elapsedMs: at,
+            adaptiveBudget: adaptive.budget,
+            error: 'cooldown',
+            clientCooldownMs: Math.max(0, budget.nextAllowed - at),
+            scheduling: {
+              treatment: 'local-deferral',
+              reason: adaptive.failure.reason,
+              serverRetryAfterMs: adaptive.failure.retryAfterMs,
+              serverWaitMs: adaptive.waitMs,
+              priorGlobalWaitMs: Math.max(0, priorDeadline - at),
+              globalWaitMs: Math.max(0, budget.nextAllowed - at),
+              secondaryWaitMs: 0,
+              nextGlobalEligibleAtMs:
+                wall + Math.max(0, budget.nextAllowed - at),
+              nextSecondaryEligibleAtMs:
+                wall +
+                Math.max(0, (budget.nextMarginalAllowed ?? at) - at),
+            },
+          });
+          return;
+        }
         if (body && typeof body === 'object') {
           const payload = body as {
             error?: unknown;
@@ -407,6 +476,26 @@ export function createEnricher(
                 : 'client-validation-failed';
         throw Error('invalid-enrichment');
       }
+      if (env.adaptive) {
+        const view = parseAdaptiveView(
+          (result as EnrichmentResult & { adaptiveBudget?: unknown })
+            .adaptiveBudget,
+        );
+        if (!view) {
+          errorCode = 'invalid-adaptive-budget';
+          throw Error('invalid-adaptive-budget');
+        }
+        lastAdaptiveView = view;
+        const at = budgetNow();
+        budget.nextAllowed = Math.max(
+          priorDeadline,
+          at + view.protectedWaitMs,
+        );
+        budget.nextMarginalAllowed = Math.max(
+          budget.nextAllowed,
+          at + view.normalWaitMs,
+        );
+      }
       if (stopped || request.signal.aborted) return;
       if (cache.size >= P.clientCapacity)
         cache.delete(cache.keys().next().value!);
@@ -421,6 +510,7 @@ export function createEnricher(
         ok: true,
         apiStatus,
         diagnostic,
+        ...(lastAdaptiveView ? { adaptiveBudget: lastAdaptiveView } : {}),
         durationMs: budgetNow() - started,
         startedElapsedMs: started,
         elapsedMs: budgetNow(),
@@ -428,7 +518,10 @@ export function createEnricher(
       });
       publish();
     } catch {
-      if (!stopped) {
+      if (
+        !stopped &&
+        !(env.adaptive && request.signal.aborted && cancelledForLifecycle)
+      ) {
         const scheduling = applyWait(retryAfterMs);
         emit({
           type: 'response',
@@ -453,11 +546,13 @@ export function createEnricher(
       controller = null;
       pending = null;
       report();
+      if (env.adaptive) schedule();
     }
   }
   function update(scene: Scene) {
     if (stopped) return;
     base = scene;
+    sceneAtMs = env.now();
     publish();
     const present = new Set(
       [...scene.secondary, ...(scene.enrichmentCandidates ?? [])].map(
@@ -472,6 +567,27 @@ export function createEnricher(
       secondarySeen.delete(secondarySeen.keys().next().value!);
     for (const key of secondaryAttempts.keys())
       if (!present.has(key)) secondaryAttempts.delete(key);
+    if (env.adaptive) {
+      if (
+        pending &&
+        ![
+          scene.primary,
+          ...scene.secondary,
+          ...(scene.enrichmentCandidates ?? []),
+        ].some(
+          (a) =>
+            a &&
+            a.id.toLowerCase() === pending!.hex &&
+            (pending!.kind === 'aircraft' ||
+              flightKey(a.callsign) === pending!.callsign),
+        )
+      ) {
+        cancelledForLifecycle = true;
+        controller?.abort();
+      }
+      schedule();
+      return;
+    }
     const time = budgetNow();
     const a = scene.primary;
     if (
@@ -508,7 +624,7 @@ export function createEnricher(
       a.model.startsWith('Aircraft ·');
     const seen = new Set([a.id.toLowerCase()]);
     if (
-      budgetNow() >= budget.nextSecondaryAllowed &&
+      (env.adaptive || budgetNow() >= budget.nextSecondaryAllowed) &&
       ['available', 'delayed'].includes(base.state)
     ) {
       const displayed = new Set(
@@ -673,6 +789,88 @@ export function createEnricher(
     }
     return null;
   }
+  function freshCandidate(a: Aircraft) {
+    const now = env.now(),
+      position = a.observation?.positionTimeMs;
+    return position == null
+      ? now >= sceneAtMs && now - sceneAtMs < 30_000
+      : Number.isFinite(position) &&
+          now >= position &&
+          now - position < 120_000;
+  }
+  function normalCandidate(row: LookupRef) {
+    if (!base?.primary) return true;
+    if (row.hex === base.primary.id.toLowerCase()) {
+      if (row.kind === 'route') return false;
+      const m = base.primary.model;
+      return !(
+        m === null ||
+        m === 'Aircraft' ||
+        m.startsWith('Aircraft ·')
+      );
+    }
+    const a = [
+      ...base.secondary,
+      ...(base.enrichmentCandidates ?? []),
+    ].find((a) => a.id.toLowerCase() === row.hex);
+    return (
+      !a ||
+      !(
+        urgentPass(a.observation, env.now()) ||
+        urgencyFor(a.observation, env.now()) >= 50
+      )
+    );
+  }
+  function schedule() {
+    if (wakeTimer !== undefined) env.clearTimer(wakeTimer);
+    wakeTimer = undefined;
+    if (
+      stopped ||
+      !base?.primary ||
+      !env.active() ||
+      inFlight ||
+      !['available', 'delayed'].includes(base.state)
+    )
+      return;
+    prune();
+    const rows = planLookup().filter((r) =>
+      [
+        base!.primary,
+        ...base!.secondary,
+        ...(base!.enrichmentCandidates ?? []),
+      ].some(
+        (a) => a && a.id.toLowerCase() === r.hex && freshCandidate(a),
+      ),
+    );
+    const time = budgetNow();
+    let next = Infinity;
+    for (const row of rows) {
+      const normal = normalCandidate(row),
+        at = Math.max(
+          budget.nextAllowed,
+          normal ? (budget.nextMarginalAllowed ?? 0) : 0,
+        );
+      if (time >= at) {
+        void lookup(
+          row.kind,
+          row.hex,
+          row.callsign,
+          row.secondary,
+          normal,
+        );
+        return;
+      }
+      next = Math.min(next, at);
+    }
+    if (Number.isFinite(next))
+      wakeTimer = env.setTimer(
+        () => {
+          wakeTimer = undefined;
+          schedule();
+        },
+        Math.min(60_000, Math.max(1, next - time)),
+      );
+  }
   return {
     update,
     plan: () => planLookup(),
@@ -680,11 +878,28 @@ export function createEnricher(
       entries: cache.size,
       inFlight: inFlight ? 1 : 0,
       secondaryAttempts: secondaryAttempts.size,
+      ...(env.adaptive
+        ? {
+            adaptiveBudget: lastAdaptiveView,
+            wakeScheduled: wakeTimer !== undefined,
+          }
+        : {}),
     }),
+    contextChanged: () => {
+      if (!env.adaptive) return;
+      if (!env.active()) {
+        if (wakeTimer !== undefined) env.clearTimer(wakeTimer);
+        wakeTimer = undefined;
+        cancelledForLifecycle = true;
+        controller?.abort();
+      } else schedule();
+    },
     stop: () => {
       stopped = true;
       controller?.abort();
       if (timeout !== undefined) env.clearTimer(timeout);
+      if (wakeTimer !== undefined) env.clearTimer(wakeTimer);
+      wakeTimer = undefined;
       cache.clear();
       secondaryAttempts.clear();
       secondarySeen.clear();

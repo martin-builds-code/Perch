@@ -119,7 +119,6 @@ export function normaliseHexdb(
         : NaN;
     if (!Number.isFinite(updated) || updated > now)
       throw new EnrichmentError('invalid-route-time');
-
   }
   const origin = airport(value.origin),
     destination = airport(value.destination);
@@ -147,7 +146,8 @@ export function normaliseHexdb(
       throw new EnrichmentError('contradictory-route');
   }
   // Complete every structural check even when age alone will reject a pair.
-  if (updated !== null && now - updated > ENRICHMENT_POLICY.maxRouteAgeMs) return null;
+  if (updated !== null && now - updated > ENRICHMENT_POLICY.maxRouteAgeMs)
+    return null;
   return origin || destination
     ? {
         ...(origin ? { origin } : {}),
@@ -180,6 +180,7 @@ export async function fetchHexdb(
     const path =
       kind === 'aircraft' ? `aircraft/${hex}` : `routes/${callsign}`;
     trace.requestStarted = true;
+    trace.requestStartedAtMs = now();
     const response = await fetcher(`https://hexdb.io/api/v2/${path}`, {
       signal: controller.signal,
       redirect: 'error',
