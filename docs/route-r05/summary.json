@@ -1,0 +1,274 @@
+{
+  "classification": "Offline conditional replay, not measured R05 provider performance",
+  "baselineCommit": "ad010cd3b9da31e2ee06fba75854c995107cd493",
+  "sourceBuild": "976210d284fae705b5245fec5a01e75eb2afcfd8",
+  "actual": {
+    "requests": 34,
+    "peakOneMinute": 2,
+    "peakFiveMinutes": 7,
+    "readyAtFirstPrimary": 3,
+    "primaryAircraft": 14
+  },
+  "comparison": [
+    {
+      "policy": {
+        "name": "fixed-30-90",
+        "fixed": true,
+        "cap": 10,
+        "burst": 1,
+        "spacing": 30000,
+        "reserve": 0,
+        "drain": false,
+        "secondary": 90000
+      },
+      "requests": 34,
+      "routeRequests": 28,
+      "identityRequests": 6,
+      "unknownOutcomeRequests": 0,
+      "knownCompleteResponses": 15,
+      "uniqueKnownCompleteRoutes": 14,
+      "knownRoutesReadyAtFirstPrimary": 3,
+      "firstPrimaryAircraft": 14,
+      "firstDetectionToRouteRequest": {
+        "count": 21,
+        "medianMs": 39292,
+        "maxMs": 1229760
+      },
+      "responseLeadToFirstPrimary": {
+        "count": 10,
+        "medianMs": -551.300048828125,
+        "maxMs": 75560.10009765625
+      },
+      "readyAtFirstPrimaryResponseLead": {
+        "count": 3,
+        "medianMs": 29260.300048828125,
+        "maxMs": 75560.10009765625
+      },
+      "requestsNeverObservedSignificantlyRelevant": 6,
+      "cacheBackedCandidateChecks": 339,
+      "peakOneMinute": 2,
+      "peakFiveMinutes": 7,
+      "averageRequestsPerFiveMinutes": 4.249341352090426,
+      "averageRequestsPerHour": 50.99209622508511,
+      "rollingFiveSaturationEpisodes": 0,
+      "rollingFiveSaturatedPercent": 0,
+      "tokenExhaustedMs": 0
+    },
+    {
+      "policy": {
+        "name": "adaptive-10",
+        "cap": 10,
+        "burst": 3,
+        "spacing": 5000,
+        "reserve": 1,
+        "drain": true,
+        "secondary": 0
+      },
+      "requests": 37,
+      "routeRequests": 31,
+      "identityRequests": 6,
+      "unknownOutcomeRequests": 2,
+      "knownCompleteResponses": 15,
+      "uniqueKnownCompleteRoutes": 14,
+      "knownRoutesReadyAtFirstPrimary": 6,
+      "firstPrimaryAircraft": 14,
+      "firstDetectionToRouteRequest": {
+        "count": 23,
+        "medianMs": 0,
+        "maxMs": 118943
+      },
+      "responseLeadToFirstPrimary": {
+        "count": 10,
+        "medianMs": 14475,
+        "maxMs": 164507.10009765625
+      },
+      "readyAtFirstPrimaryResponseLead": {
+        "count": 6,
+        "medianMs": 48449.90002441406,
+        "maxMs": 164507.10009765625
+      },
+      "requestsNeverObservedSignificantlyRelevant": 8,
+      "cacheBackedCandidateChecks": 544,
+      "peakOneMinute": 3,
+      "peakFiveMinutes": 8,
+      "averageRequestsPerFiveMinutes": 4.624283236098405,
+      "averageRequestsPerHour": 55.49139883318086,
+      "rollingFiveSaturationEpisodes": 0,
+      "rollingFiveSaturatedPercent": 0,
+      "tokenExhaustedMs": 0
+    },
+    {
+      "policy": {
+        "name": "adaptive-20",
+        "cap": 20,
+        "burst": 3,
+        "spacing": 5000,
+        "reserve": 1,
+        "drain": true,
+        "secondary": 0
+      },
+      "requests": 38,
+      "routeRequests": 32,
+      "identityRequests": 6,
+      "unknownOutcomeRequests": 3,
+      "knownCompleteResponses": 15,
+      "uniqueKnownCompleteRoutes": 14,
+      "knownRoutesReadyAtFirstPrimary": 6,
+      "firstPrimaryAircraft": 14,
+      "firstDetectionToRouteRequest": {
+        "count": 24,
+        "medianMs": 0.5,
+        "maxMs": 118943
+      },
+      "responseLeadToFirstPrimary": {
+        "count": 10,
+        "medianMs": 14475,
+        "maxMs": 164507.10009765625
+      },
+      "readyAtFirstPrimaryResponseLead": {
+        "count": 6,
+        "medianMs": 48449.90002441406,
+        "maxMs": 164507.10009765625
+      },
+      "requestsNeverObservedSignificantlyRelevant": 9,
+      "cacheBackedCandidateChecks": 542,
+      "peakOneMinute": 4,
+      "peakFiveMinutes": 9,
+      "averageRequestsPerFiveMinutes": 4.7492638641010645,
+      "averageRequestsPerHour": 56.99116636921277,
+      "rollingFiveSaturationEpisodes": 0,
+      "rollingFiveSaturatedPercent": 0,
+      "tokenExhaustedMs": 0
+    },
+    {
+      "policy": {
+        "name": "adaptive-30",
+        "cap": 30,
+        "burst": 3,
+        "spacing": 5000,
+        "reserve": 1,
+        "drain": true,
+        "secondary": 0
+      },
+      "requests": 38,
+      "routeRequests": 32,
+      "identityRequests": 6,
+      "unknownOutcomeRequests": 3,
+      "knownCompleteResponses": 15,
+      "uniqueKnownCompleteRoutes": 14,
+      "knownRoutesReadyAtFirstPrimary": 6,
+      "firstPrimaryAircraft": 14,
+      "firstDetectionToRouteRequest": {
+        "count": 24,
+        "medianMs": 0.5,
+        "maxMs": 118943
+      },
+      "responseLeadToFirstPrimary": {
+        "count": 10,
+        "medianMs": 14475,
+        "maxMs": 164507.10009765625
+      },
+      "readyAtFirstPrimaryResponseLead": {
+        "count": 6,
+        "medianMs": 48449.90002441406,
+        "maxMs": 164507.10009765625
+      },
+      "requestsNeverObservedSignificantlyRelevant": 9,
+      "cacheBackedCandidateChecks": 542,
+      "peakOneMinute": 4,
+      "peakFiveMinutes": 9,
+      "averageRequestsPerFiveMinutes": 4.7492638641010645,
+      "averageRequestsPerHour": 56.99116636921277,
+      "rollingFiveSaturationEpisodes": 0,
+      "rollingFiveSaturatedPercent": 0,
+      "tokenExhaustedMs": 0
+    },
+    {
+      "policy": {
+        "name": "adaptive-50",
+        "cap": 50,
+        "burst": 3,
+        "spacing": 5000,
+        "reserve": 1,
+        "drain": true,
+        "secondary": 0
+      },
+      "requests": 38,
+      "routeRequests": 32,
+      "identityRequests": 6,
+      "unknownOutcomeRequests": 3,
+      "knownCompleteResponses": 15,
+      "uniqueKnownCompleteRoutes": 14,
+      "knownRoutesReadyAtFirstPrimary": 6,
+      "firstPrimaryAircraft": 14,
+      "firstDetectionToRouteRequest": {
+        "count": 24,
+        "medianMs": 0.5,
+        "maxMs": 118943
+      },
+      "responseLeadToFirstPrimary": {
+        "count": 10,
+        "medianMs": 14475,
+        "maxMs": 164507.10009765625
+      },
+      "readyAtFirstPrimaryResponseLead": {
+        "count": 6,
+        "medianMs": 48449.90002441406,
+        "maxMs": 164507.10009765625
+      },
+      "requestsNeverObservedSignificantlyRelevant": 9,
+      "cacheBackedCandidateChecks": 542,
+      "peakOneMinute": 4,
+      "peakFiveMinutes": 9,
+      "averageRequestsPerFiveMinutes": 4.7492638641010645,
+      "averageRequestsPerHour": 56.99116636921277,
+      "rollingFiveSaturationEpisodes": 0,
+      "rollingFiveSaturatedPercent": 0,
+      "tokenExhaustedMs": 0
+    }
+  ],
+  "recommendedCandidate": {
+    "policy": {
+      "name": "spacing-10000-cap-10",
+      "cap": 10,
+      "burst": 3,
+      "spacing": 10000,
+      "reserve": 1,
+      "drain": true,
+      "secondary": 0
+    },
+    "requests": 37,
+    "routeRequests": 31,
+    "identityRequests": 6,
+    "unknownOutcomeRequests": 2,
+    "knownCompleteResponses": 15,
+    "uniqueKnownCompleteRoutes": 14,
+    "knownRoutesReadyAtFirstPrimary": 6,
+    "firstPrimaryAircraft": 14,
+    "firstDetectionToRouteRequest": {
+      "count": 23,
+      "medianMs": 0,
+      "maxMs": 118943
+    },
+    "responseLeadToFirstPrimary": {
+      "count": 10,
+      "medianMs": 14475,
+      "maxMs": 164507.10009765625
+    },
+    "readyAtFirstPrimaryResponseLead": {
+      "count": 6,
+      "medianMs": 45949.90002441406,
+      "maxMs": 164507.10009765625
+    },
+    "requestsNeverObservedSignificantlyRelevant": 8,
+    "cacheBackedCandidateChecks": 544,
+    "peakOneMinute": 3,
+    "peakFiveMinutes": 8,
+    "averageRequestsPerFiveMinutes": 4.624283236098405,
+    "averageRequestsPerHour": 55.49139883318086,
+    "rollingFiveSaturationEpisodes": 0,
+    "rollingFiveSaturatedPercent": 0,
+    "tokenExhaustedMs": 0
+  },
+  "inputSha256": "7af4f0b3953fe18942ba8993a8a1beb76dc6d3199bed36026212c488be8e3694"
+}

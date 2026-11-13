@@ -1,0 +1,542 @@
+[
+  {
+    "scenario": "a380",
+    "height": 768,
+    "labelCount": 4,
+    "checks": [
+      {
+        "label": {
+          "x": 42,
+          "y": 247.28125,
+          "right": 186.8125,
+          "bottom": 271.078125,
+          "width": 144.8125,
+          "height": 23.796875
+        },
+        "card": {
+          "x": 20,
+          "y": 100,
+          "right": 1004,
+          "bottom": 512,
+          "width": 984,
+          "height": 412
+        },
+        "font": 18,
+        "metrics": {
+          "x": 42,
+          "y": 247.28125,
+          "right": 186.8125,
+          "bottom": 271.078125,
+          "width": 144.8125,
+          "height": 23.796875
+        }
+      },
+      {
+        "label": {
+          "x": 32,
+          "y": 687,
+          "right": 328,
+          "bottom": 704,
+          "width": 296,
+          "height": 17
+        },
+        "card": {
+          "x": 20,
+          "y": 562,
+          "right": 340,
+          "bottom": 734,
+          "width": 320,
+          "height": 172
+        },
+        "font": 17,
+        "metrics": {
+          "x": 32,
+          "y": 704,
+          "right": 328,
+          "bottom": 730,
+          "width": 296,
+          "height": 26
+        }
+      },
+      {
+        "label": {
+          "x": 364,
+          "y": 687,
+          "right": 660,
+          "bottom": 704,
+          "width": 296,
+          "height": 17
+        },
+        "card": {
+          "x": 352,
+          "y": 562,
+          "right": 672,
+          "bottom": 734,
+          "width": 320,
+          "height": 172
+        },
+        "font": 17,
+        "metrics": {
+          "x": 364,
+          "y": 704,
+          "right": 660,
+          "bottom": 730,
+          "width": 296,
+          "height": 26
+        }
+      },
+      {
+        "label": {
+          "x": 696,
+          "y": 687,
+          "right": 992,
+          "bottom": 704,
+          "width": 296,
+          "height": 17
+        },
+        "card": {
+          "x": 684,
+          "y": 562,
+          "right": 1004,
+          "bottom": 734,
+          "width": 320,
+          "height": 172
+        },
+        "font": 17,
+        "metrics": {
+          "x": 696,
+          "y": 704,
+          "right": 992,
+          "bottom": 730,
+          "width": 296,
+          "height": 26
+        }
+      }
+    ],
+    "stationaryArtwork": true,
+    "recentUnqualified": true
+  },
+  {
+    "scenario": "single",
+    "height": 768,
+    "labelCount": 1,
+    "checks": [
+      {
+        "label": {
+          "x": 42,
+          "y": 247.28125,
+          "right": 186.8125,
+          "bottom": 271.078125,
+          "width": 144.8125,
+          "height": 23.796875
+        },
+        "card": {
+          "x": 20,
+          "y": 100,
+          "right": 1004,
+          "bottom": 734,
+          "width": 984,
+          "height": 634
+        },
+        "font": 18,
+        "metrics": {
+          "x": 42,
+          "y": 247.28125,
+          "right": 186.8125,
+          "bottom": 271.078125,
+          "width": 144.8125,
+          "height": 23.796875
+        }
+      }
+    ],
+    "stationaryArtwork": true,
+    "recentUnqualified": true
+  },
+  {
+    "scenario": "a320",
+    "height": 768,
+    "labelCount": 4,
+    "checks": [
+      {
+        "label": {
+          "x": 42,
+          "y": 247.28125,
+          "right": 186.8125,
+          "bottom": 271.078125,
+          "width": 144.8125,
+          "height": 23.796875
+        },
+        "card": {
+          "x": 20,
+          "y": 100,
+          "right": 1004,
+          "bottom": 512,
+          "width": 984,
+          "height": 412
+        },
+        "font": 18,
+        "metrics": {
+          "x": 42,
+          "y": 247.28125,
+          "right": 186.8125,
+          "bottom": 271.078125,
+          "width": 144.8125,
+          "height": 23.796875
+        }
+      },
+      {
+        "label": {
+          "x": 32,
+          "y": 687,
+          "right": 328,
+          "bottom": 704,
+          "width": 296,
+          "height": 17
+        },
+        "card": {
+          "x": 20,
+          "y": 562,
+          "right": 340,
+          "bottom": 734,
+          "width": 320,
+          "height": 172
+        },
+        "font": 17,
+        "metrics": {
+          "x": 32,
+          "y": 704,
+          "right": 328,
+          "bottom": 730,
+          "width": 296,
+          "height": 26
+        }
+      },
+      {
+        "label": {
+          "x": 364,
+          "y": 687,
+          "right": 660,
+          "bottom": 704,
+          "width": 296,
+          "height": 17
+        },
+        "card": {
+          "x": 352,
+          "y": 562,
+          "right": 672,
+          "bottom": 734,
+          "width": 320,
+          "height": 172
+        },
+        "font": 17,
+        "metrics": {
+          "x": 364,
+          "y": 704,
+          "right": 660,
+          "bottom": 730,
+          "width": 296,
+          "height": 26
+        }
+      },
+      {
+        "label": {
+          "x": 696,
+          "y": 687,
+          "right": 992,
+          "bottom": 704,
+          "width": 296,
+          "height": 17
+        },
+        "card": {
+          "x": 684,
+          "y": 562,
+          "right": 1004,
+          "bottom": 734,
+          "width": 320,
+          "height": 172
+        },
+        "font": 17,
+        "metrics": {
+          "x": 696,
+          "y": 704,
+          "right": 992,
+          "bottom": 730,
+          "width": 296,
+          "height": 26
+        }
+      }
+    ],
+    "stationaryArtwork": true,
+    "recentUnqualified": true
+  },
+  {
+    "scenario": "a380",
+    "height": 624,
+    "labelCount": 4,
+    "checks": [
+      {
+        "label": {
+          "x": 38,
+          "y": 224.890625,
+          "right": 182.8125,
+          "bottom": 248.6875,
+          "width": 144.8125,
+          "height": 23.796875
+        },
+        "card": {
+          "x": 16,
+          "y": 88,
+          "right": 1008,
+          "bottom": 394,
+          "width": 992,
+          "height": 306
+        },
+        "font": 18,
+        "metrics": {
+          "x": 38,
+          "y": 224.890625,
+          "right": 182.8125,
+          "bottom": 248.6875,
+          "width": 144.8125,
+          "height": 23.796875
+        }
+      },
+      {
+        "label": {
+          "x": 26,
+          "y": 548.25,
+          "right": 328.65625,
+          "bottom": 565.25,
+          "width": 302.65625,
+          "height": 17
+        },
+        "card": {
+          "x": 16,
+          "y": 436,
+          "right": 338.65625,
+          "bottom": 592,
+          "width": 322.65625,
+          "height": 156
+        },
+        "font": 17,
+        "metrics": {
+          "x": 26,
+          "y": 565.25,
+          "right": 328.65625,
+          "bottom": 589.25,
+          "width": 302.65625,
+          "height": 24
+        }
+      },
+      {
+        "label": {
+          "x": 360.65625,
+          "y": 548.25,
+          "right": 663.328125,
+          "bottom": 565.25,
+          "width": 302.671875,
+          "height": 17
+        },
+        "card": {
+          "x": 350.65625,
+          "y": 436,
+          "right": 673.328125,
+          "bottom": 592,
+          "width": 322.671875,
+          "height": 156
+        },
+        "font": 17,
+        "metrics": {
+          "x": 360.65625,
+          "y": 565.25,
+          "right": 663.328125,
+          "bottom": 589.25,
+          "width": 302.671875,
+          "height": 24
+        }
+      },
+      {
+        "label": {
+          "x": 695.328125,
+          "y": 547,
+          "right": 997.984375,
+          "bottom": 564,
+          "width": 302.65625,
+          "height": 17
+        },
+        "card": {
+          "x": 685.328125,
+          "y": 436,
+          "right": 1007.984375,
+          "bottom": 592,
+          "width": 322.65625,
+          "height": 156
+        },
+        "font": 17,
+        "metrics": {
+          "x": 695.328125,
+          "y": 564,
+          "right": 997.984375,
+          "bottom": 588,
+          "width": 302.65625,
+          "height": 24
+        }
+      }
+    ],
+    "stationaryArtwork": true,
+    "recentUnqualified": true
+  },
+  {
+    "scenario": "single",
+    "height": 624,
+    "labelCount": 1,
+    "checks": [
+      {
+        "label": {
+          "x": 38,
+          "y": 224.890625,
+          "right": 182.8125,
+          "bottom": 248.6875,
+          "width": 144.8125,
+          "height": 23.796875
+        },
+        "card": {
+          "x": 16,
+          "y": 88,
+          "right": 1008,
+          "bottom": 592,
+          "width": 992,
+          "height": 504
+        },
+        "font": 18,
+        "metrics": {
+          "x": 38,
+          "y": 224.890625,
+          "right": 182.8125,
+          "bottom": 248.6875,
+          "width": 144.8125,
+          "height": 23.796875
+        }
+      }
+    ],
+    "stationaryArtwork": true,
+    "recentUnqualified": true
+  },
+  {
+    "scenario": "a320",
+    "height": 624,
+    "labelCount": 4,
+    "checks": [
+      {
+        "label": {
+          "x": 38,
+          "y": 224.890625,
+          "right": 182.8125,
+          "bottom": 248.6875,
+          "width": 144.8125,
+          "height": 23.796875
+        },
+        "card": {
+          "x": 16,
+          "y": 88,
+          "right": 1008,
+          "bottom": 394,
+          "width": 992,
+          "height": 306
+        },
+        "font": 18,
+        "metrics": {
+          "x": 38,
+          "y": 224.890625,
+          "right": 182.8125,
+          "bottom": 248.6875,
+          "width": 144.8125,
+          "height": 23.796875
+        }
+      },
+      {
+        "label": {
+          "x": 26,
+          "y": 548.25,
+          "right": 328.65625,
+          "bottom": 565.25,
+          "width": 302.65625,
+          "height": 17
+        },
+        "card": {
+          "x": 16,
+          "y": 436,
+          "right": 338.65625,
+          "bottom": 592,
+          "width": 322.65625,
+          "height": 156
+        },
+        "font": 17,
+        "metrics": {
+          "x": 26,
+          "y": 565.25,
+          "right": 328.65625,
+          "bottom": 589.25,
+          "width": 302.65625,
+          "height": 24
+        }
+      },
+      {
+        "label": {
+          "x": 360.65625,
+          "y": 548.25,
+          "right": 663.328125,
+          "bottom": 565.25,
+          "width": 302.671875,
+          "height": 17
+        },
+        "card": {
+          "x": 350.65625,
+          "y": 436,
+          "right": 673.328125,
+          "bottom": 592,
+          "width": 322.671875,
+          "height": 156
+        },
+        "font": 17,
+        "metrics": {
+          "x": 360.65625,
+          "y": 565.25,
+          "right": 663.328125,
+          "bottom": 589.25,
+          "width": 302.671875,
+          "height": 24
+        }
+      },
+      {
+        "label": {
+          "x": 695.328125,
+          "y": 547,
+          "right": 997.984375,
+          "bottom": 564,
+          "width": 302.65625,
+          "height": 17
+        },
+        "card": {
+          "x": 685.328125,
+          "y": 436,
+          "right": 1007.984375,
+          "bottom": 592,
+          "width": 322.65625,
+          "height": 156
+        },
+        "font": 17,
+        "metrics": {
+          "x": 695.328125,
+          "y": 564,
+          "right": 997.984375,
+          "bottom": 588,
+          "width": 302.65625,
+          "height": 24
+        }
+      }
+    ],
+    "stationaryArtwork": true,
+    "recentUnqualified": true
+  }
+]

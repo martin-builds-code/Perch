@@ -8,6 +8,7 @@ import { createPoller, liveScene } from './live';
 import { createEnricher } from './enrichment';
 import type { EnrichmentBudget } from './enrichment';
 import { createDataDiagnostics } from './dataDiagnostics';
+import { adaptiveObservationUntil } from './adaptiveBudget';
 import type { DataDiagnostics } from './dataDiagnostics';
 import { DiagnosticExport } from './DiagnosticExport';
 import { diagnosticDuration } from './diagnosticExport';
@@ -38,14 +39,22 @@ const enrichmentBudget: EnrichmentBudget = {
 export default function LiveApp({
   routeTrialUntil,
 }: { routeTrialUntil?: number } = {}) {
+  // A query enables bounded collection only after normal PIN authentication.
+  const [diagnosticUntil] = useState(
+    () =>
+      routeTrialUntil ??
+      (import.meta.env.VITE_AERO_R05_ENABLED === 'true'
+        ? adaptiveObservationUntil(window.location.search)
+        : undefined),
+  );
   const [skyDiagnostics] = useState(() =>
-    routeTrialUntil && routeTrialUntil > Date.now()
-      ? createSkyDiagnostics(routeTrialUntil)
+    diagnosticUntil && diagnosticUntil > Date.now()
+      ? createSkyDiagnostics(diagnosticUntil)
       : undefined,
   );
   const [routeDiagnostics] = useState(() =>
-    routeTrialUntil && routeTrialUntil > Date.now()
-      ? createRouteDiagnostics(Date.now(), routeTrialUntil)
+    diagnosticUntil && diagnosticUntil > Date.now()
+      ? createRouteDiagnostics(Date.now(), diagnosticUntil)
       : undefined,
   );
   const [duration] = useState(() =>
@@ -112,6 +121,7 @@ export default function LiveApp({
             },
             {
               ...env,
+              adaptive: import.meta.env.VITE_AERO_R05_ENABLED === 'true',
               monotonicNow: () => performance.now(),
               budget: enrichmentBudget,
               ...(routeDiagnostics
@@ -146,8 +156,10 @@ export default function LiveApp({
         }),
       },
     );
-    const routeContext = () =>
+    const routeContext = () => {
       routeDiagnostics?.context(active(), Date.now());
+      enricher?.contextChanged();
+    };
     document.addEventListener('visibilitychange', routeContext);
     window.addEventListener('offline', routeContext);
     window.addEventListener('online', routeContext);
@@ -190,24 +202,26 @@ export default function LiveApp({
   }, [duration, routeDiagnostics, skyDiagnostics]);
   if (
     skyDiagnostics &&
-    routeTrialUntil &&
+    diagnosticUntil &&
     new URLSearchParams(location.search).get('sky') === '1'
   )
     return (
       <SkyTrialDisplay
         diagnostics={skyDiagnostics}
-        until={routeTrialUntil}
+        until={diagnosticUntil}
+        adaptive={import.meta.env.VITE_AERO_R05_ENABLED === 'true'}
       />
     );
   if (
     routeDiagnostics &&
-    routeTrialUntil &&
+    diagnosticUntil &&
     new URLSearchParams(location.search).get('view') !== 'normal'
   )
     return (
       <RouteTrialDisplay
         diagnostics={routeDiagnostics}
-        expiresAtMs={routeTrialUntil}
+        expiresAtMs={diagnosticUntil}
+        adaptive={import.meta.env.VITE_AERO_R05_ENABLED === 'true'}
       />
     );
   return (

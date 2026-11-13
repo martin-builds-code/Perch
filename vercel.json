@@ -26,6 +26,7 @@
   ],
   "git": {
     "deploymentEnabled": {
+      "r05-adaptive-enrichment": false,
       "stage-3a-display-redesign": false,
       "stage-2a-live-data": false,
       "stage-2b-aircraft-selection": false,
@@ -34,12 +35,13 @@
     }
   },
   "functions": {
+    "api/r05-observe.ts": { "maxDuration": 15 },
     "api/route-research.ts": { "maxDuration": 10 },
     "api/aircraft.ts": {
       "maxDuration": 10
     },
     "api/enrichment.ts": {
-      "maxDuration": 8
+      "maxDuration": 15
     },
     "api/session.ts": {
       "maxDuration": 8

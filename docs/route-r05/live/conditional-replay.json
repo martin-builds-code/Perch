@@ -1,0 +1,3534 @@
+{
+  "basis": "Conditional offline replay through actual createEnricher.plan and shared R05 admission transitions; frozen captured selection; recorded identity demands fixed; unknown outcomes charged/censored without route credit.",
+  "limits": [
+    "Not a bit-exact React/poller replay; original timer omissions and identity redaction persist.",
+    "No claim that a recorded later HexDB response would have been identical earlier.",
+    "Unknown neutral occupancy/censoring is analytical bookkeeping, not a returned provider answer or runtime cache policy.",
+    "No new live provider calls; no current household coverage inference."
+  ],
+  "startMs": 1794602752128,
+  "endMs": 1794606352324,
+  "comparisons": [
+    {
+      "policy": "R04-implemented-30-90",
+      "conditional": true,
+      "unknownFailure": false,
+      "primaryOnly": false,
+      "requests": 43,
+      "routeRequests": 24,
+      "identityRequests": 19,
+      "unknownRequests": 0,
+      "peakOneMinute": 2,
+      "peakFiveMinutes": 8,
+      "maximumBurst30s": 1,
+      "minimumStartGapMs": 30031,
+      "minimumTokens": null,
+      "firstPrimaryAircraft": 20,
+      "firstPrimaryReady": 4,
+      "allAcquisitions": 21,
+      "readyAcquisitions": 5,
+      "primaryMs": 2384309,
+      "completePrimaryMs": 2081892,
+      "completePrimaryPercent": 87.31636713194473,
+      "primaryWithoutRouteWhileSecondaryInFlightMs": 3740,
+      "firstDetectionToRequest": {
+        "count": 23,
+        "medianMs": 29578,
+        "maximumMs": 134036
+      },
+      "recordedGoneWithoutAttempt": 2,
+      "requestsNeverSignificantlyRelevant": 2,
+      "cacheCandidateReads": 2014,
+      "cacheBackedReads": 1356,
+      "knownCompleteResponses": 22,
+      "hypotheticalBackoffs": 0,
+      "attempts": [
+        {
+          "atMs": 1794602755123,
+          "key": "000001:R000001",
+          "kind": "route",
+          "hex": "000001",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794602797731,
+          "key": "identity:000001",
+          "kind": "aircraft",
+          "hex": "000001",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794602829884,
+          "key": "000003:R000003",
+          "kind": "route",
+          "hex": "000003",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794602887817,
+          "key": "identity:000003",
+          "kind": "aircraft",
+          "hex": "000003",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794603115362,
+          "key": "000004:R000004",
+          "kind": "route",
+          "hex": "000004",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794603159758,
+          "key": "identity:000004",
+          "kind": "aircraft",
+          "hex": "000004",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794603190166,
+          "key": "000005:R000006",
+          "kind": "route",
+          "hex": "000005",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794603293794,
+          "key": "000006:R000005",
+          "kind": "route",
+          "hex": "000006",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794603369801,
+          "key": "000007:R000007",
+          "kind": "route",
+          "hex": "000007",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794603413804,
+          "key": "identity:000007",
+          "kind": "aircraft",
+          "hex": "000007",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794603910407,
+          "key": "000008:R000008",
+          "kind": "route",
+          "hex": "000008",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794603954598,
+          "key": "identity:000008",
+          "kind": "aircraft",
+          "hex": "000008",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794604000265,
+          "key": "000009:R000009",
+          "kind": "route",
+          "hex": "000009",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794604042522,
+          "key": "identity:000009",
+          "kind": "aircraft",
+          "hex": "000009",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794604104001,
+          "key": "00000a:R000010",
+          "kind": "route",
+          "hex": "00000a",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794604180182,
+          "key": "00000b:R000011",
+          "kind": "route",
+          "hex": "00000b",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794604210213,
+          "key": "identity:00000b",
+          "kind": "aircraft",
+          "hex": "00000b",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794604253619,
+          "key": "00000c:R000012",
+          "kind": "route",
+          "hex": "00000c",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794604285166,
+          "key": "identity:00000c",
+          "kind": "aircraft",
+          "hex": "00000c",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794604540243,
+          "key": "00000c:R000012",
+          "kind": "route",
+          "hex": "00000c",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794604584937,
+          "key": "00000d:R000013",
+          "kind": "route",
+          "hex": "00000d",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794604615215,
+          "key": "identity:00000d",
+          "kind": "aircraft",
+          "hex": "00000d",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794604645403,
+          "key": "00000e:R000014",
+          "kind": "route",
+          "hex": "00000e",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794604687137,
+          "key": "identity:00000e",
+          "kind": "aircraft",
+          "hex": "00000e",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794604747804,
+          "key": "00000f:R000015",
+          "kind": "route",
+          "hex": "00000f",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794604780368,
+          "key": "000011:R000017",
+          "kind": "route",
+          "hex": "000011",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794604824608,
+          "key": "identity:000011",
+          "kind": "aircraft",
+          "hex": "000011",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794604900041,
+          "key": "000012:R000018",
+          "kind": "route",
+          "hex": "000012",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794604943978,
+          "key": "identity:000012",
+          "kind": "aircraft",
+          "hex": "000012",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794605290237,
+          "key": "000013:R000019",
+          "kind": "route",
+          "hex": "000013",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794605335247,
+          "key": "identity:000013",
+          "kind": "aircraft",
+          "hex": "000013",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794605410109,
+          "key": "000014:R000020",
+          "kind": "route",
+          "hex": "000014",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794605440363,
+          "key": "identity:000014",
+          "kind": "aircraft",
+          "hex": "000014",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794605545418,
+          "key": "000015:R000021",
+          "kind": "route",
+          "hex": "000015",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794605589717,
+          "key": "identity:000015",
+          "kind": "aircraft",
+          "hex": "000015",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794605680203,
+          "key": "000016:R000022",
+          "kind": "route",
+          "hex": "000016",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794605710299,
+          "key": "identity:000016",
+          "kind": "aircraft",
+          "hex": "000016",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794605755120,
+          "key": "000017:R000023",
+          "kind": "route",
+          "hex": "000017",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794605785352,
+          "key": "identity:000017",
+          "kind": "aircraft",
+          "hex": "000017",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794605827405,
+          "key": "identity:000018",
+          "kind": "aircraft",
+          "hex": "000018",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794605860002,
+          "key": "000018:R000024",
+          "kind": "route",
+          "hex": "000018",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794606055348,
+          "key": "000019:R000025",
+          "kind": "route",
+          "hex": "000019",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        },
+        {
+          "atMs": 1794606100182,
+          "key": "identity:000019",
+          "kind": "aircraft",
+          "hex": "000019",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": null
+        }
+      ],
+      "responses": [
+        {
+          "atMs": 1794602757381,
+          "key": "000001:R000001",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794602799662,
+          "key": "identity:000001",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794602832036,
+          "key": "000003:R000003",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794602890100,
+          "key": "identity:000003",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794603117921,
+          "key": "000004:R000004",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794603161878,
+          "key": "identity:000004",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794603191728,
+          "key": "000005:R000006",
+          "kind": "route",
+          "known": true,
+          "outcome": "negative",
+          "secondary": true
+        },
+        {
+          "atMs": 1794603295973,
+          "key": "000006:R000005",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794603371925,
+          "key": "000007:R000007",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794603415655,
+          "key": "identity:000007",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "negative",
+          "secondary": false
+        },
+        {
+          "atMs": 1794603912746,
+          "key": "000008:R000008",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794603957386,
+          "key": "identity:000008",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604002488,
+          "key": "000009:R000009",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794604044284,
+          "key": "identity:000009",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604106306,
+          "key": "00000a:R000010",
+          "kind": "route",
+          "known": true,
+          "outcome": "negative",
+          "secondary": true
+        },
+        {
+          "atMs": 1794604182365,
+          "key": "00000b:R000011",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604212435,
+          "key": "identity:00000b",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604255821,
+          "key": "00000c:R000012",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794604287420,
+          "key": "identity:00000c",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604542445,
+          "key": "00000c:R000012",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604587024,
+          "key": "00000d:R000013",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604617036,
+          "key": "identity:00000d",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604647324,
+          "key": "00000e:R000014",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794604689538,
+          "key": "identity:00000e",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604749743,
+          "key": "00000f:R000015",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794604782468,
+          "key": "000011:R000017",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604826755,
+          "key": "identity:000011",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604902416,
+          "key": "000012:R000018",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794604946126,
+          "key": "identity:000012",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605292759,
+          "key": "000013:R000019",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605337327,
+          "key": "identity:000013",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605412173,
+          "key": "000014:R000020",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605442242,
+          "key": "identity:000014",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605547629,
+          "key": "000015:R000021",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605591812,
+          "key": "identity:000015",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605682841,
+          "key": "000016:R000022",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605712385,
+          "key": "identity:000016",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605757131,
+          "key": "000017:R000023",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605787547,
+          "key": "identity:000017",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605829478,
+          "key": "identity:000018",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605862166,
+          "key": "000018:R000024",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794606057473,
+          "key": "000019:R000025",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794606102312,
+          "key": "identity:000019",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        }
+      ],
+      "acquisitions": [
+        {
+          "atMs": 1794602755123,
+          "ref": "000001",
+          "ready": false
+        },
+        {
+          "atMs": 1794602800129,
+          "ref": "000003",
+          "ready": false
+        },
+        {
+          "atMs": 1794603115362,
+          "ref": "000004",
+          "ready": false
+        },
+        {
+          "atMs": 1794603190167,
+          "ref": "000005",
+          "ready": false
+        },
+        {
+          "atMs": 1794603369801,
+          "ref": "000007",
+          "ready": false
+        },
+        {
+          "atMs": 1794603910407,
+          "ref": "000008",
+          "ready": false
+        },
+        {
+          "atMs": 1794604030217,
+          "ref": "000009",
+          "ready": true
+        },
+        {
+          "atMs": 1794604180182,
+          "ref": "00000b",
+          "ready": false
+        },
+        {
+          "atMs": 1794604285165,
+          "ref": "00000c",
+          "ready": true
+        },
+        {
+          "atMs": 1794604525042,
+          "ref": "00000c",
+          "ready": true
+        },
+        {
+          "atMs": 1794604570207,
+          "ref": "00000d",
+          "ready": false
+        },
+        {
+          "atMs": 1794604675197,
+          "ref": "00000e",
+          "ready": true
+        },
+        {
+          "atMs": 1794604780368,
+          "ref": "000011",
+          "ready": false
+        },
+        {
+          "atMs": 1794604915028,
+          "ref": "000012",
+          "ready": true
+        },
+        {
+          "atMs": 1794605290237,
+          "ref": "000013",
+          "ready": false
+        },
+        {
+          "atMs": 1794605410109,
+          "ref": "000014",
+          "ready": false
+        },
+        {
+          "atMs": 1794605545418,
+          "ref": "000015",
+          "ready": false
+        },
+        {
+          "atMs": 1794605680203,
+          "ref": "000016",
+          "ready": false
+        },
+        {
+          "atMs": 1794605755120,
+          "ref": "000017",
+          "ready": false
+        },
+        {
+          "atMs": 1794605815241,
+          "ref": "000018",
+          "ready": false
+        },
+        {
+          "atMs": 1794606055348,
+          "ref": "000019",
+          "ready": false
+        }
+      ]
+    },
+    {
+      "policy": "R05-implemented-10",
+      "conditional": true,
+      "unknownFailure": false,
+      "primaryOnly": false,
+      "requests": 45,
+      "routeRequests": 26,
+      "identityRequests": 19,
+      "unknownRequests": 0,
+      "peakOneMinute": 4,
+      "peakFiveMinutes": 9,
+      "maximumBurst30s": 2,
+      "minimumStartGapMs": 11931,
+      "minimumTokens": 0.817966666666667,
+      "firstPrimaryAircraft": 20,
+      "firstPrimaryReady": 7,
+      "allAcquisitions": 21,
+      "readyAcquisitions": 7,
+      "primaryMs": 2384309,
+      "completePrimaryMs": 2165625,
+      "completePrimaryPercent": 90.82820221707841,
+      "primaryWithoutRouteWhileSecondaryInFlightMs": 2124,
+      "firstDetectionToRequest": {
+        "count": 25,
+        "medianMs": 0,
+        "maximumMs": 29942
+      },
+      "recordedGoneWithoutAttempt": 0,
+      "requestsNeverSignificantlyRelevant": 4,
+      "cacheCandidateReads": 2797,
+      "cacheBackedReads": 2120,
+      "knownCompleteResponses": 23,
+      "hypotheticalBackoffs": 0,
+      "attempts": [
+        {
+          "atMs": 1794602755123,
+          "key": "000001:R000001",
+          "kind": "route",
+          "hex": "000001",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794602767381,
+          "key": "000002:R000002",
+          "kind": "route",
+          "hex": "000002",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 1.4086000000000003
+        },
+        {
+          "atMs": 1794602797731,
+          "key": "identity:000001",
+          "kind": "aircraft",
+          "hex": "000001",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.420266666666667
+        },
+        {
+          "atMs": 1794602809662,
+          "key": "000003:R000003",
+          "kind": "route",
+          "hex": "000003",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 0.817966666666667
+        },
+        {
+          "atMs": 1794602887817,
+          "key": "identity:000003",
+          "kind": "aircraft",
+          "hex": "000003",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794603115362,
+          "key": "000004:R000004",
+          "kind": "route",
+          "hex": "000004",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794603127921,
+          "key": "identity:000004",
+          "kind": "aircraft",
+          "hex": "000004",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4186333333333336
+        },
+        {
+          "atMs": 1794603159759,
+          "key": "000005:R000006",
+          "kind": "route",
+          "hex": "000005",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 1.4799000000000002
+        },
+        {
+          "atMs": 1794603175388,
+          "key": "000006:R000005",
+          "kind": "route",
+          "hex": "000006",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 1.000866666666667
+        },
+        {
+          "atMs": 1794603340223,
+          "key": "000007:R000007",
+          "kind": "route",
+          "hex": "000007",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794603413804,
+          "key": "identity:000007",
+          "kind": "aircraft",
+          "hex": "000007",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794603910407,
+          "key": "000008:R000008",
+          "kind": "route",
+          "hex": "000008",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794603922746,
+          "key": "identity:000008",
+          "kind": "aircraft",
+          "hex": "000008",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4113000000000002
+        },
+        {
+          "atMs": 1794604000265,
+          "key": "000009:R000009",
+          "kind": "route",
+          "hex": "000009",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794604030217,
+          "key": "00000a:R000010",
+          "kind": "route",
+          "hex": "00000a",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 1.9984000000000002
+        },
+        {
+          "atMs": 1794604042522,
+          "key": "identity:000009",
+          "kind": "aircraft",
+          "hex": "000009",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4085666666666672
+        },
+        {
+          "atMs": 1794604180182,
+          "key": "00000b:R000011",
+          "kind": "route",
+          "hex": "00000b",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794604192365,
+          "key": "identity:00000b",
+          "kind": "aircraft",
+          "hex": "00000b",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4061000000000003
+        },
+        {
+          "atMs": 1794604210182,
+          "key": "00000c:R000012",
+          "kind": "route",
+          "hex": "00000c",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 1.0000000000000004
+        },
+        {
+          "atMs": 1794604285166,
+          "key": "identity:00000c",
+          "kind": "aircraft",
+          "hex": "00000c",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794604525042,
+          "key": "00000c:R000012",
+          "kind": "route",
+          "hex": "00000c",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794604540243,
+          "key": "00000d:R000013",
+          "kind": "route",
+          "hex": "00000d",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 1.5067
+        },
+        {
+          "atMs": 1794604597882,
+          "key": "identity:00000d",
+          "kind": "aircraft",
+          "hex": "00000d",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794604615216,
+          "key": "00000e:R000014",
+          "kind": "route",
+          "hex": "00000e",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 1.5778000000000003
+        },
+        {
+          "atMs": 1794604675197,
+          "key": "00000f:R000015",
+          "kind": "route",
+          "hex": "00000f",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794604687137,
+          "key": "identity:00000e",
+          "kind": "aircraft",
+          "hex": "00000e",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.3980000000000001
+        },
+        {
+          "atMs": 1794604705197,
+          "key": "000010:R000016",
+          "kind": "route",
+          "hex": "000010",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 1
+        },
+        {
+          "atMs": 1794604780368,
+          "key": "000011:R000017",
+          "kind": "route",
+          "hex": "000011",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794604792468,
+          "key": "identity:000011",
+          "kind": "aircraft",
+          "hex": "000011",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4033333333333333
+        },
+        {
+          "atMs": 1794604900041,
+          "key": "000012:R000018",
+          "kind": "route",
+          "hex": "000012",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794604915028,
+          "key": "identity:000012",
+          "kind": "aircraft",
+          "hex": "000012",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4995666666666665
+        },
+        {
+          "atMs": 1794605290237,
+          "key": "000013:R000019",
+          "kind": "route",
+          "hex": "000013",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794605302760,
+          "key": "identity:000013",
+          "kind": "aircraft",
+          "hex": "000013",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4174333333333333
+        },
+        {
+          "atMs": 1794605410109,
+          "key": "000014:R000020",
+          "kind": "route",
+          "hex": "000014",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794605422174,
+          "key": "identity:000014",
+          "kind": "aircraft",
+          "hex": "000014",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4021666666666666
+        },
+        {
+          "atMs": 1794605545418,
+          "key": "000015:R000021",
+          "kind": "route",
+          "hex": "000015",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794605557630,
+          "key": "identity:000015",
+          "kind": "aircraft",
+          "hex": "000015",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4070666666666667
+        },
+        {
+          "atMs": 1794605680203,
+          "key": "000016:R000022",
+          "kind": "route",
+          "hex": "000016",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794605692842,
+          "key": "identity:000016",
+          "kind": "aircraft",
+          "hex": "000016",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4213
+        },
+        {
+          "atMs": 1794605710299,
+          "key": "000017:R000023",
+          "kind": "route",
+          "hex": "000017",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 1.0031999999999996
+        },
+        {
+          "atMs": 1794605770294,
+          "key": "identity:000017",
+          "kind": "aircraft",
+          "hex": "000017",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794605815241,
+          "key": "000018:R000024",
+          "kind": "route",
+          "hex": "000018",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794605827405,
+          "key": "identity:000018",
+          "kind": "aircraft",
+          "hex": "000018",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4054666666666669
+        },
+        {
+          "atMs": 1794606055348,
+          "key": "000019:R000025",
+          "kind": "route",
+          "hex": "000019",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794606067474,
+          "key": "identity:000019",
+          "kind": "aircraft",
+          "hex": "000019",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4042
+        }
+      ],
+      "responses": [
+        {
+          "atMs": 1794602757381,
+          "key": "000001:R000001",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794602769408,
+          "key": "000002:R000002",
+          "kind": "route",
+          "known": true,
+          "outcome": "negative",
+          "secondary": true
+        },
+        {
+          "atMs": 1794602799662,
+          "key": "identity:000001",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794602811814,
+          "key": "000003:R000003",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794602890100,
+          "key": "identity:000003",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794603117921,
+          "key": "000004:R000004",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794603130041,
+          "key": "identity:000004",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794603161321,
+          "key": "000005:R000006",
+          "kind": "route",
+          "known": true,
+          "outcome": "negative",
+          "secondary": true
+        },
+        {
+          "atMs": 1794603177567,
+          "key": "000006:R000005",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794603342347,
+          "key": "000007:R000007",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794603415655,
+          "key": "identity:000007",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "negative",
+          "secondary": false
+        },
+        {
+          "atMs": 1794603912746,
+          "key": "000008:R000008",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794603925534,
+          "key": "identity:000008",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604002488,
+          "key": "000009:R000009",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794604032522,
+          "key": "00000a:R000010",
+          "kind": "route",
+          "known": true,
+          "outcome": "negative",
+          "secondary": true
+        },
+        {
+          "atMs": 1794604044284,
+          "key": "identity:000009",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604182365,
+          "key": "00000b:R000011",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604194587,
+          "key": "identity:00000b",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604212384,
+          "key": "00000c:R000012",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794604287420,
+          "key": "identity:00000c",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604527244,
+          "key": "00000c:R000012",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604542330,
+          "key": "00000d:R000013",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794604599703,
+          "key": "identity:00000d",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604617137,
+          "key": "00000e:R000014",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794604677136,
+          "key": "00000f:R000015",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794604689538,
+          "key": "identity:00000e",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604707405,
+          "key": "000010:R000016",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794604782468,
+          "key": "000011:R000017",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604794615,
+          "key": "identity:000011",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604902416,
+          "key": "000012:R000018",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794604917176,
+          "key": "identity:000012",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605292759,
+          "key": "000013:R000019",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605304840,
+          "key": "identity:000013",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605412173,
+          "key": "000014:R000020",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605424053,
+          "key": "identity:000014",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605547629,
+          "key": "000015:R000021",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605559725,
+          "key": "identity:000015",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605682841,
+          "key": "000016:R000022",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605694928,
+          "key": "identity:000016",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605712310,
+          "key": "000017:R000023",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794605772489,
+          "key": "identity:000017",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605817405,
+          "key": "000018:R000024",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605829478,
+          "key": "identity:000018",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794606057473,
+          "key": "000019:R000025",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794606069604,
+          "key": "identity:000019",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        }
+      ],
+      "acquisitions": [
+        {
+          "atMs": 1794602755123,
+          "ref": "000001",
+          "ready": false
+        },
+        {
+          "atMs": 1794602800129,
+          "ref": "000003",
+          "ready": false
+        },
+        {
+          "atMs": 1794603115362,
+          "ref": "000004",
+          "ready": false
+        },
+        {
+          "atMs": 1794603190167,
+          "ref": "000005",
+          "ready": false
+        },
+        {
+          "atMs": 1794603369801,
+          "ref": "000007",
+          "ready": true
+        },
+        {
+          "atMs": 1794603910407,
+          "ref": "000008",
+          "ready": false
+        },
+        {
+          "atMs": 1794604030217,
+          "ref": "000009",
+          "ready": true
+        },
+        {
+          "atMs": 1794604180182,
+          "ref": "00000b",
+          "ready": false
+        },
+        {
+          "atMs": 1794604285165,
+          "ref": "00000c",
+          "ready": true
+        },
+        {
+          "atMs": 1794604525042,
+          "ref": "00000c",
+          "ready": false
+        },
+        {
+          "atMs": 1794604570207,
+          "ref": "00000d",
+          "ready": true
+        },
+        {
+          "atMs": 1794604675197,
+          "ref": "00000e",
+          "ready": true
+        },
+        {
+          "atMs": 1794604780368,
+          "ref": "000011",
+          "ready": false
+        },
+        {
+          "atMs": 1794604915028,
+          "ref": "000012",
+          "ready": true
+        },
+        {
+          "atMs": 1794605290237,
+          "ref": "000013",
+          "ready": false
+        },
+        {
+          "atMs": 1794605410109,
+          "ref": "000014",
+          "ready": false
+        },
+        {
+          "atMs": 1794605545418,
+          "ref": "000015",
+          "ready": false
+        },
+        {
+          "atMs": 1794605680203,
+          "ref": "000016",
+          "ready": false
+        },
+        {
+          "atMs": 1794605755120,
+          "ref": "000017",
+          "ready": true
+        },
+        {
+          "atMs": 1794605815241,
+          "ref": "000018",
+          "ready": false
+        },
+        {
+          "atMs": 1794606055348,
+          "ref": "000019",
+          "ready": false
+        }
+      ]
+    },
+    {
+      "policy": "R05-implemented-10",
+      "conditional": true,
+      "unknownFailure": true,
+      "primaryOnly": false,
+      "requests": 45,
+      "routeRequests": 26,
+      "identityRequests": 19,
+      "unknownRequests": 0,
+      "peakOneMinute": 4,
+      "peakFiveMinutes": 9,
+      "maximumBurst30s": 2,
+      "minimumStartGapMs": 11931,
+      "minimumTokens": 0.817966666666667,
+      "firstPrimaryAircraft": 20,
+      "firstPrimaryReady": 7,
+      "allAcquisitions": 21,
+      "readyAcquisitions": 7,
+      "primaryMs": 2384309,
+      "completePrimaryMs": 2165625,
+      "completePrimaryPercent": 90.82820221707841,
+      "primaryWithoutRouteWhileSecondaryInFlightMs": 2124,
+      "firstDetectionToRequest": {
+        "count": 25,
+        "medianMs": 0,
+        "maximumMs": 29942
+      },
+      "recordedGoneWithoutAttempt": 0,
+      "requestsNeverSignificantlyRelevant": 4,
+      "cacheCandidateReads": 2797,
+      "cacheBackedReads": 2120,
+      "knownCompleteResponses": 23,
+      "hypotheticalBackoffs": 0,
+      "attempts": [
+        {
+          "atMs": 1794602755123,
+          "key": "000001:R000001",
+          "kind": "route",
+          "hex": "000001",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794602767381,
+          "key": "000002:R000002",
+          "kind": "route",
+          "hex": "000002",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 1.4086000000000003
+        },
+        {
+          "atMs": 1794602797731,
+          "key": "identity:000001",
+          "kind": "aircraft",
+          "hex": "000001",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.420266666666667
+        },
+        {
+          "atMs": 1794602809662,
+          "key": "000003:R000003",
+          "kind": "route",
+          "hex": "000003",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 0.817966666666667
+        },
+        {
+          "atMs": 1794602887817,
+          "key": "identity:000003",
+          "kind": "aircraft",
+          "hex": "000003",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794603115362,
+          "key": "000004:R000004",
+          "kind": "route",
+          "hex": "000004",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794603127921,
+          "key": "identity:000004",
+          "kind": "aircraft",
+          "hex": "000004",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4186333333333336
+        },
+        {
+          "atMs": 1794603159759,
+          "key": "000005:R000006",
+          "kind": "route",
+          "hex": "000005",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 1.4799000000000002
+        },
+        {
+          "atMs": 1794603175388,
+          "key": "000006:R000005",
+          "kind": "route",
+          "hex": "000006",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 1.000866666666667
+        },
+        {
+          "atMs": 1794603340223,
+          "key": "000007:R000007",
+          "kind": "route",
+          "hex": "000007",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794603413804,
+          "key": "identity:000007",
+          "kind": "aircraft",
+          "hex": "000007",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794603910407,
+          "key": "000008:R000008",
+          "kind": "route",
+          "hex": "000008",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794603922746,
+          "key": "identity:000008",
+          "kind": "aircraft",
+          "hex": "000008",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4113000000000002
+        },
+        {
+          "atMs": 1794604000265,
+          "key": "000009:R000009",
+          "kind": "route",
+          "hex": "000009",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794604030217,
+          "key": "00000a:R000010",
+          "kind": "route",
+          "hex": "00000a",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 1.9984000000000002
+        },
+        {
+          "atMs": 1794604042522,
+          "key": "identity:000009",
+          "kind": "aircraft",
+          "hex": "000009",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4085666666666672
+        },
+        {
+          "atMs": 1794604180182,
+          "key": "00000b:R000011",
+          "kind": "route",
+          "hex": "00000b",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794604192365,
+          "key": "identity:00000b",
+          "kind": "aircraft",
+          "hex": "00000b",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4061000000000003
+        },
+        {
+          "atMs": 1794604210182,
+          "key": "00000c:R000012",
+          "kind": "route",
+          "hex": "00000c",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 1.0000000000000004
+        },
+        {
+          "atMs": 1794604285166,
+          "key": "identity:00000c",
+          "kind": "aircraft",
+          "hex": "00000c",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794604525042,
+          "key": "00000c:R000012",
+          "kind": "route",
+          "hex": "00000c",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794604540243,
+          "key": "00000d:R000013",
+          "kind": "route",
+          "hex": "00000d",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 1.5067
+        },
+        {
+          "atMs": 1794604597882,
+          "key": "identity:00000d",
+          "kind": "aircraft",
+          "hex": "00000d",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794604615216,
+          "key": "00000e:R000014",
+          "kind": "route",
+          "hex": "00000e",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 1.5778000000000003
+        },
+        {
+          "atMs": 1794604675197,
+          "key": "00000f:R000015",
+          "kind": "route",
+          "hex": "00000f",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794604687137,
+          "key": "identity:00000e",
+          "kind": "aircraft",
+          "hex": "00000e",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.3980000000000001
+        },
+        {
+          "atMs": 1794604705197,
+          "key": "000010:R000016",
+          "kind": "route",
+          "hex": "000010",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 1
+        },
+        {
+          "atMs": 1794604780368,
+          "key": "000011:R000017",
+          "kind": "route",
+          "hex": "000011",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794604792468,
+          "key": "identity:000011",
+          "kind": "aircraft",
+          "hex": "000011",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4033333333333333
+        },
+        {
+          "atMs": 1794604900041,
+          "key": "000012:R000018",
+          "kind": "route",
+          "hex": "000012",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794604915028,
+          "key": "identity:000012",
+          "kind": "aircraft",
+          "hex": "000012",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4995666666666665
+        },
+        {
+          "atMs": 1794605290237,
+          "key": "000013:R000019",
+          "kind": "route",
+          "hex": "000013",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794605302760,
+          "key": "identity:000013",
+          "kind": "aircraft",
+          "hex": "000013",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4174333333333333
+        },
+        {
+          "atMs": 1794605410109,
+          "key": "000014:R000020",
+          "kind": "route",
+          "hex": "000014",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794605422174,
+          "key": "identity:000014",
+          "kind": "aircraft",
+          "hex": "000014",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4021666666666666
+        },
+        {
+          "atMs": 1794605545418,
+          "key": "000015:R000021",
+          "kind": "route",
+          "hex": "000015",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794605557630,
+          "key": "identity:000015",
+          "kind": "aircraft",
+          "hex": "000015",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4070666666666667
+        },
+        {
+          "atMs": 1794605680203,
+          "key": "000016:R000022",
+          "kind": "route",
+          "hex": "000016",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794605692842,
+          "key": "identity:000016",
+          "kind": "aircraft",
+          "hex": "000016",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4213
+        },
+        {
+          "atMs": 1794605710299,
+          "key": "000017:R000023",
+          "kind": "route",
+          "hex": "000017",
+          "secondary": true,
+          "knownOutcome": true,
+          "tokensAfter": 1.0031999999999996
+        },
+        {
+          "atMs": 1794605770294,
+          "key": "identity:000017",
+          "kind": "aircraft",
+          "hex": "000017",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794605815241,
+          "key": "000018:R000024",
+          "kind": "route",
+          "hex": "000018",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794605827405,
+          "key": "identity:000018",
+          "kind": "aircraft",
+          "hex": "000018",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4054666666666669
+        },
+        {
+          "atMs": 1794606055348,
+          "key": "000019:R000025",
+          "kind": "route",
+          "hex": "000019",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794606067474,
+          "key": "identity:000019",
+          "kind": "aircraft",
+          "hex": "000019",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4042
+        }
+      ],
+      "responses": [
+        {
+          "atMs": 1794602757381,
+          "key": "000001:R000001",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794602769408,
+          "key": "000002:R000002",
+          "kind": "route",
+          "known": true,
+          "outcome": "negative",
+          "secondary": true
+        },
+        {
+          "atMs": 1794602799662,
+          "key": "identity:000001",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794602811814,
+          "key": "000003:R000003",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794602890100,
+          "key": "identity:000003",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794603117921,
+          "key": "000004:R000004",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794603130041,
+          "key": "identity:000004",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794603161321,
+          "key": "000005:R000006",
+          "kind": "route",
+          "known": true,
+          "outcome": "negative",
+          "secondary": true
+        },
+        {
+          "atMs": 1794603177567,
+          "key": "000006:R000005",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794603342347,
+          "key": "000007:R000007",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794603415655,
+          "key": "identity:000007",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "negative",
+          "secondary": false
+        },
+        {
+          "atMs": 1794603912746,
+          "key": "000008:R000008",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794603925534,
+          "key": "identity:000008",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604002488,
+          "key": "000009:R000009",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794604032522,
+          "key": "00000a:R000010",
+          "kind": "route",
+          "known": true,
+          "outcome": "negative",
+          "secondary": true
+        },
+        {
+          "atMs": 1794604044284,
+          "key": "identity:000009",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604182365,
+          "key": "00000b:R000011",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604194587,
+          "key": "identity:00000b",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604212384,
+          "key": "00000c:R000012",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794604287420,
+          "key": "identity:00000c",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604527244,
+          "key": "00000c:R000012",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604542330,
+          "key": "00000d:R000013",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794604599703,
+          "key": "identity:00000d",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604617137,
+          "key": "00000e:R000014",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794604677136,
+          "key": "00000f:R000015",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794604689538,
+          "key": "identity:00000e",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604707405,
+          "key": "000010:R000016",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794604782468,
+          "key": "000011:R000017",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604794615,
+          "key": "identity:000011",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604902416,
+          "key": "000012:R000018",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794604917176,
+          "key": "identity:000012",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605292759,
+          "key": "000013:R000019",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605304840,
+          "key": "identity:000013",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605412173,
+          "key": "000014:R000020",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605424053,
+          "key": "identity:000014",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605547629,
+          "key": "000015:R000021",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605559725,
+          "key": "identity:000015",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605682841,
+          "key": "000016:R000022",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605694928,
+          "key": "identity:000016",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605712310,
+          "key": "000017:R000023",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": true
+        },
+        {
+          "atMs": 1794605772489,
+          "key": "identity:000017",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605817405,
+          "key": "000018:R000024",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605829478,
+          "key": "identity:000018",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794606057473,
+          "key": "000019:R000025",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794606069604,
+          "key": "identity:000019",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        }
+      ],
+      "acquisitions": [
+        {
+          "atMs": 1794602755123,
+          "ref": "000001",
+          "ready": false
+        },
+        {
+          "atMs": 1794602800129,
+          "ref": "000003",
+          "ready": false
+        },
+        {
+          "atMs": 1794603115362,
+          "ref": "000004",
+          "ready": false
+        },
+        {
+          "atMs": 1794603190167,
+          "ref": "000005",
+          "ready": false
+        },
+        {
+          "atMs": 1794603369801,
+          "ref": "000007",
+          "ready": true
+        },
+        {
+          "atMs": 1794603910407,
+          "ref": "000008",
+          "ready": false
+        },
+        {
+          "atMs": 1794604030217,
+          "ref": "000009",
+          "ready": true
+        },
+        {
+          "atMs": 1794604180182,
+          "ref": "00000b",
+          "ready": false
+        },
+        {
+          "atMs": 1794604285165,
+          "ref": "00000c",
+          "ready": true
+        },
+        {
+          "atMs": 1794604525042,
+          "ref": "00000c",
+          "ready": false
+        },
+        {
+          "atMs": 1794604570207,
+          "ref": "00000d",
+          "ready": true
+        },
+        {
+          "atMs": 1794604675197,
+          "ref": "00000e",
+          "ready": true
+        },
+        {
+          "atMs": 1794604780368,
+          "ref": "000011",
+          "ready": false
+        },
+        {
+          "atMs": 1794604915028,
+          "ref": "000012",
+          "ready": true
+        },
+        {
+          "atMs": 1794605290237,
+          "ref": "000013",
+          "ready": false
+        },
+        {
+          "atMs": 1794605410109,
+          "ref": "000014",
+          "ready": false
+        },
+        {
+          "atMs": 1794605545418,
+          "ref": "000015",
+          "ready": false
+        },
+        {
+          "atMs": 1794605680203,
+          "ref": "000016",
+          "ready": false
+        },
+        {
+          "atMs": 1794605755120,
+          "ref": "000017",
+          "ready": true
+        },
+        {
+          "atMs": 1794605815241,
+          "ref": "000018",
+          "ready": false
+        },
+        {
+          "atMs": 1794606055348,
+          "ref": "000019",
+          "ready": false
+        }
+      ]
+    },
+    {
+      "policy": "R05-implemented-10",
+      "conditional": true,
+      "unknownFailure": false,
+      "primaryOnly": true,
+      "requests": 40,
+      "routeRequests": 21,
+      "identityRequests": 19,
+      "unknownRequests": 0,
+      "peakOneMinute": 3,
+      "peakFiveMinutes": 8,
+      "maximumBurst30s": 3,
+      "minimumStartGapMs": 11931,
+      "minimumTokens": 0.9386333333333334,
+      "firstPrimaryAircraft": 20,
+      "firstPrimaryReady": 0,
+      "allAcquisitions": 21,
+      "readyAcquisitions": 1,
+      "primaryMs": 2384309,
+      "completePrimaryMs": 2129018,
+      "completePrimaryPercent": 89.29287269393355,
+      "primaryWithoutRouteWhileSecondaryInFlightMs": 0,
+      "firstDetectionToRequest": {
+        "count": 20,
+        "medianMs": 197,
+        "maximumMs": 89984
+      },
+      "recordedGoneWithoutAttempt": 5,
+      "requestsNeverSignificantlyRelevant": 0,
+      "cacheCandidateReads": 2780,
+      "cacheBackedReads": 1703,
+      "knownCompleteResponses": 20,
+      "hypotheticalBackoffs": 0,
+      "attempts": [
+        {
+          "atMs": 1794602755123,
+          "key": "000001:R000001",
+          "kind": "route",
+          "hex": "000001",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794602797731,
+          "key": "identity:000001",
+          "kind": "aircraft",
+          "hex": "000001",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794602809662,
+          "key": "000003:R000003",
+          "kind": "route",
+          "hex": "000003",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.3977
+        },
+        {
+          "atMs": 1794602887817,
+          "key": "identity:000003",
+          "kind": "aircraft",
+          "hex": "000003",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794603115362,
+          "key": "000004:R000004",
+          "kind": "route",
+          "hex": "000004",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794603127921,
+          "key": "identity:000004",
+          "kind": "aircraft",
+          "hex": "000004",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4186333333333336
+        },
+        {
+          "atMs": 1794603190167,
+          "key": "000005:R000006",
+          "kind": "route",
+          "hex": "000005",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794603369801,
+          "key": "000007:R000007",
+          "kind": "route",
+          "hex": "000007",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794603413804,
+          "key": "identity:000007",
+          "kind": "aircraft",
+          "hex": "000007",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794603910407,
+          "key": "000008:R000008",
+          "kind": "route",
+          "hex": "000008",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794603922746,
+          "key": "identity:000008",
+          "kind": "aircraft",
+          "hex": "000008",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4113000000000002
+        },
+        {
+          "atMs": 1794604030217,
+          "key": "000009:R000009",
+          "kind": "route",
+          "hex": "000009",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794604042522,
+          "key": "identity:000009",
+          "kind": "aircraft",
+          "hex": "000009",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4101666666666666
+        },
+        {
+          "atMs": 1794604180182,
+          "key": "00000b:R000011",
+          "kind": "route",
+          "hex": "00000b",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794604192365,
+          "key": "identity:00000b",
+          "kind": "aircraft",
+          "hex": "00000b",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4061000000000003
+        },
+        {
+          "atMs": 1794604285165,
+          "key": "00000c:R000012",
+          "kind": "route",
+          "hex": "00000c",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794604297367,
+          "key": "identity:00000c",
+          "kind": "aircraft",
+          "hex": "00000c",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4067333333333334
+        },
+        {
+          "atMs": 1794604569723,
+          "key": "00000c:R000012",
+          "kind": "route",
+          "hex": "00000c",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794604581925,
+          "key": "00000d:R000013",
+          "kind": "route",
+          "hex": "00000d",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4067333333333334
+        },
+        {
+          "atMs": 1794604597882,
+          "key": "identity:00000d",
+          "kind": "aircraft",
+          "hex": "00000d",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 0.9386333333333334
+        },
+        {
+          "atMs": 1794604675197,
+          "key": "00000e:R000014",
+          "kind": "route",
+          "hex": "00000e",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794604687137,
+          "key": "identity:00000e",
+          "kind": "aircraft",
+          "hex": "00000e",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.3979999999999997
+        },
+        {
+          "atMs": 1794604780368,
+          "key": "000011:R000017",
+          "kind": "route",
+          "hex": "000011",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794604792468,
+          "key": "identity:000011",
+          "kind": "aircraft",
+          "hex": "000011",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4033333333333333
+        },
+        {
+          "atMs": 1794604915028,
+          "key": "identity:000012",
+          "kind": "aircraft",
+          "hex": "000012",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794604927176,
+          "key": "000012:R000018",
+          "kind": "route",
+          "hex": "000012",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4049333333333336
+        },
+        {
+          "atMs": 1794605290237,
+          "key": "000013:R000019",
+          "kind": "route",
+          "hex": "000013",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794605302760,
+          "key": "identity:000013",
+          "kind": "aircraft",
+          "hex": "000013",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4174333333333333
+        },
+        {
+          "atMs": 1794605410109,
+          "key": "000014:R000020",
+          "kind": "route",
+          "hex": "000014",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794605422174,
+          "key": "identity:000014",
+          "kind": "aircraft",
+          "hex": "000014",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4021666666666666
+        },
+        {
+          "atMs": 1794605545418,
+          "key": "000015:R000021",
+          "kind": "route",
+          "hex": "000015",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794605557630,
+          "key": "identity:000015",
+          "kind": "aircraft",
+          "hex": "000015",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4070666666666667
+        },
+        {
+          "atMs": 1794605680203,
+          "key": "000016:R000022",
+          "kind": "route",
+          "hex": "000016",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794605692842,
+          "key": "identity:000016",
+          "kind": "aircraft",
+          "hex": "000016",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4213
+        },
+        {
+          "atMs": 1794605755120,
+          "key": "000017:R000023",
+          "kind": "route",
+          "hex": "000017",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794605770294,
+          "key": "identity:000017",
+          "kind": "aircraft",
+          "hex": "000017",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.5057999999999998
+        },
+        {
+          "atMs": 1794605815241,
+          "key": "000018:R000024",
+          "kind": "route",
+          "hex": "000018",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794605827405,
+          "key": "identity:000018",
+          "kind": "aircraft",
+          "hex": "000018",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4054666666666669
+        },
+        {
+          "atMs": 1794606055348,
+          "key": "000019:R000025",
+          "kind": "route",
+          "hex": "000019",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 2
+        },
+        {
+          "atMs": 1794606067474,
+          "key": "identity:000019",
+          "kind": "aircraft",
+          "hex": "000019",
+          "secondary": false,
+          "knownOutcome": true,
+          "tokensAfter": 1.4042
+        }
+      ],
+      "responses": [
+        {
+          "atMs": 1794602757381,
+          "key": "000001:R000001",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794602799662,
+          "key": "identity:000001",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794602811814,
+          "key": "000003:R000003",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794602890100,
+          "key": "identity:000003",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794603117921,
+          "key": "000004:R000004",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794603130041,
+          "key": "identity:000004",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794603191729,
+          "key": "000005:R000006",
+          "kind": "route",
+          "known": true,
+          "outcome": "negative",
+          "secondary": false
+        },
+        {
+          "atMs": 1794603371925,
+          "key": "000007:R000007",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794603415655,
+          "key": "identity:000007",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "negative",
+          "secondary": false
+        },
+        {
+          "atMs": 1794603912746,
+          "key": "000008:R000008",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794603925534,
+          "key": "identity:000008",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604032440,
+          "key": "000009:R000009",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604044284,
+          "key": "identity:000009",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604182365,
+          "key": "00000b:R000011",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604194587,
+          "key": "identity:00000b",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604287367,
+          "key": "00000c:R000012",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604299621,
+          "key": "identity:00000c",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604571925,
+          "key": "00000c:R000012",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604584012,
+          "key": "00000d:R000013",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604599703,
+          "key": "identity:00000d",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604677118,
+          "key": "00000e:R000014",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604689538,
+          "key": "identity:00000e",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604782468,
+          "key": "000011:R000017",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604794615,
+          "key": "identity:000011",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604917176,
+          "key": "identity:000012",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794604929551,
+          "key": "000012:R000018",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605292759,
+          "key": "000013:R000019",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605304840,
+          "key": "identity:000013",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605412173,
+          "key": "000014:R000020",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605424053,
+          "key": "identity:000014",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605547629,
+          "key": "000015:R000021",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605559725,
+          "key": "identity:000015",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605682841,
+          "key": "000016:R000022",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605694928,
+          "key": "identity:000016",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605757131,
+          "key": "000017:R000023",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605772489,
+          "key": "identity:000017",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605817405,
+          "key": "000018:R000024",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794605829478,
+          "key": "identity:000018",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        },
+        {
+          "atMs": 1794606057473,
+          "key": "000019:R000025",
+          "kind": "route",
+          "known": true,
+          "outcome": "complete",
+          "secondary": false
+        },
+        {
+          "atMs": 1794606069604,
+          "key": "identity:000019",
+          "kind": "aircraft",
+          "known": true,
+          "outcome": "identity",
+          "secondary": false
+        }
+      ],
+      "acquisitions": [
+        {
+          "atMs": 1794602755123,
+          "ref": "000001",
+          "ready": false
+        },
+        {
+          "atMs": 1794602800129,
+          "ref": "000003",
+          "ready": false
+        },
+        {
+          "atMs": 1794603115362,
+          "ref": "000004",
+          "ready": false
+        },
+        {
+          "atMs": 1794603190167,
+          "ref": "000005",
+          "ready": false
+        },
+        {
+          "atMs": 1794603369801,
+          "ref": "000007",
+          "ready": false
+        },
+        {
+          "atMs": 1794603910407,
+          "ref": "000008",
+          "ready": false
+        },
+        {
+          "atMs": 1794604030217,
+          "ref": "000009",
+          "ready": false
+        },
+        {
+          "atMs": 1794604180182,
+          "ref": "00000b",
+          "ready": false
+        },
+        {
+          "atMs": 1794604285165,
+          "ref": "00000c",
+          "ready": false
+        },
+        {
+          "atMs": 1794604525042,
+          "ref": "00000c",
+          "ready": true
+        },
+        {
+          "atMs": 1794604570207,
+          "ref": "00000d",
+          "ready": false
+        },
+        {
+          "atMs": 1794604675197,
+          "ref": "00000e",
+          "ready": false
+        },
+        {
+          "atMs": 1794604780368,
+          "ref": "000011",
+          "ready": false
+        },
+        {
+          "atMs": 1794604915028,
+          "ref": "000012",
+          "ready": false
+        },
+        {
+          "atMs": 1794605290237,
+          "ref": "000013",
+          "ready": false
+        },
+        {
+          "atMs": 1794605410109,
+          "ref": "000014",
+          "ready": false
+        },
+        {
+          "atMs": 1794605545418,
+          "ref": "000015",
+          "ready": false
+        },
+        {
+          "atMs": 1794605680203,
+          "ref": "000016",
+          "ready": false
+        },
+        {
+          "atMs": 1794605755120,
+          "ref": "000017",
+          "ready": false
+        },
+        {
+          "atMs": 1794605815241,
+          "ref": "000018",
+          "ready": false
+        },
+        {
+          "atMs": 1794606055348,
+          "ref": "000019",
+          "ready": false
+        }
+      ]
+    }
+  ]
+}

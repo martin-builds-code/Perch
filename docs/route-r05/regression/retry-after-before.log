@@ -1,0 +1,28 @@
+✖ R05 honours the whole Retry-After second even when a local gate has only 50 ms left (38.782948ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 218.752304
+
+✖ failing tests:
+
+test at tests/adaptive-client-r05.test.tsx:1:5116
+✖ R05 honours the whole Retry-After second even when a local gate has only 50 ms left (38.782948ms)
+  AssertionError [ERR_ASSERTION]: a short budget view must not shorten Retry-After: 1
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (/workspace/Perch/tests/adaptive-client-r05.test.tsx:263:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

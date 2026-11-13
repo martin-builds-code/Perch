@@ -1,0 +1,29 @@
+{
+  "unitTests": 388,
+  "unitFailures": 0,
+  "compiledHttpScenarios": {
+    "inherited": 20,
+    "routeReview": 9,
+    "r05": 11
+  },
+  "lint": "passed",
+  "typescript": "passed via both builds",
+  "defaultBuild": "passed; unchanged default asset hashes",
+  "safari15EnabledBuild": "passed; all live/enrichment/diagnostics/appliance/R05 flags",
+  "inheritedBrowser": "51 layouts plus R03/R04 assertions",
+  "adaptiveBrowser": "passed at1024x768 and1024x624; mocked provider",
+  "finalDeployedPinBrowser": "passed both viewports; no provider requests",
+  "realSharedStoreClients": 12,
+  "sharedReservationWinners": 1,
+  "productionDependencyAudit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "physicalIPad": "not performed",
+  "webkitSafariBrowser": "not performed; Safari15 build/API compatibility assessed",
+  "liveTrial": "60.003min; automatically stopped; see live/analysis.json"
+}

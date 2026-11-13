@@ -1,0 +1,64 @@
+{
+  "checkedAtMs": 1794602712182,
+  "url": "https://perch-aero-pane-stage3a-a3ecine9j-mml3.vercel.app",
+  "checks": [
+    {
+      "path": "/",
+      "machineCredential": false,
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "setCookie": false
+    },
+    {
+      "path": "/api/session",
+      "machineCredential": false,
+      "status": 401,
+      "contentType": "application/json",
+      "setCookie": false,
+      "error": "authentication-required",
+      "authenticated": null,
+      "machineExpiresAtMs": null
+    },
+    {
+      "path": "/api/aircraft",
+      "machineCredential": false,
+      "status": 401,
+      "contentType": "application/json",
+      "setCookie": false,
+      "error": "authentication-required",
+      "authenticated": null,
+      "machineExpiresAtMs": null
+    },
+    {
+      "path": "/api/enrichment?kind=aircraft&hex=abcdef",
+      "machineCredential": false,
+      "status": 401,
+      "contentType": "application/json",
+      "setCookie": false,
+      "error": "authentication-required",
+      "authenticated": null,
+      "machineExpiresAtMs": null
+    },
+    {
+      "path": "/api/r05-observe?resource=session",
+      "machineCredential": false,
+      "status": 401,
+      "contentType": "application/json",
+      "setCookie": false,
+      "error": "authentication-required",
+      "authenticated": null,
+      "machineExpiresAtMs": null
+    },
+    {
+      "path": "/api/r05-observe?resource=session",
+      "machineCredential": true,
+      "status": 200,
+      "contentType": "application/json",
+      "setCookie": false,
+      "error": null,
+      "authenticated": true,
+      "machineExpiresAtMs": 1794606655016
+    }
+  ],
+  "providerRequests": 0
+}

@@ -17,7 +17,7 @@ export interface EnrichmentFailure {
 }
 export interface EnrichmentScheduling {
   treatment: 'local-deferral' | 'failure-backoff';
-  reason: 'global-gate' | 'in-flight' | 'failure';
+  reason: string;
   serverRetryAfterMs: number | null;
   serverWaitMs: number | null;
   priorGlobalWaitMs: number;

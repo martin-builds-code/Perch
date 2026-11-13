@@ -1,0 +1,18 @@
+✔ R05 drains primary and secondary work without a 90s bottleneck or new position refresh (28.503566ms)
+✔ R05 honours the whole Retry-After second even when a local gate has only 50 ms left (7.071484ms)
+✔ a marginal reserve deferral leaves an actually eligible urgent primary opportunity available (2.455321ms)
+✔ R05 retains R04 urgent-secondary priority and essential primary identification protection (2.409221ms)
+✔ a departing/disappearing queued aircraft is not queried and role changes use cached historical routes (2.375729ms)
+✔ callsign changes invalidate route reuse while a native valid route prevents work (2.600594ms)
+✔ genuine negative results stay cached and do not loop on completion (1.038541ms)
+✔ hidden/offline/sleep lifecycle cancellation prevents new work and cleans the single wake timer (1.571277ms)
+✔ paused/expired scene observations cannot be fetched by a later wake (1.025982ms)
+✔ coordinator unavailability produces bounded 30s local waits, not five-minute provider backoff (1.89334ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 241.252537

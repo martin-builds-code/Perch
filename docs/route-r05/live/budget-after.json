@@ -1,0 +1,28 @@
+{
+  "atMs": 1794606397630,
+  "revision": 90,
+  "view": {
+    "schemaVersion": 1,
+    "policy": "r05-10",
+    "serverTimeMs": 1794606397630,
+    "tokens": 3,
+    "rollingFive": 0,
+    "rollingDay": 45,
+    "dailyLimit": 2000,
+    "inFlight": false,
+    "protectedWaitMs": 0,
+    "normalWaitMs": 0,
+    "recoveries": 0,
+    "counters": {
+      "reserved": 45,
+      "confirmedStarts": 45,
+      "upstreamResponses": 45,
+      "complete": 23,
+      "historical": 6,
+      "notFound": 4,
+      "rejected": 0,
+      "failures": 0,
+      "uncertain": 0
+    }
+  }
+}

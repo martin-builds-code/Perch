@@ -5,6 +5,8 @@ import type { EnrichmentDiagnostic } from './routeTraceTypes';
 import { parseEnrichmentDiagnostic } from './routeTraceTypes';
 import { flightKey, validHex } from './enrichmentTypes';
 import { prominentRoute } from './artwork';
+import type { AdaptiveView } from './adaptiveBudget';
+import { parseAdaptiveView } from './adaptiveBudget';
 import {
   parseEnrichmentFailure,
   copyEnrichmentScheduling,
@@ -30,6 +32,7 @@ export type EnrichmentEvent =
       pending: LookupRef | null;
       primaryEligible: boolean;
       routes: { key: string; result?: EnrichmentResult }[];
+      adaptiveBudget?: AdaptiveView;
     }
   | {
       type: 'attempt';
@@ -51,6 +54,7 @@ export type EnrichmentEvent =
       scheduling?: EnrichmentScheduling;
       error?: string;
       clientCooldownMs: number;
+      adaptiveBudget?: AdaptiveView;
     };
 const key = (a: Aircraft) =>
   a.id.toLowerCase() + ':' + (flightKey(a.callsign) ?? '');
@@ -130,6 +134,7 @@ export function createRouteDiagnostics(
   const events: Record<string, unknown>[] = [];
   const deferrals: DeferralRecord[] = [];
   let pendingDeferral: DeferralRecord | undefined;
+  let adaptiveBudget: { atMs: number; value: AdaptiveView } | undefined;
   let stopped = false,
     lastMs = startMs,
     active = true,
@@ -214,6 +219,10 @@ export function createRouteDiagnostics(
   function observe(e: EnrichmentEvent) {
     advance(e.atMs);
     if (stopped) return;
+    if ('adaptiveBudget' in e) {
+      const v = parseAdaptiveView(e.adaptiveBudget);
+      if (v) adaptiveBudget = { atMs: e.atMs, value: v };
+    }
     if (e.type === 'scene') {
       current = e;
       active = e.active;
@@ -646,6 +655,7 @@ export function createRouteDiagnostics(
         ? (100 * secondaryComplete.size) / secondaryAircraft.size
         : null,
       counters: { ...counters },
+      ...(adaptiveBudget ? { adaptiveBudget } : {}),
       exposure: { ...exposure },
       primaryCompleteRoutePercent: exposure.primaryMs
         ? (100 * exposure.primaryCompleteMs) / exposure.primaryMs

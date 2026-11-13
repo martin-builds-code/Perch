@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-11-12 17:48:36 UTC",
+  "alias": {
+    "alias": "perch-aero-pane-stage3a.vercel.app",
+    "projectId": "prj_QU4OICxi2QPrRtK0JS83ZTaLP9bW",
+    "deploymentId": "dpl_7M3TTFYhqCpQAoxvzXesEDEga93G"
+  },
+  "priorAlias": {
+    "alias": "perch-aero-pane-stage3a.vercel.app",
+    "projectId": "prj_QU4OICxi2QPrRtK0JS83ZTaLP9bW",
+    "deploymentId": "dpl_7M3TTFYhqCpQAoxvzXesEDEga93G"
+  },
+  "pr": {
+    "number": 5,
+    "state": "open",
+    "draft": true,
+    "merged": false,
+    "head": "ad010cd3b9da31e2ee06fba75854c995107cd493",
+    "base": "8031a76d0a24e1bb4ba88febd87d9a9c15ff2166"
+  },
+  "baselineCommit": "ad010cd3b9da31e2ee06fba75854c995107cd493",
+  "finalLocalHead": "ad010cd3b9da31e2ee06fba75854c995107cd493",
+  "localOriginMain": "8031a76d0a24e1bb4ba88febd87d9a9c15ff2166",
+  "trackedDiffEmpty": true,
+  "onlyWorkspaceAddition": "docs/route-r05/",
+  "sourceEvidenceSha256": "7af4f0b3953fe18942ba8993a8a1beb76dc6d3199bed36026212c488be8e3694",
+  "assertions": {
+    "applicationSourceModified": false,
+    "dependenciesModified": false,
+    "deploymentOrAliasMutation": false,
+    "environmentOrAuthenticationMutation": false,
+    "householdProductionMutation": false,
+    "githubMutation": false,
+    "commitOrPush": false,
+    "upstreamAircraftOrRouteRequests": 0,
+    "hostedApplicationRequests": 0,
+    "backgroundCollectorStarted": false,
+    "sharedInfrastructureProvisioned": false
+  },
+  "limits": "Read-only alias and PR metadata verification; no new claim of live authentication, aircraft tracking or physical-device testing."
+}

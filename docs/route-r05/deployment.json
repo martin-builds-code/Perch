@@ -1,0 +1,263 @@
+{
+  "checkedAt": "2026-11-13T22:01:14.471Z",
+  "branch": "r05-adaptive-enrichment",
+  "appCommit": "dd0e18fdcd2cad1fe71370f9d30ff945cab861bd",
+  "finalDeployment": {
+    "id": "dpl_ERjUikdfKg74VEELCN4HApVCW7Aj",
+    "name": "perch-aero-pane-stage3a",
+    "url": "perch-aero-pane-stage3a-4wgfc8612-mml3.vercel.app",
+    "state": "READY",
+    "readyState": "READY",
+    "target": null,
+    "project": {
+      "id": "prj_QU4OICxi2QPrRtK0JS83ZTaLP9bW",
+      "name": "perch-aero-pane-stage3a",
+      "framework": "vite"
+    },
+    "meta": {
+      "githubCommitRef": "r05-adaptive-enrichment",
+      "githubCommitSha": "dd0e18fdcd2cad1fe71370f9d30ff945cab861bd",
+      "githubCommitMessage": "Respect rounded Retry-After deadlines without blocking protected R05 work",
+      "githubRepo": "Perch",
+      "githubOrg": "martin-builds-code"
+    },
+    "alias": []
+  },
+  "r04Alias": {
+    "projectId": "prj_QU4OICxi2QPrRtK0JS83ZTaLP9bW",
+    "deploymentId": "dpl_7M3TTFYhqCpQAoxvzXesEDEga93G",
+    "alias": "perch-aero-pane-stage3a.vercel.app"
+  },
+  "pr5": {
+    "number": 5,
+    "state": "open",
+    "draft": true,
+    "merged": false,
+    "head": "ad010cd3b9da31e2ee06fba75854c995107cd493"
+  },
+  "householdProduction": {
+    "id": "dpl_2WX2Y9nNudmiJCtYMcAaMofp7Yzw",
+    "project": {
+      "id": "prj_Esh3e64v7aYtnf0vP7i5gzcipDnO",
+      "name": "perch-aero-pane",
+      "framework": "vite"
+    },
+    "target": "production",
+    "state": "READY",
+    "meta": {
+      "githubCommitRef": "main",
+      "githubCommitSha": "8031a76d0a24e1bb4ba88febd87d9a9c15ff2166",
+      "githubRepo": "Perch",
+      "githubOrg": "martin-builds-code"
+    }
+  },
+  "previewEnvironmentMetadata": [
+    {
+      "key": "AERO_R05_TEST_KEY",
+      "id": "2vsdrIaj8Y8WebmG",
+      "type": "sensitive",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "AERO_R05_TEST_WINDOW",
+      "id": "rl91mg8hs5LPcVye",
+      "type": "plain",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "AERO_R05_ENABLED",
+      "id": "zf2TXil1UGu8WRcK",
+      "type": "plain",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "AERO_R05_SOURCE_BRANCH",
+      "id": "ftMEuo99p7TeGOmX",
+      "type": "plain",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "AERO_R05_DAILY_LIMIT",
+      "id": "8IeSBzjvICJMmtvs",
+      "type": "plain",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "VITE_AERO_R05_ENABLED",
+      "id": "qCoTFlEBfAGeRAP6",
+      "type": "plain",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "AERO_R05_COORDINATOR_URL",
+      "id": "frI2fDEIJ8w8RExk",
+      "type": "sensitive",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "AERO_R05_COORDINATOR_API_KEY",
+      "id": "of0C3YoNKKd5fOKy",
+      "type": "sensitive",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "AERO_R05_COORDINATOR_SECRET",
+      "id": "9aGYHMB4avMAquVw",
+      "type": "sensitive",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "AERO_OBSERVATION_ELEVATION_M",
+      "id": "sKgvm391gtrcZVV5",
+      "type": "sensitive",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "AERO_ROUTE_RESEARCH",
+      "id": "ZBCOgEPd5fNb6HmI",
+      "type": "plain",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "AERO_ROUTE_DIAGNOSTICS",
+      "id": "41oPclDE2v4YWApt",
+      "type": "plain",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "AERO_PIN_PEPPER",
+      "id": "8xIzr1n50glLNbtW",
+      "type": "sensitive",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "AERO_PIN_VERIFIER",
+      "id": "TfWwajxOS8tDhbFT",
+      "type": "sensitive",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "AERO_SESSION_SECRET",
+      "id": "RZYyIg8vOXf8iqV1",
+      "type": "sensitive",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "AERO_OBSERVATION_LATITUDE",
+      "id": "BsFTBupYNMW46jUq",
+      "type": "sensitive",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "AERO_OBSERVATION_LONGITUDE",
+      "id": "XT2bhrLCXECahAaH",
+      "type": "sensitive",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "AERO_LIVE_ENABLED",
+      "id": "ckYVCvjR8I1IA4S1",
+      "type": "plain",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "AERO_ENRICHMENT_ENABLED",
+      "id": "AFZWClpK88DDZ0Pd",
+      "type": "plain",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "AERO_POLL_INTERVAL_MS",
+      "id": "0KggsWezZvmGBIWM",
+      "type": "plain",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "VITE_AERO_LIVE_ENABLED",
+      "id": "Eo2EiEJhEcF1PSLP",
+      "type": "plain",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "VITE_AERO_ENRICHMENT_ENABLED",
+      "id": "qKbnVnXS6RuUficc",
+      "type": "plain",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "VITE_AERO_APPLIANCE_ENABLED",
+      "id": "SYvgerSBHlgvfkpE",
+      "type": "plain",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "VITE_AERO_DIAGNOSTICS_ENABLED",
+      "id": "BZ9Uk2yCIZuBLAtk",
+      "type": "plain",
+      "target": [
+        "preview"
+      ]
+    }
+  ],
+  "existingSecretValuesRead": false,
+  "existingVariablesModified": false,
+  "onlyNewR05KeysAdded": true,
+  "gitIntegrationConnected": false,
+  "aliasReassigned": false,
+  "mainModified": false,
+  "prMerged": false,
+  "scope": "R05 shared budget only; R04 and household requests remain outside that budget.",
+  "householdAlias": {
+    "alias": "perch-aero-pane.vercel.app",
+    "projectId": "prj_Esh3e64v7aYtnf0vP7i5gzcipDnO",
+    "deploymentId": "dpl_2WX2Y9nNudmiJCtYMcAaMofp7Yzw"
+  },
+  "authCleanupEvidence": "live/auth-cleanup.json",
+  "sourceManifest": "source-manifest.json"
+}
