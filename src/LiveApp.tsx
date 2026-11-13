@@ -209,6 +209,7 @@ export default function LiveApp({
       <SkyTrialDisplay
         diagnostics={skyDiagnostics}
         until={diagnosticUntil}
+        adaptive={import.meta.env.VITE_AERO_R05_ENABLED === 'true'}
       />
     );
   if (
@@ -220,6 +221,7 @@ export default function LiveApp({
       <RouteTrialDisplay
         diagnostics={routeDiagnostics}
         expiresAtMs={diagnosticUntil}
+        adaptive={import.meta.env.VITE_AERO_R05_ENABLED === 'true'}
       />
     );
   return (

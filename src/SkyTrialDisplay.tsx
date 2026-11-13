@@ -3,9 +3,11 @@ import type { SkyDiagnostics } from './skyDiagnostics';
 export default function SkyTrialDisplay({
   diagnostics,
   until,
+  adaptive = false,
 }: {
   diagnostics: SkyDiagnostics;
   until: number;
+  adaptive?: boolean;
 }) {
   const [data, setData] = useState(() => ({
     ...diagnostics.latest(),
@@ -25,7 +27,9 @@ export default function SkyTrialDisplay({
     <main className="sky-trial">
       <h1>R04 observation-cone comparison</h1>
       <p>
-        Experimental, temporarily unsecured Preview. Access expires{' '}
+        {adaptive
+          ? 'Protected R05 diagnostics. Collection ends '
+          : 'Experimental, temporarily unsecured Preview. Access expires '}
         {new Date(until).toISOString()}.
       </p>
       <p>
@@ -113,14 +117,19 @@ export default function SkyTrialDisplay({
         ).map((r, i) => (
           <li key={i}>
             {r.ref} {r.kind} ·{' '}
-            {r.secondary ? 'secondary ≥90 s' : 'primary'} · utility{' '}
-            {n(r.utility)} · {r.reason}
+            {r.secondary
+              ? adaptive
+                ? 'secondary · shared adaptive budget'
+                : 'secondary ≥90 s'
+              : 'primary'}{' '}
+            · utility {n(r.utility)} · {r.reason}
           </li>
         ))}
       </ol>
       <p>
-        Empty queue may mean a cache hit, no usable callsign, or a closed
-        secondary gate. No extra lookup timer.
+        {adaptive
+          ? 'All lookups share three tokens, one token per 30 s, at least 10 s spacing and ten starts per rolling five minutes. Eligible work wakes at its shared deadline; there is no separate secondary interval.'
+          : 'Empty queue may mean a cache hit, no usable callsign, or a closed secondary gate. No extra lookup timer.'}
       </p>
     </main>
   );

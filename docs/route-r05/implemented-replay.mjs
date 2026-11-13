@@ -21,9 +21,10 @@ globalThis.fetch = () => {
   throw Error('Provider traffic prohibited in offline replay');
 };
 const ds = await dataset(
-  fileURLToPath(
-    new URL('../route-r04/live/observation.json', import.meta.url),
-  ),
+  process.argv[2] ??
+    fileURLToPath(
+      new URL('../route-r04/live/observation.json', import.meta.url),
+    ),
 );
 const median = (xs) => {
   const a = [...xs].sort((a, b) => a - b),
@@ -415,7 +416,7 @@ const comparisons = [
 ];
 const output = {
   basis:
-    'Conditional offline replay through actual createEnricher.plan and shared R05 admission transitions; frozen captured selection; six identity demands fixed; unknown outcomes charged/censored without route credit.',
+    'Conditional offline replay through actual createEnricher.plan and shared R05 admission transitions; frozen captured selection; recorded identity demands fixed; unknown outcomes charged/censored without route credit.',
   limits: [
     'Not a bit-exact React/poller replay; original timer omissions and identity redaction persist.',
     'No claim that a recorded later HexDB response would have been identical earlier.',
@@ -427,7 +428,7 @@ const output = {
   comparisons,
 };
 await writeFile(
-  new URL('implemented-replay.json', import.meta.url),
+  process.argv[3] ?? new URL('implemented-replay.json', import.meta.url),
   JSON.stringify(output, null, 2) + '\n',
 );
 console.log(

@@ -3,9 +3,11 @@ import type { RouteDiagnostics } from './routeDiagnostics';
 export default function RouteTrialDisplay({
   diagnostics,
   expiresAtMs,
+  adaptive = false,
 }: {
   diagnostics: RouteDiagnostics;
   expiresAtMs: number;
+  adaptive?: boolean;
 }) {
   const [report, setReport] = useState(() =>
     diagnostics.summary(Date.now(), false),
@@ -23,13 +25,29 @@ export default function RouteTrialDisplay({
     <main className="route-trial-dashboard">
       <h1>Experimental route investigation</h1>
       <p className="route-trial-warning">
-        Temporarily unsecured Preview — server access expires{' '}
+        {adaptive
+          ? 'Protected R05 diagnostics — collection ends '
+          : 'Temporarily unsecured Preview — server access expires '}
         {new Date(expiresAtMs).toISOString()}.
       </p>
       <p>
-        15 km · positions every 15 s · enrichment ≥30 s globally / ≥90 s
-        secondaries · one request at a time
+        {adaptive
+          ? '15 km · positions every 15 s · three tokens · refill 1/30 s · start gap ≥10 s · ten starts / rolling five minutes · one shared upstream request at a time'
+          : '15 km · positions every 15 s · enrichment ≥30 s globally / ≥90 s secondaries · one request at a time'}
       </p>
+      {adaptive && report.adaptiveBudget ? (
+        <p aria-label="Shared adaptive budget">
+          Last server budget:{' '}
+          {report.adaptiveBudget.value.tokens.toFixed(2)} / 3 tokens ·{' '}
+          {report.adaptiveBudget.value.rollingFive} / 10 in five minutes ·{' '}
+          {report.adaptiveBudget.value.rollingDay} /{' '}
+          {report.adaptiveBudget.value.dailyLimit} in 24 hours · confirmed
+          upstream starts:{' '}
+          {report.adaptiveBudget.value.counters.confirmedStarts} ·{' '}
+          uncertain reservations:{' '}
+          {report.adaptiveBudget.value.counters.uncertain}
+        </p>
+      ) : null}
       <p>
         Detected in nearby feed: {report.distinctAircraft} aircraft ·
         Primary: {report.aircraftBecomingPrimary} · Callsign available:{' '}
@@ -43,12 +61,21 @@ export default function RouteTrialDisplay({
       </p>
       <p>
         Global wait: {Math.ceil(report.globalWaitMs / 1000)} s · Secondary
-        wait: {Math.ceil(report.secondaryWaitMs / 1000)} s · Server
-        deferrals: {report.counters.serverCooldownIncidents ?? 0} ·
-        Verified local: {report.counters.verifiedLocalDeferrals ?? 0} ·
-        Failure backoffs: {report.counters.clientCooldownIncidents ?? 0} ·
-        Amplified local waits:{' '}
-        {report.counters.localDeferralsAmplified ?? 0}
+        {adaptive ? 'reserve wait' : 'wait'}:{' '}
+        {Math.ceil(
+          (adaptive && report.adaptiveBudget
+            ? Math.max(
+                0,
+                report.adaptiveBudget.value.normalWaitMs -
+                  (report.endedAtMs - report.adaptiveBudget.atMs),
+              )
+            : report.secondaryWaitMs) / 1000,
+        )}{' '}
+        s · Server deferrals:{' '}
+        {report.counters.serverCooldownIncidents ?? 0} · Verified local:{' '}
+        {report.counters.verifiedLocalDeferrals ?? 0} · Failure backoffs:{' '}
+        {report.counters.clientCooldownIncidents ?? 0} · Amplified local
+        waits: {report.counters.localDeferralsAmplified ?? 0}
       </p>
       {report.deferrals.map((d) => (
         <section key={d.atMs} aria-label="Local deferral timing">
@@ -159,7 +186,10 @@ export default function RouteTrialDisplay({
       ) : null}
       <p>
         Bounded local evidence only; no positions, credentials or permanent
-        telemetry. Collection stops on page close, expiry or 18 hours.
+        telemetry.{' '}
+        {adaptive
+          ? 'This observation is limited to at most 90 minutes and ends on page close.'
+          : 'Collection stops on page close, expiry or 18 hours.'}
       </p>
     </main>
   );
