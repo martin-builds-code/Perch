@@ -592,3 +592,11 @@ test('API success boundary: server-only config, safe projection, cache headers a
     });
   }
 });
+
+test('production home defaults to live but preview and simulation override remain available', () => {
+  assert.equal(displayMode('', true), 'simulation');
+  assert.equal(displayMode('', true, true), 'live');
+  assert.equal(displayMode('?mode=simulation', true, true), 'simulation');
+  assert.equal(displayMode('?mode=live', true, false), 'live');
+  assert.equal(displayMode('', false, true), 'simulation');
+});
