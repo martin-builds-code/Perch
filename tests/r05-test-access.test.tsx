@@ -87,3 +87,14 @@ test('PIN-protected observation collection cannot request more than 90 minutes',
   ])
     assert.equal(adaptiveObservationUntil(query, T), undefined);
 });
+
+test('production remains isolated from temporary R05 machine access', () => {
+  const production = {
+    ...env,
+    VERCEL_ENV: 'production',
+    VERCEL_TARGET_ENV: 'production',
+    VERCEL_GIT_COMMIT_REF: 'release-r05-production',
+    AERO_PRODUCTION_LIVE_ENABLED: 'true',
+  };
+  assert.equal(r05TestAccess(request, production, T), null);
+});
