@@ -32,19 +32,28 @@ export interface Coordinator {
 }
 export const R05_PROJECT = 'prj_QU4OICxi2QPrRtK0JS83ZTaLP9bW';
 export const R05_BRANCH = 'r05-adaptive-enrichment';
+export const R05_PRODUCTION_BRANCH = 'release-r05-production';
 export function adaptiveEnabled(env = process.env) {
+  const ref = env.VERCEL_GIT_COMMIT_REF ?? env.AERO_R05_SOURCE_BRANCH;
+  const preview =
+    env.VERCEL_ENV === 'preview' &&
+    (!env.VERCEL_TARGET_ENV || env.VERCEL_TARGET_ENV === 'preview') &&
+    ref === R05_BRANCH;
+  const production =
+    env.VERCEL_ENV === 'production' &&
+    (!env.VERCEL_TARGET_ENV || env.VERCEL_TARGET_ENV === 'production') &&
+    env.AERO_PRODUCTION_LIVE_ENABLED === 'true' &&
+    ref === R05_PRODUCTION_BRANCH;
   return (
     env.AERO_R05_ENABLED === 'true' &&
     env.VERCEL === '1' &&
-    env.VERCEL_ENV === 'preview' &&
-    (!env.VERCEL_TARGET_ENV || env.VERCEL_TARGET_ENV === 'preview') &&
     env.VERCEL_PROJECT_ID === R05_PROJECT &&
-    (env.VERCEL_GIT_COMMIT_REF ?? env.AERO_R05_SOURCE_BRANCH) ===
-      R05_BRANCH
+    (preview || production)
   );
 }
-// Only this exact isolated Preview may opt in. A requested but misconfigured
-// coordinator never falls back to the old process-local request path.
+// The R05 production release requires its own explicit environment and
+// source-branch identity. Invalid R05 configuration never falls back to
+// the old process-local request path.
 export function createCoordinator(
   env = process.env,
   fetcher: typeof fetch = fetch,
