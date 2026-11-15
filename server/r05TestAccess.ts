@@ -3,12 +3,13 @@
 import { timingSafeEqual } from 'node:crypto';
 import type { IncomingMessage } from 'node:http';
 import { adaptiveEnabled } from './adaptiveCoordinator.js';
+import { isolatedStage3Preview } from './previewIdentity.js';
 export function r05TestAccess(
   req: IncomingMessage,
   env = process.env,
   now = Date.now(),
 ) {
-  if (!adaptiveEnabled(env) || req.method !== 'GET') return null;
+  if (!isolatedStage3Preview(env) || !adaptiveEnabled(env) || req.method !== 'GET') return null;
   try {
     if (
       new URL(req.url ?? '', 'https://local.invalid').pathname !==
