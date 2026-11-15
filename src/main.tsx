@@ -9,6 +9,7 @@ const live =
   displayMode(
     window.location.search,
     import.meta.env.VITE_AERO_LIVE_ENABLED === 'true',
+    import.meta.env.VITE_AERO_DEFAULT_LIVE === 'true',
   ) === 'live';
 const reviewing =
   window.location.pathname.replace(/\/$/, '') === '/route-review';
